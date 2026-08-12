@@ -22,12 +22,12 @@
     header {
       background: #111827;
       color: white;
-      padding: 20px;
+      padding: 22px 15px;
       text-align: center;
     }
 
     header h1 {
-      font-size: 25px;
+      font-size: 27px;
     }
 
     header p {
@@ -39,7 +39,7 @@
       background: linear-gradient(135deg, #2563eb, #7c3aed);
       color: white;
       text-align: center;
-      padding: 50px 20px;
+      padding: 55px 20px;
     }
 
     .hero h2 {
@@ -49,33 +49,43 @@
 
     .hero p {
       font-size: 17px;
+      line-height: 1.5;
       margin-bottom: 25px;
     }
 
-    .btn,
-    .order {
+    .btn {
       display: inline-block;
-      padding: 12px 20px;
+      background: white;
+      color: #2563eb;
+      padding: 13px 24px;
       border-radius: 8px;
       text-decoration: none;
       font-weight: bold;
     }
 
-    .btn {
-      background: white;
-      color: #2563eb;
-    }
-
     .container {
-      max-width: 1000px;
+      max-width: 1050px;
       margin: auto;
-      padding: 30px 15px;
+      padding: 35px 15px;
     }
 
     .title {
       text-align: center;
       margin-bottom: 25px;
-      font-size: 26px;
+      font-size: 27px;
+    }
+
+    .category {
+      margin-bottom: 35px;
+    }
+
+    .category-title {
+      background: #111827;
+      color: white;
+      padding: 14px;
+      border-radius: 10px;
+      margin-bottom: 18px;
+      text-align: center;
     }
 
     .services {
@@ -86,33 +96,37 @@
 
     .card {
       background: white;
-      padding: 25px;
+      padding: 24px;
       border-radius: 12px;
       box-shadow: 0 3px 12px rgba(0,0,0,0.08);
       text-align: center;
     }
 
     .card h3 {
-      margin-bottom: 12px;
       color: #2563eb;
+      margin-bottom: 12px;
+      font-size: 20px;
     }
 
     .card p {
-      margin-bottom: 15px;
       line-height: 1.5;
+      margin-bottom: 15px;
     }
 
     .price {
-      font-weight: bold;
       font-size: 19px;
+      font-weight: bold;
       margin-bottom: 15px;
     }
 
     .order {
+      display: inline-block;
       background: #2563eb;
       color: white;
-      border: none;
-      cursor: pointer;
+      padding: 10px 18px;
+      border-radius: 7px;
+      text-decoration: none;
+      font-weight: bold;
     }
 
     .contact {
@@ -120,21 +134,22 @@
       margin-top: 30px;
       padding: 30px;
       border-radius: 12px;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
     }
 
     .contact h2 {
       text-align: center;
-      margin-bottom: 20px;
+      margin-bottom: 22px;
     }
 
     .form-group {
-      margin-bottom: 15px;
+      margin-bottom: 16px;
     }
 
     .form-group label {
       display: block;
       font-weight: bold;
-      margin-bottom: 6px;
+      margin-bottom: 7px;
     }
 
     .form-group input,
@@ -168,7 +183,7 @@
       background: #111827;
       color: white;
       text-align: center;
-      padding: 20px;
+      padding: 22px;
       margin-top: 30px;
     }
   </style>
@@ -183,52 +198,169 @@
 
   <section class="hero">
     <h2>BOOSTEZ VOS RÉSEAUX SOCIAUX 🔥</h2>
-    <p>Développez votre présence et donnez plus de visibilité à vos contenus.</p>
+
+    <p>
+      Développez votre présence et donnez plus de visibilité
+      à vos contenus.
+    </p>
 
     <a href="#services" class="btn">
       Voir nos services
     </a>
   </section>
 
-  <main class="container">
+  <main class="container" id="services">
 
-    <section id="services">
+    <h2 class="title">📱 NOS SERVICES & TARIFS</h2>
 
-      <h2 class="title">📱 NOS SERVICES</h2>
+    <!-- FACEBOOK -->
+
+    <section class="category">
+
+      <h2 class="category-title">
+        🔵 FACEBOOK
+      </h2>
 
       <div class="services">
 
         <div class="card">
-          <h3>Facebook</h3>
-          <p>Followers, likes et visibilité pour vos pages et publications.</p>
-          <div class="price">À partir de 4 000 FC</div>
+          <h3>1K Followers</h3>
+          <p>Augmentez les abonnés de votre page ou profil.</p>
+          <div class="price">4 000 FC</div>
           <a class="order" href="#contact">Commander</a>
         </div>
 
         <div class="card">
-          <h3>TikTok</h3>
-          <p>Vues, likes et abonnés pour développer votre compte.</p>
-          <div class="price">À partir de 8 000 FC</div>
+          <h3>1K Likes</h3>
+          <p>Boostez les mentions J'aime de votre publication.</p>
+          <div class="price">1 500 FC</div>
           <a class="order" href="#contact">Commander</a>
         </div>
 
         <div class="card">
-          <h3>Instagram</h3>
-          <p>Abonnés et engagement pour votre profil Instagram.</p>
-          <div class="price">À partir de 10 000 FC</div>
+          <h3>2K Likes</h3>
+          <p>Plus de visibilité et d'engagement.</p>
+          <div class="price">3 000 FC</div>
           <a class="order" href="#contact">Commander</a>
         </div>
 
         <div class="card">
-          <h3>Création graphique</h3>
-          <p>Affiches, anniversaires, promotions et visuels professionnels.</p>
-          <div class="price">Sur commande</div>
+          <h3>3K Likes</h3>
+          <p>Un boost supplémentaire pour vos publications.</p>
+          <div class="price">4 500 FC</div>
           <a class="order" href="#contact">Commander</a>
         </div>
 
       </div>
 
     </section>
+
+    <!-- TIKTOK -->
+
+    <section class="category">
+
+      <h2 class="category-title">
+        🎵 TIKTOK
+      </h2>
+
+      <div class="services">
+
+        <div class="card">
+          <h3>1K Abonnés</h3>
+          <p>Développez votre communauté TikTok.</p>
+          <div class="price">8 000 FC</div>
+          <a class="order" href="#contact">Commander</a>
+        </div>
+
+        <div class="card">
+          <h3>1K Vues + 1K Likes</h3>
+          <p>Augmentez la visibilité et l'engagement.</p>
+          <div class="price">6 000 FC</div>
+          <a class="order" href="#contact">Commander</a>
+        </div>
+
+        <div class="card">
+          <h3>2K Vues + 2K Likes</h3>
+          <p>Un boost plus important pour vos vidéos.</p>
+          <div class="price">12 000 FC</div>
+          <a class="order" href="#contact">Commander</a>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- INSTAGRAM -->
+
+    <section class="category">
+
+      <h2 class="category-title">
+        📸 INSTAGRAM
+      </h2>
+
+      <div class="services">
+
+        <div class="card">
+          <h3>1K Followers</h3>
+          <p>Développez votre audience Instagram.</p>
+          <div class="price">8 000 FC</div>
+          <a class="order" href="#contact">Commander</a>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- CREATION GRAPHIQUE -->
+
+    <section class="category">
+
+      <h2 class="category-title">
+        🎨 CRÉATION GRAPHIQUE
+      </h2>
+
+      <div class="services">
+
+        <div class="card">
+          <h3>🎂 Anniversaire</h3>
+          <p>Création d'affiche personnalisée.</p>
+          <div class="price">5 000 FC</div>
+          <a class="order" href="#contact">Commander</a>
+        </div>
+
+        <div class="card">
+          <h3>🎵 Musique</h3>
+          <p>Affiche professionnelle pour votre musique.</p>
+          <div class="price">5 000 FC</div>
+          <a class="order" href="#contact">Commander</a>
+        </div>
+
+        <div class="card">
+          <h3>💍 Mariage</h3>
+          <p>Création d'affiche pour mariage et événement.</p>
+          <div class="price">5 000 FC</div>
+          <a class="order" href="#contact">Commander</a>
+        </div>
+
+        <div class="card">
+          <h3>🏷️ Logo</h3>
+          <p>Création de logo personnalisé.</p>
+          <div class="price">3 000 FC</div>
+          <a class="order" href="#contact">Commander</a>
+        </div>
+
+        <div class="card">
+          <h3>🎬 Montage Photo / Vidéo</h3>
+          <p>Montage et traitement de vos photos et vidéos.</p>
+          <div class="price">7 000 FC</div>
+          <a class="order" href="#contact">Commander</a>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- FORMULAIRE -->
 
     <section class="contact" id="contact">
 
@@ -237,44 +369,116 @@
       <form onsubmit="sendOrder(event)">
 
         <div class="form-group">
-          <label for="name">Nom</label>
-          <input type="text" id="name" placeholder="Votre nom" required>
+          <label for="name">👤 Nom</label>
+          <input
+            type="text"
+            id="name"
+            placeholder="Votre nom"
+            required>
         </div>
 
         <div class="form-group">
-          <label for="service">Service</label>
+
+          <label for="service">
+            📱 Service
+          </label>
 
           <select id="service" required>
-            <option value="">Choisir un service</option>
-            <option value="Facebook">Facebook</option>
-            <option value="TikTok">TikTok</option>
-            <option value="Instagram">Instagram</option>
-            <option value="Création graphique">Création graphique</option>
+
+            <option value="">
+              Choisir un service
+            </option>
+
+            <option value="Facebook - 1K Followers - 4 000 FC">
+              Facebook — 1K Followers — 4 000 FC
+            </option>
+
+            <option value="Facebook - 1K Likes - 1 500 FC">
+              Facebook — 1K Likes — 1 500 FC
+            </option>
+
+            <option value="Facebook - 2K Likes - 3 000 FC">
+              Facebook — 2K Likes — 3 000 FC
+            </option>
+
+            <option value="Facebook - 3K Likes - 4 500 FC">
+              Facebook — 3K Likes — 4 500 FC
+            </option>
+
+            <option value="TikTok - 1K Abonnés - 8 000 FC">
+              TikTok — 1K Abonnés — 8 000 FC
+            </option>
+
+            <option value="TikTok - 1K Vues + 1K Likes - 6 000 FC">
+              TikTok — 1K Vues + 1K Likes — 6 000 FC
+            </option>
+
+            <option value="TikTok - 2K Vues + 2K Likes - 12 000 FC">
+              TikTok — 2K Vues + 2K Likes — 12 000 FC
+            </option>
+
+            <option value="Instagram - 1K Followers - 8 000 FC">
+              Instagram — 1K Followers — 8 000 FC
+            </option>
+
+            <option value="Création graphique - Anniversaire - 5 000 FC">
+              Affiche Anniversaire — 5 000 FC
+            </option>
+
+            <option value="Création graphique - Musique - 5 000 FC">
+              Affiche Musique — 5 000 FC
+            </option>
+
+            <option value="Création graphique - Mariage - 5 000 FC">
+              Affiche Mariage — 5 000 FC
+            </option>
+
+            <option value="Création graphique - Logo - 3 000 FC">
+              Logo — 3 000 FC
+            </option>
+
+            <option value="Création graphique - Montage Photo / Vidéo - 7 000 FC">
+              Montage Photo / Vidéo — 7 000 FC
+            </option>
+
           </select>
 
         </div>
 
         <div class="form-group">
-          <label for="link">Lien de votre compte/page</label>
+
+          <label for="link">
+            🔗 Lien de votre compte/page
+          </label>
+
           <input
             type="url"
             id="link"
             placeholder="https://..."
             required>
+
         </div>
 
         <div class="form-group">
-          <label for="quantity">Quantité souhaitée</label>
+
+          <label for="quantity">
+            🔢 Quantité
+          </label>
+
           <input
             type="number"
             id="quantity"
             min="1"
             placeholder="Ex: 1000"
             required>
+
         </div>
 
         <div class="form-group">
-          <label for="message">Message</label>
+
+          <label for="message">
+            💬 Message
+          </label>
 
           <textarea
             id="message"
@@ -293,33 +497,52 @@
   </main>
 
   <footer>
-    <p>© 2026 LEADER NOSMY BOOST — Tous droits réservés.</p>
+    <p>
+      © 2026 LEADER NOSMY BOOST — Tous droits réservés.
+    </p>
   </footer>
 
   <script>
+
     function sendOrder(event) {
+
       event.preventDefault();
 
-      const name = document.getElementById("name").value;
-      const service = document.getElementById("service").value;
-      const link = document.getElementById("link").value;
-      const quantity = document.getElementById("quantity").value;
-      const message = document.getElementById("message").value;
+      const name =
+        document.getElementById("name").value;
+
+      const service =
+        document.getElementById("service").value;
+
+      const link =
+        document.getElementById("link").value;
+
+      const quantity =
+        document.getElementById("quantity").value;
+
+      const message =
+        document.getElementById("message").value;
 
       const text =
-        "Bonjour LEADER NOSMY BOOST 👋%0A%0A" +
-        "📋 NOUVELLE COMMANDE%0A%0A" +
-        "👤 Nom : " + encodeURIComponent(name) + "%0A" +
-        "📱 Service : " + encodeURIComponent(service) + "%0A" +
-        "🔗 Lien : " + encodeURIComponent(link) + "%0A" +
-        "🔢 Quantité : " + encodeURIComponent(quantity) + "%0A" +
-        "💬 Message : " + encodeURIComponent(message);
+        "Bonjour LEADER NOSMY BOOST 👋\n\n" +
+        "📋 NOUVELLE COMMANDE\n\n" +
+        "👤 Nom : " + name + "\n" +
+        "📱 Service : " + service + "\n" +
+        "🔗 Lien : " + link + "\n" +
+        "🔢 Quantité : " + quantity + "\n" +
+        "💬 Message : " + message;
+
+      const whatsappURL =
+        "https://wa.me/243843066709?text=" +
+        encodeURIComponent(text);
 
       window.open(
-        "https://wa.me/243843066709?text=" + text,
+        whatsappURL,
         "_blank"
       );
+
     }
+
   </script>
 
 </body>
