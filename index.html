@@ -74,7 +74,8 @@
     .about,
     .payment,
     .social,
-    .contact {
+    .contact,
+    .success {
       background: white;
       padding: 30px;
       margin-bottom: 35px;
@@ -86,7 +87,8 @@
     .about h2,
     .payment h2,
     .social h2,
-    .contact h2 {
+    .contact h2,
+    .success h2 {
       color: #2563eb;
       font-size: 27px;
       margin-bottom: 20px;
@@ -162,8 +164,6 @@
       color: white;
     }
 
-    /* PAIEMENT */
-
     .payment-text {
       line-height: 1.7;
       margin-bottom: 20px;
@@ -209,8 +209,6 @@
       border-radius: 8px;
       line-height: 1.6;
     }
-
-    /* CONTACT */
 
     .social-buttons {
       display: flex;
@@ -286,6 +284,33 @@
       cursor: pointer;
     }
 
+    /* CONFIRMATION */
+
+    .success {
+      display: none;
+      border: 2px solid #16a34a;
+    }
+
+    .success-icon {
+      font-size: 55px;
+      margin-bottom: 15px;
+    }
+
+    .success p {
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .success-whatsapp {
+      display: inline-block;
+      background: #16a34a;
+      color: white;
+      padding: 13px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
     footer {
       background: #111827;
       color: white;
@@ -304,6 +329,7 @@
 </header>
 
 <section class="hero">
+
   <h2>BOOSTEZ VOS RÉSEAUX SOCIAUX 🔥</h2>
 
   <p>
@@ -314,6 +340,7 @@
   <a href="#services" class="btn">
     Voir nos services
   </a>
+
 </section>
 
 <main class="container">
@@ -394,6 +421,7 @@
         </div>
 
       </div>
+
     </section>
 
     <section class="category">
@@ -424,6 +452,7 @@
         </div>
 
       </div>
+
     </section>
 
     <section class="category">
@@ -433,18 +462,32 @@
       <div class="services">
 
         <div class="card">
+
           <h3>1K Followers</h3>
-          <p>Abonnés Instagram.</p>
-          <div class="price">8 000 FC</div>
-          <a class="order" href="#contact">Commander</a>
+
+          <p>
+            Abonnés Instagram.
+          </p>
+
+          <div class="price">
+            8 000 FC
+          </div>
+
+          <a class="order" href="#contact">
+            Commander
+          </a>
+
         </div>
 
       </div>
+
     </section>
 
     <section class="category">
 
-      <h2 class="category-title">🎨 CRÉATION GRAPHIQUE</h2>
+      <h2 class="category-title">
+        🎨 CRÉATION GRAPHIQUE
+      </h2>
 
       <div class="services">
 
@@ -484,6 +527,7 @@
         </div>
 
       </div>
+
     </section>
 
   </section>
@@ -495,8 +539,8 @@
     <h2>💳 MODES DE PAIEMENT</h2>
 
     <p class="payment-text">
-      Après votre commande, vous pouvez effectuer le paiement
-      avec l'un de nos moyens de paiement ci-dessous.
+      Après votre commande, effectuez votre paiement
+      avec l'un de nos moyens ci-dessous.
     </p>
 
     <div class="payment-methods">
@@ -557,26 +601,29 @@
     <div class="payment-warning">
 
       ⚠️ <strong>Important :</strong>
-      Vérifiez toujours le nom du bénéficiaire avant d'envoyer
-      votre paiement. Après paiement, envoyez la preuve sur WhatsApp
-      pour confirmation.
+      Vérifiez toujours le nom du bénéficiaire avant le paiement.
+      Après paiement, envoyez la preuve sur WhatsApp.
 
     </div>
 
   </section>
 
-  <!-- CONTACT -->
+  <!-- CONTACTS -->
 
   <section class="social">
 
     <h2>🌐 NOS CONTACTS</h2>
 
     <p class="contact-info">
+
       📱 WhatsApp : +243 843 066 709
       <br>
+
       📍 LEADER NOSMY BOOST
       <br>
+
       💻 Promotion digitale & création graphique
+
     </p>
 
     <div class="social-buttons">
@@ -622,6 +669,7 @@
     <form onsubmit="sendOrder(event)">
 
       <div class="form-group">
+
         <label>👤 Nom</label>
 
         <input
@@ -629,6 +677,7 @@
           id="name"
           placeholder="Votre nom"
           required>
+
       </div>
 
       <div class="form-group">
@@ -637,24 +686,61 @@
 
         <select id="service" required>
 
-          <option value="">Choisir un service</option>
+          <option value="">
+            Choisir un service
+          </option>
 
-          <option>Facebook - 1K Followers - 4 000 FC</option>
-          <option>Facebook - 1K Likes - 1 500 FC</option>
-          <option>Facebook - 2K Likes - 3 000 FC</option>
-          <option>Facebook - 3K Likes - 4 500 FC</option>
+          <option>
+            Facebook - 1K Followers - 4 000 FC
+          </option>
 
-          <option>TikTok - 1K Abonnés - 8 000 FC</option>
-          <option>TikTok - 1K Vues + 1K Likes - 6 000 FC</option>
-          <option>TikTok - 2K Vues + 2K Likes - 12 000 FC</option>
+          <option>
+            Facebook - 1K Likes - 1 500 FC
+          </option>
 
-          <option>Instagram - 1K Followers - 8 000 FC</option>
+          <option>
+            Facebook - 2K Likes - 3 000 FC
+          </option>
 
-          <option>Affiche Anniversaire - 5 000 FC</option>
-          <option>Affiche Musique - 5 000 FC</option>
-          <option>Affiche Mariage - 5 000 FC</option>
-          <option>Logo - 3 000 FC</option>
-          <option>Montage Photo / Vidéo - 7 000 FC</option>
+          <option>
+            Facebook - 3K Likes - 4 500 FC
+          </option>
+
+          <option>
+            TikTok - 1K Abonnés - 8 000 FC
+          </option>
+
+          <option>
+            TikTok - 1K Vues + 1K Likes - 6 000 FC
+          </option>
+
+          <option>
+            TikTok - 2K Vues + 2K Likes - 12 000 FC
+          </option>
+
+          <option>
+            Instagram - 1K Followers - 8 000 FC
+          </option>
+
+          <option>
+            Affiche Anniversaire - 5 000 FC
+          </option>
+
+          <option>
+            Affiche Musique - 5 000 FC
+          </option>
+
+          <option>
+            Affiche Mariage - 5 000 FC
+          </option>
+
+          <option>
+            Logo - 3 000 FC
+          </option>
+
+          <option>
+            Montage Photo / Vidéo - 7 000 FC
+          </option>
 
         </select>
 
@@ -695,11 +781,46 @@
 
       </div>
 
-      <button type="submit" class="submit">
+      <button
+        type="submit"
+        class="submit">
         💬 ENVOYER LA COMMANDE SUR WHATSAPP
       </button>
 
     </form>
+
+  </section>
+
+  <!-- CONFIRMATION -->
+
+  <section
+    class="success"
+    id="success">
+
+    <div class="success-icon">
+      🎉
+    </div>
+
+    <h2>
+      COMMANDE ENVOYÉE !
+    </h2>
+
+    <p>
+      Merci d'avoir choisi
+      <strong>LEADER NOSMY BOOST</strong>.
+      <br><br>
+
+      Votre commande a été préparée pour WhatsApp.
+      Notre équipe pourra vous contacter pour confirmer
+      les détails et le paiement.
+    </p>
+
+    <a
+      class="success-whatsapp"
+      href="https://wa.me/243843066709"
+      target="_blank">
+      💬 Ouvrir WhatsApp
+    </a>
 
   </section>
 
@@ -747,7 +868,20 @@ function sendOrder(event) {
     "https://wa.me/243843066709?text=" +
     encodeURIComponent(text);
 
-  window.open(whatsappURL, "_blank");
+  const success =
+    document.getElementById("success");
+
+  success.style.display = "block";
+
+  success.scrollIntoView({
+    behavior: "smooth"
+  });
+
+  window.open(
+    whatsappURL,
+    "_blank"
+  );
+
 }
 
 </script>
