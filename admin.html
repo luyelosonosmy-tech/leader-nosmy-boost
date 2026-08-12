@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin - Leader Nosmy Boost</title>
+</head>
+
+<body>
+  <h1>Leader Nosmy Boost</h1>
+  <h2>Administration</h2>
+
+  <p>Bienvenue dans la page d'administration.</p>
+
+  <div id="orders">
+    Aucune commande affichée pour le moment.
+  </div>
+
+  <script>
+    async function loadOrders() {
+      try {
+        const response = await fetch("/orders.json");
+        const orders = await response.json();
+
+        const container = document.getElementById("orders");
+
+        if (!orders.length) {
+          container.textContent = "Aucune commande pour le moment.";
+          return;
+        }
+
+        container.innerHTML = orders.map(order => `
+          <div>
+            <strong>Commande #${order.id}</strong>
+            <pre>${JSON.stringify(order, null, 2)}</pre>
+          </div>
+        `).join("");
+      } catch (error) {
+        document.getElementById("orders").textContent =
+          "Impossible de charger les commandes.";
+      }
+    }
+
+    loadOrders();
+  </script>
+</body>
+</html>
