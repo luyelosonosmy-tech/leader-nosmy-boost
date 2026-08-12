@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>LEADER NOSMY BOOST</title>
 
   <style>
@@ -14,57 +13,115 @@
       font-family: Arial, sans-serif;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       background: #f4f6f8;
       color: #222;
     }
 
+    /* MENU */
+
     header {
       background: #111827;
       color: white;
-      text-align: center;
-      padding: 25px 15px;
+      padding: 15px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
 
-    header h1 {
-      font-size: 28px;
+    .navbar {
+      max-width: 1100px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
     }
 
-    header p {
-      margin-top: 8px;
-      color: #d1d5db;
+    .logo {
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+      font-size: 20px;
+      white-space: nowrap;
     }
+
+    .logo span {
+      color: #60a5fa;
+    }
+
+    .menu {
+      display: flex;
+      gap: 18px;
+      list-style: none;
+    }
+
+    .menu a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .menu a:hover {
+      color: #60a5fa;
+    }
+
+    .menu-button {
+      display: none;
+      background: #2563eb;
+      color: white;
+      border: none;
+      padding: 9px 12px;
+      border-radius: 7px;
+      font-size: 20px;
+    }
+
+    /* HERO */
 
     .hero {
       background: linear-gradient(135deg, #2563eb, #7c3aed);
       color: white;
       text-align: center;
-      padding: 55px 20px;
+      padding: 65px 20px;
     }
 
-    .hero h2 {
-      font-size: 32px;
+    .hero-logo {
+      display: inline-block;
+      border: 2px solid white;
+      padding: 12px 18px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      font-size: 23px;
+      font-weight: bold;
+    }
+
+    .hero h1 {
+      font-size: 34px;
       margin-bottom: 15px;
     }
 
     .hero p {
+      font-size: 17px;
       line-height: 1.6;
       margin-bottom: 25px;
     }
 
-    .btn,
-    .order {
+    .btn {
       display: inline-block;
-      padding: 12px 20px;
+      background: white;
+      color: #2563eb;
+      padding: 13px 23px;
       border-radius: 8px;
       text-decoration: none;
       font-weight: bold;
     }
 
-    .btn {
-      background: white;
-      color: #2563eb;
-    }
+    /* GENERAL */
 
     .container {
       max-width: 1050px;
@@ -72,50 +129,30 @@
       padding: 35px 15px;
     }
 
-    .about,
-    .payment,
-    .social,
-    .contact,
-    .success {
+    .section {
+      margin-bottom: 35px;
+    }
+
+    .box {
       background: white;
       padding: 30px;
-      margin-bottom: 35px;
       border-radius: 14px;
-      text-align: center;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.10);
-    }
-
-    .about h2,
-    .payment h2,
-    .social h2,
-    .contact h2,
-    .success h2 {
-      color: #2563eb;
-      font-size: 27px;
-      margin-bottom: 20px;
-    }
-
-    .about p {
-      line-height: 1.7;
-      margin-bottom: 15px;
-    }
-
-    .about-contact {
-      display: inline-block;
-      background: #16a34a;
-      color: white;
-      padding: 12px 20px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: bold;
-      margin-top: 10px;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.09);
     }
 
     .title {
       text-align: center;
+      color: #2563eb;
       font-size: 27px;
-      margin-bottom: 25px;
+      margin-bottom: 22px;
     }
+
+    .text {
+      line-height: 1.8;
+      text-align: center;
+    }
+
+    /* SERVICES */
 
     .category {
       margin-bottom: 35px;
@@ -161,14 +198,16 @@
     }
 
     .order {
+      display: inline-block;
       background: #2563eb;
       color: white;
+      padding: 10px 18px;
+      border-radius: 7px;
+      text-decoration: none;
+      font-weight: bold;
     }
 
-    .payment-text {
-      line-height: 1.7;
-      margin-bottom: 20px;
-    }
+    /* PAIEMENT */
 
     .payment-methods {
       display: grid;
@@ -177,9 +216,10 @@
     }
 
     .payment-card {
+      background: #f9fafb;
       padding: 22px;
       border-radius: 12px;
-      background: #f9fafb;
+      text-align: center;
       border: 1px solid #e5e7eb;
     }
 
@@ -203,12 +243,21 @@
       font-weight: bold;
     }
 
-    .payment-warning {
-      margin-top: 22px;
-      padding: 15px;
+    .warning {
+      margin-top: 20px;
       background: #fff7ed;
+      padding: 15px;
       border-radius: 8px;
       line-height: 1.6;
+      text-align: center;
+    }
+
+    /* CONTACT */
+
+    .contact-info {
+      text-align: center;
+      line-height: 1.9;
+      margin-bottom: 20px;
     }
 
     .social-buttons {
@@ -219,7 +268,6 @@
     }
 
     .social-buttons a {
-      display: inline-block;
       padding: 12px 18px;
       border-radius: 8px;
       text-decoration: none;
@@ -243,14 +291,10 @@
       background: #e1306c;
     }
 
-    .contact-info {
-      line-height: 1.8;
-      margin-bottom: 22px;
-    }
+    /* FORMULAIRE */
 
     .form-group {
       margin-bottom: 16px;
-      text-align: left;
     }
 
     .form-group label {
@@ -285,13 +329,25 @@
       cursor: pointer;
     }
 
+    /* CONFIRMATION */
+
     .success {
       display: none;
+      background: white;
       border: 2px solid #16a34a;
+      padding: 30px;
+      border-radius: 14px;
+      text-align: center;
+      margin-bottom: 35px;
     }
 
     .success-icon {
       font-size: 55px;
+      margin-bottom: 12px;
+    }
+
+    .success h2 {
+      color: #16a34a;
       margin-bottom: 15px;
     }
 
@@ -310,12 +366,71 @@
       font-weight: bold;
     }
 
+    /* WHATSAPP FLOTTANT */
+
+    .whatsapp-float {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      background: #16a34a;
+      color: white;
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-size: 28px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+      z-index: 2000;
+    }
+
+    /* FOOTER */
+
     footer {
       background: #111827;
       color: white;
       text-align: center;
-      padding: 22px;
-      margin-top: 30px;
+      padding: 25px 15px;
+      line-height: 1.8;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 700px) {
+
+      .menu-button {
+        display: block;
+      }
+
+      .menu {
+        display: none;
+        position: absolute;
+        top: 67px;
+        left: 0;
+        right: 0;
+        background: #111827;
+        flex-direction: column;
+        padding: 20px;
+        text-align: center;
+      }
+
+      .menu.active {
+        display: flex;
+      }
+
+      .hero h1 {
+        font-size: 28px;
+      }
+
+      .hero-logo {
+        font-size: 19px;
+      }
+
+      .box {
+        padding: 22px;
+      }
     }
   </style>
 </head>
@@ -323,12 +438,56 @@
 <body>
 
 <header>
-  <h1>🚀 LEADER NOSMY BOOST</h1>
-  <p>Votre service de boostage et promotion digitale</p>
+
+  <nav class="navbar">
+
+    <a href="#accueil" class="logo">
+      👑 LEADER <span>NOSMY BOOST</span>
+    </a>
+
+    <button
+      class="menu-button"
+      onclick="toggleMenu()">
+      ☰
+    </button>
+
+    <ul class="menu" id="menu">
+
+      <li>
+        <a href="#accueil">🏠 Accueil</a>
+      </li>
+
+      <li>
+        <a href="#services">📱 Services</a>
+      </li>
+
+      <li>
+        <a href="#paiement">💳 Paiement</a>
+      </li>
+
+      <li>
+        <a href="#commande">📋 Commande</a>
+      </li>
+
+      <li>
+        <a href="#contact">📞 Contact</a>
+      </li>
+
+    </ul>
+
+  </nav>
+
 </header>
 
-<section class="hero">
-  <h2>BOOSTEZ VOS RÉSEAUX SOCIAUX 🔥</h2>
+<section class="hero" id="accueil">
+
+  <div class="hero-logo">
+    👑 LEADER NOSMY BOOST
+  </div>
+
+  <h1>
+    BOOSTEZ VOS RÉSEAUX SOCIAUX 🔥
+  </h1>
 
   <p>
     Développez votre présence et donnez plus de visibilité
@@ -338,50 +497,47 @@
   <a href="#services" class="btn">
     Voir nos services
   </a>
+
 </section>
 
 <main class="container">
 
-  <section class="about">
+  <!-- À PROPOS -->
 
-    <h2>👑 À PROPOS DE LEADER NOSMY</h2>
+  <section class="section box">
 
-    <p>
+    <h2 class="title">
+      👑 À PROPOS DE NOUS
+    </h2>
+
+    <p class="text">
       Bienvenue chez <strong>LEADER NOSMY BOOST</strong>.
-    </p>
+      <br><br>
 
-    <p>
       Nous vous accompagnons dans la promotion de vos réseaux
       sociaux et dans la création de vos visuels professionnels.
-    </p>
+      <br><br>
 
-    <p>
-      Notre objectif est de donner plus de visibilité à vos projets,
-      vos pages, vos contenus et vos événements.
-    </p>
-
-    <p>
       📱 Facebook • TikTok • Instagram
       <br>
       🎨 Affiches • Logos • Montages photo/vidéo
     </p>
 
-    <a
-      class="about-contact"
-      href="https://wa.me/243843066709?text=Bonjour%20LEADER%20NOSMY%20BOOST%2C%20je%20voudrais%20plus%20d'informations."
-      target="_blank">
-      💬 Nous contacter
-    </a>
-
   </section>
 
-  <section id="services">
+  <!-- SERVICES -->
 
-    <h2 class="title">📱 NOS SERVICES & TARIFS</h2>
+  <section class="section" id="services">
+
+    <h2 class="title">
+      📱 NOS SERVICES & TARIFS
+    </h2>
 
     <section class="category">
 
-      <h2 class="category-title">🔵 FACEBOOK</h2>
+      <h2 class="category-title">
+        🔵 FACEBOOK
+      </h2>
 
       <div class="services">
 
@@ -389,36 +545,39 @@
           <h3>1K Followers</h3>
           <p>Abonnés Facebook.</p>
           <div class="price">4 000 FC</div>
-          <a class="order" href="#contact">Commander</a>
+          <a href="#commande" class="order">Commander</a>
         </div>
 
         <div class="card">
           <h3>1K Likes</h3>
           <p>Likes Facebook.</p>
           <div class="price">1 500 FC</div>
-          <a class="order" href="#contact">Commander</a>
+          <a href="#commande" class="order">Commander</a>
         </div>
 
         <div class="card">
           <h3>2K Likes</h3>
           <p>Likes Facebook.</p>
           <div class="price">3 000 FC</div>
-          <a class="order" href="#contact">Commander</a>
+          <a href="#commande" class="order">Commander</a>
         </div>
 
         <div class="card">
           <h3>3K Likes</h3>
           <p>Likes Facebook.</p>
           <div class="price">4 500 FC</div>
-          <a class="order" href="#contact">Commander</a>
+          <a href="#commande" class="order">Commander</a>
         </div>
 
       </div>
+
     </section>
 
     <section class="category">
 
-      <h2 class="category-title">🎵 TIKTOK</h2>
+      <h2 class="category-title">
+        🎵 TIKTOK
+      </h2>
 
       <div class="services">
 
@@ -426,29 +585,32 @@
           <h3>1K Abonnés</h3>
           <p>Abonnés TikTok.</p>
           <div class="price">8 000 FC</div>
-          <a class="order" href="#contact">Commander</a>
+          <a href="#commande" class="order">Commander</a>
         </div>
 
         <div class="card">
           <h3>1K Vues + 1K Likes</h3>
           <p>Vues et likes TikTok.</p>
           <div class="price">6 000 FC</div>
-          <a class="order" href="#contact">Commander</a>
+          <a href="#commande" class="order">Commander</a>
         </div>
 
         <div class="card">
           <h3>2K Vues + 2K Likes</h3>
           <p>Vues et likes TikTok.</p>
           <div class="price">12 000 FC</div>
-          <a class="order" href="#contact">Commander</a>
+          <a href="#commande" class="order">Commander</a>
         </div>
 
       </div>
+
     </section>
 
     <section class="category">
 
-      <h2 class="category-title">📸 INSTAGRAM</h2>
+      <h2 class="category-title">
+        📸 INSTAGRAM
+      </h2>
 
       <div class="services">
 
@@ -456,15 +618,18 @@
           <h3>1K Followers</h3>
           <p>Abonnés Instagram.</p>
           <div class="price">8 000 FC</div>
-          <a class="order" href="#contact">Commander</a>
+          <a href="#commande" class="order">Commander</a>
         </div>
 
       </div>
+
     </section>
 
     <section class="category">
 
-      <h2 class="category-title">🎨 CRÉATION GRAPHIQUE</h2>
+      <h2 class="category-title">
+        🎨 CRÉATION GRAPHIQUE
+      </h2>
 
       <div class="services">
 
@@ -472,56 +637,67 @@
           <h3>🎂 Anniversaire</h3>
           <p>Affiche anniversaire.</p>
           <div class="price">5 000 FC</div>
-          <a class="order" href="#contact">Commander</a>
+          <a href="#commande" class="order">Commander</a>
         </div>
 
         <div class="card">
           <h3>🎵 Musique</h3>
           <p>Affiche musicale.</p>
           <div class="price">5 000 FC</div>
-          <a class="order" href="#contact">Commander</a>
+          <a href="#commande" class="order">Commander</a>
         </div>
 
         <div class="card">
           <h3>💍 Mariage</h3>
           <p>Affiche mariage.</p>
           <div class="price">5 000 FC</div>
-          <a class="order" href="#contact">Commander</a>
+          <a href="#commande" class="order">Commander</a>
         </div>
 
         <div class="card">
           <h3>🏷️ Logo</h3>
           <p>Création de logo.</p>
           <div class="price">3 000 FC</div>
-          <a class="order" href="#contact">Commander</a>
+          <a href="#commande" class="order">Commander</a>
         </div>
 
         <div class="card">
           <h3>🎬 Montage Photo / Vidéo</h3>
           <p>Montage professionnel.</p>
           <div class="price">7 000 FC</div>
-          <a class="order" href="#contact">Commander</a>
+          <a href="#commande" class="order">Commander</a>
         </div>
 
       </div>
+
     </section>
 
   </section>
 
-  <section class="payment">
+  <!-- PAIEMENT -->
 
-    <h2>💳 MODES DE PAIEMENT</h2>
+  <section class="section box" id="paiement">
 
-    <p class="payment-text">
-      Après votre commande, effectuez votre paiement
-      avec l'un de nos moyens ci-dessous.
+    <h2 class="title">
+      💳 MODES DE PAIEMENT
+    </h2>
+
+    <p class="text">
+      Effectuez votre paiement avec l'un de nos moyens ci-dessous.
+      Après paiement, envoyez la preuve sur WhatsApp.
     </p>
+
+    <br>
 
     <div class="payment-methods">
 
       <div class="payment-card">
+
         <h3>🟠 Orange Money</h3>
-        <div class="payment-number">0843066709</div>
+
+        <div class="payment-number">
+          0843066709
+        </div>
 
         <a
           class="payment-button"
@@ -529,11 +705,16 @@
           target="_blank">
           Envoyer la preuve
         </a>
+
       </div>
 
       <div class="payment-card">
+
         <h3>🔴 Airtel Money</h3>
-        <div class="payment-number">0980630622</div>
+
+        <div class="payment-number">
+          0980630622
+        </div>
 
         <a
           class="payment-button"
@@ -541,11 +722,16 @@
           target="_blank">
           Envoyer la preuve
         </a>
+
       </div>
 
       <div class="payment-card">
+
         <h3>🔵 Vodacom M-Pesa</h3>
-        <div class="payment-number">0822886387</div>
+
+        <div class="payment-number">
+          0822886387
+        </div>
 
         <a
           class="payment-button"
@@ -553,71 +739,30 @@
           target="_blank">
           Envoyer la preuve
         </a>
+
       </div>
 
     </div>
 
-    <div class="payment-warning">
+    <div class="warning">
       ⚠️ <strong>Important :</strong>
       Vérifiez toujours le nom du bénéficiaire avant le paiement.
-      Après paiement, envoyez la preuve sur WhatsApp.
     </div>
 
   </section>
 
-  <section class="social">
+  <!-- COMMANDE -->
 
-    <h2>🌐 NOS CONTACTS</h2>
+  <section class="section box" id="commande">
 
-    <p class="contact-info">
-      📱 WhatsApp : +243 843 066 709
-      <br>
-      📍 LEADER NOSMY BOOST
-      <br>
-      💻 Promotion digitale & création graphique
-    </p>
-
-    <div class="social-buttons">
-
-      <a
-        class="whatsapp"
-        href="https://wa.me/243843066709"
-        target="_blank">
-        💬 WhatsApp
-      </a>
-
-      <a
-        class="facebook"
-        href="https://www.facebook.com/leadernosm"
-        target="_blank">
-        🔵 Facebook
-      </a>
-
-      <a
-        class="tiktok"
-        href="https://www.tiktok.com/"
-        target="_blank">
-        🎵 TikTok
-      </a>
-
-      <a
-        class="instagram"
-        href="https://www.instagram.com/"
-        target="_blank">
-        📸 Instagram
-      </a>
-
-    </div>
-
-  </section>
-
-  <section class="contact" id="contact">
-
-    <h2>📋 PASSER UNE COMMANDE</h2>
+    <h2 class="title">
+      📋 PASSER UNE COMMANDE
+    </h2>
 
     <form onsubmit="sendOrder(event)">
 
       <div class="form-group">
+
         <label>👤 Nom</label>
 
         <input
@@ -625,6 +770,7 @@
           id="name"
           placeholder="Votre nom"
           required>
+
       </div>
 
       <div class="form-group">
@@ -738,6 +884,8 @@
 
   </section>
 
+  <!-- CONFIRMATION -->
+
   <section
     class="success"
     id="success">
@@ -756,8 +904,6 @@
       <br><br>
 
       Votre commande a été préparée pour WhatsApp.
-      Notre équipe pourra vous contacter pour confirmer
-      les détails et le paiement.
     </p>
 
     <a
@@ -769,17 +915,94 @@
 
   </section>
 
+  <!-- CONTACT -->
+
+  <section class="section box" id="contact">
+
+    <h2 class="title">
+      📞 CONTACTEZ-NOUS
+    </h2>
+
+    <p class="contact-info">
+
+      📱 WhatsApp : +243 843 066 709
+      <br>
+
+      👑 LEADER NOSMY BOOST
+      <br>
+
+      💻 Promotion digitale & création graphique
+
+    </p>
+
+    <div class="social-buttons">
+
+      <a
+        class="whatsapp"
+        href="https://wa.me/243843066709"
+        target="_blank">
+        💬 WhatsApp
+      </a>
+
+      <a
+        class="facebook"
+        href="https://www.facebook.com/leadernosm"
+        target="_blank">
+        🔵 Facebook
+      </a>
+
+      <a
+        class="tiktok"
+        href="https://www.tiktok.com/"
+        target="_blank">
+        🎵 TikTok
+      </a>
+
+      <a
+        class="instagram"
+        href="https://www.instagram.com/"
+        target="_blank">
+        📸 Instagram
+      </a>
+
+    </div>
+
+  </section>
+
 </main>
+
+<!-- WHATSAPP FLOTTANT -->
+
+<a
+  class="whatsapp-float"
+  href="https://wa.me/243843066709?text=Bonjour%20LEADER%20NOSMY%20BOOST%2C%20je%20voudrais%20passer%20une%20commande."
+  target="_blank"
+  title="Commander sur WhatsApp">
+  💬
+</a>
 
 <footer>
 
   <p>
-    © 2026 LEADER NOSMY BOOST — Tous droits réservés.
+    👑 <strong>LEADER NOSMY BOOST</strong>
+  </p>
+
+  <p>
+    © 2026 — Tous droits réservés.
   </p>
 
 </footer>
 
 <script>
+
+function toggleMenu() {
+
+  const menu =
+    document.getElementById("menu");
+
+  menu.classList.toggle("active");
+
+}
 
 function sendOrder(event) {
 
@@ -826,6 +1049,7 @@ function sendOrder(event) {
     whatsappURL,
     "_blank"
   );
+
 }
 
 </script>
