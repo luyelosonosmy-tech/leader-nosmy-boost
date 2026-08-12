@@ -52,14 +52,18 @@
       margin-bottom: 25px;
     }
 
-    .btn {
+    .btn,
+    .order {
       display: inline-block;
-      background: white;
-      color: #2563eb;
-      padding: 13px 25px;
+      padding: 12px 20px;
       border-radius: 8px;
       text-decoration: none;
       font-weight: bold;
+    }
+
+    .btn {
+      background: white;
+      color: #2563eb;
     }
 
     .container {
@@ -107,18 +111,57 @@
     .order {
       background: #2563eb;
       color: white;
-      padding: 10px 18px;
-      border-radius: 7px;
-      text-decoration: none;
-      display: inline-block;
+      border: none;
+      cursor: pointer;
     }
 
     .contact {
       background: white;
       margin-top: 30px;
       padding: 30px;
-      text-align: center;
       border-radius: 12px;
+    }
+
+    .contact h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 6px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      font-size: 15px;
+    }
+
+    .form-group textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    .submit {
+      width: 100%;
+      background: #16a34a;
+      color: white;
+      padding: 14px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
     }
 
     footer {
@@ -147,80 +190,103 @@
     </a>
   </section>
 
-  <main class="container" id="services">
+  <main class="container">
 
-    <h2 class="title">📱 NOS SERVICES</h2>
+    <section id="services">
 
-    <div class="services">
+      <h2 class="title">📱 NOS SERVICES</h2>
 
-      <div class="card">
-        <h3>Facebook</h3>
-        <p>Followers, likes et visibilité pour vos pages et publications.</p>
-        <div class="price">À partir de 4 000 FC</div>
+      <div class="services">
 
-        <a
-          class="order"
-          href="https://wa.me/243843066709?text=Bonjour%20LEADER%20NOSMY%20BOOST%2C%20je%20voudrais%20passer%20une%20commande."
-          target="_blank">
-          Commander
-        </a>
+        <div class="card">
+          <h3>Facebook</h3>
+          <p>Followers, likes et visibilité pour vos pages et publications.</p>
+          <div class="price">À partir de 4 000 FC</div>
+          <a class="order" href="#contact">Commander</a>
+        </div>
+
+        <div class="card">
+          <h3>TikTok</h3>
+          <p>Vues, likes et abonnés pour développer votre compte.</p>
+          <div class="price">À partir de 8 000 FC</div>
+          <a class="order" href="#contact">Commander</a>
+        </div>
+
+        <div class="card">
+          <h3>Instagram</h3>
+          <p>Abonnés et engagement pour votre profil Instagram.</p>
+          <div class="price">À partir de 10 000 FC</div>
+          <a class="order" href="#contact">Commander</a>
+        </div>
+
+        <div class="card">
+          <h3>Création graphique</h3>
+          <p>Affiches, anniversaires, promotions et visuels professionnels.</p>
+          <div class="price">Sur commande</div>
+          <a class="order" href="#contact">Commander</a>
+        </div>
+
       </div>
 
-      <div class="card">
-        <h3>TikTok</h3>
-        <p>Vues, likes et abonnés pour développer votre compte.</p>
-        <div class="price">À partir de 8 000 FC</div>
-
-        <a
-          class="order"
-          href="https://wa.me/243843066709?text=Bonjour%20LEADER%20NOSMY%20BOOST%2C%20je%20voudrais%20passer%20une%20commande."
-          target="_blank">
-          Commander
-        </a>
-      </div>
-
-      <div class="card">
-        <h3>Instagram</h3>
-        <p>Abonnés et engagement pour votre profil Instagram.</p>
-        <div class="price">À partir de 10 000 FC</div>
-
-        <a
-          class="order"
-          href="https://wa.me/243843066709?text=Bonjour%20LEADER%20NOSMY%20BOOST%2C%20je%20voudrais%20passer%20une%20commande."
-          target="_blank">
-          Commander
-        </a>
-      </div>
-
-      <div class="card">
-        <h3>Création graphique</h3>
-        <p>Affiches, anniversaires, promotions et visuels professionnels.</p>
-        <div class="price">Sur commande</div>
-
-        <a
-          class="order"
-          href="https://wa.me/243843066709?text=Bonjour%20LEADER%20NOSMY%20BOOST%2C%20je%20voudrais%20passer%20une%20commande."
-          target="_blank">
-          Commander
-        </a>
-      </div>
-
-    </div>
+    </section>
 
     <section class="contact" id="contact">
 
-      <h2>📞 PASSER UNE COMMANDE</h2>
+      <h2>📋 PASSER UNE COMMANDE</h2>
 
-      <p style="margin: 15px 0;">
-        Contactez LEADER NOSMY pour commander votre service.
-      </p>
+      <form onsubmit="sendOrder(event)">
 
-      <a
-        class="order"
-        href="https://wa.me/243843066709?text=Bonjour%20LEADER%20NOSMY%20BOOST%2C%20je%20voudrais%20passer%20une%20commande."
-        target="_blank">
-        💬 Commander sur WhatsApp
-      </a>
+        <div class="form-group">
+          <label for="name">Nom</label>
+          <input type="text" id="name" placeholder="Votre nom" required>
+        </div>
+
+        <div class="form-group">
+          <label for="service">Service</label>
+
+          <select id="service" required>
+            <option value="">Choisir un service</option>
+            <option value="Facebook">Facebook</option>
+            <option value="TikTok">TikTok</option>
+            <option value="Instagram">Instagram</option>
+            <option value="Création graphique">Création graphique</option>
+          </select>
+
+        </div>
+
+        <div class="form-group">
+          <label for="link">Lien de votre compte/page</label>
+          <input
+            type="url"
+            id="link"
+            placeholder="https://..."
+            required>
+        </div>
+
+        <div class="form-group">
+          <label for="quantity">Quantité souhaitée</label>
+          <input
+            type="number"
+            id="quantity"
+            min="1"
+            placeholder="Ex: 1000"
+            required>
+        </div>
+
+        <div class="form-group">
+          <label for="message">Message</label>
+
+          <textarea
+            id="message"
+            placeholder="Précisez votre demande..."></textarea>
+
+        </div>
+
+        <button type="submit" class="submit">
+          💬 ENVOYER LA COMMANDE SUR WHATSAPP
+        </button>
+
+      </form>
 
     </section>
 
@@ -229,6 +295,32 @@
   <footer>
     <p>© 2026 LEADER NOSMY BOOST — Tous droits réservés.</p>
   </footer>
+
+  <script>
+    function sendOrder(event) {
+      event.preventDefault();
+
+      const name = document.getElementById("name").value;
+      const service = document.getElementById("service").value;
+      const link = document.getElementById("link").value;
+      const quantity = document.getElementById("quantity").value;
+      const message = document.getElementById("message").value;
+
+      const text =
+        "Bonjour LEADER NOSMY BOOST 👋%0A%0A" +
+        "📋 NOUVELLE COMMANDE%0A%0A" +
+        "👤 Nom : " + encodeURIComponent(name) + "%0A" +
+        "📱 Service : " + encodeURIComponent(service) + "%0A" +
+        "🔗 Lien : " + encodeURIComponent(link) + "%0A" +
+        "🔢 Quantité : " + encodeURIComponent(quantity) + "%0A" +
+        "💬 Message : " + encodeURIComponent(message);
+
+      window.open(
+        "https://wa.me/243843066709?text=" + text,
+        "_blank"
+      );
+    }
+  </script>
 
 </body>
 </html>
