@@ -18,20 +18,30 @@ function readJSON(file, fallback = []) {
     if (!fs.existsSync(file)) {
       fs.writeFileSync(file, JSON.stringify(fallback, null, 2));
     }
-    return JSON.parse(fs.readFileSync(file, "utf8"));
-  } catch {
+
+    const data = fs.readFileSync(file, "utf8");
+
+    if (!data.trim()) return fallback;
+
+    return JSON.parse(data);
+
+  } catch (error) {
     return fallback;
   }
 }
 
 function writeJSON(file, data) {
-  fs.writeFileSync(file, JSON.stringify(data, null, 2));
+  fs.writeFileSync(
+    file,
+    JSON.stringify(data, null, 2),
+    "utf8"
+  );
 }
 
 function hashPassword(password) {
   return crypto
     .createHash("sha256")
-    .update(password)
+    .update(String(password))
     .digest("hex");
 }
 
@@ -47,6 +57,7 @@ app.get("/admin", (req, res) => {
 
 /* CREER UN COMPTE */
 app.post("/api/register", (req, res) => {
+
   const { name, email, password } = req.body;
 
   if (!name || !email || !password) {
@@ -56,7 +67,7 @@ app.post("/api/register", (req, res) => {
     });
   }
 
-  if (password.length < 6) {
+  if (String(password).length < 6) {
     return res.status(400).json({
       success: false,
       message: "Le mot de passe doit contenir au moins 6 caractères."
@@ -65,8 +76,10 @@ app.post("/api/register", (req, res) => {
 
   const users = readJSON(USERS_FILE);
 
+  const normalizedEmail = String(email).toLowerCase().trim();
+
   const existing = users.find(
-    user => user.email.toLowerCase() === email.toLowerCase()
+    user => user.email === normalizedEmail
   );
 
   if (existing) {
@@ -78,14 +91,15 @@ app.post("/api/register", (req, res) => {
 
   const user = {
     id: crypto.randomUUID(),
-    name,
-    email: email.toLowerCase(),
+    name: String(name).trim(),
+    email: normalizedEmail,
     password: hashPassword(password),
     balance: 0,
     createdAt: new Date().toISOString()
   };
 
   users.push(user);
+
   writeJSON(USERS_FILE, users);
 
   res.json({
@@ -102,13 +116,21 @@ app.post("/api/register", (req, res) => {
 
 /* CONNEXION */
 app.post("/api/login", (req, res) => {
+
   const { email, password } = req.body;
+
+  if (!email || !password) {
+    return res.status(400).json({
+      success: false,
+      message: "Email et mot de passe obligatoires."
+    });
+  }
 
   const users = readJSON(USERS_FILE);
 
   const user = users.find(
     u =>
-      u.email === String(email).toLowerCase() &&
+      u.email === String(email).toLowerCase().trim() &&
       u.password === hashPassword(password)
   );
 
@@ -131,11 +153,14 @@ app.post("/api/login", (req, res) => {
   });
 });
 
-/* VOIR LE SOLDE */
+/* VOIR LE PROFIL ET LE SOLDE */
 app.get("/api/user/:id", (req, res) => {
+
   const users = readJSON(USERS_FILE);
 
-  const user = users.find(u => u.id === req.params.id);
+  const user = users.find(
+    u => u.id === req.params.id
+  );
 
   if (!user) {
     return res.status(404).json({
@@ -155,13 +180,19 @@ app.get("/api/user/:id", (req, res) => {
   });
 });
 
-/* CREER UNE DEMANDE DE DEPOT */
+/* DEMANDE DE DEPOT */
 app.post("/api/deposit", (req, res) => {
+
   const { userId, amount, method } = req.body;
 
   const numericAmount = Number(amount);
 
-  if (!userId || !numericAmount || numericAmount <= 0 || !method) {
+  if (
+    !userId ||
+    !Number.isFinite(numericAmount) ||
+    numericAmount <= 0 ||
+    !method
+  ) {
     return res.status(400).json({
       success: false,
       message: "Informations de dépôt invalides."
@@ -170,7 +201,9 @@ app.post("/api/deposit", (req, res) => {
 
   const users = readJSON(USERS_FILE);
 
-  const user = users.find(u => u.id === userId);
+  const user = users.find(
+    u => u.id === userId
+  );
 
   if (!user) {
     return res.status(404).json({
@@ -186,12 +219,13 @@ app.post("/api/deposit", (req, res) => {
     type: "deposit",
     userId,
     amount: numericAmount,
-    method,
+    method: String(method),
     status: "pending",
     createdAt: new Date().toISOString()
   };
 
   orders.push(deposit);
+
   writeJSON(ORDERS_FILE, orders);
 
   res.json({
@@ -203,6 +237,7 @@ app.post("/api/deposit", (req, res) => {
 
 /* PASSER UNE COMMANDE */
 app.post("/api/order", (req, res) => {
+
   const {
     userId,
     service,
@@ -218,9 +253,9 @@ app.post("/api/order", (req, res) => {
     !userId ||
     !service ||
     !link ||
-    !numericQuantity ||
+    !Number.isFinite(numericQuantity) ||
     numericQuantity <= 0 ||
-    !numericPrice ||
+    !Number.isFinite(numericPrice) ||
     numericPrice <= 0
   ) {
     return res.status(400).json({
@@ -231,7 +266,9 @@ app.post("/api/order", (req, res) => {
 
   const users = readJSON(USERS_FILE);
 
-  const user = users.find(u => u.id === userId);
+  const user = users.find(
+    u => u.id === userId
+  );
 
   if (!user) {
     return res.status(404).json({
@@ -257,8 +294,8 @@ app.post("/api/order", (req, res) => {
     id: crypto.randomUUID(),
     type: "order",
     userId,
-    service,
-    link,
+    service: String(service),
+    link: String(link),
     quantity: numericQuantity,
     price: numericPrice,
     status: "pending",
@@ -266,6 +303,7 @@ app.post("/api/order", (req, res) => {
   };
 
   orders.push(order);
+
   writeJSON(ORDERS_FILE, orders);
 
   res.json({
@@ -276,8 +314,9 @@ app.post("/api/order", (req, res) => {
   });
 });
 
-/* COMMANDES D'UN CLIENT */
+/* COMMANDES DU CLIENT */
 app.get("/api/orders/:userId", (req, res) => {
+
   const orders = readJSON(ORDERS_FILE);
 
   const userOrders = orders.filter(
@@ -292,6 +331,7 @@ app.get("/api/orders/:userId", (req, res) => {
   });
 });
 
+/* LANCER LE SERVEUR */
 app.listen(PORT, () => {
   console.log(`Server started on port ${PORT}`);
 });
