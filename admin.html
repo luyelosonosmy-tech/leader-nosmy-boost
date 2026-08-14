@@ -3,60 +3,119 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Admin - LEADER NOSMY BOOST</title>
 
 <style>
+
+*{
+  box-sizing:border-box;
+}
+
 body{
-  font-family:Arial,sans-serif;
-  background:#f4f6f8;
+  font-family:Arial,Helvetica,sans-serif;
+  background:#f3f4f6;
   margin:0;
-  padding:20px;
   color:#111827;
 }
 
 .container{
-  max-width:1000px;
+  max-width:1100px;
   margin:auto;
+  padding:20px;
 }
 
 h1{
   background:#111827;
   color:white;
-  padding:20px;
-  border-radius:12px;
+  padding:22px;
+  border-radius:14px;
   text-align:center;
 }
 
 .card{
   background:white;
-  padding:20px;
+  padding:22px;
   margin-top:20px;
-  border-radius:12px;
-  box-shadow:0 3px 12px rgba(0,0,0,.1);
-}
-
-.order{
-  border:1px solid #ddd;
-  padding:15px;
-  margin:12px 0;
-  border-radius:10px;
-  background:#fafafa;
-}
-
-pre{
-  white-space:pre-wrap;
-  word-break:break-word;
+  border-radius:14px;
+  box-shadow:0 3px 15px rgba(0,0,0,.08);
 }
 
 button{
-  background:#2563eb;
-  color:white;
   border:0;
-  padding:12px 18px;
+  padding:11px 16px;
   border-radius:8px;
+  color:white;
   font-weight:bold;
   cursor:pointer;
+  margin:4px;
 }
+
+.refresh{
+  background:#2563eb;
+}
+
+.approve{
+  background:#16a34a;
+}
+
+.reject{
+  background:#dc2626;
+}
+
+.deposit{
+  border:1px solid #e5e7eb;
+  padding:18px;
+  margin:15px 0;
+  border-radius:12px;
+  background:#fafafa;
+}
+
+.pending{
+  color:#92400e;
+  background:#fef3c7;
+  padding:6px 10px;
+  border-radius:6px;
+  font-weight:bold;
+  display:inline-block;
+}
+
+.approved{
+  color:#166534;
+  background:#dcfce7;
+  padding:6px 10px;
+  border-radius:6px;
+  font-weight:bold;
+  display:inline-block;
+}
+
+.rejected{
+  color:#991b1b;
+  background:#fee2e2;
+  padding:6px 10px;
+  border-radius:6px;
+  font-weight:bold;
+  display:inline-block;
+}
+
+.message{
+  text-align:center;
+  font-weight:bold;
+  margin:15px 0;
+}
+
+.money{
+  font-size:24px;
+  font-weight:bold;
+  color:#16a34a;
+}
+
+hr{
+  border:0;
+  border-top:1px solid #ddd;
+  margin:15px 0;
+}
+
 </style>
 </head>
 
@@ -64,13 +123,39 @@ button{
 
 <div class="container">
 
-<h1>👑 LEADER NOSMY BOOST — ADMIN</h1>
+<h1>
+👑 LEADER NOSMY BOOST — ADMIN
+</h1>
+
 
 <div class="card">
 
-<h2>📋 Commandes</h2>
+<h2>💳 DEMANDES DE DÉPÔT</h2>
 
-<button onclick="loadOrders()">🔄 Actualiser</button>
+<p>
+Minimum de dépôt : <strong>2 500 FC</strong>
+</p>
+
+<button class="refresh" onclick="loadDeposits()">
+🔄 Actualiser les dépôts
+</button>
+
+<div id="message" class="message"></div>
+
+<div id="deposits">
+Chargement...
+</div>
+
+</div>
+
+
+<div class="card">
+
+<h2>📋 COMMANDES</h2>
+
+<button class="refresh" onclick="loadOrders()">
+🔄 Actualiser les commandes
+</button>
 
 <div id="orders">
 Chargement...
@@ -80,66 +165,403 @@ Chargement...
 
 </div>
 
+
 <script>
 
-async function loadOrders(){
 
-const container=document.getElementById("orders");
+/* =========================
+   MESSAGE
+========================= */
+
+function showMessage(text){
+
+document.getElementById("message")
+.textContent=text;
+
+}
+
+
+/* =========================
+   DEPOTS
+========================= */
+
+async function loadDeposits(){
+
+const container =
+document.getElementById("deposits");
 
 container.innerHTML="Chargement...";
 
 try{
 
-const response=await fetch("/orders.json");
+const response =
+await fetch("/api/admin/deposits");
 
-if(!response.ok){
-throw new Error("Erreur");
+const data =
+await response.json();
+
+if(!data.success){
+
+container.innerHTML =
+"<p>❌ Impossible de charger les dépôts.</p>";
+
+return;
+
 }
 
-const orders=await response.json();
+if(!data.deposits.length){
 
-if(!orders.length){
+container.innerHTML =
+"<p>✅ Aucun dépôt pour le moment.</p>";
 
-container.innerHTML="<p>✅ Aucune commande pour le moment.</p>";
+return;
 
+}
+
+
+container.innerHTML =
+data.deposits.map(deposit=>{
+
+let statusClass="pending";
+
+if(deposit.status==="approved"){
+statusClass="approved";
+}
+
+if(deposit.status==="rejected"){
+statusClass="rejected";
+}
+
+
+let buttons="";
+
+if(deposit.status==="pending"){
+
+buttons=`
+
+<hr>
+
+<button
+class="approve"
+onclick="approveDeposit('${deposit.id}')">
+✅ VALIDER LE DÉPÔT
+</button>
+
+<button
+class="reject"
+onclick="rejectDeposit('${deposit.id}')">
+❌ REFUSER
+</button>
+
+`;
+
+}
+
+
+return `
+
+<div class="deposit">
+
+<strong>
+🆔 Dépôt
+</strong>
+
+<p>
+${deposit.id}
+</p>
+
+<p>
+👤 Client ID :
+<strong>${deposit.userId}</strong>
+</p>
+
+<p>
+💳 Moyen :
+<strong>${deposit.method}</strong>
+</p>
+
+<p>
+💰 Montant :
+<span class="money">
+${Number(deposit.amount).toLocaleString("fr-FR")} FC
+</span>
+</p>
+
+<p>
+📊 Statut :
+<span class="${statusClass}">
+${deposit.status}
+</span>
+</p>
+
+<p>
+📅 Date :
+${new Date(deposit.createdAt)
+.toLocaleString("fr-FR")}
+</p>
+
+${buttons}
+
+</div>
+
+`;
+
+}).join("");
+
+
+}catch(error){
+
+console.error(error);
+
+container.innerHTML =
+"<p>❌ Erreur de connexion au serveur.</p>";
+
+}
+
+}
+
+
+/* =========================
+   VALIDER DEPOT
+========================= */
+
+async function approveDeposit(id){
+
+const confirmation =
+confirm(
+"Confirmer la validation de ce dépôt ?"
+);
+
+if(!confirmation){
 return;
 }
 
-container.innerHTML=orders.map(order=>`
 
-<div class="order">
+try{
 
-<strong>🆔 Commande : ${order.id || "—"}</strong>
+const response =
+await fetch(
+"/api/admin/deposit/"+id+"/approve",
+{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+}
+}
+);
 
-<p>📌 Type : ${order.type || "—"}</p>
+const data =
+await response.json();
 
-<p>👤 Client : ${order.userId || "—"}</p>
 
-<p>📱 Service : ${order.service || "—"}</p>
+if(data.success){
 
-<p>🔗 Lien : ${order.link || "—"}</p>
+alert(
+"✅ Dépôt validé !\n\n"+
+"Le solde du client a été augmenté de "+
+Number(data.deposit.amount)
+.toLocaleString("fr-FR")+
+" FC."
+);
 
-<p>🔢 Quantité : ${order.quantity || "—"}</p>
+loadDeposits();
 
-<p>💰 Montant : ${order.price || order.amount || "—"} FC</p>
+}else{
 
-<p>📊 Statut : ${order.status || "—"}</p>
+alert(
+"❌ "+data.message
+);
 
-<p>📅 Date : ${order.createdAt || "—"}</p>
+}
+
+}catch(error){
+
+alert(
+"❌ Impossible de contacter le serveur."
+);
+
+}
+
+}
+
+
+/* =========================
+   REFUSER DEPOT
+========================= */
+
+async function rejectDeposit(id){
+
+const confirmation =
+confirm(
+"Voulez-vous vraiment refuser ce dépôt ?"
+);
+
+if(!confirmation){
+return;
+}
+
+
+try{
+
+const response =
+await fetch(
+"/api/admin/deposit/"+id+"/reject",
+{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+}
+}
+);
+
+const data =
+await response.json();
+
+
+if(data.success){
+
+alert(
+"❌ Dépôt refusé."
+);
+
+loadDeposits();
+
+}else{
+
+alert(
+"❌ "+data.message
+);
+
+}
+
+}catch(error){
+
+alert(
+"❌ Impossible de contacter le serveur."
+);
+
+}
+
+}
+
+
+/* =========================
+   COMMANDES
+========================= */
+
+async function loadOrders(){
+
+const container =
+document.getElementById("orders");
+
+container.innerHTML =
+"Chargement...";
+
+
+try{
+
+const response =
+await fetch("/orders.json");
+
+if(!response.ok){
+
+throw new Error("Erreur");
+
+}
+
+const orders =
+await response.json();
+
+
+const normalOrders =
+orders.filter(
+order => order.type === "order"
+);
+
+
+if(!normalOrders.length){
+
+container.innerHTML =
+"<p>✅ Aucune commande pour le moment.</p>";
+
+return;
+
+}
+
+
+container.innerHTML =
+normalOrders.map(order=>`
+
+<div class="deposit">
+
+<strong>
+🆔 Commande :
+</strong>
+
+<p>
+${order.id || "—"}
+</p>
+
+<p>
+👤 Client :
+${order.userId || "—"}
+</p>
+
+<p>
+📱 Service :
+<strong>
+${order.service || "—"}
+</strong>
+</p>
+
+<p>
+🔗 Lien :
+${order.link || "—"}
+</p>
+
+<p>
+🔢 Quantité :
+${order.quantity || "—"}
+</p>
+
+<p>
+💰 Prix :
+<strong>
+${Number(order.price || 0)
+.toLocaleString("fr-FR")} FC
+</strong>
+</p>
+
+<p>
+📊 Statut :
+${order.status || "—"}
+</p>
+
+<p>
+📅 Date :
+${order.createdAt || "—"}
+</p>
 
 </div>
 
 `).join("");
 
+
 }catch(error){
 
-container.innerHTML=
+container.innerHTML =
 "<p>❌ Impossible de charger les commandes.</p>";
 
 }
 
 }
 
+
+/* =========================
+   DEMARRAGE
+========================= */
+
+loadDeposits();
 loadOrders();
 
 </script>
