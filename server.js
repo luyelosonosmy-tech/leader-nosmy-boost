@@ -525,6 +525,63 @@ app.get("/api/admin/deposits", (req, res) => {
 /* =========================
    PASSER UNE COMMANDE
 ========================= */
+/* ADMIN - APPROUVER UN DEPOT */
+app.post("/api/admin/deposit/:id/approve", (req, res) => {
+
+  const depositId = req.params.id;
+
+  const orders = readJSON(ORDERS_FILE);
+
+  const deposit = orders.find(
+    item =>
+      item.id === depositId &&
+      item.type === "deposit"
+  );
+
+  if (!deposit) {
+    return res.status(404).json({
+      success: false,
+      message: "❌ Dépôt introuvable."
+    });
+  }
+
+  if (deposit.status === "approved") {
+    return res.status(400).json({
+      success: false,
+      message: "❌ Ce dépôt a déjà été approuvé."
+    });
+  }
+
+  const users = readJSON(USERS_FILE);
+
+  const user = users.find(
+    u => u.id === deposit.userId
+  );
+
+  if (!user) {
+    return res.status(404).json({
+      success: false,
+      message: "❌ Client introuvable."
+    });
+  }
+
+  user.balance =
+    Number(user.balance || 0) +
+    Number(deposit.amount);
+
+  deposit.status = "approved";
+  deposit.approvedAt = new Date().toISOString();
+
+  writeJSON(USERS_FILE, users);
+  writeJSON(ORDERS_FILE, orders);
+
+  res.json({
+    success: true,
+    message: "✅ Dépôt approuvé. Le solde du client a été crédité.",
+    balance: user.balance
+  });
+
+});
 
 app.post("/api/order", (req, res) => {
 
