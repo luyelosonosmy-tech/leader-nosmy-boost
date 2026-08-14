@@ -331,7 +331,76 @@ app.get("/api/deposits/:userId", (req, res) => {
    ADMIN
 ========================= */
 
-app.post("/api/admin/deposit/:id/approve", (req, res) => {
+/* DEMANDE DE DEPOT - MINIMUM 2 500 FC */
+app.post("/api/deposit", (req, res) => {
+
+  const { userId, amount, method } = req.body;
+  const numericAmount = Number(amount);
+
+  const allowedMethods = [
+    "Orange Money",
+    "Airtel Money",
+    "Vodacom M-Pesa"
+  ];
+
+  if (!userId || !Number.isFinite(numericAmount) || !method) {
+    return res.status(400).json({
+      success: false,
+      message: "❌ Remplissez correctement tous les champs."
+    });
+  }
+
+  /* MINIMUM 2 500 FC */
+  if (numericAmount < 2500) {
+    return res.status(400).json({
+      success: false,
+      message: "❌ Le dépôt minimum est de 2 500 FC."
+    });
+  }
+
+  if (!allowedMethods.includes(String(method))) {
+    return res.status(400).json({
+      success: false,
+      message: "❌ Moyen de paiement invalide."
+    });
+  }
+
+  const users = readJSON(USERS_FILE);
+
+  const user = users.find(
+    u => u.id === userId
+  );
+
+  if (!user) {
+    return res.status(404).json({
+      success: false,
+      message: "❌ Utilisateur introuvable."
+    });
+  }
+
+  const orders = readJSON(ORDERS_FILE);
+
+  const deposit = {
+    id: crypto.randomUUID(),
+    type: "deposit",
+    userId: userId,
+    amount: numericAmount,
+    method: String(method),
+    status: "pending",
+    createdAt: new Date().toISOString()
+  };
+
+  orders.push(deposit);
+
+  writeJSON(ORDERS_FILE, orders);
+
+  res.json({
+    success: true,
+    message: "✅ Demande de dépôt enregistrée. Attendez la confirmation de l'administrateur.",
+    deposit
+  });
+
+});
 
   const orders = readJSON(ORDERS_FILE);
   const users = readJSON(USERS_FILE);
