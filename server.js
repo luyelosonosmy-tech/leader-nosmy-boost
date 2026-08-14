@@ -11,6 +11,12 @@ const ORDERS_FILE = path.join(__dirname, "orders.json");
 
 const MIN_DEPOSIT = 2500;
 
+const PAYMENT_METHODS = [
+  "Orange Money",
+  "Airtel Money",
+  "Vodacom M-Pesa"
+];
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname));
@@ -28,10 +34,11 @@ function readJSON(file, fallback = []) {
 
     const data = fs.readFileSync(file, "utf8");
 
-    if (!data.trim()) return fallback;
+    if (!data.trim()) {
+      return fallback;
+    }
 
     return JSON.parse(data);
-
   } catch (error) {
     console.error("Erreur lecture JSON :", error);
     return fallback;
@@ -53,7 +60,6 @@ function hashPassword(password) {
     .digest("hex");
 }
 
-
 /* =========================
    ACCUEIL
 ========================= */
@@ -61,7 +67,6 @@ function hashPassword(password) {
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));
 });
-
 
 /* =========================
    ADMIN
@@ -71,13 +76,11 @@ app.get("/admin", (req, res) => {
   res.sendFile(path.join(__dirname, "admin.html"));
 });
 
-
 /* =========================
    CREER UN COMPTE
 ========================= */
 
 app.post("/api/register", (req, res) => {
-
   const { name, email, password } = req.body;
 
   if (!name || !email || !password) {
@@ -132,25 +135,23 @@ app.post("/api/register", (req, res) => {
 
   writeJSON(USERS_FILE, users);
 
-  res.json({
+  return res.json({
     success: true,
     message: "Compte créé avec succès.",
     user: {
       id: user.id,
       name: user.name,
       email: user.email,
-      balance: user.balance
+      balance: 0
     }
   });
 });
-
 
 /* =========================
    CONNEXION
 ========================= */
 
 app.post("/api/login", (req, res) => {
-
   const { email, password } = req.body;
 
   if (!email || !password) {
@@ -180,7 +181,7 @@ app.post("/api/login", (req, res) => {
     });
   }
 
-  res.json({
+  return res.json({
     success: true,
     message: "Connexion réussie.",
     user: {
@@ -192,13 +193,11 @@ app.post("/api/login", (req, res) => {
   });
 });
 
-
 /* =========================
    PROFIL + SOLDE
 ========================= */
 
 app.get("/api/user/:id", (req, res) => {
-
   const users = readJSON(USERS_FILE);
 
   const user = users.find(
@@ -212,7 +211,7 @@ app.get("/api/user/:id", (req, res) => {
     });
   }
 
-  res.json({
+  return res.json({
     success: true,
     user: {
       id: user.id,
@@ -223,14 +222,12 @@ app.get("/api/user/:id", (req, res) => {
   });
 });
 
-
 /* =========================
    DEMANDE DE DEPOT
-   MINIMUM = 2 500 FC
+   MINIMUM 2 500 FC
 ========================= */
 
 app.post("/api/deposit", (req, res) => {
-
   const { userId, amount, method } = req.body;
 
   const numericAmount = Number(amount);
@@ -254,13 +251,7 @@ app.post("/api/deposit", (req, res) => {
     });
   }
 
-  const allowedMethods = [
-    "Orange Money",
-    "Airtel Money",
-    "Vodacom M-Pesa"
-  ];
-
-  if (!allowedMethods.includes(String(method))) {
+  if (!PAYMENT_METHODS.includes(String(method))) {
     return res.status(400).json({
       success: false,
       message: "Moyen de paiement invalide."
@@ -296,7 +287,7 @@ app.post("/api/deposit", (req, res) => {
 
   writeJSON(ORDERS_FILE, orders);
 
-  res.json({
+  return res.json({
     success: true,
     message:
       "Demande de dépôt enregistrée. Le paiement doit être vérifié avant l'ajout au solde.",
@@ -304,13 +295,11 @@ app.post("/api/deposit", (req, res) => {
   });
 });
 
-
 /* =========================
-   LISTE DES DEPOTS
+   DEPOTS DU CLIENT
 ========================= */
 
 app.get("/api/deposits/:userId", (req, res) => {
-
   const orders = readJSON(ORDERS_FILE);
 
   const deposits = orders.filter(
@@ -319,95 +308,42 @@ app.get("/api/deposits/:userId", (req, res) => {
       item.userId === req.params.userId
   );
 
-  res.json({
+  return res.json({
     success: true,
     deposits
   });
 });
 
-
 /* =========================
-   VALIDER UN DEPOT
-   ADMIN
+   ADMIN - LISTE DES DEPOTS
 ========================= */
 
-/* DEMANDE DE DEPOT - MINIMUM 2 500 FC */
-app.post("/api/deposit", (req, res) => {
-
-  const { userId, amount, method } = req.body;
-  const numericAmount = Number(amount);
-
-  const allowedMethods = [
-    "Orange Money",
-    "Airtel Money",
-    "Vodacom M-Pesa"
-  ];
-
-  if (!userId || !Number.isFinite(numericAmount) || !method) {
-    return res.status(400).json({
-      success: false,
-      message: "❌ Remplissez correctement tous les champs."
-    });
-  }
-
-  /* MINIMUM 2 500 FC */
-  if (numericAmount < 2500) {
-    return res.status(400).json({
-      success: false,
-      message: "❌ Le dépôt minimum est de 2 500 FC."
-    });
-  }
-
-  if (!allowedMethods.includes(String(method))) {
-    return res.status(400).json({
-      success: false,
-      message: "❌ Moyen de paiement invalide."
-    });
-  }
-
-  const users = readJSON(USERS_FILE);
-
-  const user = users.find(
-    u => u.id === userId
-  );
-
-  if (!user) {
-    return res.status(404).json({
-      success: false,
-      message: "❌ Utilisateur introuvable."
-    });
-  }
-
+app.get("/api/admin/deposits", (req, res) => {
   const orders = readJSON(ORDERS_FILE);
 
-  const deposit = {
-    id: crypto.randomUUID(),
-    type: "deposit",
-    userId: userId,
-    amount: numericAmount,
-    method: String(method),
-    status: "pending",
-    createdAt: new Date().toISOString()
-  };
+  const deposits = orders.filter(
+    item => item.type === "deposit"
+  );
 
-  orders.push(deposit);
-
-  writeJSON(ORDERS_FILE, orders);
-
-  res.json({
+  return res.json({
     success: true,
-    message: "✅ Demande de dépôt enregistrée. Attendez la confirmation de l'administrateur.",
-    deposit
+    deposits
   });
-
 });
+
+/* =========================
+   ADMIN - APPROUVER DEPOT
+========================= */
+
+app.post("/api/admin/deposit/:id/approve", (req, res) => {
+  const depositId = req.params.id;
 
   const orders = readJSON(ORDERS_FILE);
   const users = readJSON(USERS_FILE);
 
   const deposit = orders.find(
     item =>
-      item.id === req.params.id &&
+      item.id === depositId &&
       item.type === "deposit"
   );
 
@@ -433,8 +369,7 @@ app.post("/api/deposit", (req, res) => {
   if (!user) {
     return res.status(404).json({
       success: false,
-      message:
-        "Utilisateur du dépôt introuvable."
+      message: "Client introuvable."
     });
   }
 
@@ -449,27 +384,27 @@ app.post("/api/deposit", (req, res) => {
   writeJSON(USERS_FILE, users);
   writeJSON(ORDERS_FILE, orders);
 
-  res.json({
+  return res.json({
     success: true,
     message:
-      "Dépôt validé et solde ajouté.",
+      "Dépôt approuvé. Le solde du client a été crédité.",
     balance: user.balance,
     deposit
   });
 });
 
-
 /* =========================
-   REFUSER UN DEPOT
+   ADMIN - REFUSER DEPOT
 ========================= */
 
 app.post("/api/admin/deposit/:id/reject", (req, res) => {
+  const depositId = req.params.id;
 
   const orders = readJSON(ORDERS_FILE);
 
   const deposit = orders.find(
     item =>
-      item.id === req.params.id &&
+      item.id === depositId &&
       item.type === "deposit"
   );
 
@@ -494,97 +429,18 @@ app.post("/api/admin/deposit/:id/reject", (req, res) => {
 
   writeJSON(ORDERS_FILE, orders);
 
-  res.json({
+  return res.json({
     success: true,
     message: "Dépôt refusé.",
     deposit
   });
 });
 
-
-/* =========================
-   TOUS LES DEPOTS
-   ADMIN
-========================= */
-
-app.get("/api/admin/deposits", (req, res) => {
-
-  const orders = readJSON(ORDERS_FILE);
-
-  const deposits = orders.filter(
-    item => item.type === "deposit"
-  );
-
-  res.json({
-    success: true,
-    deposits
-  });
-});
-
-
 /* =========================
    PASSER UNE COMMANDE
 ========================= */
-/* ADMIN - APPROUVER UN DEPOT */
-app.post("/api/admin/deposit/:id/approve", (req, res) => {
-
-  const depositId = req.params.id;
-
-  const orders = readJSON(ORDERS_FILE);
-
-  const deposit = orders.find(
-    item =>
-      item.id === depositId &&
-      item.type === "deposit"
-  );
-
-  if (!deposit) {
-    return res.status(404).json({
-      success: false,
-      message: "❌ Dépôt introuvable."
-    });
-  }
-
-  if (deposit.status === "approved") {
-    return res.status(400).json({
-      success: false,
-      message: "❌ Ce dépôt a déjà été approuvé."
-    });
-  }
-
-  const users = readJSON(USERS_FILE);
-
-  const user = users.find(
-    u => u.id === deposit.userId
-  );
-
-  if (!user) {
-    return res.status(404).json({
-      success: false,
-      message: "❌ Client introuvable."
-    });
-  }
-
-  user.balance =
-    Number(user.balance || 0) +
-    Number(deposit.amount);
-
-  deposit.status = "approved";
-  deposit.approvedAt = new Date().toISOString();
-
-  writeJSON(USERS_FILE, users);
-  writeJSON(ORDERS_FILE, orders);
-
-  res.json({
-    success: true,
-    message: "✅ Dépôt approuvé. Le solde du client a été crédité.",
-    balance: user.balance
-  });
-
-});
 
 app.post("/api/order", (req, res) => {
-
   const {
     userId,
     service,
@@ -621,8 +477,7 @@ app.post("/api/order", (req, res) => {
   if (!user) {
     return res.status(404).json({
       success: false,
-      message:
-        "Utilisateur introuvable."
+      message: "Utilisateur introuvable."
     });
   }
 
@@ -659,22 +514,19 @@ app.post("/api/order", (req, res) => {
   writeJSON(USERS_FILE, users);
   writeJSON(ORDERS_FILE, orders);
 
-  res.json({
+  return res.json({
     success: true,
-    message:
-      "Commande enregistrée.",
+    message: "Commande enregistrée.",
     order,
     balance: user.balance
   });
 });
-
 
 /* =========================
    COMMANDES DU CLIENT
 ========================= */
 
 app.get("/api/orders/:userId", (req, res) => {
-
   const orders = readJSON(ORDERS_FILE);
 
   const userOrders = orders.filter(
@@ -683,21 +535,18 @@ app.get("/api/orders/:userId", (req, res) => {
       order.type === "order"
   );
 
-  res.json({
+  return res.json({
     success: true,
     orders: userOrders
   });
 });
-
 
 /* =========================
    DEMARRAGE
 ========================= */
 
 app.listen(PORT, () => {
-
   console.log(
     `Server started on port ${PORT}`
   );
-
 });
