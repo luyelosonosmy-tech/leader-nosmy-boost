@@ -1,47 +1,148 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin - Leader Nosmy Boost</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin - LEADER NOSMY BOOST</title>
+
+<style>
+body{
+  font-family:Arial,sans-serif;
+  background:#f4f6f8;
+  margin:0;
+  padding:20px;
+  color:#111827;
+}
+
+.container{
+  max-width:1000px;
+  margin:auto;
+}
+
+h1{
+  background:#111827;
+  color:white;
+  padding:20px;
+  border-radius:12px;
+  text-align:center;
+}
+
+.card{
+  background:white;
+  padding:20px;
+  margin-top:20px;
+  border-radius:12px;
+  box-shadow:0 3px 12px rgba(0,0,0,.1);
+}
+
+.order{
+  border:1px solid #ddd;
+  padding:15px;
+  margin:12px 0;
+  border-radius:10px;
+  background:#fafafa;
+}
+
+pre{
+  white-space:pre-wrap;
+  word-break:break-word;
+}
+
+button{
+  background:#2563eb;
+  color:white;
+  border:0;
+  padding:12px 18px;
+  border-radius:8px;
+  font-weight:bold;
+  cursor:pointer;
+}
+</style>
 </head>
 
 <body>
-  <h1>Leader Nosmy Boost</h1>
-  <h2>Administration</h2>
 
-  <p>Bienvenue dans la page d'administration.</p>
+<div class="container">
 
-  <div id="orders">
-    Aucune commande affichée pour le moment.
-  </div>
+<h1>👑 LEADER NOSMY BOOST — ADMIN</h1>
 
-  <script>
-    async function loadOrders() {
-      try {
-        const response = await fetch("/orders.json");
-        const orders = await response.json();
+<div class="card">
 
-        const container = document.getElementById("orders");
+<h2>📋 Commandes</h2>
 
-        if (!orders.length) {
-          container.textContent = "Aucune commande pour le moment.";
-          return;
-        }
+<button onclick="loadOrders()">🔄 Actualiser</button>
 
-        container.innerHTML = orders.map(order => `
-          <div>
-            <strong>Commande #${order.id}</strong>
-            <pre>${JSON.stringify(order, null, 2)}</pre>
-          </div>
-        `).join("");
-      } catch (error) {
-        document.getElementById("orders").textContent =
-          "Impossible de charger les commandes.";
-      }
-    }
+<div id="orders">
+Chargement...
+</div>
 
-    loadOrders();
-  </script>
+</div>
+
+</div>
+
+<script>
+
+async function loadOrders(){
+
+const container=document.getElementById("orders");
+
+container.innerHTML="Chargement...";
+
+try{
+
+const response=await fetch("/orders.json");
+
+if(!response.ok){
+throw new Error("Erreur");
+}
+
+const orders=await response.json();
+
+if(!orders.length){
+
+container.innerHTML="<p>✅ Aucune commande pour le moment.</p>";
+
+return;
+}
+
+container.innerHTML=orders.map(order=>`
+
+<div class="order">
+
+<strong>🆔 Commande : ${order.id || "—"}</strong>
+
+<p>📌 Type : ${order.type || "—"}</p>
+
+<p>👤 Client : ${order.userId || "—"}</p>
+
+<p>📱 Service : ${order.service || "—"}</p>
+
+<p>🔗 Lien : ${order.link || "—"}</p>
+
+<p>🔢 Quantité : ${order.quantity || "—"}</p>
+
+<p>💰 Montant : ${order.price || order.amount || "—"} FC</p>
+
+<p>📊 Statut : ${order.status || "—"}</p>
+
+<p>📅 Date : ${order.createdAt || "—"}</p>
+
+</div>
+
+`).join("");
+
+}catch(error){
+
+container.innerHTML=
+"<p>❌ Impossible de charger les commandes.</p>";
+
+}
+
+}
+
+loadOrders();
+
+</script>
+
 </body>
 </html>
