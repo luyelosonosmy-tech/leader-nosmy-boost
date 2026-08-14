@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>LEADER NOSMY BOOST</title>
 
 <style>
@@ -10,28 +11,50 @@
   box-sizing:border-box;
   margin:0;
   padding:0;
-  font-family:Arial,Helvetica,sans-serif
+}
+
+:root{
+  --blue:#2563eb;
+  --dark:#0f172a;
+  --dark2:#111827;
+  --gold:#f5b301;
+  --bg:#f3f6fb;
+  --white:#fff;
+  --muted:#64748b;
+  --border:#e5e7eb;
+  --green:#16a34a;
+  --red:#dc2626;
 }
 
 body{
-  background:#f3f4f6;
-  color:#111827
+  font-family:Arial,Helvetica,sans-serif;
+  background:var(--bg);
+  color:#111827;
 }
 
-button,input,select{
-  font:inherit
+button,
+input,
+select{
+  font:inherit;
 }
 
 button{
-  cursor:pointer
+  cursor:pointer;
 }
 
+.hidden{
+  display:none!important;
+}
+
+/* HEADER */
+
 header{
-  background:#111827;
+  background:linear-gradient(135deg,#0b1220,#111827);
   color:white;
   position:sticky;
   top:0;
-  z-index:1000
+  z-index:1000;
+  box-shadow:0 4px 18px rgba(0,0,0,.18);
 }
 
 .nav{
@@ -40,274 +63,426 @@ header{
   padding:14px 18px;
   display:flex;
   align-items:center;
-  justify-content:space-between
+  justify-content:space-between;
+  gap:12px;
 }
 
 .logo{
   color:white;
   text-decoration:none;
-  font-size:20px;
-  font-weight:800
+  font-weight:900;
+  font-size:19px;
 }
 
 .logo span{
-  color:#60a5fa
+  color:var(--gold);
 }
 
 .nav-right{
   display:flex;
   align-items:center;
-  gap:10px
+  gap:8px;
 }
 
 .balance-mini{
-  background:#1f2937;
-  border:1px solid #374151;
+  background:#1e293b;
+  border:1px solid #334155;
   padding:8px 12px;
-  border-radius:8px;
-  font-size:14px
+  border-radius:9px;
+  font-size:13px;
 }
 
 .menu-btn{
-  background:#2563eb;
-  color:white;
   border:0;
-  border-radius:8px;
+  background:var(--blue);
+  color:white;
   padding:9px 12px;
-  font-size:18px
+  border-radius:8px;
+  font-size:18px;
 }
+
+/* LAYOUT */
 
 .container{
+  width:100%;
   max-width:1200px;
   margin:auto;
-  padding:25px 15px 60px
+  padding:20px 15px 60px;
 }
 
+/* HERO */
+
 .hero{
-  background:linear-gradient(135deg,#2563eb,#7c3aed);
+  background:
+    radial-gradient(circle at top right,rgba(245,179,1,.25),transparent 35%),
+    linear-gradient(135deg,#0f172a,#1d4ed8);
   color:white;
-  padding:45px 25px;
-  border-radius:18px;
+  border-radius:20px;
+  padding:40px 20px;
   text-align:center;
-  margin-bottom:25px
+  margin-bottom:20px;
+  box-shadow:0 10px 30px rgba(37,99,235,.18);
+}
+
+.hero .crown{
+  font-size:40px;
+  margin-bottom:5px;
 }
 
 .hero h1{
   font-size:34px;
-  margin-bottom:10px
+  margin-bottom:10px;
+}
+
+.hero h1 span{
+  color:var(--gold);
 }
 
 .hero p{
   max-width:700px;
   margin:auto;
-  opacity:.95
+  line-height:1.6;
+  opacity:.95;
 }
 
-.actions{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-  gap:15px;
-  margin-bottom:25px
-}
+/* AUTH */
 
-.action{
-  background:white;
-  border:0;
-  border-radius:14px;
-  padding:22px;
-  box-shadow:0 3px 12px rgba(0,0,0,.08);
-  text-align:center
-}
-
-.action:hover{
-  transform:translateY(-2px)
-}
-
-.action-icon{
-  font-size:32px;
-  margin-bottom:8px
-}
-
-.action strong{
-  display:block;
-  color:#2563eb
+.auth{
+  max-width:500px;
+  margin:35px auto;
 }
 
 .panel{
   background:white;
+  border:1px solid var(--border);
   border-radius:16px;
-  padding:25px;
-  box-shadow:0 3px 15px rgba(0,0,0,.07);
-  margin-bottom:25px
+  padding:22px;
+  margin-bottom:20px;
+  box-shadow:0 5px 20px rgba(15,23,42,.06);
 }
 
 .title{
-  color:#2563eb;
   text-align:center;
-  margin-bottom:20px
-}
-
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
-  gap:15px
-}
-
-.card{
-  border:1px solid #e5e7eb;
-  border-radius:13px;
-  padding:20px;
-  background:#fff
-}
-
-.card h3{
-  color:#2563eb;
-  margin-bottom:8px
-}
-
-.price{
-  font-size:20px;
-  font-weight:bold;
-  margin:12px 0
-}
-
-.primary{
-  background:#2563eb;
-  color:white;
-  border:0;
-  padding:12px 18px;
-  border-radius:8px;
-  font-weight:bold
-}
-
-.success{
-  background:#16a34a;
-  color:white;
-  border:0;
-  padding:12px 18px;
-  border-radius:8px;
-  font-weight:bold
-}
-
-.danger{
-  background:#dc2626;
-  color:white;
-  border:0;
-  padding:10px 15px;
-  border-radius:8px;
-  font-weight:bold
-}
-
-.full{
-  width:100%
-}
-
-.form-group{
-  margin-bottom:16px
-}
-
-.form-group label{
-  display:block;
-  font-weight:bold;
-  margin-bottom:7px
-}
-
-input,select{
-  width:100%;
-  padding:13px;
-  border:1px solid #d1d5db;
-  border-radius:8px;
-  background:white
-}
-
-.balance-box{
-  background:#111827;
-  color:white;
-  padding:25px;
-  border-radius:14px;
-  text-align:center;
-  margin-bottom:20px
-}
-
-.balance{
-  font-size:35px;
-  font-weight:bold;
-  color:#60a5fa;
-  margin:8px 0
-}
-
-.auth{
-  max-width:500px;
-  margin:30px auto
-}
-
-.hidden{
-  display:none!important
+  color:var(--blue);
+  margin-bottom:20px;
 }
 
 .tabs{
   display:flex;
   gap:8px;
-  margin-bottom:20px
+  margin-bottom:20px;
 }
 
 .tabs button{
   flex:1;
+  border:1px solid var(--border);
+  background:#f8fafc;
   padding:11px;
-  border:1px solid #ddd;
-  background:#f9fafb;
-  border-radius:8px;
-  font-weight:bold
+  border-radius:9px;
+  font-weight:bold;
 }
 
 .tabs button.active{
-  background:#2563eb;
-  color:white
+  background:var(--blue);
+  color:white;
+  border-color:var(--blue);
+}
+
+.form-group{
+  margin-bottom:15px;
+}
+
+.form-group label{
+  display:block;
+  font-weight:bold;
+  margin-bottom:7px;
+}
+
+input,
+select{
+  width:100%;
+  padding:13px;
+  border:1px solid #cbd5e1;
+  border-radius:9px;
+  background:white;
+  outline:none;
+}
+
+input:focus,
+select:focus{
+  border-color:var(--blue);
+  box-shadow:0 0 0 3px rgba(37,99,235,.1);
+}
+
+.primary,
+.success,
+.danger,
+.gold{
+  border:0;
+  color:white;
+  padding:12px 17px;
+  border-radius:9px;
+  font-weight:bold;
+}
+
+.primary{
+  background:var(--blue);
+}
+
+.success{
+  background:var(--green);
+}
+
+.danger{
+  background:var(--red);
+}
+
+.gold{
+  background:var(--gold);
+  color:#111827;
+}
+
+.full{
+  width:100%;
 }
 
 .message{
-  margin-top:12px;
   text-align:center;
-  font-weight:bold
+  font-weight:bold;
+  margin-top:12px;
+  line-height:1.5;
 }
 
+/* ACTIONS */
+
+.actions{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+  margin-bottom:20px;
+}
+
+.action{
+  background:white;
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:20px 10px;
+  box-shadow:0 4px 15px rgba(15,23,42,.05);
+  transition:.2s;
+}
+
+.action:hover{
+  transform:translateY(-2px);
+}
+
+.action-icon{
+  font-size:30px;
+  margin-bottom:7px;
+}
+
+.action strong{
+  display:block;
+  color:var(--blue);
+  margin-bottom:5px;
+}
+
+.action p{
+  font-size:13px;
+  color:var(--muted);
+}
+
+/* BALANCE */
+
+.balance-box{
+  background:linear-gradient(135deg,#111827,#1e293b);
+  color:white;
+  border-radius:15px;
+  padding:25px;
+  text-align:center;
+  margin-bottom:20px;
+}
+
+.balance{
+  font-size:36px;
+  font-weight:900;
+  color:#60a5fa;
+  margin:8px 0 12px;
+}
+
+/* GRID */
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
+}
+
+.card{
+  background:white;
+  border:1px solid var(--border);
+  border-radius:13px;
+  padding:18px;
+}
+
+.card h3{
+  color:var(--blue);
+  margin-bottom:8px;
+}
+
+.card p{
+  color:var(--muted);
+  line-height:1.5;
+  margin-bottom:12px;
+}
+
+/* PAYMENT */
+
+.payment-list{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+  margin-bottom:18px;
+}
+
+.payment-card{
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:16px;
+  background:#fafafa;
+}
+
+.payment-card h3{
+  margin-bottom:8px;
+}
+
+.payment-card strong{
+  font-size:18px;
+}
+
+/* SERVICE */
+
+.service-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+  margin-top:15px;
+}
+
+.service-item{
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:16px;
+  background:#fff;
+}
+
+.service-item h3{
+  margin-bottom:6px;
+  color:#111827;
+}
+
+.service-item p{
+  color:var(--muted);
+  font-size:13px;
+}
+
+/* ORDERS */
+
 .order-row{
-  border:1px solid #e5e7eb;
-  border-radius:10px;
+  border:1px solid var(--border);
+  border-radius:12px;
   padding:15px;
-  margin-bottom:10px
+  margin-top:10px;
+  background:#fafafa;
+  overflow-wrap:anywhere;
 }
 
 .status{
   display:inline-block;
+  margin-top:8px;
   padding:5px 9px;
-  border-radius:6px;
+  border-radius:7px;
   background:#fef3c7;
   color:#92400e;
   font-size:12px;
   font-weight:bold;
-  margin-top:7px
 }
+
+/* FOOTER */
 
 footer{
-  background:#111827;
+  background:#0f172a;
   color:white;
   text-align:center;
-  padding:25px
+  padding:25px 15px;
 }
 
-@media(max-width:700px){
+footer strong{
+  color:var(--gold);
+}
+
+/* MOBILE */
+
+@media(max-width:800px){
+
+  .actions{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+  .payment-list{
+    grid-template-columns:1fr;
+  }
+
+  .service-grid{
+    grid-template-columns:1fr;
+  }
 
   .hero h1{
-    font-size:27px
+    font-size:27px;
+  }
+}
+
+@media(max-width:480px){
+
+  .nav{
+    padding:12px;
   }
 
   .logo{
-    font-size:16px
+    font-size:15px;
   }
 
   .balance-mini{
-    font-size:12px
+    font-size:11px;
+    padding:7px;
+  }
+
+  .container{
+    padding:14px 10px 40px;
+  }
+
+  .hero{
+    padding:30px 15px;
+    border-radius:15px;
+  }
+
+  .hero h1{
+    font-size:24px;
+  }
+
+  .action{
+    padding:16px 7px;
+  }
+
+  .action-icon{
+    font-size:25px;
+  }
+
+  .panel{
+    padding:16px;
   }
 }
 </style>
@@ -329,7 +504,9 @@ footer{
 Solde : 0 FC
 </div>
 
-<button class="menu-btn" onclick="toggleMenu()">☰</button>
+<button class="menu-btn" onclick="toggleMenu()">
+☰
+</button>
 
 </div>
 
@@ -344,15 +521,20 @@ Solde : 0 FC
 
 <section id="authSection" class="panel auth">
 
-<h2 class="title">👤 MON COMPTE</h2>
+<h2 class="title">
+👤 MON COMPTE
+</h2>
 
 <div class="tabs">
 
-<button id="loginTab" class="active" onclick="showLogin()">
+<button id="loginTab"
+class="active"
+onclick="showLogin()">
 Connexion
 </button>
 
-<button id="registerTab" onclick="showRegister()">
+<button id="registerTab"
+onclick="showRegister()">
 Créer un compte
 </button>
 
@@ -362,17 +544,35 @@ Créer un compte
 <div id="loginForm">
 
 <div class="form-group">
+
 <label>📧 Email</label>
-<input id="loginEmail" type="email" placeholder="Votre email">
+
+<input
+id="loginEmail"
+type="email"
+placeholder="Votre email">
+
 </div>
+
 
 <div class="form-group">
+
 <label>🔐 Mot de passe</label>
-<input id="loginPassword" type="password" placeholder="Votre mot de passe">
+
+<input
+id="loginPassword"
+type="password"
+placeholder="Votre mot de passe">
+
 </div>
 
-<button class="primary full" onclick="loginUser()">
+
+<button
+class="primary full"
+onclick="loginUser()">
+
 🔐 SE CONNECTER
+
 </button>
 
 </div>
@@ -381,71 +581,133 @@ Créer un compte
 <div id="registerForm" class="hidden">
 
 <div class="form-group">
+
 <label>👤 Nom</label>
-<input id="registerName" type="text" placeholder="Votre nom">
+
+<input
+id="registerName"
+type="text"
+placeholder="Votre nom">
+
 </div>
 
+
 <div class="form-group">
+
 <label>📧 Email</label>
-<input id="registerEmail" type="email" placeholder="Votre email">
+
+<input
+id="registerEmail"
+type="email"
+placeholder="Votre email">
+
 </div>
+
 
 <div class="form-group">
+
 <label>🔐 Mot de passe</label>
-<input id="registerPassword" type="password" placeholder="Minimum 6 caractères">
+
+<input
+id="registerPassword"
+type="password"
+placeholder="Minimum 6 caractères">
+
 </div>
 
-<button class="success full" onclick="registerUser()">
+
+<button
+class="success full"
+onclick="registerUser()">
+
 ➕ CRÉER MON COMPTE
+
 </button>
 
 </div>
 
-<div id="authMessage" class="message"></div>
+
+<div id="authMessage"
+class="message">
+</div>
 
 </section>
 
 
-<!-- CLIENT PANEL -->
+<!-- CLIENT -->
 
 <section id="clientPanel" class="hidden">
 
+
 <div class="hero">
 
-<h1>🚀 LEADER NOSMY BOOST</h1>
+<div class="crown">👑</div>
+
+<h1>
+LEADER <span>NOSMY BOOST</span>
+</h1>
 
 <p>
-Bienvenue dans votre espace client.
-Boostez vos réseaux sociaux directement depuis votre compte.
+Boostez vos réseaux sociaux rapidement,
+simplement et depuis votre espace client.
 </p>
 
 </div>
 
 
+<!-- MENU -->
+
 <div class="actions">
 
-<button class="action" onclick="showPanel('dashboard')">
+<button
+class="action"
+onclick="showPanel('dashboard')">
+
 <div class="action-icon">🏠</div>
+
 <strong>Dashboard</strong>
+
 <p>Vue générale</p>
+
 </button>
 
-<button class="action" onclick="showPanel('deposit')">
+
+<button
+class="action"
+onclick="showPanel('deposit')">
+
 <div class="action-icon">💳</div>
+
 <strong>Ajouter des fonds</strong>
-<p>Recharger votre solde</p>
+
+<p>Recharger le solde</p>
+
 </button>
 
-<button class="action" onclick="showPanel('order')">
+
+<button
+class="action"
+onclick="showPanel('order')">
+
 <div class="action-icon">🚀</div>
+
 <strong>Nouvelle commande</strong>
-<p>Commander un service</p>
+
+<p>Commander</p>
+
 </button>
 
-<button class="action" onclick="showPanel('orders')">
+
+<button
+class="action"
+onclick="showPanel('orders')">
+
 <div class="action-icon">📋</div>
+
 <strong>Mes commandes</strong>
-<p>Voir l'historique</p>
+
+<p>Historique</p>
+
 </button>
 
 </div>
@@ -455,70 +717,119 @@ Boostez vos réseaux sociaux directement depuis votre compte.
 
 <div id="dashboardPanel" class="panel">
 
-<h2 class="title">🏠 DASHBOARD</h2>
+<h2 class="title">
+🏠 DASHBOARD
+</h2>
+
 
 <div class="balance-box">
 
 <p>Votre solde disponible</p>
 
-<div id="balanceDisplay" class="balance">
+<div id="balanceDisplay"
+class="balance">
+
 0 FC
-</div>
-
-<p id="welcomeUser"></p>
 
 </div>
+
+<p id="welcomeUser">
+</p>
+
+</div>
+
 
 <div class="grid">
 
 <div class="card">
+
 <h3>💰 Solde</h3>
-<p>Votre crédit disponible.</p>
-<button class="primary" onclick="showPanel('deposit')">
-Ajouter des fonds
-</button>
-</div>
 
-<div class="card">
-<h3>🚀 Commander</h3>
-<p>Choisissez votre service.</p>
-<button class="primary" onclick="showPanel('order')">
-Nouvelle commande
-</button>
-</div>
-
-<div class="card">
-<h3>📋 Historique</h3>
-<p>Consultez vos commandes.</p>
-<button class="primary" onclick="showPanel('orders')">
-Mes commandes
-</button>
-</div>
-
-</div>
-
-</div>
-
-
-<!-- DEPOSIT -->
-
-<div id="depositPanel" class="panel hidden">
-
-<h2 class="title">💳 AJOUTER DES FONDS</h2>
-
-<p style="text-align:center;margin-bottom:20px">
-Choisissez votre moyen de paiement et indiquez le montant.
+<p>
+Rechargez votre compte pour passer
+vos commandes.
 </p>
+
+<button
+class="primary"
+onclick="showPanel('deposit')">
+
+Ajouter des fonds
+
+</button>
+
+</div>
+
+
+<div class="card">
+
+<h3>🚀 Services</h3>
+
+<p>
+TikTok, Facebook, Instagram,
+YouTube et autres services.
+</p>
+
+<button
+class="primary"
+onclick="showPanel('order')">
+
+Voir les services
+
+</button>
+
+</div>
+
+
+<div class="card">
+
+<h3>📋 Commandes</h3>
+
+<p>
+Consultez vos commandes et leur statut.
+</p>
+
+<button
+class="primary"
+onclick="showPanel('orders')">
+
+Mes commandes
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- DEPOT -->
+
+<div id="depositPanel"
+class="panel hidden">
+
+<h2 class="title">
+💳 AJOUTER DES FONDS
+</h2>
+
+<p style="text-align:center;color:#64748b;margin-bottom:18px">
+
+Dépôt minimum : <strong>2 500 FC</strong>.
+
+</p>
+
 
 <div class="form-group">
 
-<label>💰 Montant</label>
+<label>💰 Montant du dépôt</label>
 
 <input
 id="depositAmount"
 type="number"
-min="1"
-placeholder="Ex: 10000">
+min="2500"
+step="1"
+placeholder="Minimum 2500 FC">
 
 </div>
 
@@ -529,110 +840,215 @@ placeholder="Ex: 10000">
 
 <select id="depositMethod">
 
-<option value="">Choisir</option>
+<option value="">
+Choisir un moyen de paiement
+</option>
 
-<option>Orange Money</option>
+<option value="Orange Money">
+Orange Money
+</option>
 
-<option>Airtel Money</option>
+<option value="Airtel Money">
+Airtel Money
+</option>
 
-<option>Vodacom M-Pesa</option>
+<option value="Vodacom M-Pesa">
+Vodacom M-Pesa
+</option>
 
 </select>
 
 </div>
 
 
-<div class="card" style="margin-bottom:18px">
+<div class="payment-list">
+
+<div class="payment-card">
 
 <h3>🟠 Orange Money</h3>
-<p><strong>0843066709</strong></p>
 
-<br>
-
-<h3>🔴 Airtel Money</h3>
-<p><strong>0980630622</strong></p>
-
-<br>
-
-<h3>🔵 Vodacom M-Pesa</h3>
-<p><strong>0822886387</strong></p>
+<strong>0843066709</strong>
 
 </div>
 
 
-<button class="success full" onclick="requestDeposit()">
-💳 ENREGISTRER MA DEMANDE DE DÉPÔT
+<div class="payment-card">
+
+<h3>🔴 Airtel Money</h3>
+
+<strong>0980630622</strong>
+
+</div>
+
+
+<div class="payment-card">
+
+<h3>🔵 Vodacom M-Pesa</h3>
+
+<strong>0822886387</strong>
+
+</div>
+
+</div>
+
+
+<button
+class="success full"
+onclick="requestDeposit()">
+
+💳 ENREGISTRER MA DEMANDE
+
 </button>
 
-<div id="depositMessage" class="message"></div>
+
+<div
+id="depositMessage"
+class="message">
+</div>
 
 </div>
 
 
 <!-- ORDER -->
 
-<div id="orderPanel" class="panel hidden">
+<div id="orderPanel"
+class="panel hidden">
 
-<h2 class="title">🚀 NOUVELLE COMMANDE</h2>
+<h2 class="title">
+🚀 NOUVELLE COMMANDE
+</h2>
+
 
 <div class="form-group">
 
 <label>📱 Service</label>
 
-<select id="orderService" onchange="updatePrice()">
+<select
+id="orderService"
+onchange="updatePrice()">
 
-<option value="">Choisir un service</option>
+<option value="">
+Choisir un service
+</option>
 
-<option value="Facebook - 1K Followers" data-price="4000">
+<option
+value="Facebook - 1K Followers"
+data-price="4000">
+
 Facebook - 1K Followers — 4 000 FC
+
 </option>
 
-<option value="Facebook - 1K Likes" data-price="1500">
+<option
+value="Facebook - 1K Likes"
+data-price="1500">
+
 Facebook - 1K Likes — 1 500 FC
+
 </option>
 
-<option value="Facebook - 2K Likes" data-price="3000">
+<option
+value="Facebook - 2K Likes"
+data-price="3000">
+
 Facebook - 2K Likes — 3 000 FC
+
 </option>
 
-<option value="Facebook - 3K Likes" data-price="4500">
+<option
+value="Facebook - 3K Likes"
+data-price="4500">
+
 Facebook - 3K Likes — 4 500 FC
+
 </option>
 
-<option value="TikTok - 1K Abonnés" data-price="8000">
+<option
+value="TikTok - 1K Abonnés"
+data-price="8000">
+
 TikTok - 1K Abonnés — 8 000 FC
+
 </option>
 
-<option value="TikTok - 1K Vues + 1K Likes" data-price="6000">
+<option
+value="TikTok - 1K Vues + 1K Likes"
+data-price="6000">
+
 TikTok - 1K Vues + 1K Likes — 6 000 FC
+
 </option>
 
-<option value="TikTok - 2K Vues + 2K Likes" data-price="12000">
+<option
+value="TikTok - 2K Vues + 2K Likes"
+data-price="12000">
+
 TikTok - 2K Vues + 2K Likes — 12 000 FC
+
 </option>
 
-<option value="Instagram - 1K Followers" data-price="8000">
+<option
+value="Instagram - 1K Followers"
+data-price="8000">
+
 Instagram - 1K Followers — 8 000 FC
+
 </option>
 
-<option value="Affiche Anniversaire" data-price="5000">
+<option
+value="YouTube - 1K Abonnés"
+data-price="9000">
+
+YouTube - 1K Abonnés — 9 000 FC
+
+</option>
+
+<option
+value="YouTube - 1K Vues"
+data-price="5000">
+
+YouTube - 1K Vues — 5 000 FC
+
+</option>
+
+<option
+value="Affiche Anniversaire"
+data-price="5000">
+
 Affiche Anniversaire — 5 000 FC
+
 </option>
 
-<option value="Affiche Musique" data-price="5000">
+<option
+value="Affiche Musique"
+data-price="5000">
+
 Affiche Musique — 5 000 FC
+
 </option>
 
-<option value="Affiche Mariage" data-price="5000">
+<option
+value="Affiche Mariage"
+data-price="5000">
+
 Affiche Mariage — 5 000 FC
+
 </option>
 
-<option value="Logo" data-price="3000">
+<option
+value="Logo"
+data-price="3000">
+
 Logo — 3 000 FC
+
 </option>
 
-<option value="Montage Photo / Vidéo" data-price="7000">
+<option
+value="Montage Photo / Vidéo"
+data-price="7000">
+
 Montage Photo / Vidéo — 7 000 FC
+
 </option>
 
 </select>
@@ -647,8 +1063,7 @@ Montage Photo / Vidéo — 7 000 FC
 <input
 id="orderLink"
 type="url"
-placeholder="https://..."
->
+placeholder="https://...">
 
 </div>
 
@@ -661,51 +1076,78 @@ placeholder="https://..."
 id="orderQuantity"
 type="number"
 min="1"
-placeholder="Ex: 1000"
->
+placeholder="Ex: 1000">
 
 </div>
 
 
-<div class="card" style="margin-bottom:18px">
+<div class="card">
 
-<p>Prix de la commande :</p>
+<p>
+Prix de la commande :
+</p>
 
-<div id="orderPrice" class="price">
+<div
+id="orderPrice"
+style="font-size:25px;font-weight:bold;color:#2563eb;margin:8px 0 15px">
+
 0 FC
+
 </div>
 
 <p>
 Solde disponible :
-<strong id="orderBalance">0 FC</strong>
+<strong id="orderBalance">
+0 FC
+</strong>
 </p>
 
 </div>
 
 
-<button class="primary full" onclick="createOrder()">
+<br>
+
+<button
+class="primary full"
+onclick="createOrder()">
+
 🚀 COMMANDER MAINTENANT
+
 </button>
 
-<div id="orderMessage" class="message"></div>
+
+<div
+id="orderMessage"
+class="message">
+</div>
 
 </div>
 
 
 <!-- ORDERS -->
 
-<div id="ordersPanel" class="panel hidden">
+<div id="ordersPanel"
+class="panel hidden">
 
-<h2 class="title">📋 MES COMMANDES</h2>
+<h2 class="title">
+📋 MES COMMANDES
+</h2>
 
-<button class="primary" onclick="loadOrders()">
+
+<button
+class="primary"
+onclick="loadOrders()">
+
 🔄 Actualiser
+
 </button>
 
-<br><br>
 
-<div id="ordersList">
+<div id="ordersList"
+style="margin-top:15px">
+
 Chargement...
+
 </div>
 
 </div>
@@ -713,8 +1155,12 @@ Chargement...
 
 <div class="panel">
 
-<button class="danger full" onclick="logoutUser()">
+<button
+class="danger full"
+onclick="logoutUser()">
+
 🚪 SE DÉCONNECTER
+
 </button>
 
 </div>
@@ -726,9 +1172,13 @@ Chargement...
 
 <footer>
 
-<p>👑 <strong>LEADER NOSMY BOOST</strong></p>
+<p>
+👑 <strong>LEADER NOSMY BOOST</strong>
+</p>
 
-<p>© 2026 — Tous droits réservés.</p>
+<p style="margin-top:7px">
+© 2026 — Tous droits réservés.
+</p>
 
 </footer>
 
@@ -736,51 +1186,101 @@ Chargement...
 <script>
 
 let currentUser =
-JSON.parse(localStorage.getItem("leaderNosmyUser") || "null");
+JSON.parse(
+localStorage.getItem("leaderNosmyUser") || "null"
+);
 
 
 function formatMoney(value){
 
-return Number(value || 0).toLocaleString("fr-FR")+" FC";
+return Number(value || 0)
+.toLocaleString("fr-FR") + " FC";
 
 }
 
 
+/* AUTH */
+
 function showLogin(){
 
-document.getElementById("loginForm").classList.remove("hidden");
-document.getElementById("registerForm").classList.add("hidden");
+document
+.getElementById("loginForm")
+.classList.remove("hidden");
 
-document.getElementById("loginTab").classList.add("active");
-document.getElementById("registerTab").classList.remove("active");
+document
+.getElementById("registerForm")
+.classList.add("hidden");
+
+document
+.getElementById("loginTab")
+.classList.add("active");
+
+document
+.getElementById("registerTab")
+.classList.remove("active");
 
 }
 
 
 function showRegister(){
 
-document.getElementById("loginForm").classList.add("hidden");
-document.getElementById("registerForm").classList.remove("hidden");
+document
+.getElementById("loginForm")
+.classList.add("hidden");
 
-document.getElementById("loginTab").classList.remove("active");
-document.getElementById("registerTab").classList.add("active");
+document
+.getElementById("registerForm")
+.classList.remove("hidden");
+
+document
+.getElementById("loginTab")
+.classList.remove("active");
+
+document
+.getElementById("registerTab")
+.classList.add("active");
 
 }
 
 
+/* REGISTER */
+
 async function registerUser(){
 
 const name =
-document.getElementById("registerName").value.trim();
+document
+.getElementById("registerName")
+.value
+.trim();
 
 const email =
-document.getElementById("registerEmail").value.trim();
+document
+.getElementById("registerEmail")
+.value
+.trim();
 
 const password =
-document.getElementById("registerPassword").value;
+document
+.getElementById("registerPassword")
+.value;
 
 
-const response = await fetch("/api/register",{
+if(!name || !email || !password){
+
+document
+.getElementById("authMessage")
+.textContent =
+"❌ Remplissez tous les champs.";
+
+return;
+
+}
+
+
+try{
+
+const response =
+await fetch("/api/register",{
 
 method:"POST",
 
@@ -797,35 +1297,78 @@ password
 });
 
 
-const data = await response.json();
+const data =
+await response.json();
 
-document.getElementById("authMessage").textContent =
-data.message;
+
+document
+.getElementById("authMessage")
+.textContent =
+data.message || "Erreur";
 
 
 if(data.success){
 
-document.getElementById("registerName").value="";
-document.getElementById("registerEmail").value="";
-document.getElementById("registerPassword").value="";
+document
+.getElementById("registerName")
+.value="";
+
+document
+.getElementById("registerEmail")
+.value="";
+
+document
+.getElementById("registerPassword")
+.value="";
 
 showLogin();
 
 }
 
+}catch(error){
+
+document
+.getElementById("authMessage")
+.textContent =
+"❌ Impossible de contacter le serveur.";
+
 }
 
+}
+
+
+/* LOGIN */
 
 async function loginUser(){
 
 const email =
-document.getElementById("loginEmail").value.trim();
+document
+.getElementById("loginEmail")
+.value
+.trim();
 
 const password =
-document.getElementById("loginPassword").value;
+document
+.getElementById("loginPassword")
+.value;
 
 
-const response = await fetch("/api/login",{
+if(!email || !password){
+
+document
+.getElementById("authMessage")
+.textContent =
+"❌ Email et mot de passe obligatoires.";
+
+return;
+
+}
+
+
+try{
+
+const response =
+await fetch("/api/login",{
 
 method:"POST",
 
@@ -841,16 +1384,19 @@ password
 });
 
 
-const data = await response.json();
+const data =
+await response.json();
 
 
-document.getElementById("authMessage").textContent =
-data.message;
+document
+.getElementById("authMessage")
+.textContent =
+data.message || "Erreur";
 
 
 if(data.success){
 
-currentUser = data.user;
+currentUser=data.user;
 
 localStorage.setItem(
 "leaderNosmyUser",
@@ -861,35 +1407,57 @@ showClient();
 
 }
 
+}catch(error){
+
+document
+.getElementById("authMessage")
+.textContent =
+"❌ Impossible de contacter le serveur.";
+
+}
+
 }
 
 
+/* CLIENT */
+
 function showClient(){
 
-document.getElementById("authSection")
+document
+.getElementById("authSection")
 .classList.add("hidden");
 
-document.getElementById("clientPanel")
+document
+.getElementById("clientPanel")
 .classList.remove("hidden");
 
-document.getElementById("miniBalance")
+document
+.getElementById("miniBalance")
 .classList.remove("hidden");
 
-document.getElementById("welcomeUser").textContent =
-"Bienvenue "+currentUser.name+" 👑";
+document
+.getElementById("welcomeUser")
+.textContent =
+"Bienvenue " + currentUser.name + " 👑";
 
 refreshUser();
 
 }
 
 
+/* REFRESH USER */
+
 async function refreshUser(){
 
 if(!currentUser)return;
 
 
+try{
+
 const response =
-await fetch("/api/user/"+currentUser.id);
+await fetch(
+"/api/user/" + currentUser.id
+);
 
 const data =
 await response.json();
@@ -897,29 +1465,44 @@ await response.json();
 
 if(data.success){
 
-currentUser = data.user;
+currentUser=data.user;
 
 localStorage.setItem(
 "leaderNosmyUser",
 JSON.stringify(currentUser)
 );
 
-document.getElementById("balanceDisplay")
+
+document
+.getElementById("balanceDisplay")
 .textContent =
 formatMoney(currentUser.balance);
 
-document.getElementById("orderBalance")
+
+document
+.getElementById("orderBalance")
 .textContent =
 formatMoney(currentUser.balance);
 
-document.getElementById("miniBalance")
+
+document
+.getElementById("miniBalance")
 .textContent =
-"Solde : "+formatMoney(currentUser.balance);
+"Solde : " +
+formatMoney(currentUser.balance);
+
+}
+
+}catch(error){
+
+console.log(error);
 
 }
 
 }
 
+
+/* PANELS */
 
 function showPanel(name){
 
@@ -932,21 +1515,35 @@ const panels=[
 
 
 panels.forEach(id=>{
-document.getElementById(id)
+
+document
+.getElementById(id)
 .classList.add("hidden");
+
 });
 
 
-document.getElementById(name+"Panel")
+document
+.getElementById(name+"Panel")
 .classList.remove("hidden");
 
 
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+
 if(name==="orders"){
+
 loadOrders();
-}
 
 }
 
+}
+
+
+/* PRICE */
 
 function updatePrice(){
 
@@ -954,29 +1551,78 @@ const select =
 document.getElementById("orderService");
 
 const option =
-select.options[select.selectedIndex];
+select.options[
+select.selectedIndex
+];
 
 const price =
-option ? Number(option.dataset.price || 0) : 0;
+option
+? Number(option.dataset.price || 0)
+: 0;
 
-document.getElementById("orderPrice")
+
+document
+.getElementById("orderPrice")
 .textContent =
 formatMoney(price);
 
 }
 
 
+/* DEPOSIT */
+
 async function requestDeposit(){
 
-if(!currentUser)return;
+if(!currentUser){
+
+document
+.getElementById("depositMessage")
+.textContent =
+"❌ Connectez-vous d'abord.";
+
+return;
+
+}
 
 
 const amount =
-Number(document.getElementById("depositAmount").value);
+Number(
+document
+.getElementById("depositAmount")
+.value
+);
 
 const method =
-document.getElementById("depositMethod").value;
+document
+.getElementById("depositMethod")
+.value;
 
+
+if(!Number.isFinite(amount) || amount < 2500){
+
+document
+.getElementById("depositMessage")
+.textContent =
+"❌ Le dépôt minimum est de 2 500 FC.";
+
+return;
+
+}
+
+
+if(!method){
+
+document
+.getElementById("depositMessage")
+.textContent =
+"❌ Choisissez un moyen de paiement.";
+
+return;
+
+}
+
+
+try{
 
 const response =
 await fetch("/api/deposit",{
@@ -1004,50 +1650,92 @@ const data =
 await response.json();
 
 
-document.getElementById("depositMessage")
+document
+.getElementById("depositMessage")
 .textContent =
-data.message;
+data.message || "Erreur";
 
 
 if(data.success){
 
-document.getElementById("depositAmount").value="";
+document
+.getElementById("depositAmount")
+.value="";
 
-document.getElementById("depositMethod").value="";
+document
+.getElementById("depositMethod")
+.value="";
+
+}
+
+}catch(error){
+
+document
+.getElementById("depositMessage")
+.textContent =
+"❌ Erreur de connexion au serveur.";
 
 }
 
 }
 
+
+/* ORDER */
 
 async function createOrder(){
 
-if(!currentUser)return;
+if(!currentUser){
+
+document
+.getElementById("orderMessage")
+.textContent =
+"❌ Connectez-vous d'abord.";
+
+return;
+
+}
 
 
 const select =
 document.getElementById("orderService");
 
 const option =
-select.options[select.selectedIndex];
+select.options[
+select.selectedIndex
+];
 
 
-const service =
-select.value;
+const service=select.value;
 
 const link =
-document.getElementById("orderLink").value.trim();
+document
+.getElementById("orderLink")
+.value
+.trim();
 
 const quantity =
-Number(document.getElementById("orderQuantity").value);
+Number(
+document
+.getElementById("orderQuantity")
+.value
+);
 
 const price =
-Number(option?.dataset.price || 0);
+Number(
+option?.dataset.price || 0
+);
 
 
-if(!service || !link || !quantity || quantity<=0 || !price){
+if(
+!service ||
+!link ||
+!quantity ||
+quantity<=0 ||
+!price
+){
 
-document.getElementById("orderMessage")
+document
+.getElementById("orderMessage")
 .textContent =
 "❌ Remplissez correctement tous les champs.";
 
@@ -1055,6 +1743,8 @@ return;
 
 }
 
+
+try{
 
 const response =
 await fetch("/api/order",{
@@ -1068,13 +1758,9 @@ headers:{
 body:JSON.stringify({
 
 userId:currentUser.id,
-
 service,
-
 link,
-
 quantity,
-
 price
 
 })
@@ -1086,15 +1772,15 @@ const data =
 await response.json();
 
 
-document.getElementById("orderMessage")
+document
+.getElementById("orderMessage")
 .textContent =
-data.message;
+data.message || "Erreur";
 
 
 if(data.success){
 
-currentUser.balance =
-data.balance;
+currentUser.balance=data.balance;
 
 localStorage.setItem(
 "leaderNosmyUser",
@@ -1103,31 +1789,59 @@ JSON.stringify(currentUser)
 
 await refreshUser();
 
-document.getElementById("orderLink").value="";
-document.getElementById("orderQuantity").value="";
+
+document
+.getElementById("orderLink")
+.value="";
+
+document
+.getElementById("orderQuantity")
+.value="";
+
+}
+
+}catch(error){
+
+document
+.getElementById("orderMessage")
+.textContent =
+"❌ Erreur de connexion au serveur.";
 
 }
 
 }
 
+
+/* ORDERS */
 
 async function loadOrders(){
 
 if(!currentUser)return;
 
 
+const container =
+document.getElementById("ordersList");
+
+container.innerHTML =
+"⏳ Chargement...";
+
+
+try{
+
 const response =
-await fetch("/api/orders/"+currentUser.id);
+await fetch(
+"/api/orders/" + currentUser.id
+);
 
 const data =
 await response.json();
 
 
-const container =
-document.getElementById("ordersList");
-
-
-if(!data.success || !data.orders.length){
+if(
+!data.success ||
+!data.orders ||
+!data.orders.length
+){
 
 container.innerHTML =
 "<p>Aucune commande pour le moment.</p>";
@@ -1138,36 +1852,92 @@ return;
 
 
 container.innerHTML =
-data.orders.map(order=>`
+data.orders
+.map(order=>`
 
 <div class="order-row">
 
-<strong>🚀 ${order.service}</strong>
+<strong>
+🚀 ${escapeHTML(order.service || "Commande")}
+</strong>
 
-<p>🔗 ${order.link}</p>
+<p style="margin-top:8px">
+🔗 ${escapeHTML(order.link || "—")}
+</p>
 
-<p>🔢 Quantité : ${order.quantity}</p>
+<p>
+🔢 Quantité :
+${escapeHTML(String(order.quantity || "—"))}
+</p>
 
-<p>💰 Prix : ${formatMoney(order.price)}</p>
+<p>
+💰 Prix :
+${formatMoney(order.price)}
+</p>
 
 <span class="status">
-${order.status}
+${escapeHTML(order.status || "pending")}
 </span>
 
-<p style="font-size:12px;margin-top:7px">
-${new Date(order.createdAt).toLocaleString("fr-FR")}
+<p style="font-size:12px;color:#64748b;margin-top:8px">
+${order.createdAt
+? new Date(order.createdAt).toLocaleString("fr-FR")
+: ""}
 </p>
 
 </div>
 
-`).join("");
+`)
+.join("");
+
+}catch(error){
+
+container.innerHTML =
+"❌ Impossible de charger les commandes.";
+
+}
 
 }
 
 
+/* SECURITY DISPLAY */
+
+function escapeHTML(value){
+
+return String(value)
+.replaceAll("&","&amp;")
+.replaceAll("<","&lt;")
+.replaceAll(">","&gt;")
+.replaceAll('"',"&quot;")
+.replaceAll("'","&#039;");
+
+}
+
+
+/* MENU */
+
+function toggleMenu(){
+
+if(!currentUser){
+
+alert("Connectez-vous pour accéder au menu.");
+
+return;
+
+}
+
+showPanel("dashboard");
+
+}
+
+
+/* LOGOUT */
+
 function logoutUser(){
 
-localStorage.removeItem("leaderNosmyUser");
+localStorage.removeItem(
+"leaderNosmyUser"
+);
 
 currentUser=null;
 
@@ -1176,12 +1946,7 @@ location.reload();
 }
 
 
-function toggleMenu(){
-
-alert("Menu client disponible après connexion.");
-
-}
-
+/* START */
 
 if(currentUser){
 
