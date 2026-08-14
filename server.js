@@ -9,6 +9,8 @@ const PORT = process.env.PORT || 3000;
 const USERS_FILE = path.join(__dirname, "users.json");
 const ORDERS_FILE = path.join(__dirname, "orders.json");
 
+const MIN_DEPOSIT = 2500;
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname));
@@ -16,7 +18,12 @@ app.use(express.static(__dirname));
 function readJSON(file, fallback = []) {
   try {
     if (!fs.existsSync(file)) {
-      fs.writeFileSync(file, JSON.stringify(fallback, null, 2));
+      fs.writeFileSync(
+        file,
+        JSON.stringify(fallback, null, 2),
+        "utf8"
+      );
+      return fallback;
     }
 
     const data = fs.readFileSync(file, "utf8");
@@ -26,6 +33,7 @@ function readJSON(file, fallback = []) {
     return JSON.parse(data);
 
   } catch (error) {
+    console.error("Erreur lecture JSON :", error);
     return fallback;
   }
 }
@@ -45,17 +53,29 @@ function hashPassword(password) {
     .digest("hex");
 }
 
-/* ACCUEIL */
+
+/* =========================
+   ACCUEIL
+========================= */
+
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));
 });
 
-/* ADMIN */
+
+/* =========================
+   ADMIN
+========================= */
+
 app.get("/admin", (req, res) => {
   res.sendFile(path.join(__dirname, "admin.html"));
 });
 
-/* CREER UN COMPTE */
+
+/* =========================
+   CREER UN COMPTE
+========================= */
+
 app.post("/api/register", (req, res) => {
 
   const { name, email, password } = req.body;
@@ -67,16 +87,26 @@ app.post("/api/register", (req, res) => {
     });
   }
 
+  const cleanName = String(name).trim();
+  const normalizedEmail =
+    String(email).toLowerCase().trim();
+
+  if (cleanName.length < 2) {
+    return res.status(400).json({
+      success: false,
+      message: "Nom invalide."
+    });
+  }
+
   if (String(password).length < 6) {
     return res.status(400).json({
       success: false,
-      message: "Le mot de passe doit contenir au moins 6 caractères."
+      message:
+        "Le mot de passe doit contenir au moins 6 caractères."
     });
   }
 
   const users = readJSON(USERS_FILE);
-
-  const normalizedEmail = String(email).toLowerCase().trim();
 
   const existing = users.find(
     user => user.email === normalizedEmail
@@ -91,7 +121,7 @@ app.post("/api/register", (req, res) => {
 
   const user = {
     id: crypto.randomUUID(),
-    name: String(name).trim(),
+    name: cleanName,
     email: normalizedEmail,
     password: hashPassword(password),
     balance: 0,
@@ -114,7 +144,11 @@ app.post("/api/register", (req, res) => {
   });
 });
 
-/* CONNEXION */
+
+/* =========================
+   CONNEXION
+========================= */
+
 app.post("/api/login", (req, res) => {
 
   const { email, password } = req.body;
@@ -122,22 +156,27 @@ app.post("/api/login", (req, res) => {
   if (!email || !password) {
     return res.status(400).json({
       success: false,
-      message: "Email et mot de passe obligatoires."
+      message:
+        "Email et mot de passe obligatoires."
     });
   }
 
   const users = readJSON(USERS_FILE);
 
+  const normalizedEmail =
+    String(email).toLowerCase().trim();
+
   const user = users.find(
     u =>
-      u.email === String(email).toLowerCase().trim() &&
+      u.email === normalizedEmail &&
       u.password === hashPassword(password)
   );
 
   if (!user) {
     return res.status(401).json({
       success: false,
-      message: "Email ou mot de passe incorrect."
+      message:
+        "Email ou mot de passe incorrect."
     });
   }
 
@@ -148,12 +187,16 @@ app.post("/api/login", (req, res) => {
       id: user.id,
       name: user.name,
       email: user.email,
-      balance: user.balance
+      balance: Number(user.balance) || 0
     }
   });
 });
 
-/* VOIR LE PROFIL ET LE SOLDE */
+
+/* =========================
+   PROFIL + SOLDE
+========================= */
+
 app.get("/api/user/:id", (req, res) => {
 
   const users = readJSON(USERS_FILE);
@@ -175,27 +218,52 @@ app.get("/api/user/:id", (req, res) => {
       id: user.id,
       name: user.name,
       email: user.email,
-      balance: user.balance
+      balance: Number(user.balance) || 0
     }
   });
 });
 
-/* DEMANDE DE DEPOT */
+
+/* =========================
+   DEMANDE DE DEPOT
+   MINIMUM = 2 500 FC
+========================= */
+
 app.post("/api/deposit", (req, res) => {
 
   const { userId, amount, method } = req.body;
 
   const numericAmount = Number(amount);
 
+  if (!userId || !method) {
+    return res.status(400).json({
+      success: false,
+      message:
+        "Utilisateur et moyen de paiement obligatoires."
+    });
+  }
+
   if (
-    !userId ||
     !Number.isFinite(numericAmount) ||
-    numericAmount <= 0 ||
-    !method
+    numericAmount < MIN_DEPOSIT
   ) {
     return res.status(400).json({
       success: false,
-      message: "Informations de dépôt invalides."
+      message:
+        `Le dépôt minimum est de ${MIN_DEPOSIT.toLocaleString("fr-FR")} FC.`
+    });
+  }
+
+  const allowedMethods = [
+    "Orange Money",
+    "Airtel Money",
+    "Vodacom M-Pesa"
+  ];
+
+  if (!allowedMethods.includes(String(method))) {
+    return res.status(400).json({
+      success: false,
+      message: "Moyen de paiement invalide."
     });
   }
 
@@ -217,7 +285,7 @@ app.post("/api/deposit", (req, res) => {
   const deposit = {
     id: crypto.randomUUID(),
     type: "deposit",
-    userId,
+    userId: user.id,
     amount: numericAmount,
     method: String(method),
     status: "pending",
@@ -230,12 +298,165 @@ app.post("/api/deposit", (req, res) => {
 
   res.json({
     success: true,
-    message: "Demande de dépôt enregistrée. Elle doit être vérifiée par l'administrateur.",
+    message:
+      "Demande de dépôt enregistrée. Le paiement doit être vérifié avant l'ajout au solde.",
     deposit
   });
 });
 
-/* PASSER UNE COMMANDE */
+
+/* =========================
+   LISTE DES DEPOTS
+========================= */
+
+app.get("/api/deposits/:userId", (req, res) => {
+
+  const orders = readJSON(ORDERS_FILE);
+
+  const deposits = orders.filter(
+    item =>
+      item.type === "deposit" &&
+      item.userId === req.params.userId
+  );
+
+  res.json({
+    success: true,
+    deposits
+  });
+});
+
+
+/* =========================
+   VALIDER UN DEPOT
+   ADMIN
+========================= */
+
+app.post("/api/admin/deposit/:id/approve", (req, res) => {
+
+  const orders = readJSON(ORDERS_FILE);
+  const users = readJSON(USERS_FILE);
+
+  const deposit = orders.find(
+    item =>
+      item.id === req.params.id &&
+      item.type === "deposit"
+  );
+
+  if (!deposit) {
+    return res.status(404).json({
+      success: false,
+      message: "Dépôt introuvable."
+    });
+  }
+
+  if (deposit.status !== "pending") {
+    return res.status(400).json({
+      success: false,
+      message:
+        "Ce dépôt a déjà été traité."
+    });
+  }
+
+  const user = users.find(
+    u => u.id === deposit.userId
+  );
+
+  if (!user) {
+    return res.status(404).json({
+      success: false,
+      message:
+        "Utilisateur du dépôt introuvable."
+    });
+  }
+
+  user.balance =
+    Number(user.balance || 0) +
+    Number(deposit.amount);
+
+  deposit.status = "approved";
+  deposit.approvedAt =
+    new Date().toISOString();
+
+  writeJSON(USERS_FILE, users);
+  writeJSON(ORDERS_FILE, orders);
+
+  res.json({
+    success: true,
+    message:
+      "Dépôt validé et solde ajouté.",
+    balance: user.balance,
+    deposit
+  });
+});
+
+
+/* =========================
+   REFUSER UN DEPOT
+========================= */
+
+app.post("/api/admin/deposit/:id/reject", (req, res) => {
+
+  const orders = readJSON(ORDERS_FILE);
+
+  const deposit = orders.find(
+    item =>
+      item.id === req.params.id &&
+      item.type === "deposit"
+  );
+
+  if (!deposit) {
+    return res.status(404).json({
+      success: false,
+      message: "Dépôt introuvable."
+    });
+  }
+
+  if (deposit.status !== "pending") {
+    return res.status(400).json({
+      success: false,
+      message:
+        "Ce dépôt a déjà été traité."
+    });
+  }
+
+  deposit.status = "rejected";
+  deposit.rejectedAt =
+    new Date().toISOString();
+
+  writeJSON(ORDERS_FILE, orders);
+
+  res.json({
+    success: true,
+    message: "Dépôt refusé.",
+    deposit
+  });
+});
+
+
+/* =========================
+   TOUS LES DEPOTS
+   ADMIN
+========================= */
+
+app.get("/api/admin/deposits", (req, res) => {
+
+  const orders = readJSON(ORDERS_FILE);
+
+  const deposits = orders.filter(
+    item => item.type === "deposit"
+  );
+
+  res.json({
+    success: true,
+    deposits
+  });
+});
+
+
+/* =========================
+   PASSER UNE COMMANDE
+========================= */
+
 app.post("/api/order", (req, res) => {
 
   const {
@@ -260,7 +481,8 @@ app.post("/api/order", (req, res) => {
   ) {
     return res.status(400).json({
       success: false,
-      message: "Informations de commande invalides."
+      message:
+        "Informations de commande invalides."
     });
   }
 
@@ -273,27 +495,31 @@ app.post("/api/order", (req, res) => {
   if (!user) {
     return res.status(404).json({
       success: false,
-      message: "Utilisateur introuvable."
+      message:
+        "Utilisateur introuvable."
     });
   }
 
-  if (Number(user.balance) < numericPrice) {
+  const balance =
+    Number(user.balance) || 0;
+
+  if (balance < numericPrice) {
     return res.status(400).json({
       success: false,
-      message: "Solde insuffisant."
+      message:
+        "Solde insuffisant. Veuillez ajouter des fonds."
     });
   }
 
-  user.balance -= numericPrice;
-
-  writeJSON(USERS_FILE, users);
+  user.balance =
+    balance - numericPrice;
 
   const orders = readJSON(ORDERS_FILE);
 
   const order = {
     id: crypto.randomUUID(),
     type: "order",
-    userId,
+    userId: user.id,
     service: String(service),
     link: String(link),
     quantity: numericQuantity,
@@ -304,17 +530,23 @@ app.post("/api/order", (req, res) => {
 
   orders.push(order);
 
+  writeJSON(USERS_FILE, users);
   writeJSON(ORDERS_FILE, orders);
 
   res.json({
     success: true,
-    message: "Commande enregistrée.",
+    message:
+      "Commande enregistrée.",
     order,
     balance: user.balance
   });
 });
 
-/* COMMANDES DU CLIENT */
+
+/* =========================
+   COMMANDES DU CLIENT
+========================= */
+
 app.get("/api/orders/:userId", (req, res) => {
 
   const orders = readJSON(ORDERS_FILE);
@@ -331,7 +563,15 @@ app.get("/api/orders/:userId", (req, res) => {
   });
 });
 
-/* LANCER LE SERVEUR */
+
+/* =========================
+   DEMARRAGE
+========================= */
+
 app.listen(PORT, () => {
-  console.log(`Server started on port ${PORT}`);
+
+  console.log(
+    `Server started on port ${PORT}`
+  );
+
 });
