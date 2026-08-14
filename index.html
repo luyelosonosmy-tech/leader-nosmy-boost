@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>LEADER NOSMY BOOST</title>
 
 <style>
@@ -14,12 +13,17 @@
   font-family:Arial,Helvetica,sans-serif
 }
 
-html{scroll-behavior:smooth}
-
 body{
-  background:#f4f6f8;
-  color:#1f2937;
-  line-height:1.6
+  background:#f3f4f6;
+  color:#111827
+}
+
+button,input,select{
+  font:inherit
+}
+
+button{
+  cursor:pointer
 }
 
 header{
@@ -27,14 +31,13 @@ header{
   color:white;
   position:sticky;
   top:0;
-  z-index:1000;
-  box-shadow:0 3px 15px rgba(0,0,0,.2)
+  z-index:1000
 }
 
-.navbar{
-  max-width:1150px;
+.nav{
+  max-width:1200px;
   margin:auto;
-  padding:15px 20px;
+  padding:14px 18px;
   display:flex;
   align-items:center;
   justify-content:space-between
@@ -44,282 +47,164 @@ header{
   color:white;
   text-decoration:none;
   font-size:20px;
-  font-weight:800;
-  white-space:nowrap
+  font-weight:800
 }
 
-.logo span{color:#60a5fa}
+.logo span{
+  color:#60a5fa
+}
 
-.menu{
-  list-style:none;
+.nav-right{
   display:flex;
-  gap:18px
+  align-items:center;
+  gap:10px
 }
 
-.menu a{
-  color:white;
-  text-decoration:none;
-  font-size:14px;
-  font-weight:bold
+.balance-mini{
+  background:#1f2937;
+  border:1px solid #374151;
+  padding:8px 12px;
+  border-radius:8px;
+  font-size:14px
 }
 
-.menu a:hover{color:#60a5fa}
-
-.menu-button{
-  display:none;
+.menu-btn{
   background:#2563eb;
   color:white;
   border:0;
   border-radius:8px;
   padding:9px 12px;
-  font-size:20px
+  font-size:18px
 }
 
-/* HERO */
+.container{
+  max-width:1200px;
+  margin:auto;
+  padding:25px 15px 60px
+}
 
 .hero{
   background:linear-gradient(135deg,#2563eb,#7c3aed);
   color:white;
+  padding:45px 25px;
+  border-radius:18px;
   text-align:center;
-  padding:80px 20px
-}
-
-.hero-logo{
-  display:inline-block;
-  border:2px solid white;
-  padding:12px 20px;
-  border-radius:14px;
-  margin-bottom:22px;
-  font-size:23px;
-  font-weight:bold
+  margin-bottom:25px
 }
 
 .hero h1{
-  font-size:38px;
-  margin-bottom:15px
+  font-size:34px;
+  margin-bottom:10px
 }
 
 .hero p{
   max-width:700px;
-  margin:0 auto 25px;
-  font-size:17px
-}
-
-.btn{
-  display:inline-block;
-  background:white;
-  color:#2563eb;
-  padding:14px 25px;
-  border-radius:9px;
-  text-decoration:none;
-  font-weight:bold
-}
-
-.btn:hover{transform:translateY(-2px)}
-
-/* GENERAL */
-
-.container{
-  max-width:1100px;
   margin:auto;
-  padding:40px 15px
+  opacity:.95
 }
 
-.section{margin-bottom:40px}
-
-.box{
-  background:white;
-  padding:30px;
-  border-radius:16px;
-  box-shadow:0 4px 15px rgba(0,0,0,.08)
-}
-
-.title{
-  text-align:center;
-  color:#2563eb;
-  font-size:28px;
+.actions{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:15px;
   margin-bottom:25px
 }
 
-.text{
-  text-align:center;
-  line-height:1.8
-}
-
-/* POURQUOI */
-
-.reasons{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-  gap:18px
-}
-
-.reason{
-  background:#f9fafb;
-  padding:25px;
-  text-align:center;
-  border:1px solid #e5e7eb;
-  border-radius:13px
-}
-
-.reason-icon{
-  font-size:40px;
-  margin-bottom:10px
-}
-
-.reason h3{
-  color:#2563eb;
-  margin-bottom:8px
-}
-
-/* CHIFFRES */
-
-.stats{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-  gap:18px
-}
-
-.stat{
-  background:#111827;
-  color:white;
-  padding:25px 15px;
+.action{
+  background:white;
+  border:0;
   border-radius:14px;
+  padding:22px;
+  box-shadow:0 3px 12px rgba(0,0,0,.08);
   text-align:center
 }
 
-.stat-icon{
-  font-size:35px;
+.action:hover{
+  transform:translateY(-2px)
+}
+
+.action-icon{
+  font-size:32px;
   margin-bottom:8px
 }
 
-.stat-number{
-  font-size:30px;
-  font-weight:bold;
-  color:#60a5fa;
-  margin-bottom:5px
+.action strong{
+  display:block;
+  color:#2563eb
 }
 
-/* SERVICES */
+.panel{
+  background:white;
+  border-radius:16px;
+  padding:25px;
+  box-shadow:0 3px 15px rgba(0,0,0,.07);
+  margin-bottom:25px
+}
 
-.category{margin-bottom:40px}
-
-.category-title{
-  background:#111827;
-  color:white;
-  padding:15px;
-  border-radius:10px;
+.title{
+  color:#2563eb;
   text-align:center;
-  margin-bottom:18px
+  margin-bottom:20px
 }
 
-.services{
+.grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:18px
+  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+  gap:15px
 }
 
 .card{
-  background:white;
-  padding:24px;
-  border-radius:14px;
-  text-align:center;
-  box-shadow:0 3px 12px rgba(0,0,0,.08);
-  border:1px solid #eee
+  border:1px solid #e5e7eb;
+  border-radius:13px;
+  padding:20px;
+  background:#fff
 }
 
 .card h3{
   color:#2563eb;
-  margin-bottom:10px
+  margin-bottom:8px
 }
 
 .price{
   font-size:20px;
   font-weight:bold;
-  margin:15px 0
+  margin:12px 0
 }
 
-.order{
-  display:inline-block;
+.primary{
   background:#2563eb;
   color:white;
-  padding:10px 18px;
+  border:0;
+  padding:12px 18px;
   border-radius:8px;
-  text-decoration:none;
   font-weight:bold
 }
 
-/* AVIS */
-
-.reviews{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:18px
-}
-
-.review{
-  background:#f9fafb;
-  padding:23px;
-  border-radius:13px;
-  text-align:center;
-  border:1px solid #e5e7eb
-}
-
-.stars{
-  font-size:22px;
-  margin-bottom:10px
-}
-
-.review p{
-  font-style:italic;
-  margin-bottom:10px
-}
-
-.review strong{color:#2563eb}
-
-/* PAIEMENT */
-
-.payment-methods{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:18px
-}
-
-.payment-card{
-  background:#f9fafb;
-  padding:24px;
-  text-align:center;
-  border:1px solid #e5e7eb;
-  border-radius:13px
-}
-
-.payment-number{
-  font-size:21px;
-  font-weight:bold;
-  margin:12px 0 15px
-}
-
-.payment-button{
-  display:inline-block;
+.success{
   background:#16a34a;
   color:white;
-  padding:10px 16px;
+  border:0;
+  padding:12px 18px;
   border-radius:8px;
-  text-decoration:none;
   font-weight:bold
 }
 
-.warning{
-  background:#fff7ed;
-  padding:15px;
-  margin-top:20px;
-  border-radius:9px;
-  text-align:center
+.danger{
+  background:#dc2626;
+  color:white;
+  border:0;
+  padding:10px 15px;
+  border-radius:8px;
+  font-weight:bold
 }
 
-/* COMMANDE */
+.full{
+  width:100%
+}
 
-.form-group{margin-bottom:17px}
+.form-group{
+  margin-bottom:16px
+}
 
 .form-group label{
   display:block;
@@ -327,113 +212,103 @@ header{
   margin-bottom:7px
 }
 
-input,select,textarea{
+input,select{
   width:100%;
   padding:13px;
   border:1px solid #d1d5db;
   border-radius:8px;
-  font-size:15px
+  background:white
 }
 
-textarea{min-height:110px}
-
-.submit{
-  width:100%;
-  background:#16a34a;
+.balance-box{
+  background:#111827;
   color:white;
-  border:0;
-  padding:15px;
-  border-radius:9px;
-  font-size:16px;
-  font-weight:bold;
-  cursor:pointer
-}
-
-/* CONTACT */
-
-.contact-info{
+  padding:25px;
+  border-radius:14px;
   text-align:center;
-  margin-bottom:22px
+  margin-bottom:20px
 }
 
-.social-buttons{
+.balance{
+  font-size:35px;
+  font-weight:bold;
+  color:#60a5fa;
+  margin:8px 0
+}
+
+.auth{
+  max-width:500px;
+  margin:30px auto
+}
+
+.hidden{
+  display:none!important
+}
+
+.tabs{
   display:flex;
-  justify-content:center;
-  flex-wrap:wrap;
-  gap:12px
+  gap:8px;
+  margin-bottom:20px
 }
 
-.social-buttons a{
-  color:white;
-  padding:12px 18px;
+.tabs button{
+  flex:1;
+  padding:11px;
+  border:1px solid #ddd;
+  background:#f9fafb;
   border-radius:8px;
-  text-decoration:none;
   font-weight:bold
 }
 
-.whatsapp{background:#16a34a}
-.facebook{background:#1877f2}
-.tiktok{background:#111827}
-.instagram{background:#e1306c}
-
-/* WHATSAPP FLOTTANT */
-
-.whatsapp-float{
-  position:fixed;
-  right:18px;
-  bottom:18px;
-  width:58px;
-  height:58px;
-  border-radius:50%;
-  background:#16a34a;
-  color:white;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-decoration:none;
-  font-size:28px;
-  box-shadow:0 4px 15px rgba(0,0,0,.25);
-  z-index:2000
+.tabs button.active{
+  background:#2563eb;
+  color:white
 }
 
-/* FOOTER */
+.message{
+  margin-top:12px;
+  text-align:center;
+  font-weight:bold
+}
+
+.order-row{
+  border:1px solid #e5e7eb;
+  border-radius:10px;
+  padding:15px;
+  margin-bottom:10px
+}
+
+.status{
+  display:inline-block;
+  padding:5px 9px;
+  border-radius:6px;
+  background:#fef3c7;
+  color:#92400e;
+  font-size:12px;
+  font-weight:bold;
+  margin-top:7px
+}
 
 footer{
   background:#111827;
   color:white;
   text-align:center;
-  padding:28px 15px
+  padding:25px
 }
 
-/* MOBILE */
+@media(max-width:700px){
 
-@media(max-width:750px){
-
-  .menu-button{display:block}
-
-  .menu{
-    display:none;
-    position:absolute;
-    top:68px;
-    left:0;
-    right:0;
-    background:#111827;
-    flex-direction:column;
-    padding:20px;
-    text-align:center
+  .hero h1{
+    font-size:27px
   }
 
-  .menu.active{display:flex}
+  .logo{
+    font-size:16px
+  }
 
-  .hero{padding:60px 18px}
-
-  .hero h1{font-size:29px}
-
-  .hero-logo{font-size:19px}
-
-  .box{padding:22px}
-
-  .logo{font-size:17px}
+  .balance-mini{
+    font-size:12px
+  }
 }
 </style>
 </head>
@@ -442,431 +317,323 @@ footer{
 
 <header>
 
-<nav class="navbar">
+<div class="nav">
 
-<a href="#accueil" class="logo">
+<a href="#" class="logo">
 👑 LEADER <span>NOSMY BOOST</span>
 </a>
 
-<button class="menu-button" onclick="toggleMenu()">☰</button>
+<div class="nav-right">
 
-<ul class="menu" id="menu">
+<div id="miniBalance" class="balance-mini hidden">
+Solde : 0 FC
+</div>
 
-<li><a href="#accueil">🏠 Accueil</a></li>
-<li><a href="#services">📱 Services</a></li>
-<li><a href="#chiffres">📊 Chiffres</a></li>
-<li><a href="#avis">⭐ Avis</a></li>
-<li><a href="#paiement">💳 Paiement</a></li>
-<li><a href="#commande">📋 Commande</a></li>
-<li><a href="#contact">📞 Contact</a></li>
+<button class="menu-btn" onclick="toggleMenu()">☰</button>
 
-</ul>
+</div>
 
-</nav>
+</div>
 
 </header>
 
 
-<!-- ACCUEIL -->
+<div class="container">
 
-<section class="hero" id="accueil">
+<!-- AUTH -->
 
-<div class="hero-logo">
-👑 LEADER NOSMY BOOST
-</div>
+<section id="authSection" class="panel auth">
 
-<h1>
-BOOSTEZ VOS RÉSEAUX SOCIAUX 🚀🔥
-</h1>
+<h2 class="title">👤 MON COMPTE</h2>
 
-<p>
-Développez votre visibilité avec nos services de promotion
-digitale et nos créations graphiques professionnelles.
-</p>
+<div class="tabs">
 
-<a href="#services" class="btn">
-Voir nos services
-</a>
+<button id="loginTab" class="active" onclick="showLogin()">
+Connexion
+</button>
 
-</section>
-
-
-<main class="container">
-
-
-<!-- À PROPOS -->
-
-<section class="section box">
-
-<h2 class="title">👑 À PROPOS DE NOUS</h2>
-
-<p class="text">
-
-Bienvenue chez <strong>LEADER NOSMY BOOST</strong>.
-
-<br><br>
-
-Nous vous accompagnons dans la promotion de vos réseaux
-sociaux et dans la création de vos visuels professionnels.
-
-<br><br>
-
-📱 Facebook • TikTok • Instagram
-<br>
-🎨 Affiches • Logos • Montages photo/vidéo
-
-</p>
-
-</section>
-
-
-<!-- POURQUOI -->
-
-<section class="section box">
-
-<h2 class="title">⭐ POURQUOI NOUS CHOISIR ?</h2>
-
-<div class="reasons">
-
-<div class="reason">
-<div class="reason-icon">⚡</div>
-<h3>Service rapide</h3>
-<p>Nous traitons vos demandes avec rapidité et sérieux.</p>
-</div>
-
-<div class="reason">
-<div class="reason-icon">💰</div>
-<h3>Prix accessibles</h3>
-<p>Des tarifs adaptés à différents budgets.</p>
-</div>
-
-<div class="reason">
-<div class="reason-icon">📱</div>
-<h3>Commande facile</h3>
-<p>Passez votre commande directement depuis le site.</p>
-</div>
-
-<div class="reason">
-<div class="reason-icon">🤝</div>
-<h3>Accompagnement</h3>
-<p>Nous restons disponibles pour vous accompagner.</p>
-</div>
+<button id="registerTab" onclick="showRegister()">
+Créer un compte
+</button>
 
 </div>
 
-</section>
 
+<div id="loginForm">
 
-<!-- CHIFFRES -->
-
-<section class="section box" id="chiffres">
-
-<h2 class="title">📊 NOS CHIFFRES</h2>
-
-<div class="stats">
-
-<div class="stat">
-<div class="stat-icon">🚀</div>
-<div class="stat-number">2026</div>
-<p>Année de développement</p>
+<div class="form-group">
+<label>📧 Email</label>
+<input id="loginEmail" type="email" placeholder="Votre email">
 </div>
 
-<div class="stat">
-<div class="stat-icon">📱</div>
-<div class="stat-number">3+</div>
-<p>Réseaux sociaux disponibles</p>
+<div class="form-group">
+<label>🔐 Mot de passe</label>
+<input id="loginPassword" type="password" placeholder="Votre mot de passe">
 </div>
 
-<div class="stat">
-<div class="stat-icon">🎨</div>
-<div class="stat-number">5+</div>
-<p>Services de création graphique</p>
-</div>
-
-<div class="stat">
-<div class="stat-icon">💳</div>
-<div class="stat-number">3</div>
-<p>Moyens de paiement</p>
-</div>
+<button class="primary full" onclick="loginUser()">
+🔐 SE CONNECTER
+</button>
 
 </div>
 
-</section>
 
-
-<!-- SERVICES -->
-
-<section class="section" id="services">
-
-<h2 class="title">📱 NOS SERVICES & TARIFS</h2>
-
-
-<section class="category">
-
-<h2 class="category-title">🔵 FACEBOOK</h2>
-
-<div class="services">
-
-<div class="card">
-<h3>1K Followers</h3>
-<p>Abonnés Facebook.</p>
-<div class="price">4 000 FC</div>
-<a href="#commande" class="order">Commander</a>
-</div>
-
-<div class="card">
-<h3>1K Likes</h3>
-<p>Likes Facebook.</p>
-<div class="price">1 500 FC</div>
-<a href="#commande" class="order">Commander</a>
-</div>
-
-<div class="card">
-<h3>2K Likes</h3>
-<p>Likes Facebook.</p>
-<div class="price">3 000 FC</div>
-<a href="#commande" class="order">Commander</a>
-</div>
-
-<div class="card">
-<h3>3K Likes</h3>
-<p>Likes Facebook.</p>
-<div class="price">4 500 FC</div>
-<a href="#commande" class="order">Commander</a>
-</div>
-
-</div>
-
-</section>
-
-
-<section class="category">
-
-<h2 class="category-title">🎵 TIKTOK</h2>
-
-<div class="services">
-
-<div class="card">
-<h3>1K Abonnés</h3>
-<p>Abonnés TikTok.</p>
-<div class="price">8 000 FC</div>
-<a href="#commande" class="order">Commander</a>
-</div>
-
-<div class="card">
-<h3>1K Vues + 1K Likes</h3>
-<p>Vues et likes TikTok.</p>
-<div class="price">6 000 FC</div>
-<a href="#commande" class="order">Commander</a>
-</div>
-
-<div class="card">
-<h3>2K Vues + 2K Likes</h3>
-<p>Vues et likes TikTok.</p>
-<div class="price">12 000 FC</div>
-<a href="#commande" class="order">Commander</a>
-</div>
-
-</div>
-
-</section>
-
-
-<section class="category">
-
-<h2 class="category-title">📸 INSTAGRAM</h2>
-
-<div class="services">
-
-<div class="card">
-<h3>1K Followers</h3>
-<p>Abonnés Instagram.</p>
-<div class="price">8 000 FC</div>
-<a href="#commande" class="order">Commander</a>
-</div>
-
-</div>
-
-</section>
-
-
-<section class="category">
-
-<h2 class="category-title">🎨 CRÉATION GRAPHIQUE</h2>
-
-<div class="services">
-
-<div class="card">
-<h3>🎂 Anniversaire</h3>
-<p>Affiche anniversaire.</p>
-<div class="price">5 000 FC</div>
-<a href="#commande" class="order">Commander</a>
-</div>
-
-<div class="card">
-<h3>🎵 Musique</h3>
-<p>Affiche musicale.</p>
-<div class="price">5 000 FC</div>
-<a href="#commande" class="order">Commander</a>
-</div>
-
-<div class="card">
-<h3>💍 Mariage</h3>
-<p>Affiche mariage.</p>
-<div class="price">5 000 FC</div>
-<a href="#commande" class="order">Commander</a>
-</div>
-
-<div class="card">
-<h3>🏷️ Logo</h3>
-<p>Création de logo.</p>
-<div class="price">3 000 FC</div>
-<a href="#commande" class="order">Commander</a>
-</div>
-
-<div class="card">
-<h3>🎬 Montage Photo / Vidéo</h3>
-<p>Montage professionnel.</p>
-<div class="price">7 000 FC</div>
-<a href="#commande" class="order">Commander</a>
-</div>
-
-</div>
-
-</section>
-
-</section>
-
-
-<!-- AVIS -->
-
-<section class="section box" id="avis">
-
-<h2 class="title">⭐ AVIS DE NOS CLIENTS</h2>
-
-<div class="reviews">
-
-<div class="review">
-<div class="stars">⭐⭐⭐⭐⭐</div>
-<p>“Service rapide et commande facile. Merci LEADER NOSMY BOOST !”</p>
-<strong>Client satisfait</strong>
-</div>
-
-<div class="review">
-<div class="stars">⭐⭐⭐⭐⭐</div>
-<p>“Très bon travail pour mon visuel. Je recommande.”</p>
-<strong>Client satisfait</strong>
-</div>
-
-<div class="review">
-<div class="stars">⭐⭐⭐⭐⭐</div>
-<p>“Prix accessibles et communication facile sur WhatsApp.”</p>
-<strong>Client satisfait</strong>
-</div>
-
-</div>
-
-</section>
-
-
-<!-- PAIEMENT -->
-
-<section class="section box" id="paiement">
-
-<h2 class="title">💳 MODES DE PAIEMENT</h2>
-
-<p class="text">
-Effectuez votre paiement avec l'un de nos moyens ci-dessous.
-Après paiement, envoyez la preuve sur WhatsApp.
-</p>
-
-<br>
-
-<div class="payment-methods">
-
-<div class="payment-card">
-<h3>🟠 Orange Money</h3>
-<div class="payment-number">0843066709</div>
-
-<a class="payment-button"
-href="https://wa.me/243843066709?text=Bonjour%20LEADER%20NOSMY%20BOOST%2C%20je%20viens%20de%20faire%20un%20paiement%20Orange%20Money."
-target="_blank">
-Envoyer la preuve
-</a>
-</div>
-
-
-<div class="payment-card">
-<h3>🔴 Airtel Money</h3>
-<div class="payment-number">0980630622</div>
-
-<a class="payment-button"
-href="https://wa.me/243843066709?text=Bonjour%20LEADER%20NOSMY%20BOOST%2C%20je%20viens%20de%20faire%20un%20paiement%20Airtel%20Money."
-target="_blank">
-Envoyer la preuve
-</a>
-</div>
-
-
-<div class="payment-card">
-<h3>🔵 Vodacom M-Pesa</h3>
-<div class="payment-number">0822886387</div>
-
-<a class="payment-button"
-href="https://wa.me/243843066709?text=Bonjour%20LEADER%20NOSMY%20BOOST%2C%20je%20viens%20de%20faire%20un%20paiement%20M-Pesa."
-target="_blank">
-Envoyer la preuve
-</a>
-</div>
-
-</div>
-
-<div class="warning">
-⚠️ <strong>Important :</strong>
-Vérifiez toujours le nom du bénéficiaire avant le paiement.
-</div>
-
-</section>
-
-
-<!-- COMMANDE -->
-
-<section class="section box" id="commande">
-
-<h2 class="title">📋 PASSER UNE COMMANDE</h2>
-
-<form onsubmit="sendOrder(event)">
+<div id="registerForm" class="hidden">
 
 <div class="form-group">
 <label>👤 Nom</label>
-<input type="text" id="name" placeholder="Votre nom" required>
+<input id="registerName" type="text" placeholder="Votre nom">
 </div>
 
+<div class="form-group">
+<label>📧 Email</label>
+<input id="registerEmail" type="email" placeholder="Votre email">
+</div>
+
+<div class="form-group">
+<label>🔐 Mot de passe</label>
+<input id="registerPassword" type="password" placeholder="Minimum 6 caractères">
+</div>
+
+<button class="success full" onclick="registerUser()">
+➕ CRÉER MON COMPTE
+</button>
+
+</div>
+
+<div id="authMessage" class="message"></div>
+
+</section>
+
+
+<!-- CLIENT PANEL -->
+
+<section id="clientPanel" class="hidden">
+
+<div class="hero">
+
+<h1>🚀 LEADER NOSMY BOOST</h1>
+
+<p>
+Bienvenue dans votre espace client.
+Boostez vos réseaux sociaux directement depuis votre compte.
+</p>
+
+</div>
+
+
+<div class="actions">
+
+<button class="action" onclick="showPanel('dashboard')">
+<div class="action-icon">🏠</div>
+<strong>Dashboard</strong>
+<p>Vue générale</p>
+</button>
+
+<button class="action" onclick="showPanel('deposit')">
+<div class="action-icon">💳</div>
+<strong>Ajouter des fonds</strong>
+<p>Recharger votre solde</p>
+</button>
+
+<button class="action" onclick="showPanel('order')">
+<div class="action-icon">🚀</div>
+<strong>Nouvelle commande</strong>
+<p>Commander un service</p>
+</button>
+
+<button class="action" onclick="showPanel('orders')">
+<div class="action-icon">📋</div>
+<strong>Mes commandes</strong>
+<p>Voir l'historique</p>
+</button>
+
+</div>
+
+
+<!-- DASHBOARD -->
+
+<div id="dashboardPanel" class="panel">
+
+<h2 class="title">🏠 DASHBOARD</h2>
+
+<div class="balance-box">
+
+<p>Votre solde disponible</p>
+
+<div id="balanceDisplay" class="balance">
+0 FC
+</div>
+
+<p id="welcomeUser"></p>
+
+</div>
+
+<div class="grid">
+
+<div class="card">
+<h3>💰 Solde</h3>
+<p>Votre crédit disponible.</p>
+<button class="primary" onclick="showPanel('deposit')">
+Ajouter des fonds
+</button>
+</div>
+
+<div class="card">
+<h3>🚀 Commander</h3>
+<p>Choisissez votre service.</p>
+<button class="primary" onclick="showPanel('order')">
+Nouvelle commande
+</button>
+</div>
+
+<div class="card">
+<h3>📋 Historique</h3>
+<p>Consultez vos commandes.</p>
+<button class="primary" onclick="showPanel('orders')">
+Mes commandes
+</button>
+</div>
+
+</div>
+
+</div>
+
+
+<!-- DEPOSIT -->
+
+<div id="depositPanel" class="panel hidden">
+
+<h2 class="title">💳 AJOUTER DES FONDS</h2>
+
+<p style="text-align:center;margin-bottom:20px">
+Choisissez votre moyen de paiement et indiquez le montant.
+</p>
+
+<div class="form-group">
+
+<label>💰 Montant</label>
+
+<input
+id="depositAmount"
+type="number"
+min="1"
+placeholder="Ex: 10000">
+
+</div>
+
+
+<div class="form-group">
+
+<label>💳 Moyen de paiement</label>
+
+<select id="depositMethod">
+
+<option value="">Choisir</option>
+
+<option>Orange Money</option>
+
+<option>Airtel Money</option>
+
+<option>Vodacom M-Pesa</option>
+
+</select>
+
+</div>
+
+
+<div class="card" style="margin-bottom:18px">
+
+<h3>🟠 Orange Money</h3>
+<p><strong>0843066709</strong></p>
+
+<br>
+
+<h3>🔴 Airtel Money</h3>
+<p><strong>0980630622</strong></p>
+
+<br>
+
+<h3>🔵 Vodacom M-Pesa</h3>
+<p><strong>0822886387</strong></p>
+
+</div>
+
+
+<button class="success full" onclick="requestDeposit()">
+💳 ENREGISTRER MA DEMANDE DE DÉPÔT
+</button>
+
+<div id="depositMessage" class="message"></div>
+
+</div>
+
+
+<!-- ORDER -->
+
+<div id="orderPanel" class="panel hidden">
+
+<h2 class="title">🚀 NOUVELLE COMMANDE</h2>
 
 <div class="form-group">
 
 <label>📱 Service</label>
 
-<select id="service" required>
+<select id="orderService" onchange="updatePrice()">
 
 <option value="">Choisir un service</option>
 
-<option>Facebook - 1K Followers - 4 000 FC</option>
-<option>Facebook - 1K Likes - 1 500 FC</option>
-<option>Facebook - 2K Likes - 3 000 FC</option>
-<option>Facebook - 3K Likes - 4 500 FC</option>
+<option value="Facebook - 1K Followers" data-price="4000">
+Facebook - 1K Followers — 4 000 FC
+</option>
 
-<option>TikTok - 1K Abonnés - 8 000 FC</option>
-<option>TikTok - 1K Vues + 1K Likes - 6 000 FC</option>
-<option>TikTok - 2K Vues + 2K Likes - 12 000 FC</option>
+<option value="Facebook - 1K Likes" data-price="1500">
+Facebook - 1K Likes — 1 500 FC
+</option>
 
-<option>Instagram - 1K Followers - 8 000 FC</option>
+<option value="Facebook - 2K Likes" data-price="3000">
+Facebook - 2K Likes — 3 000 FC
+</option>
 
-<option>Affiche Anniversaire - 5 000 FC</option>
-<option>Affiche Musique - 5 000 FC</option>
-<option>Affiche Mariage - 5 000 FC</option>
-<option>Logo - 3 000 FC</option>
-<option>Montage Photo / Vidéo - 7 000 FC</option>
+<option value="Facebook - 3K Likes" data-price="4500">
+Facebook - 3K Likes — 4 500 FC
+</option>
+
+<option value="TikTok - 1K Abonnés" data-price="8000">
+TikTok - 1K Abonnés — 8 000 FC
+</option>
+
+<option value="TikTok - 1K Vues + 1K Likes" data-price="6000">
+TikTok - 1K Vues + 1K Likes — 6 000 FC
+</option>
+
+<option value="TikTok - 2K Vues + 2K Likes" data-price="12000">
+TikTok - 2K Vues + 2K Likes — 12 000 FC
+</option>
+
+<option value="Instagram - 1K Followers" data-price="8000">
+Instagram - 1K Followers — 8 000 FC
+</option>
+
+<option value="Affiche Anniversaire" data-price="5000">
+Affiche Anniversaire — 5 000 FC
+</option>
+
+<option value="Affiche Musique" data-price="5000">
+Affiche Musique — 5 000 FC
+</option>
+
+<option value="Affiche Mariage" data-price="5000">
+Affiche Mariage — 5 000 FC
+</option>
+
+<option value="Logo" data-price="3000">
+Logo — 3 000 FC
+</option>
+
+<option value="Montage Photo / Vidéo" data-price="7000">
+Montage Photo / Vidéo — 7 000 FC
+</option>
 
 </select>
 
@@ -875,13 +642,13 @@ Vérifiez toujours le nom du bénéficiaire avant le paiement.
 
 <div class="form-group">
 
-<label>🔗 Lien de votre compte/page</label>
+<label>🔗 Lien du compte / publication</label>
 
 <input
+id="orderLink"
 type="url"
-id="link"
 placeholder="https://..."
-required>
+>
 
 </div>
 
@@ -891,105 +658,76 @@ required>
 <label>🔢 Quantité</label>
 
 <input
+id="orderQuantity"
 type="number"
-id="quantity"
 min="1"
 placeholder="Ex: 1000"
-required>
+>
 
 </div>
 
 
-<div class="form-group">
+<div class="card" style="margin-bottom:18px">
 
-<label>💬 Message</label>
+<p>Prix de la commande :</p>
 
-<textarea
-id="message"
-placeholder="Précisez votre demande..."></textarea>
-
+<div id="orderPrice" class="price">
+0 FC
 </div>
 
-
-<button type="submit" class="submit">
-💬 ENVOYER LA COMMANDE SUR WHATSAPP
-</button>
-
-</form>
-
-</section>
-
-
-<!-- CONTACT -->
-
-<section class="section box" id="contact">
-
-<h2 class="title">📞 CONTACTEZ-NOUS</h2>
-
-<p class="contact-info">
-
-📱 WhatsApp : +243 843 066 709
-<br>
-👑 LEADER NOSMY BOOST
-<br>
-💻 Promotion digitale & création graphique
-
+<p>
+Solde disponible :
+<strong id="orderBalance">0 FC</strong>
 </p>
 
-
-<div class="social-buttons">
-
-<a
-class="whatsapp"
-href="https://wa.me/243843066709"
-target="_blank">
-💬 WhatsApp
-</a>
+</div>
 
 
-<a
-class="facebook"
-href="https://www.facebook.com/leadernosm"
-target="_blank">
-🔵 Facebook
-</a>
+<button class="primary full" onclick="createOrder()">
+🚀 COMMANDER MAINTENANT
+</button>
+
+<div id="orderMessage" class="message"></div>
+
+</div>
 
 
-<a
-class="tiktok"
-href="https://www.tiktok.com/"
-target="_blank">
-🎵 TikTok
-</a>
+<!-- ORDERS -->
+
+<div id="ordersPanel" class="panel hidden">
+
+<h2 class="title">📋 MES COMMANDES</h2>
+
+<button class="primary" onclick="loadOrders()">
+🔄 Actualiser
+</button>
+
+<br><br>
+
+<div id="ordersList">
+Chargement...
+</div>
+
+</div>
 
 
-<a
-class="instagram"
-href="https://www.instagram.com/"
-target="_blank">
-📸 Instagram
-</a>
+<div class="panel">
+
+<button class="danger full" onclick="logoutUser()">
+🚪 SE DÉCONNECTER
+</button>
 
 </div>
 
 </section>
 
-</main>
-
-
-<!-- WHATSAPP FLOTTANT -->
-
-<a
-class="whatsapp-float"
-href="https://wa.me/243843066709?text=Bonjour%20LEADER%20NOSMY%20BOOST%2C%20je%20voudrais%20passer%20une%20commande."
-target="_blank">
-💬
-</a>
+</div>
 
 
 <footer>
 
 <p>👑 <strong>LEADER NOSMY BOOST</strong></p>
+
 <p>© 2026 — Tous droits réservés.</p>
 
 </footer>
@@ -997,37 +735,457 @@ target="_blank">
 
 <script>
 
-function toggleMenu(){
+let currentUser =
+JSON.parse(localStorage.getItem("leaderNosmyUser") || "null");
 
-document.getElementById("menu").classList.toggle("active");
+
+function formatMoney(value){
+
+return Number(value || 0).toLocaleString("fr-FR")+" FC";
 
 }
 
 
-function sendOrder(event){
+function showLogin(){
 
-event.preventDefault();
+document.getElementById("loginForm").classList.remove("hidden");
+document.getElementById("registerForm").classList.add("hidden");
 
-const name=document.getElementById("name").value;
-const service=document.getElementById("service").value;
-const link=document.getElementById("link").value;
-const quantity=document.getElementById("quantity").value;
-const message=document.getElementById("message").value;
+document.getElementById("loginTab").classList.add("active");
+document.getElementById("registerTab").classList.remove("active");
 
-const text=
-"Bonjour LEADER NOSMY BOOST 👋\n\n"+
-"📋 NOUVELLE COMMANDE\n\n"+
-"👤 Nom : "+name+"\n"+
-"📱 Service : "+service+"\n"+
-"🔗 Lien : "+link+"\n"+
-"🔢 Quantité : "+quantity+"\n"+
-"💬 Message : "+message;
+}
 
-const whatsappURL=
-"https://wa.me/243843066709?text="+
-encodeURIComponent(text);
 
-window.open(whatsappURL,"_blank");
+function showRegister(){
+
+document.getElementById("loginForm").classList.add("hidden");
+document.getElementById("registerForm").classList.remove("hidden");
+
+document.getElementById("loginTab").classList.remove("active");
+document.getElementById("registerTab").classList.add("active");
+
+}
+
+
+async function registerUser(){
+
+const name =
+document.getElementById("registerName").value.trim();
+
+const email =
+document.getElementById("registerEmail").value.trim();
+
+const password =
+document.getElementById("registerPassword").value;
+
+
+const response = await fetch("/api/register",{
+
+method:"POST",
+
+headers:{
+"Content-Type":"application/json"
+},
+
+body:JSON.stringify({
+name,
+email,
+password
+})
+
+});
+
+
+const data = await response.json();
+
+document.getElementById("authMessage").textContent =
+data.message;
+
+
+if(data.success){
+
+document.getElementById("registerName").value="";
+document.getElementById("registerEmail").value="";
+document.getElementById("registerPassword").value="";
+
+showLogin();
+
+}
+
+}
+
+
+async function loginUser(){
+
+const email =
+document.getElementById("loginEmail").value.trim();
+
+const password =
+document.getElementById("loginPassword").value;
+
+
+const response = await fetch("/api/login",{
+
+method:"POST",
+
+headers:{
+"Content-Type":"application/json"
+},
+
+body:JSON.stringify({
+email,
+password
+})
+
+});
+
+
+const data = await response.json();
+
+
+document.getElementById("authMessage").textContent =
+data.message;
+
+
+if(data.success){
+
+currentUser = data.user;
+
+localStorage.setItem(
+"leaderNosmyUser",
+JSON.stringify(currentUser)
+);
+
+showClient();
+
+}
+
+}
+
+
+function showClient(){
+
+document.getElementById("authSection")
+.classList.add("hidden");
+
+document.getElementById("clientPanel")
+.classList.remove("hidden");
+
+document.getElementById("miniBalance")
+.classList.remove("hidden");
+
+document.getElementById("welcomeUser").textContent =
+"Bienvenue "+currentUser.name+" 👑";
+
+refreshUser();
+
+}
+
+
+async function refreshUser(){
+
+if(!currentUser)return;
+
+
+const response =
+await fetch("/api/user/"+currentUser.id);
+
+const data =
+await response.json();
+
+
+if(data.success){
+
+currentUser = data.user;
+
+localStorage.setItem(
+"leaderNosmyUser",
+JSON.stringify(currentUser)
+);
+
+document.getElementById("balanceDisplay")
+.textContent =
+formatMoney(currentUser.balance);
+
+document.getElementById("orderBalance")
+.textContent =
+formatMoney(currentUser.balance);
+
+document.getElementById("miniBalance")
+.textContent =
+"Solde : "+formatMoney(currentUser.balance);
+
+}
+
+}
+
+
+function showPanel(name){
+
+const panels=[
+"dashboardPanel",
+"depositPanel",
+"orderPanel",
+"ordersPanel"
+];
+
+
+panels.forEach(id=>{
+document.getElementById(id)
+.classList.add("hidden");
+});
+
+
+document.getElementById(name+"Panel")
+.classList.remove("hidden");
+
+
+if(name==="orders"){
+loadOrders();
+}
+
+}
+
+
+function updatePrice(){
+
+const select =
+document.getElementById("orderService");
+
+const option =
+select.options[select.selectedIndex];
+
+const price =
+option ? Number(option.dataset.price || 0) : 0;
+
+document.getElementById("orderPrice")
+.textContent =
+formatMoney(price);
+
+}
+
+
+async function requestDeposit(){
+
+if(!currentUser)return;
+
+
+const amount =
+Number(document.getElementById("depositAmount").value);
+
+const method =
+document.getElementById("depositMethod").value;
+
+
+const response =
+await fetch("/api/deposit",{
+
+method:"POST",
+
+headers:{
+"Content-Type":"application/json"
+},
+
+body:JSON.stringify({
+
+userId:currentUser.id,
+
+amount,
+
+method
+
+})
+
+});
+
+
+const data =
+await response.json();
+
+
+document.getElementById("depositMessage")
+.textContent =
+data.message;
+
+
+if(data.success){
+
+document.getElementById("depositAmount").value="";
+
+document.getElementById("depositMethod").value="";
+
+}
+
+}
+
+
+async function createOrder(){
+
+if(!currentUser)return;
+
+
+const select =
+document.getElementById("orderService");
+
+const option =
+select.options[select.selectedIndex];
+
+
+const service =
+select.value;
+
+const link =
+document.getElementById("orderLink").value.trim();
+
+const quantity =
+Number(document.getElementById("orderQuantity").value);
+
+const price =
+Number(option?.dataset.price || 0);
+
+
+if(!service || !link || !quantity || quantity<=0 || !price){
+
+document.getElementById("orderMessage")
+.textContent =
+"❌ Remplissez correctement tous les champs.";
+
+return;
+
+}
+
+
+const response =
+await fetch("/api/order",{
+
+method:"POST",
+
+headers:{
+"Content-Type":"application/json"
+},
+
+body:JSON.stringify({
+
+userId:currentUser.id,
+
+service,
+
+link,
+
+quantity,
+
+price
+
+})
+
+});
+
+
+const data =
+await response.json();
+
+
+document.getElementById("orderMessage")
+.textContent =
+data.message;
+
+
+if(data.success){
+
+currentUser.balance =
+data.balance;
+
+localStorage.setItem(
+"leaderNosmyUser",
+JSON.stringify(currentUser)
+);
+
+await refreshUser();
+
+document.getElementById("orderLink").value="";
+document.getElementById("orderQuantity").value="";
+
+}
+
+}
+
+
+async function loadOrders(){
+
+if(!currentUser)return;
+
+
+const response =
+await fetch("/api/orders/"+currentUser.id);
+
+const data =
+await response.json();
+
+
+const container =
+document.getElementById("ordersList");
+
+
+if(!data.success || !data.orders.length){
+
+container.innerHTML =
+"<p>Aucune commande pour le moment.</p>";
+
+return;
+
+}
+
+
+container.innerHTML =
+data.orders.map(order=>`
+
+<div class="order-row">
+
+<strong>🚀 ${order.service}</strong>
+
+<p>🔗 ${order.link}</p>
+
+<p>🔢 Quantité : ${order.quantity}</p>
+
+<p>💰 Prix : ${formatMoney(order.price)}</p>
+
+<span class="status">
+${order.status}
+</span>
+
+<p style="font-size:12px;margin-top:7px">
+${new Date(order.createdAt).toLocaleString("fr-FR")}
+</p>
+
+</div>
+
+`).join("");
+
+}
+
+
+function logoutUser(){
+
+localStorage.removeItem("leaderNosmyUser");
+
+currentUser=null;
+
+location.reload();
+
+}
+
+
+function toggleMenu(){
+
+alert("Menu client disponible après connexion.");
+
+}
+
+
+if(currentUser){
+
+showClient();
 
 }
 
