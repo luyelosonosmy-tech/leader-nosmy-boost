@@ -1598,12 +1598,12 @@ document
 .value;
 
 
-if(!Number.isFinite(amount) || amount < 2500){
+if(!Number.isFinite(amount) || amount < 1 000){
 
 document
 .getElementById("depositMessage")
 .textContent =
-"❌ Le dépôt minimum est de 2 500 FC.";
+"❌ Le dépôt minimum est de 1 000 FC.";
 
 return;
 
