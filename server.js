@@ -88,7 +88,26 @@ function hashPassword(password) {
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));
 });
+app.get("/api/smm/balance", async (req, res) => {
+  try {
+    const data = await smmAfricaRequest({
+      action: "balance"
+    });
 
+    return res.json({
+      success: true,
+      balance: data.balance,
+      currency: data.currency
+    });
+  } catch (error) {
+    console.error("Erreur API SMM Africa:", error.message);
+
+    return res.status(500).json({
+      success: false,
+      message: "Impossible de vérifier le solde SMM Africa."
+    });
+  }
+});
 /* =========================
    ADMIN
 ========================= */
