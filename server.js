@@ -2,7 +2,9 @@ const express = require("express");
 const path = require("path");
 const fs = require("fs");
 const crypto = require("crypto");
+
 const SMM_API_KEY = process.env.SMM_API_KEY;
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -15,7 +17,13 @@ const PAYMENT_METHODS = [
   "Orange Money",
   "Airtel Money",
   "Vodacom M-Pesa"
-];async function smmAfricaRequest(payload) {
+];
+
+/* =========================
+   SMM AFRICA API
+========================= */
+
+async function smmAfricaRequest(payload) {
   if (!SMM_API_KEY) {
     throw new Error("SMM_API_KEY manquante dans Render.");
   }
@@ -32,15 +40,25 @@ const PAYMENT_METHODS = [
   const data = await response.json();
 
   if (!response.ok || data.error) {
-    throw new Error(data.error || "Erreur API SMM Africa.");
+    throw new Error(
+      data.error || "Erreur API SMM Africa."
+    );
   }
 
   return data;
 }
 
+/* =========================
+   EXPRESS
+========================= */
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname));
+
+/* =========================
+   JSON
+========================= */
 
 function readJSON(file, fallback = []) {
   try {
@@ -50,6 +68,7 @@ function readJSON(file, fallback = []) {
         JSON.stringify(fallback, null, 2),
         "utf8"
       );
+
       return fallback;
     }
 
@@ -60,8 +79,13 @@ function readJSON(file, fallback = []) {
     }
 
     return JSON.parse(data);
+
   } catch (error) {
-    console.error("Erreur lecture JSON :", error);
+    console.error(
+      "Erreur lecture JSON :",
+      error
+    );
+
     return fallback;
   }
 }
@@ -73,6 +97,10 @@ function writeJSON(file, data) {
     "utf8"
   );
 }
+
+/* =========================
+   MOT DE PASSE
+========================= */
 
 function hashPassword(password) {
   return crypto
@@ -86,8 +114,15 @@ function hashPassword(password) {
 ========================= */
 
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "index.html"));
+  res.sendFile(
+    path.join(__dirname, "index.html")
+  );
 });
+
+/* =========================
+   SMM - VERIFIER SOLDE
+========================= */
+
 app.get("/api/smm/balance", async (req, res) => {
   try {
     const data = await smmAfricaRequest({
@@ -99,40 +134,30 @@ app.get("/api/smm/balance", async (req, res) => {
       balance: data.balance,
       currency: data.currency
     });
+
   } catch (error) {
-    console.error("Erreur API SMM Africa:", error.message);
+
+    console.error(
+      "Erreur API SMM Africa:",
+      error.message
+    );
 
     return res.status(500).json({
       success: false,
-      message: "Impossible de vérifier le solde SMM Africa."
+      message:
+        "Impossible de vérifier le solde SMM Africa."
     });
   }
 });
+
 /* =========================
    ADMIN
 ========================= */
-app.get("/api/smm/balance", async (req, res) => {
-  try {
-    const data = await smmAfricaRequest({
-      action: "balance"
-    });
 
-    return res.json({
-      success: true,
-      balance: data.balance,
-      currency: data.currency
-    });
-  } catch (error) {
-    console.error("Erreur API SMM Africa:", error.message);
-
-    return res.status(500).json({
-      success: false,
-      message: "Impossible de vérifier le solde SMM Africa."
-    });
-  }
-});
 app.get("/admin", (req, res) => {
-  res.sendFile(path.join(__dirname, "admin.html"));
+  res.sendFile(
+    path.join(__dirname, "admin.html")
+  );
 });
 
 /* =========================
@@ -140,18 +165,28 @@ app.get("/admin", (req, res) => {
 ========================= */
 
 app.post("/api/register", (req, res) => {
-  const { name, email, password } = req.body;
+
+  const {
+    name,
+    email,
+    password
+  } = req.body;
 
   if (!name || !email || !password) {
     return res.status(400).json({
       success: false,
-      message: "Tous les champs sont obligatoires."
+      message:
+        "Tous les champs sont obligatoires."
     });
   }
 
-  const cleanName = String(name).trim();
+  const cleanName =
+    String(name).trim();
+
   const normalizedEmail =
-    String(email).toLowerCase().trim();
+    String(email)
+      .toLowerCase()
+      .trim();
 
   if (cleanName.length < 2) {
     return res.status(400).json({
@@ -168,16 +203,21 @@ app.post("/api/register", (req, res) => {
     });
   }
 
-  const users = readJSON(USERS_FILE);
+  const users =
+    readJSON(USERS_FILE);
 
-  const existing = users.find(
-    user => user.email === normalizedEmail
-  );
+  const existing =
+    users.find(
+      user =>
+        user.email ===
+        normalizedEmail
+    );
 
   if (existing) {
     return res.status(409).json({
       success: false,
-      message: "Ce compte existe déjà."
+      message:
+        "Ce compte existe déjà."
     });
   }
 
@@ -185,18 +225,24 @@ app.post("/api/register", (req, res) => {
     id: crypto.randomUUID(),
     name: cleanName,
     email: normalizedEmail,
-    password: hashPassword(password),
+    password:
+      hashPassword(password),
     balance: 0,
-    createdAt: new Date().toISOString()
+    createdAt:
+      new Date().toISOString()
   };
 
   users.push(user);
 
-  writeJSON(USERS_FILE, users);
+  writeJSON(
+    USERS_FILE,
+    users
+  );
 
   return res.json({
     success: true,
-    message: "Compte créé avec succès.",
+    message:
+      "Compte créé avec succès.",
     user: {
       id: user.id,
       name: user.name,
@@ -211,7 +257,11 @@ app.post("/api/register", (req, res) => {
 ========================= */
 
 app.post("/api/login", (req, res) => {
-  const { email, password } = req.body;
+
+  const {
+    email,
+    password
+  } = req.body;
 
   if (!email || !password) {
     return res.status(400).json({
@@ -221,16 +271,22 @@ app.post("/api/login", (req, res) => {
     });
   }
 
-  const users = readJSON(USERS_FILE);
+  const users =
+    readJSON(USERS_FILE);
 
   const normalizedEmail =
-    String(email).toLowerCase().trim();
+    String(email)
+      .toLowerCase()
+      .trim();
 
-  const user = users.find(
-    u =>
-      u.email === normalizedEmail &&
-      u.password === hashPassword(password)
-  );
+  const user =
+    users.find(
+      u =>
+        u.email ===
+          normalizedEmail &&
+        u.password ===
+          hashPassword(password)
+    );
 
   if (!user) {
     return res.status(401).json({
@@ -242,12 +298,14 @@ app.post("/api/login", (req, res) => {
 
   return res.json({
     success: true,
-    message: "Connexion réussie.",
+    message:
+      "Connexion réussie.",
     user: {
       id: user.id,
       name: user.name,
       email: user.email,
-      balance: Number(user.balance) || 0
+      balance:
+        Number(user.balance) || 0
     }
   });
 });
@@ -256,356 +314,508 @@ app.post("/api/login", (req, res) => {
    PROFIL + SOLDE
 ========================= */
 
-app.get("/api/user/:id", (req, res) => {
-  const users = readJSON(USERS_FILE);
+app.get(
+  "/api/user/:id",
+  (req, res) => {
 
-  const user = users.find(
-    u => u.id === req.params.id
-  );
+    const users =
+      readJSON(USERS_FILE);
 
-  if (!user) {
-    return res.status(404).json({
-      success: false,
-      message: "Utilisateur introuvable."
+    const user =
+      users.find(
+        u =>
+          u.id ===
+          req.params.id
+      );
+
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message:
+          "Utilisateur introuvable."
+      });
+    }
+
+    return res.json({
+      success: true,
+      user: {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        balance:
+          Number(user.balance) || 0
+      }
     });
   }
-
-  return res.json({
-    success: true,
-    user: {
-      id: user.id,
-      name: user.name,
-      email: user.email,
-      balance: Number(user.balance) || 0
-    }
-  });
-});
+);
 
 /* =========================
    DEMANDE DE DEPOT
-   MINIMUM 2 500 FC
+   MINIMUM 1 000 FC
 ========================= */
 
-app.post("/api/deposit", (req, res) => {
-  const { userId, amount, method } = req.body;
+app.post(
+  "/api/deposit",
+  (req, res) => {
 
-  const numericAmount = Number(amount);
+    const {
+      userId,
+      amount,
+      method
+    } = req.body;
 
-  if (!userId || !method) {
-    return res.status(400).json({
-      success: false,
+    const numericAmount =
+      Number(amount);
+
+    if (!userId || !method) {
+      return res.status(400).json({
+        success: false,
+        message:
+          "Utilisateur et moyen de paiement obligatoires."
+      });
+    }
+
+    if (
+      !Number.isFinite(
+        numericAmount
+      ) ||
+      numericAmount <
+        MIN_DEPOSIT
+    ) {
+      return res.status(400).json({
+        success: false,
+        message:
+          `Le dépôt minimum est de ${MIN_DEPOSIT.toLocaleString("fr-FR")} FC.`
+      });
+    }
+
+    if (
+      !PAYMENT_METHODS.includes(
+        String(method)
+      )
+    ) {
+      return res.status(400).json({
+        success: false,
+        message:
+          "Moyen de paiement invalide."
+      });
+    }
+
+    const users =
+      readJSON(USERS_FILE);
+
+    const user =
+      users.find(
+        u =>
+          u.id === userId
+      );
+
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message:
+          "Utilisateur introuvable."
+      });
+    }
+
+    const orders =
+      readJSON(ORDERS_FILE);
+
+    const deposit = {
+      id: crypto.randomUUID(),
+      type: "deposit",
+      userId: user.id,
+      amount: numericAmount,
+      method: String(method),
+      status: "pending",
+      createdAt:
+        new Date().toISOString()
+    };
+
+    orders.push(deposit);
+
+    writeJSON(
+      ORDERS_FILE,
+      orders
+    );
+
+    return res.json({
+      success: true,
       message:
-        "Utilisateur et moyen de paiement obligatoires."
+        "Demande de dépôt enregistrée. Le paiement doit être vérifié avant l'ajout au solde.",
+      deposit
     });
   }
-
-  if (
-    !Number.isFinite(numericAmount) ||
-    numericAmount < MIN_DEPOSIT
-  ) {
-    return res.status(400).json({
-      success: false,
-      message:
-        `Le dépôt minimum est de ${MIN_DEPOSIT.toLocaleString("fr-FR")} FC.`
-    });
-  }
-
-  if (!PAYMENT_METHODS.includes(String(method))) {
-    return res.status(400).json({
-      success: false,
-      message: "Moyen de paiement invalide."
-    });
-  }
-
-  const users = readJSON(USERS_FILE);
-
-  const user = users.find(
-    u => u.id === userId
-  );
-
-  if (!user) {
-    return res.status(404).json({
-      success: false,
-      message: "Utilisateur introuvable."
-    });
-  }
-
-  const orders = readJSON(ORDERS_FILE);
-
-  const deposit = {
-    id: crypto.randomUUID(),
-    type: "deposit",
-    userId: user.id,
-    amount: numericAmount,
-    method: String(method),
-    status: "pending",
-    createdAt: new Date().toISOString()
-  };
-
-  orders.push(deposit);
-
-  writeJSON(ORDERS_FILE, orders);
-
-  return res.json({
-    success: true,
-    message:
-      "Demande de dépôt enregistrée. Le paiement doit être vérifié avant l'ajout au solde.",
-    deposit
-  });
-});
+);
 
 /* =========================
    DEPOTS DU CLIENT
 ========================= */
 
-app.get("/api/deposits/:userId", (req, res) => {
-  const orders = readJSON(ORDERS_FILE);
+app.get(
+  "/api/deposits/:userId",
+  (req, res) => {
 
-  const deposits = orders.filter(
-    item =>
-      item.type === "deposit" &&
-      item.userId === req.params.userId
-  );
+    const orders =
+      readJSON(ORDERS_FILE);
 
-  return res.json({
-    success: true,
-    deposits
-  });
-});
+    const deposits =
+      orders.filter(
+        item =>
+          item.type ===
+            "deposit" &&
+          item.userId ===
+            req.params.userId
+      );
+
+    return res.json({
+      success: true,
+      deposits
+    });
+  }
+);
 
 /* =========================
    ADMIN - LISTE DES DEPOTS
 ========================= */
 
-app.get("/api/admin/deposits", (req, res) => {
-  const orders = readJSON(ORDERS_FILE);
+app.get(
+  "/api/admin/deposits",
+  (req, res) => {
 
-  const deposits = orders.filter(
-    item => item.type === "deposit"
-  );
+    const orders =
+      readJSON(ORDERS_FILE);
 
-  return res.json({
-    success: true,
-    deposits
-  });
-});
+    const deposits =
+      orders.filter(
+        item =>
+          item.type ===
+          "deposit"
+      );
+
+    return res.json({
+      success: true,
+      deposits
+    });
+  }
+);
 
 /* =========================
    ADMIN - APPROUVER DEPOT
 ========================= */
 
-app.post("/api/admin/deposit/:id/approve", (req, res) => {
-  const depositId = req.params.id;
+app.post(
+  "/api/admin/deposit/:id/approve",
+  (req, res) => {
 
-  const orders = readJSON(ORDERS_FILE);
-  const users = readJSON(USERS_FILE);
+    const depositId =
+      req.params.id;
 
-  const deposit = orders.find(
-    item =>
-      item.id === depositId &&
-      item.type === "deposit"
-  );
+    const orders =
+      readJSON(ORDERS_FILE);
 
-  if (!deposit) {
-    return res.status(404).json({
-      success: false,
-      message: "Dépôt introuvable."
-    });
-  }
+    const users =
+      readJSON(USERS_FILE);
 
-  if (deposit.status !== "pending") {
-    return res.status(400).json({
-      success: false,
+    const deposit =
+      orders.find(
+        item =>
+          item.id ===
+            depositId &&
+          item.type ===
+            "deposit"
+      );
+
+    if (!deposit) {
+      return res.status(404).json({
+        success: false,
+        message:
+          "Dépôt introuvable."
+      });
+    }
+
+    if (
+      deposit.status !==
+      "pending"
+    ) {
+      return res.status(400).json({
+        success: false,
+        message:
+          "Ce dépôt a déjà été traité."
+      });
+    }
+
+    const user =
+      users.find(
+        u =>
+          u.id ===
+          deposit.userId
+      );
+
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message:
+          "Client introuvable."
+      });
+    }
+
+    user.balance =
+      Number(
+        user.balance || 0
+      ) +
+      Number(
+        deposit.amount
+      );
+
+    deposit.status =
+      "approved";
+
+    deposit.approvedAt =
+      new Date().toISOString();
+
+    writeJSON(
+      USERS_FILE,
+      users
+    );
+
+    writeJSON(
+      ORDERS_FILE,
+      orders
+    );
+
+    return res.json({
+      success: true,
       message:
-        "Ce dépôt a déjà été traité."
+        "Dépôt approuvé. Le solde du client a été crédité.",
+      balance:
+        user.balance,
+      deposit
     });
   }
-
-  const user = users.find(
-    u => u.id === deposit.userId
-  );
-
-  if (!user) {
-    return res.status(404).json({
-      success: false,
-      message: "Client introuvable."
-    });
-  }
-
-  user.balance =
-    Number(user.balance || 0) +
-    Number(deposit.amount);
-
-  deposit.status = "approved";
-  deposit.approvedAt =
-    new Date().toISOString();
-
-  writeJSON(USERS_FILE, users);
-  writeJSON(ORDERS_FILE, orders);
-
-  return res.json({
-    success: true,
-    message:
-      "Dépôt approuvé. Le solde du client a été crédité.",
-    balance: user.balance,
-    deposit
-  });
-});
+);
 
 /* =========================
    ADMIN - REFUSER DEPOT
 ========================= */
 
-app.post("/api/admin/deposit/:id/reject", (req, res) => {
-  const depositId = req.params.id;
+app.post(
+  "/api/admin/deposit/:id/reject",
+  (req, res) => {
 
-  const orders = readJSON(ORDERS_FILE);
+    const depositId =
+      req.params.id;
 
-  const deposit = orders.find(
-    item =>
-      item.id === depositId &&
-      item.type === "deposit"
-  );
+    const orders =
+      readJSON(ORDERS_FILE);
 
-  if (!deposit) {
-    return res.status(404).json({
-      success: false,
-      message: "Dépôt introuvable."
-    });
-  }
+    const deposit =
+      orders.find(
+        item =>
+          item.id ===
+            depositId &&
+          item.type ===
+            "deposit"
+      );
 
-  if (deposit.status !== "pending") {
-    return res.status(400).json({
-      success: false,
+    if (!deposit) {
+      return res.status(404).json({
+        success: false,
+        message:
+          "Dépôt introuvable."
+      });
+    }
+
+    if (
+      deposit.status !==
+      "pending"
+    ) {
+      return res.status(400).json({
+        success: false,
+        message:
+          "Ce dépôt a déjà été traité."
+      });
+    }
+
+    deposit.status =
+      "rejected";
+
+    deposit.rejectedAt =
+      new Date().toISOString();
+
+    writeJSON(
+      ORDERS_FILE,
+      orders
+    );
+
+    return res.json({
+      success: true,
       message:
-        "Ce dépôt a déjà été traité."
+        "Dépôt refusé.",
+      deposit
     });
   }
-
-  deposit.status = "rejected";
-  deposit.rejectedAt =
-    new Date().toISOString();
-
-  writeJSON(ORDERS_FILE, orders);
-
-  return res.json({
-    success: true,
-    message: "Dépôt refusé.",
-    deposit
-  });
-});
+);
 
 /* =========================
    PASSER UNE COMMANDE
 ========================= */
 
-app.post("/api/order", (req, res) => {
-  const {
-    userId,
-    service,
-    link,
-    quantity,
-    price
-  } = req.body;
+app.post(
+  "/api/order",
+  (req, res) => {
 
-  const numericPrice = Number(price);
-  const numericQuantity = Number(quantity);
+    const {
+      userId,
+      service,
+      link,
+      quantity,
+      price
+    } = req.body;
 
-  if (
-    !userId ||
-    !service ||
-    !link ||
-    !Number.isFinite(numericQuantity) ||
-    numericQuantity <= 0 ||
-    !Number.isFinite(numericPrice) ||
-    numericPrice <= 0
-  ) {
-    return res.status(400).json({
-      success: false,
+    const numericPrice =
+      Number(price);
+
+    const numericQuantity =
+      Number(quantity);
+
+    if (
+      !userId ||
+      !service ||
+      !link ||
+      !Number.isFinite(
+        numericQuantity
+      ) ||
+      numericQuantity <= 0 ||
+      !Number.isFinite(
+        numericPrice
+      ) ||
+      numericPrice <= 0
+    ) {
+      return res.status(400).json({
+        success: false,
+        message:
+          "Informations de commande invalides."
+      });
+    }
+
+    const users =
+      readJSON(USERS_FILE);
+
+    const user =
+      users.find(
+        u =>
+          u.id === userId
+      );
+
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message:
+          "Utilisateur introuvable."
+      });
+    }
+
+    const balance =
+      Number(
+        user.balance
+      ) || 0;
+
+    if (
+      balance <
+      numericPrice
+    ) {
+      return res.status(400).json({
+        success: false,
+        message:
+          "Solde insuffisant. Veuillez ajouter des fonds."
+      });
+    }
+
+    user.balance =
+      balance -
+      numericPrice;
+
+    const orders =
+      readJSON(ORDERS_FILE);
+
+    const order = {
+      id: crypto.randomUUID(),
+      type: "order",
+      userId: user.id,
+      service:
+        String(service),
+      link:
+        String(link),
+      quantity:
+        numericQuantity,
+      price:
+        numericPrice,
+      status: "pending",
+      createdAt:
+        new Date().toISOString()
+    };
+
+    orders.push(order);
+
+    writeJSON(
+      USERS_FILE,
+      users
+    );
+
+    writeJSON(
+      ORDERS_FILE,
+      orders
+    );
+
+    return res.json({
+      success: true,
       message:
-        "Informations de commande invalides."
+        "Commande enregistrée.",
+      order,
+      balance:
+        user.balance
     });
   }
-
-  const users = readJSON(USERS_FILE);
-
-  const user = users.find(
-    u => u.id === userId
-  );
-
-  if (!user) {
-    return res.status(404).json({
-      success: false,
-      message: "Utilisateur introuvable."
-    });
-  }
-
-  const balance =
-    Number(user.balance) || 0;
-
-  if (balance < numericPrice) {
-    return res.status(400).json({
-      success: false,
-      message:
-        "Solde insuffisant. Veuillez ajouter des fonds."
-    });
-  }
-
-  user.balance =
-    balance - numericPrice;
-
-  const orders = readJSON(ORDERS_FILE);
-
-  const order = {
-    id: crypto.randomUUID(),
-    type: "order",
-    userId: user.id,
-    service: String(service),
-    link: String(link),
-    quantity: numericQuantity,
-    price: numericPrice,
-    status: "pending",
-    createdAt: new Date().toISOString()
-  };
-
-  orders.push(order);
-
-  writeJSON(USERS_FILE, users);
-  writeJSON(ORDERS_FILE, orders);
-
-  return res.json({
-    success: true,
-    message: "Commande enregistrée.",
-    order,
-    balance: user.balance
-  });
-});
+);
 
 /* =========================
    COMMANDES DU CLIENT
 ========================= */
 
-app.get("/api/orders/:userId", (req, res) => {
-  const orders = readJSON(ORDERS_FILE);
+app.get(
+  "/api/orders/:userId",
+  (req, res) => {
 
-  const userOrders = orders.filter(
-    order =>
-      order.userId === req.params.userId &&
-      order.type === "order"
-  );
+    const orders =
+      readJSON(ORDERS_FILE);
 
-  return res.json({
-    success: true,
-    orders: userOrders
-  });
-});
+    const userOrders =
+      orders.filter(
+        order =>
+          order.userId ===
+            req.params.userId &&
+          order.type ===
+            "order"
+      );
+
+    return res.json({
+      success: true,
+      orders:
+        userOrders
+    });
+  }
+);
 
 /* =========================
    DEMARRAGE
 ========================= */
 
-app.listen(PORT, () => {
-  console.log(
-    `Server started on port ${PORT}`
-  );
-});
+app.listen(
+  PORT,
+  () => {
+    console.log(
+      `Server started on port ${PORT}`
+    );
+  }
+);
