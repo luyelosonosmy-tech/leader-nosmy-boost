@@ -2,20 +2,41 @@ const express = require("express");
 const path = require("path");
 const fs = require("fs");
 const crypto = require("crypto");
-
+const SMM_API_KEY = process.env.SMM_API_KEY;
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 const USERS_FILE = path.join(__dirname, "users.json");
 const ORDERS_FILE = path.join(__dirname, "orders.json");
 
-const MIN_DEPOSIT = 2500;
+const MIN_DEPOSIT = 1000;
 
 const PAYMENT_METHODS = [
   "Orange Money",
   "Airtel Money",
   "Vodacom M-Pesa"
-];
+];async function smmAfricaRequest(payload) {
+  if (!SMM_API_KEY) {
+    throw new Error("SMM_API_KEY manquante dans Render.");
+  }
+
+  const response = await fetch("https://smm.africa/api/v3", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${SMM_API_KEY}`
+    },
+    body: JSON.stringify(payload)
+  });
+
+  const data = await response.json();
+
+  if (!response.ok || data.error) {
+    throw new Error(data.error || "Erreur API SMM Africa.");
+  }
+
+  return data;
+}
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -71,7 +92,26 @@ app.get("/", (req, res) => {
 /* =========================
    ADMIN
 ========================= */
+app.get("/api/smm/balance", async (req, res) => {
+  try {
+    const data = await smmAfricaRequest({
+      action: "balance"
+    });
 
+    return res.json({
+      success: true,
+      balance: data.balance,
+      currency: data.currency
+    });
+  } catch (error) {
+    console.error("Erreur API SMM Africa:", error.message);
+
+    return res.status(500).json({
+      success: false,
+      message: "Impossible de vérifier le solde SMM Africa."
+    });
+  }
+});
 app.get("/admin", (req, res) => {
   res.sendFile(path.join(__dirname, "admin.html"));
 });
