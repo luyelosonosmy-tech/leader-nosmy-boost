@@ -15,13 +15,14 @@
 
 :root{
   --blue:#2563eb;
+  --blue2:#1d4ed8;
   --dark:#0f172a;
   --dark2:#111827;
   --gold:#f5b301;
-  --bg:#f3f6fb;
+  --bg:#f4f7fb;
   --white:#fff;
   --muted:#64748b;
-  --border:#e5e7eb;
+  --border:#e2e8f0;
   --green:#16a34a;
   --red:#dc2626;
 }
@@ -32,9 +33,7 @@ body{
   color:#111827;
 }
 
-button,
-input,
-select{
+button,input,select{
   font:inherit;
 }
 
@@ -49,7 +48,7 @@ button{
 /* HEADER */
 
 header{
-  background:linear-gradient(135deg,#0b1220,#111827);
+  background:var(--dark);
   color:white;
   position:sticky;
   top:0;
@@ -58,20 +57,20 @@ header{
 }
 
 .nav{
-  max-width:1200px;
+  max-width:1150px;
   margin:auto;
-  padding:14px 18px;
+  padding:14px 16px;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:12px;
+  gap:10px;
 }
 
 .logo{
   color:white;
   text-decoration:none;
+  font-size:20px;
   font-weight:900;
-  font-size:19px;
 }
 
 .logo span{
@@ -88,7 +87,7 @@ header{
   background:#1e293b;
   border:1px solid #334155;
   padding:8px 12px;
-  border-radius:9px;
+  border-radius:10px;
   font-size:13px;
 }
 
@@ -97,35 +96,38 @@ header{
   background:var(--blue);
   color:white;
   padding:9px 12px;
-  border-radius:8px;
+  border-radius:9px;
   font-size:18px;
 }
 
-/* LAYOUT */
+/* CONTAINER */
 
 .container{
   width:100%;
-  max-width:1200px;
+  max-width:1150px;
   margin:auto;
-  padding:20px 15px 60px;
+  padding:18px 14px 50px;
 }
 
 /* HERO */
 
 .hero{
   background:
-    radial-gradient(circle at top right,rgba(245,179,1,.25),transparent 35%),
+    radial-gradient(circle at top right,
+    rgba(245,179,1,.25),
+    transparent 35%),
     linear-gradient(135deg,#0f172a,#1d4ed8);
+
   color:white;
   border-radius:20px;
-  padding:40px 20px;
+  padding:42px 20px;
   text-align:center;
   margin-bottom:20px;
   box-shadow:0 10px 30px rgba(37,99,235,.18);
 }
 
-.hero .crown{
-  font-size:40px;
+.crown{
+  font-size:42px;
   margin-bottom:5px;
 }
 
@@ -139,10 +141,9 @@ header{
 }
 
 .hero p{
-  max-width:700px;
+  max-width:720px;
   margin:auto;
   line-height:1.6;
-  opacity:.95;
 }
 
 /* AUTH */
@@ -216,8 +217,7 @@ select:focus{
 
 .primary,
 .success,
-.danger,
-.gold{
+.danger{
   border:0;
   color:white;
   padding:12px 17px;
@@ -229,17 +229,16 @@ select:focus{
   background:var(--blue);
 }
 
+.primary:hover{
+  background:var(--blue2);
+}
+
 .success{
   background:var(--green);
 }
 
 .danger{
   background:var(--red);
-}
-
-.gold{
-  background:var(--gold);
-  color:#111827;
 }
 
 .full{
@@ -253,7 +252,7 @@ select:focus{
   line-height:1.5;
 }
 
-/* ACTIONS */
+/* MENU */
 
 .actions{
   display:grid;
@@ -266,17 +265,12 @@ select:focus{
   background:white;
   border:1px solid var(--border);
   border-radius:14px;
-  padding:20px 10px;
+  padding:18px 10px;
   box-shadow:0 4px 15px rgba(15,23,42,.05);
-  transition:.2s;
-}
-
-.action:hover{
-  transform:translateY(-2px);
 }
 
 .action-icon{
-  font-size:30px;
+  font-size:29px;
   margin-bottom:7px;
 }
 
@@ -309,30 +303,106 @@ select:focus{
   margin:8px 0 12px;
 }
 
-/* GRID */
+/* FORMULES */
 
-.grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:14px;
+.formules-header{
+  text-align:center;
+  margin-bottom:20px;
 }
 
-.card{
-  background:white;
-  border:1px solid var(--border);
-  border-radius:13px;
-  padding:18px;
-}
-
-.card h3{
+.formules-header h2{
   color:var(--blue);
+  font-size:28px;
   margin-bottom:8px;
 }
 
-.card p{
+.formules-header p{
   color:var(--muted);
+}
+
+.formules-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
+}
+
+.formule{
+  background:white;
+  border:2px solid var(--border);
+  border-radius:16px;
+  padding:20px;
+  position:relative;
+  box-shadow:0 5px 18px rgba(15,23,42,.06);
+}
+
+.formule:hover{
+  border-color:var(--blue);
+  transform:translateY(-2px);
+}
+
+.formule .icon{
+  font-size:34px;
+  margin-bottom:10px;
+}
+
+.formule .network{
+  color:var(--blue);
+  font-weight:900;
+  font-size:15px;
+}
+
+.formule h3{
+  margin:7px 0;
+  font-size:20px;
+}
+
+.formule .price{
+  font-size:24px;
+  font-weight:900;
+  color:var(--green);
+  margin:12px 0;
+}
+
+.formule .desc{
+  color:var(--muted);
+  font-size:13px;
   line-height:1.5;
-  margin-bottom:12px;
+  min-height:40px;
+}
+
+.formule button{
+  margin-top:15px;
+  width:100%;
+}
+
+/* ORDER */
+
+.order-box{
+  background:#f8fafc;
+  border:1px solid var(--border);
+  border-radius:15px;
+  padding:18px;
+  margin-top:18px;
+}
+
+.selected-formule{
+  background:#eff6ff;
+  border:1px solid #bfdbfe;
+  border-radius:12px;
+  padding:15px;
+  margin-bottom:18px;
+}
+
+.selected-formule strong{
+  color:var(--blue);
+  font-size:18px;
+}
+
+.price-display{
+  font-size:28px;
+  font-weight:900;
+  color:var(--green);
+  margin-top:7px;
 }
 
 /* PAYMENT */
@@ -357,32 +427,6 @@ select:focus{
 
 .payment-card strong{
   font-size:18px;
-}
-
-/* SERVICE */
-
-.service-grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:12px;
-  margin-top:15px;
-}
-
-.service-item{
-  border:1px solid var(--border);
-  border-radius:12px;
-  padding:16px;
-  background:#fff;
-}
-
-.service-item h3{
-  margin-bottom:6px;
-  color:#111827;
-}
-
-.service-item p{
-  color:var(--muted);
-  font-size:13px;
 }
 
 /* ORDERS */
@@ -422,34 +466,22 @@ footer strong{
 
 /* MOBILE */
 
-@media(max-width:800px){
+@media(max-width:900px){
+
+  .formules-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
 
   .actions{
     grid-template-columns:repeat(2,1fr);
   }
 
-  .grid{
-    grid-template-columns:1fr;
-  }
-
   .payment-list{
     grid-template-columns:1fr;
   }
-
-  .service-grid{
-    grid-template-columns:1fr;
-  }
-
-  .hero h1{
-    font-size:27px;
-  }
 }
 
-@media(max-width:480px){
-
-  .nav{
-    padding:12px;
-  }
+@media(max-width:520px){
 
   .logo{
     font-size:15px;
@@ -457,32 +489,26 @@ footer strong{
 
   .balance-mini{
     font-size:11px;
-    padding:7px;
-  }
-
-  .container{
-    padding:14px 10px 40px;
   }
 
   .hero{
     padding:30px 15px;
-    border-radius:15px;
   }
 
   .hero h1{
-    font-size:24px;
-  }
-
-  .action{
-    padding:16px 7px;
-  }
-
-  .action-icon{
     font-size:25px;
+  }
+
+  .formules-grid{
+    grid-template-columns:1fr;
   }
 
   .panel{
     padding:16px;
+  }
+
+  .actions{
+    grid-template-columns:repeat(2,1fr);
   }
 }
 </style>
@@ -500,11 +526,14 @@ footer strong{
 
 <div class="nav-right">
 
-<div id="miniBalance" class="balance-mini hidden">
+<div id="miniBalance"
+class="balance-mini hidden">
 Solde : 0 FC
 </div>
 
-<button class="menu-btn" onclick="toggleMenu()">
+<button
+class="menu-btn"
+onclick="toggleMenu()">
 ☰
 </button>
 
@@ -527,45 +556,40 @@ Solde : 0 FC
 
 <div class="tabs">
 
-<button id="loginTab"
+<button
+id="loginTab"
 class="active"
 onclick="showLogin()">
 Connexion
 </button>
 
-<button id="registerTab"
+<button
+id="registerTab"
 onclick="showRegister()">
 Créer un compte
 </button>
 
 </div>
 
-
 <div id="loginForm">
 
 <div class="form-group">
-
 <label>📧 Email</label>
 
 <input
 id="loginEmail"
 type="email"
 placeholder="Votre email">
-
 </div>
 
-
 <div class="form-group">
-
 <label>🔐 Mot de passe</label>
 
 <input
 id="loginPassword"
 type="password"
 placeholder="Votre mot de passe">
-
 </div>
-
 
 <button
 class="primary full"
@@ -581,40 +605,31 @@ onclick="loginUser()">
 <div id="registerForm" class="hidden">
 
 <div class="form-group">
-
 <label>👤 Nom</label>
 
 <input
 id="registerName"
 type="text"
 placeholder="Votre nom">
-
 </div>
 
-
 <div class="form-group">
-
 <label>📧 Email</label>
 
 <input
 id="registerEmail"
 type="email"
 placeholder="Votre email">
-
 </div>
 
-
 <div class="form-group">
-
 <label>🔐 Mot de passe</label>
 
 <input
 id="registerPassword"
 type="password"
 placeholder="Minimum 6 caractères">
-
 </div>
-
 
 <button
 class="success full"
@@ -626,10 +641,7 @@ onclick="registerUser()">
 
 </div>
 
-
-<div id="authMessage"
-class="message">
-</div>
+<div id="authMessage" class="message"></div>
 
 </section>
 
@@ -637,7 +649,6 @@ class="message">
 <!-- CLIENT -->
 
 <section id="clientPanel" class="hidden">
-
 
 <div class="hero">
 
@@ -648,8 +659,8 @@ LEADER <span>NOSMY BOOST</span>
 </h1>
 
 <p>
-Boostez vos réseaux sociaux rapidement,
-simplement et depuis votre espace client.
+Boostez vos réseaux sociaux avec des formules
+simples, claires et faciles à commander.
 </p>
 
 </div>
@@ -680,7 +691,7 @@ onclick="showPanel('deposit')">
 
 <strong>Ajouter des fonds</strong>
 
-<p>Recharger le solde</p>
+<p>Recharger</p>
 
 </button>
 
@@ -691,9 +702,9 @@ onclick="showPanel('order')">
 
 <div class="action-icon">🚀</div>
 
-<strong>Nouvelle commande</strong>
+<strong>Commander</strong>
 
-<p>Commander</p>
+<p>Voir les formules</p>
 
 </button>
 
@@ -715,86 +726,362 @@ onclick="showPanel('orders')">
 
 <!-- DASHBOARD -->
 
-<div id="dashboardPanel" class="panel">
+<div
+id="dashboardPanel"
+class="panel">
 
 <h2 class="title">
 🏠 DASHBOARD
 </h2>
 
-
 <div class="balance-box">
 
 <p>Votre solde disponible</p>
 
-<div id="balanceDisplay"
+<div
+id="balanceDisplay"
 class="balance">
 
 0 FC
 
 </div>
 
-<p id="welcomeUser">
+<p id="welcomeUser"></p>
+
+</div>
+
+<div class="formules-header">
+
+<h2>🚀 NOS FORMULES</h2>
+
+<p>
+Choisissez directement votre formule.
+Les prix sont affichés clairement.
 </p>
 
 </div>
 
+<div class="formules-grid">
 
-<div class="grid">
+<div class="formule">
 
-<div class="card">
+<div class="icon">👍</div>
 
-<h3>💰 Solde</h3>
+<div class="network">
+FACEBOOK
+</div>
 
-<p>
-Rechargez votre compte pour passer
-vos commandes.
-</p>
+<h3>1K J'AIME</h3>
+
+<div class="price">
+1 500 FC
+</div>
+
+<div class="desc">
+1 000 mentions J'aime
+</div>
 
 <button
 class="primary"
-onclick="showPanel('deposit')">
-
-Ajouter des fonds
-
+onclick="selectFormule('Facebook - 1K Likes',1500)">
+CHOISIR
 </button>
 
 </div>
 
 
-<div class="card">
+<div class="formule">
 
-<h3>🚀 Services</h3>
+<div class="icon">👍</div>
 
-<p>
-TikTok, Facebook, Instagram,
-YouTube et autres services.
-</p>
+<div class="network">
+FACEBOOK
+</div>
+
+<h3>2K J'AIME</h3>
+
+<div class="price">
+3 000 FC
+</div>
+
+<div class="desc">
+2 000 mentions J'aime
+</div>
 
 <button
 class="primary"
-onclick="showPanel('order')">
-
-Voir les services
-
+onclick="selectFormule('Facebook - 2K Likes',3000)">
+CHOISIR
 </button>
 
 </div>
 
 
-<div class="card">
+<div class="formule">
 
-<h3>📋 Commandes</h3>
+<div class="icon">👍</div>
 
-<p>
-Consultez vos commandes et leur statut.
-</p>
+<div class="network">
+FACEBOOK
+</div>
+
+<h3>3K J'AIME</h3>
+
+<div class="price">
+4 500 FC
+</div>
+
+<div class="desc">
+3 000 mentions J'aime
+</div>
 
 <button
 class="primary"
-onclick="showPanel('orders')">
+onclick="selectFormule('Facebook - 3K Likes',4500)">
+CHOISIR
+</button>
 
-Mes commandes
+</div>
 
+
+<div class="formule">
+
+<div class="icon">👥</div>
+
+<div class="network">
+FACEBOOK
+</div>
+
+<h3>1K ABONNÉS</h3>
+
+<div class="price">
+8 000 FC
+</div>
+
+<div class="desc">
+1 000 abonnés
+</div>
+
+<button
+class="primary"
+onclick="selectFormule('Facebook - 1K Followers',8000)">
+CHOISIR
+</button>
+
+</div>
+
+
+<div class="formule">
+
+<div class="icon">🎵</div>
+
+<div class="network">
+TIKTOK
+</div>
+
+<h3>1K ABONNÉS</h3>
+
+<div class="price">
+8 000 FC
+</div>
+
+<div class="desc">
+1 000 abonnés TikTok
+</div>
+
+<button
+class="primary"
+onclick="selectFormule('TikTok - 1K Abonnés',8000)">
+CHOISIR
+</button>
+
+</div>
+
+
+<div class="formule">
+
+<div class="icon">❤️</div>
+
+<div class="network">
+TIKTOK
+</div>
+
+<h3>1K VUES + 1K J'AIME</h3>
+
+<div class="price">
+6 000 FC
+</div>
+
+<div class="desc">
+1 000 vues + 1 000 J'aime
+</div>
+
+<button
+class="primary"
+onclick="selectFormule('TikTok - 1K Vues + 1K Likes',6000)">
+CHOISIR
+</button>
+
+</div>
+
+
+<div class="formule">
+
+<div class="icon">📸</div>
+
+<div class="network">
+INSTAGRAM
+</div>
+
+<h3>1K ABONNÉS</h3>
+
+<div class="price">
+8 000 FC
+</div>
+
+<div class="desc">
+1 000 followers Instagram
+</div>
+
+<button
+class="primary"
+onclick="selectFormule('Instagram - 1K Followers',8000)">
+CHOISIR
+</button>
+
+</div>
+
+
+<div class="formule">
+
+<div class="icon">▶️</div>
+
+<div class="network">
+YOUTUBE
+</div>
+
+<h3>1K ABONNÉS</h3>
+
+<div class="price">
+9 000 FC
+</div>
+
+<div class="desc">
+1 000 abonnés YouTube
+</div>
+
+<button
+class="primary"
+onclick="selectFormule('YouTube - 1K Abonnés',9000)">
+CHOISIR
+</button>
+
+</div>
+
+
+<div class="formule">
+
+<div class="icon">👁️</div>
+
+<div class="network">
+YOUTUBE
+</div>
+
+<h3>1K VUES</h3>
+
+<div class="price">
+5 000 FC
+</div>
+
+<div class="desc">
+1 000 vues YouTube
+</div>
+
+<button
+class="primary"
+onclick="selectFormule('YouTube - 1K Vues',5000)">
+CHOISIR
+</button>
+
+</div>
+
+
+<div class="formule">
+
+<div class="icon">🎂</div>
+
+<div class="network">
+DESIGN
+</div>
+
+<h3>AFFICHE ANNIVERSAIRE</h3>
+
+<div class="price">
+5 000 FC
+</div>
+
+<div class="desc">
+Création d'une affiche anniversaire
+</div>
+
+<button
+class="primary"
+onclick="selectFormule('Affiche Anniversaire',5000)">
+CHOISIR
+</button>
+
+</div>
+
+
+<div class="formule">
+
+<div class="icon">🎤</div>
+
+<div class="network">
+DESIGN
+</div>
+
+<h3>AFFICHE MUSIQUE</h3>
+
+<div class="price">
+5 000 FC
+</div>
+
+<div class="desc">
+Création d'une affiche musicale
+</div>
+
+<button
+class="primary"
+onclick="selectFormule('Affiche Musique',5000)">
+CHOISIR
+</button>
+
+</div>
+
+
+<div class="formule">
+
+<div class="icon">🎨</div>
+
+<div class="network">
+DESIGN
+</div>
+
+<h3>LOGO</h3>
+
+<div class="price">
+3 000 FC
+</div>
+
+<div class="desc">
+Création de logo personnalisé
+</div>
+
+<button
+class="primary"
+onclick="selectFormule('Logo',3000)">
+CHOISIR
 </button>
 
 </div>
@@ -804,9 +1091,10 @@ Mes commandes
 </div>
 
 
-<!-- DEPOT -->
+<!-- DEPOSIT -->
 
-<div id="depositPanel"
+<div
+id="depositPanel"
 class="panel hidden">
 
 <h2 class="title">
@@ -815,24 +1103,22 @@ class="panel hidden">
 
 <p style="text-align:center;color:#64748b;margin-bottom:18px">
 
-Dépôt minimum : <strong>1000 FC</strong>.
+Dépôt minimum :
+<strong>1 000 FC</strong>
 
 </p>
 
-
 <div class="form-group">
 
-<label>💰 Montant du dépôt</label>
+<label>💰 Montant</label>
 
 <input
 id="depositAmount"
 type="number"
 min="1000"
-step="1"
 placeholder="Minimum 1000 FC">
 
 </div>
-
 
 <div class="form-group">
 
@@ -841,7 +1127,7 @@ placeholder="Minimum 1000 FC">
 <select id="depositMethod">
 
 <option value="">
-Choisir un moyen de paiement
+Choisir
 </option>
 
 <option value="Orange Money">
@@ -860,7 +1146,6 @@ Vodacom M-Pesa
 
 </div>
 
-
 <div class="payment-list">
 
 <div class="payment-card">
@@ -871,7 +1156,6 @@ Vodacom M-Pesa
 
 </div>
 
-
 <div class="payment-card">
 
 <h3>🔴 Airtel Money</h3>
@@ -880,17 +1164,15 @@ Vodacom M-Pesa
 
 </div>
 
-
 <div class="payment-card">
 
-<h3>🔵 Vodacom M-Pesa</h3>
+<h3>🔵 M-Pesa</h3>
 
 <strong>0822886387</strong>
 
 </div>
 
 </div>
-
 
 <button
 class="success full"
@@ -899,7 +1181,6 @@ onclick="requestDeposit()">
 💳 ENREGISTRER MA DEMANDE
 
 </button>
-
 
 <div
 id="depositMessage"
@@ -911,144 +1192,106 @@ class="message">
 
 <!-- ORDER -->
 
-<div id="orderPanel"
+<div
+id="orderPanel"
 class="panel hidden">
 
 <h2 class="title">
-🚀 NOUVELLE COMMANDE
+🚀 PASSER UNE COMMANDE
 </h2>
 
+<div class="formules-header">
+
+<h2>Choisissez votre formule</h2>
+
+<p>
+Pas de confusion : le prix affiché correspond à la formule choisie.
+</p>
+
+</div>
 
 <div class="form-group">
 
-<label>📱 Service</label>
+<label>📦 Formule</label>
 
 <select
 id="orderService"
 onchange="updatePrice()">
 
 <option value="">
-Choisir un service
-</option>
-
-<option
-value="Facebook - 1K Followers"
-data-price="4000">
-
-Facebook - 1K Followers — 4 000 FC
-
+-- Choisir une formule --
 </option>
 
 <option
 value="Facebook - 1K Likes"
-data-price="500">
-
-Facebook - 1K Likes — 500 FC
-
+data-price="1500">
+Facebook — 1K J'AIME — 1 500 FC
 </option>
 
 <option
 value="Facebook - 2K Likes"
 data-price="3000">
-
-Facebook - 2K Likes — 3 000 FC
-
+Facebook — 2K J'AIME — 3 000 FC
 </option>
 
 <option
 value="Facebook - 3K Likes"
 data-price="4500">
+Facebook — 3K J'AIME — 4 500 FC
+</option>
 
-Facebook - 3K Likes — 4 500 FC
-
+<option
+value="Facebook - 1K Followers"
+data-price="8000">
+Facebook — 1K ABONNÉS — 8 000 FC
 </option>
 
 <option
 value="TikTok - 1K Abonnés"
 data-price="8000">
-
-TikTok - 1K Abonnés — 8 000 FC
-
+TikTok — 1K ABONNÉS — 8 000 FC
 </option>
 
 <option
 value="TikTok - 1K Vues + 1K Likes"
 data-price="6000">
-
-TikTok - 1K Vues + 1K Likes — 6 000 FC
-
-</option>
-
-<option
-value="TikTok - 2K Vues + 2K Likes"
-data-price="12000">
-
-TikTok - 2K Vues + 2K Likes — 12 000 FC
-
+TikTok — 1K VUES + 1K J'AIME — 6 000 FC
 </option>
 
 <option
 value="Instagram - 1K Followers"
 data-price="8000">
-
-Instagram - 1K Followers — 8 000 FC
-
+Instagram — 1K ABONNÉS — 8 000 FC
 </option>
 
 <option
 value="YouTube - 1K Abonnés"
 data-price="9000">
-
-YouTube - 1K Abonnés — 9 000 FC
-
+YouTube — 1K ABONNÉS — 9 000 FC
 </option>
 
 <option
 value="YouTube - 1K Vues"
 data-price="5000">
-
-YouTube - 1K Vues — 5 000 FC
-
+YouTube — 1K VUES — 5 000 FC
 </option>
 
 <option
 value="Affiche Anniversaire"
 data-price="5000">
-
 Affiche Anniversaire — 5 000 FC
-
 </option>
 
 <option
 value="Affiche Musique"
 data-price="5000">
-
 Affiche Musique — 5 000 FC
-
-</option>
-
-<option
-value="Affiche Mariage"
-data-price="5000">
-
-Affiche Mariage — 5 000 FC
-
 </option>
 
 <option
 value="Logo"
 data-price="3000">
-
 Logo — 3 000 FC
-
-</option>
-
-<option
-value="Montage Photo / Vidéo"
-data-price="7000">
-
-Montage Photo / Vidéo — 7 000 FC
-
 </option>
 
 </select>
@@ -1056,14 +1299,33 @@ Montage Photo / Vidéo — 7 000 FC
 </div>
 
 
+<div
+id="selectedFormule"
+class="selected-formule">
+
+<strong>
+Aucune formule sélectionnée
+</strong>
+
+<div
+id="orderPrice"
+class="price-display">
+0 FC
+</div>
+
+</div>
+
+
 <div class="form-group">
 
-<label>🔗 Lien du compte / publication</label>
+<label>
+🔗 Lien de la publication / compte
+</label>
 
 <input
 id="orderLink"
 type="url"
-placeholder="https://...">
+placeholder="https://facebook.com/...">
 
 </div>
 
@@ -1076,7 +1338,7 @@ placeholder="https://...">
 id="orderQuantity"
 type="number"
 min="1"
-placeholder="Ex: 1000">
+placeholder="Exemple : 1000">
 
 </div>
 
@@ -1084,26 +1346,13 @@ placeholder="Ex: 1000">
 <div class="card">
 
 <p>
-Prix de la commande :
-</p>
-
-<div
-id="orderPrice"
-style="font-size:25px;font-weight:bold;color:#2563eb;margin:8px 0 15px">
-
-0 FC
-
-</div>
-
-<p>
-Solde disponible :
+💰 Solde disponible :
 <strong id="orderBalance">
 0 FC
 </strong>
 </p>
 
 </div>
-
 
 <br>
 
@@ -1115,7 +1364,6 @@ onclick="createOrder()">
 
 </button>
 
-
 <div
 id="orderMessage"
 class="message">
@@ -1126,24 +1374,24 @@ class="message">
 
 <!-- ORDERS -->
 
-<div id="ordersPanel"
+<div
+id="ordersPanel"
 class="panel hidden">
 
 <h2 class="title">
 📋 MES COMMANDES
 </h2>
 
-
 <button
 class="primary"
 onclick="loadOrders()">
 
-🔄 Actualiser
+🔄 ACTUALISER
 
 </button>
 
-
-<div id="ordersList"
+<div
+id="ordersList"
 style="margin-top:15px">
 
 Chargement...
@@ -1203,20 +1451,16 @@ return Number(value || 0)
 
 function showLogin(){
 
-document
-.getElementById("loginForm")
+document.getElementById("loginForm")
 .classList.remove("hidden");
 
-document
-.getElementById("registerForm")
+document.getElementById("registerForm")
 .classList.add("hidden");
 
-document
-.getElementById("loginTab")
+document.getElementById("loginTab")
 .classList.add("active");
 
-document
-.getElementById("registerTab")
+document.getElementById("registerTab")
 .classList.remove("active");
 
 }
@@ -1224,20 +1468,16 @@ document
 
 function showRegister(){
 
-document
-.getElementById("loginForm")
+document.getElementById("loginForm")
 .classList.add("hidden");
 
-document
-.getElementById("registerForm")
+document.getElementById("registerForm")
 .classList.remove("hidden");
 
-document
-.getElementById("loginTab")
+document.getElementById("loginTab")
 .classList.remove("active");
 
-document
-.getElementById("registerTab")
+document.getElementById("registerTab")
 .classList.add("active");
 
 }
@@ -1248,34 +1488,27 @@ document
 async function registerUser(){
 
 const name =
-document
-.getElementById("registerName")
-.value
-.trim();
+document.getElementById("registerName")
+.value.trim();
 
 const email =
-document
-.getElementById("registerEmail")
-.value
-.trim();
+document.getElementById("registerEmail")
+.value.trim();
 
 const password =
-document
-.getElementById("registerPassword")
+document.getElementById("registerPassword")
 .value;
 
 
 if(!name || !email || !password){
 
-document
-.getElementById("authMessage")
+document.getElementById("authMessage")
 .textContent =
 "❌ Remplissez tous les champs.";
 
 return;
 
 }
-
 
 try{
 
@@ -1296,29 +1529,22 @@ password
 
 });
 
-
 const data =
 await response.json();
 
-
-document
-.getElementById("authMessage")
+document.getElementById("authMessage")
 .textContent =
 data.message || "Erreur";
 
-
 if(data.success){
 
-document
-.getElementById("registerName")
+document.getElementById("registerName")
 .value="";
 
-document
-.getElementById("registerEmail")
+document.getElementById("registerEmail")
 .value="";
 
-document
-.getElementById("registerPassword")
+document.getElementById("registerPassword")
 .value="";
 
 showLogin();
@@ -1327,8 +1553,7 @@ showLogin();
 
 }catch(error){
 
-document
-.getElementById("authMessage")
+document.getElementById("authMessage")
 .textContent =
 "❌ Impossible de contacter le serveur.";
 
@@ -1342,28 +1567,22 @@ document
 async function loginUser(){
 
 const email =
-document
-.getElementById("loginEmail")
-.value
-.trim();
+document.getElementById("loginEmail")
+.value.trim();
 
 const password =
-document
-.getElementById("loginPassword")
+document.getElementById("loginPassword")
 .value;
-
 
 if(!email || !password){
 
-document
-.getElementById("authMessage")
+document.getElementById("authMessage")
 .textContent =
 "❌ Email et mot de passe obligatoires.";
 
 return;
 
 }
-
 
 try{
 
@@ -1383,16 +1602,12 @@ password
 
 });
 
-
 const data =
 await response.json();
 
-
-document
-.getElementById("authMessage")
+document.getElementById("authMessage")
 .textContent =
 data.message || "Erreur";
-
 
 if(data.success){
 
@@ -1409,8 +1624,7 @@ showClient();
 
 }catch(error){
 
-document
-.getElementById("authMessage")
+document.getElementById("authMessage")
 .textContent =
 "❌ Impossible de contacter le serveur.";
 
@@ -1423,20 +1637,16 @@ document
 
 function showClient(){
 
-document
-.getElementById("authSection")
+document.getElementById("authSection")
 .classList.add("hidden");
 
-document
-.getElementById("clientPanel")
+document.getElementById("clientPanel")
 .classList.remove("hidden");
 
-document
-.getElementById("miniBalance")
+document.getElementById("miniBalance")
 .classList.remove("hidden");
 
-document
-.getElementById("welcomeUser")
+document.getElementById("welcomeUser")
 .textContent =
 "Bienvenue " + currentUser.name + " 👑";
 
@@ -1445,12 +1655,11 @@ refreshUser();
 }
 
 
-/* REFRESH USER */
+/* REFRESH */
 
 async function refreshUser(){
 
 if(!currentUser)return;
-
 
 try{
 
@@ -1462,7 +1671,6 @@ await fetch(
 const data =
 await response.json();
 
-
 if(data.success){
 
 currentUser=data.user;
@@ -1472,21 +1680,15 @@ localStorage.setItem(
 JSON.stringify(currentUser)
 );
 
-
-document
-.getElementById("balanceDisplay")
+document.getElementById("balanceDisplay")
 .textContent =
 formatMoney(currentUser.balance);
 
-
-document
-.getElementById("orderBalance")
+document.getElementById("orderBalance")
 .textContent =
 formatMoney(currentUser.balance);
 
-
-document
-.getElementById("miniBalance")
+document.getElementById("miniBalance")
 .textContent =
 "Solde : " +
 formatMoney(currentUser.balance);
@@ -1513,32 +1715,45 @@ const panels=[
 "ordersPanel"
 ];
 
-
 panels.forEach(id=>{
 
-document
-.getElementById(id)
+document.getElementById(id)
 .classList.add("hidden");
 
 });
 
-
-document
-.getElementById(name+"Panel")
+document.getElementById(name+"Panel")
 .classList.remove("hidden");
-
 
 window.scrollTo({
 top:0,
 behavior:"smooth"
 });
 
-
 if(name==="orders"){
-
 loadOrders();
+}
 
 }
+
+
+/* FORMULE */
+
+function selectFormule(service,price){
+
+showPanel("order");
+
+const select =
+document.getElementById("orderService");
+
+select.value=service;
+
+updatePrice();
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
 
 }
 
@@ -1551,20 +1766,49 @@ const select =
 document.getElementById("orderService");
 
 const option =
-select.options[
-select.selectedIndex
-];
+select.options[select.selectedIndex];
+
+const service=select.value;
 
 const price =
-option
-? Number(option.dataset.price || 0)
-: 0;
+Number(option?.dataset.price || 0);
 
-
-document
-.getElementById("orderPrice")
+document.getElementById("orderPrice")
 .textContent =
 formatMoney(price);
+
+const box =
+document.getElementById("selectedFormule");
+
+if(service){
+
+box.innerHTML=`
+
+<strong>
+${escapeHTML(service)}
+</strong>
+
+<div class="price-display">
+${formatMoney(price)}
+</div>
+
+`;
+
+}else{
+
+box.innerHTML=`
+
+<strong>
+Aucune formule sélectionnée
+</strong>
+
+<div class="price-display">
+0 FC
+</div>
+
+`;
+
+}
 
 }
 
@@ -1575,8 +1819,7 @@ async function requestDeposit(){
 
 if(!currentUser){
 
-document
-.getElementById("depositMessage")
+document.getElementById("depositMessage")
 .textContent =
 "❌ Connectez-vous d'abord.";
 
@@ -1584,24 +1827,19 @@ return;
 
 }
 
-
 const amount =
 Number(
-document
-.getElementById("depositAmount")
+document.getElementById("depositAmount")
 .value
 );
 
 const method =
-document
-.getElementById("depositMethod")
+document.getElementById("depositMethod")
 .value;
-
 
 if(!Number.isFinite(amount) || amount < 1000){
 
-document
-.getElementById("depositMessage")
+document.getElementById("depositMessage")
 .textContent =
 "❌ Le dépôt minimum est de 1000 FC.";
 
@@ -1609,18 +1847,15 @@ return;
 
 }
 
-
 if(!method){
 
-document
-.getElementById("depositMessage")
+document.getElementById("depositMessage")
 .textContent =
 "❌ Choisissez un moyen de paiement.";
 
 return;
 
 }
-
 
 try{
 
@@ -1636,42 +1871,33 @@ headers:{
 body:JSON.stringify({
 
 userId:currentUser.id,
-
 amount,
-
 method
 
 })
 
 });
 
-
 const data =
 await response.json();
 
-
-document
-.getElementById("depositMessage")
+document.getElementById("depositMessage")
 .textContent =
 data.message || "Erreur";
 
-
 if(data.success){
 
-document
-.getElementById("depositAmount")
+document.getElementById("depositAmount")
 .value="";
 
-document
-.getElementById("depositMethod")
+document.getElementById("depositMethod")
 .value="";
 
 }
 
 }catch(error){
 
-document
-.getElementById("depositMessage")
+document.getElementById("depositMessage")
 .textContent =
 "❌ Erreur de connexion au serveur.";
 
@@ -1686,8 +1912,7 @@ async function createOrder(){
 
 if(!currentUser){
 
-document
-.getElementById("orderMessage")
+document.getElementById("orderMessage")
 .textContent =
 "❌ Connectez-vous d'abord.";
 
@@ -1695,28 +1920,21 @@ return;
 
 }
 
-
 const select =
 document.getElementById("orderService");
 
 const option =
-select.options[
-select.selectedIndex
-];
-
+select.options[select.selectedIndex];
 
 const service=select.value;
 
 const link =
-document
-.getElementById("orderLink")
-.value
-.trim();
+document.getElementById("orderLink")
+.value.trim();
 
 const quantity =
 Number(
-document
-.getElementById("orderQuantity")
+document.getElementById("orderQuantity")
 .value
 );
 
@@ -1724,7 +1942,6 @@ const price =
 Number(
 option?.dataset.price || 0
 );
-
 
 if(
 !service ||
@@ -1734,15 +1951,33 @@ quantity<=0 ||
 !price
 ){
 
-document
-.getElementById("orderMessage")
+document.getElementById("orderMessage")
 .textContent =
-"❌ Remplissez correctement tous les champs.";
+"❌ Choisissez une formule et remplissez correctement les champs.";
 
 return;
 
 }
 
+if(quantity !== getPackageQuantity(service)){
+
+document.getElementById("orderMessage")
+.textContent =
+"❌ La quantité doit correspondre à la formule choisie.";
+
+return;
+
+}
+
+if(Number(currentUser.balance || 0) < price){
+
+document.getElementById("orderMessage")
+.textContent =
+"❌ Solde insuffisant. Rechargez votre compte.";
+
+return;
+
+}
 
 try{
 
@@ -1767,16 +2002,12 @@ price
 
 });
 
-
 const data =
 await response.json();
 
-
-document
-.getElementById("orderMessage")
+document.getElementById("orderMessage")
 .textContent =
 data.message || "Erreur";
-
 
 if(data.success){
 
@@ -1789,25 +2020,42 @@ JSON.stringify(currentUser)
 
 await refreshUser();
 
-
-document
-.getElementById("orderLink")
+document.getElementById("orderLink")
 .value="";
 
-document
-.getElementById("orderQuantity")
+document.getElementById("orderQuantity")
 .value="";
 
 }
 
 }catch(error){
 
-document
-.getElementById("orderMessage")
+document.getElementById("orderMessage")
 .textContent =
 "❌ Erreur de connexion au serveur.";
 
 }
+
+}
+
+
+/* QUANTITIES */
+
+function getPackageQuantity(service){
+
+if(
+service.includes("1K")
+)return 1000;
+
+if(
+service.includes("2K")
+)return 2000;
+
+if(
+service.includes("3K")
+)return 3000;
+
+return 1;
 
 }
 
@@ -1818,13 +2066,11 @@ async function loadOrders(){
 
 if(!currentUser)return;
 
-
 const container =
 document.getElementById("ordersList");
 
 container.innerHTML =
 "⏳ Chargement...";
-
 
 try{
 
@@ -1835,7 +2081,6 @@ await fetch(
 
 const data =
 await response.json();
-
 
 if(
 !data.success ||
@@ -1850,10 +2095,8 @@ return;
 
 }
 
-
 container.innerHTML =
-data.orders
-.map(order=>`
+data.orders.map(order=>`
 
 <div class="order-row">
 
@@ -1880,15 +2123,17 @@ ${escapeHTML(order.status || "pending")}
 </span>
 
 <p style="font-size:12px;color:#64748b;margin-top:8px">
+
 ${order.createdAt
-? new Date(order.createdAt).toLocaleString("fr-FR")
+? new Date(order.createdAt)
+.toLocaleString("fr-FR")
 : ""}
+
 </p>
 
 </div>
 
-`)
-.join("");
+`).join("");
 
 }catch(error){
 
@@ -1900,7 +2145,7 @@ container.innerHTML =
 }
 
 
-/* SECURITY DISPLAY */
+/* SECURITY */
 
 function escapeHTML(value){
 
@@ -1920,7 +2165,9 @@ function toggleMenu(){
 
 if(!currentUser){
 
-alert("Connectez-vous pour accéder au menu.");
+alert(
+"Connectez-vous pour accéder au menu."
+);
 
 return;
 
