@@ -28,10 +28,10 @@ const PAYMENT_METHODS = [
 
 async function smmAfricaRequest(payload, idempotencyKey = null) {
 
+  async function smmAfricaRequest(payload, idempotencyKey = null) {
+
   if (!SMM_API_KEY) {
-    throw new Error(
-      "SMM_API_KEY manquante dans Render Environment."
-    );
+    throw new Error("SMM_API_KEY manquante dans Render.");
   }
 
   const headers = {
@@ -44,66 +44,37 @@ async function smmAfricaRequest(payload, idempotencyKey = null) {
     headers["Idempotency-Key"] = idempotencyKey;
   }
 
-  let response;
-
-  try {
-
-    response = await fetch(
-      "https://smm.africa/api/v3",
-      {
-        method: "POST",
-        headers,
-        body: JSON.stringify(payload)
-      }
-    );
-
-  } catch (error) {
-
-    console.error(
-      "❌ SMM AFRICA CONNECTION ERROR:",
-      error.message
-    );
-
-    throw new Error(
-      "Connexion SMM Africa impossible: " +
-      error.message
-    );
-  }
-
-  const text =
-    await response.text();
-
-  console.log(
-    "📡 SMM AFRICA HTTP:",
-    response.status
+  const response = await fetch(
+    "https://smm.africa/api/v3",
+    {
+      method: "POST",
+      headers,
+      body: JSON.stringify(payload)
+    }
   );
 
-  console.log(
-    "📡 SMM AFRICA ACTION:",
-    payload.action
-  );
-
-  console.log(
-    "📡 SMM AFRICA RESPONSE:",
-    text.slice(0, 1000)
-  );
+  const text = await response.text();
 
   let data;
 
   try {
-
-    data =
-      JSON.parse(text);
-
+    data = JSON.parse(text);
   } catch (error) {
-
     throw new Error(
-      `SMM Africa a retourné une réponse non JSON. HTTP ${response.status}: ${text.slice(0, 300)}`
+      `Réponse SMM Africa non JSON. HTTP ${response.status}: ${text.slice(0, 300)}`
     );
   }
 
-  if (!response.ok) {
+  console.log(
+    "📡 SMM AFRICA:",
+    payload.action,
+    "HTTP:",
+    response.status,
+    "RESPONSE:",
+    JSON.stringify(data)
+  );
 
+  if (!response.ok) {
     throw new Error(
       data.error ||
       data.message ||
@@ -112,10 +83,7 @@ async function smmAfricaRequest(payload, idempotencyKey = null) {
   }
 
   if (data.error) {
-
-    throw new Error(
-      data.error
-    );
+    throw new Error(String(data.error));
   }
 
   return data;
