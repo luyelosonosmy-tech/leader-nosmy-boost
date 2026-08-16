@@ -29,7 +29,7 @@ const PAYMENT_METHODS = [
 async function smmAfricaRequest(payload, idempotencyKey = null) {
 
   if (!SMM_API_KEY) {
-    throw new Error("SMM_API_KEY manquante.");
+    throw new Error("SMM_API_KEY manquante dans Render.");
   }
 
   const headers = {
@@ -45,17 +45,42 @@ async function smmAfricaRequest(payload, idempotencyKey = null) {
     "https://smm.africa/api/v3",
     {
       method: "POST",
-      headers,
+      headers: headers,
       body: JSON.stringify(payload)
     }
   );
 
-  const data = await response.json();
+  const text = await response.text();
 
-  if (!response.ok || data.error) {
+  let data;
+
+  try {
+    data = JSON.parse(text);
+  } catch (error) {
     throw new Error(
-      data.error || "Erreur SMM Africa."
+      `Réponse SMM Africa invalide (${response.status}): ${text.slice(0, 300)}`
     );
+  }
+
+  console.log(
+    "SMM AFRICA:",
+    payload.action,
+    "HTTP:",
+    response.status,
+    "RESPONSE:",
+    JSON.stringify(data)
+  );
+
+  if (!response.ok) {
+    throw new Error(
+      data.error ||
+      data.message ||
+      `Erreur HTTP SMM Africa: ${response.status}`
+    );
+  }
+
+  if (data && data.error) {
+    throw new Error(data.error);
   }
 
   return data;
