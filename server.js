@@ -3,10 +3,10 @@ const path = require("path");
 const fs = require("fs");
 const crypto = require("crypto");
 
-const SMM_API_KEY = process.env.SMM_API_KEY;
-
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+const SMM_API_KEY = process.env.SMM_API_KEY;
 
 const USERS_FILE = path.join(__dirname, "users.json");
 const ORDERS_FILE = path.join(__dirname, "orders.json");
@@ -19,125 +19,33 @@ const PAYMENT_METHODS = [
   "Vodacom M-Pesa"
 ];
 
-/* =====================================================
-   LEADER NOSMY BOOST
-   FORMULES OFFICIELLES
-===================================================== */
+/*
+========================================
+ LEADER NOSMY BOOST
+ SMM AFRICA
+========================================
+*/
 
-const SERVICES = {
-
-  "Facebook - 1K Likes": {
-    name: "Facebook - 1K J'AIME",
-    quantity: 1000,
-    price: 1500,
-
-    /*
-      METTRE ICI LE SERVICE ID SMM AFRICA
-      quand tu me le donneras.
-    */
-    smmServiceId: null
-  },
-
-  "Facebook - 2K Likes": {
-    name: "Facebook - 2K J'AIME",
-    quantity: 2000,
-    price: 3000,
-    smmServiceId: null
-  },
-
-  "Facebook - 3K Likes": {
-    name: "Facebook - 3K J'AIME",
-    quantity: 3000,
-    price: 4500,
-    smmServiceId: null
-  },
-
-  "Facebook - 1K Followers": {
-    name: "Facebook - 1K ABONNÉS",
-    quantity: 1000,
-    price: 8000,
-    smmServiceId: null
-  },
-
-  "TikTok - 1K Abonnés": {
-    name: "TikTok - 1K ABONNÉS",
-    quantity: 1000,
-    price: 8000,
-    smmServiceId: null
-  },
-
-  "TikTok - 1K Vues + 1K Likes": {
-    name: "TikTok - 1K VUES + 1K J'AIME",
-    quantity: 1000,
-    price: 6000,
-    smmServiceId: null
-  },
-
-  "Instagram - 1K Followers": {
-    name: "Instagram - 1K ABONNÉS",
-    quantity: 1000,
-    price: 8000,
-    smmServiceId: null
-  },
-
-  "YouTube - 1K Abonnés": {
-    name: "YouTube - 1K ABONNÉS",
-    quantity: 1000,
-    price: 9000,
-    smmServiceId: null
-  },
-
-  "YouTube - 1K Vues": {
-    name: "YouTube - 1K VUES",
-    quantity: 1000,
-    price: 5000,
-    smmServiceId: null
-  },
-
-  "Affiche Anniversaire": {
-    name: "AFFICHE ANNIVERSAIRE",
-    quantity: 1,
-    price: 5000,
-    smmServiceId: null
-  },
-
-  "Affiche Musique": {
-    name: "AFFICHE MUSIQUE",
-    quantity: 1,
-    price: 5000,
-    smmServiceId: null
-  },
-
-  "Logo": {
-    name: "LOGO",
-    quantity: 1,
-    price: 3000,
-    smmServiceId: null
-  }
-
-};
-
-/* =====================================================
-   SMM AFRICA API
-===================================================== */
-
-async function smmAfricaRequest(payload) {
+async function smmAfricaRequest(payload, idempotencyKey = null) {
 
   if (!SMM_API_KEY) {
-    throw new Error(
-      "SMM_API_KEY manquante dans Render."
-    );
+    throw new Error("SMM_API_KEY manquante.");
+  }
+
+  const headers = {
+    "Content-Type": "application/json",
+    "Authorization": `Bearer ${SMM_API_KEY}`
+  };
+
+  if (idempotencyKey) {
+    headers["Idempotency-Key"] = idempotencyKey;
   }
 
   const response = await fetch(
     "https://smm.africa/api/v3",
     {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization":
-          `Bearer ${SMM_API_KEY}`
-      },
+      headers,
       body: JSON.stringify(payload)
     }
   );
@@ -146,32 +54,18 @@ async function smmAfricaRequest(payload) {
 
   if (!response.ok || data.error) {
     throw new Error(
-      data.error ||
-      "Erreur API SMM Africa."
+      data.error || "Erreur SMM Africa."
     );
   }
 
   return data;
 }
 
-/* =====================================================
-   EXPRESS
-===================================================== */
-
-app.use(express.json());
-app.use(
-  express.urlencoded({
-    extended: true
-  })
-);
-
-app.use(
-  express.static(__dirname)
-);
-
-/* =====================================================
-   JSON
-===================================================== */
+/*
+========================================
+ JSON
+========================================
+*/
 
 function readJSON(file, fallback = []) {
 
@@ -181,57 +75,47 @@ function readJSON(file, fallback = []) {
 
       fs.writeFileSync(
         file,
-        JSON.stringify(
-          fallback,
-          null,
-          2
-        ),
+        JSON.stringify(fallback, null, 2),
         "utf8"
       );
 
       return fallback;
     }
 
-    const data =
-      fs.readFileSync(
-        file,
-        "utf8"
-      );
+    const content =
+      fs.readFileSync(file, "utf8");
 
-    if (!data.trim()) {
+    if (!content.trim()) {
       return fallback;
     }
 
-    return JSON.parse(data);
+    return JSON.parse(content);
 
   } catch (error) {
 
     console.error(
-      "Erreur lecture JSON :",
-      error
+      "Erreur JSON:",
+      error.message
     );
 
     return fallback;
   }
 }
 
-
 function writeJSON(file, data) {
 
   fs.writeFileSync(
     file,
-    JSON.stringify(
-      data,
-      null,
-      2
-    ),
+    JSON.stringify(data, null, 2),
     "utf8"
   );
 }
 
-/* =====================================================
-   PASSWORD
-===================================================== */
+/*
+========================================
+ PASSWORD
+========================================
+*/
 
 function hashPassword(password) {
 
@@ -241,53 +125,40 @@ function hashPassword(password) {
     .digest("hex");
 }
 
-/* =====================================================
-   ACCUEIL
-===================================================== */
+/*
+========================================
+ EXPRESS
+========================================
+*/
+
+app.use(express.json());
+app.use(express.urlencoded({
+  extended: true
+}));
+
+app.use(express.static(__dirname));
 
 app.get("/", (req, res) => {
 
   res.sendFile(
-    path.join(
-      __dirname,
-      "index.html"
-    )
+    path.join(__dirname, "index.html")
   );
 
 });
 
-/* =====================================================
-   SERVICES
-===================================================== */
+app.get("/admin", (req, res) => {
 
-app.get(
-  "/api/services",
-  (req, res) => {
+  res.sendFile(
+    path.join(__dirname, "admin.html")
+  );
 
-    const services =
-      Object.entries(SERVICES)
-        .map(
-          ([key, service]) => ({
-            key,
-            name: service.name,
-            quantity:
-              service.quantity,
-            price:
-              service.price
-          })
-        );
+});
 
-    res.json({
-      success: true,
-      services
-    });
-
-  }
-);
-
-/* =====================================================
-   SMM BALANCE
-===================================================== */
+/*
+========================================
+ SMM BALANCE
+========================================
+*/
 
 app.get(
   "/api/smm/balance",
@@ -300,53 +171,71 @@ app.get(
           action: "balance"
         });
 
-      return res.json({
+      res.json({
         success: true,
-        balance:
-          data.balance,
-        currency:
-          data.currency
+        balance: data.balance,
+        currency: data.currency
       });
 
     } catch (error) {
 
       console.error(
-        "Erreur SMM Africa:",
+        "SMM balance:",
         error.message
       );
 
-      return res.status(500).json({
+      res.status(500).json({
         success: false,
         message:
-          "Impossible de vérifier le solde SMM Africa."
+          "Impossible de vérifier le solde fournisseur."
       });
-
     }
-
   }
 );
 
-/* =====================================================
-   ADMIN
-===================================================== */
+/*
+========================================
+ SMM SERVICES
+========================================
+*/
 
 app.get(
-  "/admin",
-  (req, res) => {
+  "/api/smm/services",
+  async (req, res) => {
 
-    res.sendFile(
-      path.join(
-        __dirname,
-        "admin.html"
-      )
-    );
+    try {
 
+      const services =
+        await smmAfricaRequest({
+          action: "services"
+        });
+
+      res.json({
+        success: true,
+        services
+      });
+
+    } catch (error) {
+
+      console.error(
+        "SMM services:",
+        error.message
+      );
+
+      res.status(500).json({
+        success: false,
+        message:
+          "Impossible de récupérer les services."
+      });
+    }
   }
 );
 
-/* =====================================================
-   REGISTER
-===================================================== */
+/*
+========================================
+ REGISTER
+========================================
+*/
 
 app.post(
   "/api/register",
@@ -358,92 +247,74 @@ app.post(
       password
     } = req.body;
 
-    if (
-      !name ||
-      !email ||
-      !password
-    ) {
+    if (!name || !email || !password) {
 
       return res.status(400).json({
         success: false,
         message:
           "Tous les champs sont obligatoires."
       });
-
     }
 
     const cleanName =
       String(name).trim();
 
-    const normalizedEmail =
+    const cleanEmail =
       String(email)
         .toLowerCase()
         .trim();
 
-    if (
-      cleanName.length < 2
-    ) {
+    if (cleanName.length < 2) {
 
       return res.status(400).json({
         success: false,
         message:
           "Nom invalide."
       });
-
     }
 
-    if (
-      String(password).length < 6
-    ) {
+    if (String(password).length < 6) {
 
       return res.status(400).json({
         success: false,
         message:
-          "Le mot de passe doit contenir au moins 6 caractères."
+          "Mot de passe: minimum 6 caractères."
       });
-
     }
 
     const users =
       readJSON(USERS_FILE);
 
-    const existing =
+    const exists =
       users.find(
         user =>
-          user.email ===
-          normalizedEmail
+          user.email === cleanEmail
       );
 
-    if (existing) {
+    if (exists) {
 
       return res.status(409).json({
         success: false,
         message:
           "Ce compte existe déjà."
       });
-
     }
 
     const user = {
 
-      id:
-        crypto.randomUUID(),
+      id: crypto.randomUUID(),
 
-      name:
-        cleanName,
+      name: cleanName,
 
-      email:
-        normalizedEmail,
+      email: cleanEmail,
 
       password:
         hashPassword(password),
 
-      balance:
-        0,
+      balance: 0,
 
       createdAt:
         new Date().toISOString()
-
     };
 
     users.push(user);
@@ -453,7 +324,7 @@ app.post(
       users
     );
 
-    return res.json({
+    res.json({
 
       success: true,
 
@@ -462,18 +333,13 @@ app.post(
 
       user: {
 
-        id:
-          user.id,
+        id: user.id,
 
-        name:
-          user.name,
+        name: user.name,
 
-        email:
-          user.email,
+        email: user.email,
 
-        balance:
-          0
-
+        balance: 0
       }
 
     });
@@ -481,9 +347,11 @@ app.post(
   }
 );
 
-/* =====================================================
-   LOGIN
-===================================================== */
+/*
+========================================
+ LOGIN
+========================================
+*/
 
 app.post(
   "/api/login",
@@ -494,23 +362,19 @@ app.post(
       password
     } = req.body;
 
-    if (
-      !email ||
-      !password
-    ) {
+    if (!email || !password) {
 
       return res.status(400).json({
         success: false,
         message:
           "Email et mot de passe obligatoires."
       });
-
     }
 
     const users =
       readJSON(USERS_FILE);
 
-    const normalizedEmail =
+    const cleanEmail =
       String(email)
         .toLowerCase()
         .trim();
@@ -518,8 +382,7 @@ app.post(
     const user =
       users.find(
         u =>
-          u.email ===
-            normalizedEmail &&
+          u.email === cleanEmail &&
           u.password ===
             hashPassword(password)
       );
@@ -531,10 +394,9 @@ app.post(
         message:
           "Email ou mot de passe incorrect."
       });
-
     }
 
-    return res.json({
+    res.json({
 
       success: true,
 
@@ -543,20 +405,14 @@ app.post(
 
       user: {
 
-        id:
-          user.id,
+        id: user.id,
 
-        name:
-          user.name,
+        name: user.name,
 
-        email:
-          user.email,
+        email: user.email,
 
         balance:
-          Number(
-            user.balance
-          ) || 0
-
+          Number(user.balance) || 0
       }
 
     });
@@ -564,9 +420,11 @@ app.post(
   }
 );
 
-/* =====================================================
-   USER
-===================================================== */
+/*
+========================================
+ USER
+========================================
+*/
 
 app.get(
   "/api/user/:id",
@@ -578,8 +436,7 @@ app.get(
     const user =
       users.find(
         u =>
-          u.id ===
-          req.params.id
+          u.id === req.params.id
       );
 
     if (!user) {
@@ -589,29 +446,22 @@ app.get(
         message:
           "Utilisateur introuvable."
       });
-
     }
 
-    return res.json({
+    res.json({
 
       success: true,
 
       user: {
 
-        id:
-          user.id,
+        id: user.id,
 
-        name:
-          user.name,
+        name: user.name,
 
-        email:
-          user.email,
+        email: user.email,
 
         balance:
-          Number(
-            user.balance
-          ) || 0
-
+          Number(user.balance) || 0
       }
 
     });
@@ -619,9 +469,11 @@ app.get(
   }
 );
 
-/* =====================================================
-   DEPOT
-===================================================== */
+/*
+========================================
+ DEPOSIT
+========================================
+*/
 
 app.post(
   "/api/deposit",
@@ -636,36 +488,25 @@ app.post(
     const numericAmount =
       Number(amount);
 
-    if (
-      !userId ||
-      !method
-    ) {
+    if (!userId || !method) {
 
       return res.status(400).json({
         success: false,
         message:
-          "Utilisateur et moyen de paiement obligatoires."
+          "Utilisateur et paiement obligatoires."
       });
-
     }
 
     if (
-      !Number.isFinite(
-        numericAmount
-      ) ||
-      numericAmount <
-        MIN_DEPOSIT
+      !Number.isFinite(numericAmount) ||
+      numericAmount < MIN_DEPOSIT
     ) {
 
       return res.status(400).json({
-
         success: false,
-
         message:
-          `Le dépôt minimum est de ${MIN_DEPOSIT.toLocaleString("fr-FR")} FC.`
-
+          `Minimum ${MIN_DEPOSIT.toLocaleString("fr-FR")} FC.`
       });
-
     }
 
     if (
@@ -679,7 +520,6 @@ app.post(
         message:
           "Moyen de paiement invalide."
       });
-
     }
 
     const users =
@@ -688,8 +528,7 @@ app.post(
     const user =
       users.find(
         u =>
-          u.id ===
-          userId
+          u.id === userId
       );
 
     if (!user) {
@@ -699,7 +538,6 @@ app.post(
         message:
           "Utilisateur introuvable."
       });
-
     }
 
     const orders =
@@ -707,27 +545,20 @@ app.post(
 
     const deposit = {
 
-      id:
-        crypto.randomUUID(),
+      id: crypto.randomUUID(),
 
-      type:
-        "deposit",
+      type: "deposit",
 
-      userId:
-        user.id,
+      userId: user.id,
 
-      amount:
-        numericAmount,
+      amount: numericAmount,
 
-      method:
-        String(method),
+      method: String(method),
 
-      status:
-        "pending",
+      status: "pending",
 
       createdAt:
         new Date().toISOString()
-
     };
 
     orders.push(deposit);
@@ -737,12 +568,12 @@ app.post(
       orders
     );
 
-    return res.json({
+    res.json({
 
       success: true,
 
       message:
-        "Demande de dépôt enregistrée. Le paiement doit être vérifié avant l'ajout au solde.",
+        "Demande enregistrée. Vérification du paiement en attente.",
 
       deposit
 
@@ -751,40 +582,11 @@ app.post(
   }
 );
 
-/* =====================================================
-   DEPOTS CLIENT
-===================================================== */
-
-app.get(
-  "/api/deposits/:userId",
-  (req, res) => {
-
-    const orders =
-      readJSON(ORDERS_FILE);
-
-    const deposits =
-      orders.filter(
-        item =>
-          item.type ===
-            "deposit" &&
-          item.userId ===
-            req.params.userId
-      );
-
-    return res.json({
-
-      success: true,
-
-      deposits
-
-    });
-
-  }
-);
-
-/* =====================================================
-   ADMIN DEPOTS
-===================================================== */
+/*
+========================================
+ ADMIN DEPOSITS
+========================================
+*/
 
 app.get(
   "/api/admin/deposits",
@@ -796,31 +598,26 @@ app.get(
     const deposits =
       orders.filter(
         item =>
-          item.type ===
-          "deposit"
+          item.type === "deposit"
       );
 
-    return res.json({
-
+    res.json({
       success: true,
-
       deposits
-
     });
 
   }
 );
 
-/* =====================================================
-   ADMIN APPROUVER DEPOT
-===================================================== */
+/*
+========================================
+ APPROVE DEPOSIT
+========================================
+*/
 
 app.post(
   "/api/admin/deposit/:id/approve",
   (req, res) => {
-
-    const depositId =
-      req.params.id;
 
     const orders =
       readJSON(ORDERS_FILE);
@@ -831,10 +628,8 @@ app.post(
     const deposit =
       orders.find(
         item =>
-          item.id ===
-            depositId &&
-          item.type ===
-            "deposit"
+          item.id === req.params.id &&
+          item.type === "deposit"
       );
 
     if (!deposit) {
@@ -844,27 +639,21 @@ app.post(
         message:
           "Dépôt introuvable."
       });
-
     }
 
-    if (
-      deposit.status !==
-      "pending"
-    ) {
+    if (deposit.status !== "pending") {
 
       return res.status(400).json({
         success: false,
         message:
-          "Ce dépôt a déjà été traité."
+          "Dépôt déjà traité."
       });
-
     }
 
     const user =
       users.find(
         u =>
-          u.id ===
-          deposit.userId
+          u.id === deposit.userId
       );
 
     if (!user) {
@@ -874,16 +663,11 @@ app.post(
         message:
           "Client introuvable."
       });
-
     }
 
     user.balance =
-      Number(
-        user.balance || 0
-      ) +
-      Number(
-        deposit.amount
-      );
+      Number(user.balance || 0) +
+      Number(deposit.amount);
 
     deposit.status =
       "approved";
@@ -901,33 +685,30 @@ app.post(
       orders
     );
 
-    return res.json({
+    res.json({
 
       success: true,
 
       message:
-        "Dépôt approuvé. Le solde du client a été crédité.",
+        "Dépôt approuvé. Solde crédité.",
 
       balance:
-        user.balance,
-
-      deposit
+        user.balance
 
     });
 
   }
 );
 
-/* =====================================================
-   ADMIN REFUSER DEPOT
-===================================================== */
+/*
+========================================
+ REJECT DEPOSIT
+========================================
+*/
 
 app.post(
   "/api/admin/deposit/:id/reject",
   (req, res) => {
-
-    const depositId =
-      req.params.id;
 
     const orders =
       readJSON(ORDERS_FILE);
@@ -935,10 +716,8 @@ app.post(
     const deposit =
       orders.find(
         item =>
-          item.id ===
-            depositId &&
-          item.type ===
-            "deposit"
+          item.id === req.params.id &&
+          item.type === "deposit"
       );
 
     if (!deposit) {
@@ -948,20 +727,15 @@ app.post(
         message:
           "Dépôt introuvable."
       });
-
     }
 
-    if (
-      deposit.status !==
-      "pending"
-    ) {
+    if (deposit.status !== "pending") {
 
       return res.status(400).json({
         success: false,
         message:
-          "Ce dépôt a déjà été traité."
+          "Dépôt déjà traité."
       });
-
     }
 
     deposit.status =
@@ -975,23 +749,23 @@ app.post(
       orders
     );
 
-    return res.json({
+    res.json({
 
       success: true,
 
       message:
-        "Dépôt refusé.",
-
-      deposit
+        "Dépôt refusé."
 
     });
 
   }
 );
 
-/* =====================================================
-   PASSER UNE COMMANDE
-===================================================== */
+/*
+========================================
+ COMMANDER CHEZ SMM AFRICA
+========================================
+*/
 
 app.post(
   "/api/order",
@@ -999,93 +773,40 @@ app.post(
 
     const {
       userId,
+      serviceId,
       service,
       link,
-      quantity
+      quantity,
+      price
     } = req.body;
 
-    const serviceKey =
-      String(
-        service || ""
-      ).trim();
-
-    const selectedService =
-      SERVICES[serviceKey];
+    const numericServiceId =
+      Number(serviceId);
 
     const numericQuantity =
       Number(quantity);
 
-    /* ---------------------------------------------
-       VERIFICATION SERVICE
-    --------------------------------------------- */
-
-    if (!selectedService) {
-
-      return res.status(400).json({
-
-        success: false,
-
-        message:
-          "❌ Formule invalide."
-
-      });
-
-    }
-
-    /* ---------------------------------------------
-       VERIFICATION LIEN
-    --------------------------------------------- */
+    const numericPrice =
+      Number(price);
 
     if (
+      !userId ||
+      !Number.isInteger(numericServiceId) ||
+      numericServiceId <= 0 ||
+      !service ||
       !link ||
-      !String(link).trim()
+      !Number.isInteger(numericQuantity) ||
+      numericQuantity <= 0 ||
+      !Number.isFinite(numericPrice) ||
+      numericPrice <= 0
     ) {
 
       return res.status(400).json({
-
         success: false,
-
         message:
-          "❌ Le lien est obligatoire."
-
+          "Informations de commande invalides."
       });
-
     }
-
-    /* ---------------------------------------------
-       QUANTITE EXACTE
-    --------------------------------------------- */
-
-    if (
-      !Number.isFinite(
-        numericQuantity
-      ) ||
-      numericQuantity !==
-        selectedService.quantity
-    ) {
-
-      return res.status(400).json({
-
-        success: false,
-
-        message:
-          `❌ Cette formule nécessite exactement ${selectedService.quantity.toLocaleString("fr-FR")} unités.`
-
-      });
-
-    }
-
-    /* ---------------------------------------------
-       PRIX SERVEUR
-       IMPORTANT:
-       ON N'UTILISE PAS LE PRICE ENVOYE
-       PAR LE NAVIGATEUR.
-    --------------------------------------------- */
-
-    const realPrice =
-      Number(
-        selectedService.price
-      );
 
     const users =
       readJSON(USERS_FILE);
@@ -1093,161 +814,148 @@ app.post(
     const user =
       users.find(
         u =>
-          u.id ===
-          userId
+          u.id === userId
       );
 
     if (!user) {
 
       return res.status(404).json({
-
         success: false,
-
         message:
           "Utilisateur introuvable."
-
       });
-
     }
 
     const balance =
-      Number(
-        user.balance
-      ) || 0;
+      Number(user.balance) || 0;
 
-    /* ---------------------------------------------
-       SOLDE
-    --------------------------------------------- */
-
-    if (
-      balance <
-      realPrice
-    ) {
+    if (balance < numericPrice) {
 
       return res.status(400).json({
-
         success: false,
-
         message:
-          `❌ Solde insuffisant. Il faut ${realPrice.toLocaleString("fr-FR")} FC pour cette formule.`
-
+          "Solde insuffisant."
       });
-
     }
 
-    /* ---------------------------------------------
-       PREPARER COMMANDE
-    --------------------------------------------- */
+    /*
+      IMPORTANT:
+      On envoie la commande au fournisseur
+      AVANT de débiter le client.
+    */
+
+    const idempotencyKey =
+      crypto.randomUUID();
+
+    let smmData;
+
+    try {
+
+      smmData =
+        await smmAfricaRequest(
+
+          {
+            action: "add",
+
+            service:
+              numericServiceId,
+
+            link:
+              String(link).trim(),
+
+            quantity:
+              numericQuantity,
+
+            idempotency_key:
+              idempotencyKey,
+
+            source_flow:
+              "leader-nosmy-boost",
+
+            user_intent_label:
+              "social-growth",
+
+            recommendation_tier:
+              "standard"
+          },
+
+          idempotencyKey
+        );
+
+    } catch (error) {
+
+      console.error(
+        "Commande SMM:",
+        error.message
+      );
+
+      return res.status(502).json({
+        success: false,
+        message:
+          "La commande n'a pas pu être envoyée au fournisseur. Votre solde n'a pas été débité."
+      });
+    }
+
+    if (!smmData.order) {
+
+      return res.status(502).json({
+        success: false,
+        message:
+          "Le fournisseur n'a pas confirmé la commande."
+      });
+    }
+
+    /*
+      Fournisseur confirmé.
+      Maintenant seulement on débite.
+    */
+
+    user.balance =
+      balance - numericPrice;
 
     const orders =
       readJSON(ORDERS_FILE);
 
     const order = {
 
-      id:
-        crypto.randomUUID(),
+      id: crypto.randomUUID(),
 
-      type:
-        "order",
+      type: "order",
 
-      userId:
-        user.id,
+      userId: user.id,
 
       service:
-        selectedService.name,
+        String(service),
 
-      serviceKey:
-        serviceKey,
+      serviceId:
+        numericServiceId,
 
       link:
         String(link).trim(),
 
       quantity:
-        selectedService.quantity,
+        numericQuantity,
 
       price:
-        realPrice,
+        numericPrice,
+
+      provider:
+        "SMM Africa",
+
+      providerOrderId:
+        String(smmData.order),
+
+      providerCharged:
+        smmData.charged ?? null,
 
       status:
-        "pending",
+        smmData.queued
+          ? "queued"
+          : "pending",
 
       createdAt:
         new Date().toISOString()
-
     };
-
-    /* =================================================
-       SMM AFRICA
-       
-       IMPORTANT:
-       Tant que smmServiceId = null,
-       on NE lance PAS une commande automatique.
-       
-       Après récupération du vrai Service ID,
-       on pourra activer l'envoi automatique.
-    ================================================= */
-
-    if (
-      selectedService.smmServiceId
-    ) {
-
-      try {
-
-        const smmResult =
-          await smmAfricaRequest({
-
-            action:
-              "add",
-
-            service:
-              selectedService.smmServiceId,
-
-            link:
-              String(link).trim(),
-
-            quantity:
-              selectedService.quantity
-
-          });
-
-        order.smmOrderId =
-          smmResult.order ||
-          smmResult.order_id ||
-          null;
-
-        order.smmResponse =
-          smmResult;
-
-        order.status =
-          "processing";
-
-      } catch (error) {
-
-        console.error(
-          "Erreur commande SMM:",
-          error.message
-        );
-
-        return res.status(502).json({
-
-          success: false,
-
-          message:
-            "❌ La commande automatique n'a pas pu être envoyée au fournisseur. Votre solde n'a pas été débité."
-
-        });
-
-      }
-
-    }
-
-    /* ---------------------------------------------
-       DEBIT CLIENT
-    --------------------------------------------- */
-
-    user.balance =
-      balance -
-      realPrice;
 
     orders.push(order);
 
@@ -1261,14 +969,12 @@ app.post(
       orders
     );
 
-    return res.json({
+    res.json({
 
       success: true,
 
       message:
-        order.status === "processing"
-          ? "🚀 Commande envoyée au fournisseur avec succès."
-          : "✅ Commande enregistrée. Elle sera traitée dès que le service fournisseur sera configuré.",
+        "Commande envoyée avec succès. Livraison en cours selon le service choisi.",
 
       order,
 
@@ -1280,9 +986,11 @@ app.post(
   }
 );
 
-/* =====================================================
-   COMMANDES CLIENT
-===================================================== */
+/*
+========================================
+ CLIENT ORDERS
+========================================
+*/
 
 app.get(
   "/api/orders/:userId",
@@ -1294,13 +1002,12 @@ app.get(
     const userOrders =
       orders.filter(
         order =>
+          order.type === "order" &&
           order.userId ===
-            req.params.userId &&
-          order.type ===
-            "order"
+            req.params.userId
       );
 
-    return res.json({
+    res.json({
 
       success: true,
 
@@ -1312,16 +1019,126 @@ app.get(
   }
 );
 
-/* =====================================================
-   DEMARRAGE
-===================================================== */
+/*
+========================================
+ SMM STATUS
+========================================
+*/
+
+app.get(
+  "/api/order-status/:userId/:orderId",
+  async (req, res) => {
+
+    try {
+
+      const orders =
+        readJSON(ORDERS_FILE);
+
+      const order =
+        orders.find(
+          item =>
+            item.id ===
+              req.params.orderId &&
+            item.userId ===
+              req.params.userId &&
+            item.type === "order"
+        );
+
+      if (!order) {
+
+        return res.status(404).json({
+          success: false,
+          message:
+            "Commande introuvable."
+        });
+      }
+
+      if (!order.providerOrderId) {
+
+        return res.status(400).json({
+          success: false,
+          message:
+            "ID fournisseur manquant."
+        });
+      }
+
+      const data =
+        await smmAfricaRequest({
+
+          action: "status",
+
+          order:
+            order.providerOrderId
+
+        });
+
+      order.providerStatus =
+        data.status || null;
+
+      order.startCount =
+        data.start_count ?? null;
+
+      order.remains =
+        data.remains ?? null;
+
+      order.providerCharge =
+        data.charge ?? null;
+
+      order.lastCheckedAt =
+        new Date().toISOString();
+
+      writeJSON(
+        ORDERS_FILE,
+        orders
+      );
+
+      res.json({
+
+        success: true,
+
+        status:
+          data.status,
+
+        start_count:
+          data.start_count,
+
+        remains:
+          data.remains,
+
+        charge:
+          data.charge
+
+      });
+
+    } catch (error) {
+
+      console.error(
+        "Status SMM:",
+        error.message
+      );
+
+      res.status(500).json({
+        success: false,
+        message:
+          "Impossible de vérifier le statut."
+      });
+    }
+
+  }
+);
+
+/*
+========================================
+ START
+========================================
+*/
 
 app.listen(
   PORT,
   () => {
 
     console.log(
-      `👑 LEADER NOSMY BOOST démarré sur le port ${PORT}`
+      `LEADER NOSMY BOOST lancé sur le port ${PORT}`
     );
 
   }
