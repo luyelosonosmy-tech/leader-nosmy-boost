@@ -190,11 +190,10 @@ app.get(
           "Impossible de vérifier le solde fournisseur."
       });
     }
-  /*
-========================================
- SMM SERVICES
-========================================
-*/
+  /
+/* ========================================
+   SMM SERVICES
+======================================== */
 
 app.get(
   "/api/smm/services",
@@ -221,7 +220,7 @@ app.get(
 
       console.error(
         "❌ ERREUR SMM SERVICES:",
-        error
+        error.message
       );
 
       return res.status(500).json({
@@ -233,6 +232,7 @@ app.get(
       });
 
     }
+
   }
 );
 /*
