@@ -132,9 +132,12 @@ function hashPassword(password) {
 */
 
 app.use(express.json());
-app.use(express.urlencoded({
-  extended: true
-}));
+
+app.use(
+  express.urlencoded({
+    extended: true
+  })
+);
 
 app.use(express.static(__dirname));
 
@@ -184,16 +187,22 @@ app.get(
         error.message
       );
 
-      res.status(500).json({
+      return res.status(500).json({
         success: false,
         message:
           "Impossible de vérifier le solde fournisseur."
       });
+
     }
-  /
-/* ========================================
-   SMM SERVICES
-======================================== */
+
+  }
+);
+
+/*
+========================================
+ SMM SERVICES
+========================================
+*/
 
 app.get(
   "/api/smm/services",
@@ -235,6 +244,7 @@ app.get(
 
   }
 );
+
 /*
 ========================================
  REGISTER
@@ -795,355 +805,4 @@ app.post(
 
     if (
       !userId ||
-      !Number.isInteger(numericServiceId) ||
-      numericServiceId <= 0 ||
-      !service ||
-      !link ||
-      !Number.isInteger(numericQuantity) ||
-      numericQuantity <= 0 ||
-      !Number.isFinite(numericPrice) ||
-      numericPrice <= 0
-    ) {
-
-      return res.status(400).json({
-        success: false,
-        message:
-          "Informations de commande invalides."
-      });
-    }
-
-    const users =
-      readJSON(USERS_FILE);
-
-    const user =
-      users.find(
-        u =>
-          u.id === userId
-      );
-
-    if (!user) {
-
-      return res.status(404).json({
-        success: false,
-        message:
-          "Utilisateur introuvable."
-      });
-    }
-
-    const balance =
-      Number(user.balance) || 0;
-
-    if (balance < numericPrice) {
-
-      return res.status(400).json({
-        success: false,
-        message:
-          "Solde insuffisant."
-      });
-    }
-
-    /*
-      IMPORTANT:
-      On envoie la commande au fournisseur
-      AVANT de débiter le client.
-    */
-
-    const idempotencyKey =
-      crypto.randomUUID();
-
-    let smmData;
-
-    try {
-
-      smmData =
-        await smmAfricaRequest(
-
-          {
-            action: "add",
-
-            service:
-              numericServiceId,
-
-            link:
-              String(link).trim(),
-
-            quantity:
-              numericQuantity,
-
-            idempotency_key:
-              idempotencyKey,
-
-            source_flow:
-              "leader-nosmy-boost",
-
-            user_intent_label:
-              "social-growth",
-
-            recommendation_tier:
-              "standard"
-          },
-
-          idempotencyKey
-        );
-
-    } catch (error) {
-
-      console.error(
-        "Commande SMM:",
-        error.message
-      );
-
-      return res.status(502).json({
-        success: false,
-        message:
-          "La commande n'a pas pu être envoyée au fournisseur. Votre solde n'a pas été débité."
-      });
-    }
-
-    if (!smmData.order) {
-
-      return res.status(502).json({
-        success: false,
-        message:
-          "Le fournisseur n'a pas confirmé la commande."
-      });
-    }
-
-    /*
-      Fournisseur confirmé.
-      Maintenant seulement on débite.
-    */
-
-    user.balance =
-      balance - numericPrice;
-
-    const orders =
-      readJSON(ORDERS_FILE);
-
-    const order = {
-
-      id: crypto.randomUUID(),
-
-      type: "order",
-
-      userId: user.id,
-
-      service:
-        String(service),
-
-      serviceId:
-        numericServiceId,
-
-      link:
-        String(link).trim(),
-
-      quantity:
-        numericQuantity,
-
-      price:
-        numericPrice,
-
-      provider:
-        "SMM Africa",
-
-      providerOrderId:
-        String(smmData.order),
-
-      providerCharged:
-        smmData.charged ?? null,
-
-      status:
-        smmData.queued
-          ? "queued"
-          : "pending",
-
-      createdAt:
-        new Date().toISOString()
-    };
-
-    orders.push(order);
-
-    writeJSON(
-      USERS_FILE,
-      users
-    );
-
-    writeJSON(
-      ORDERS_FILE,
-      orders
-    );
-
-    res.json({
-
-      success: true,
-
-      message:
-        "Commande envoyée avec succès. Livraison en cours selon le service choisi.",
-
-      order,
-
-      balance:
-        user.balance
-
-    });
-
-  }
-);
-
-/*
-========================================
- CLIENT ORDERS
-========================================
-*/
-
-app.get(
-  "/api/orders/:userId",
-  (req, res) => {
-
-    const orders =
-      readJSON(ORDERS_FILE);
-
-    const userOrders =
-      orders.filter(
-        order =>
-          order.type === "order" &&
-          order.userId ===
-            req.params.userId
-      );
-
-    res.json({
-
-      success: true,
-
-      orders:
-        userOrders
-
-    });
-
-  }
-);
-
-/*
-========================================
- SMM STATUS
-========================================
-*/
-
-app.get(
-  "/api/order-status/:userId/:orderId",
-  async (req, res) => {
-
-    try {
-
-      const orders =
-        readJSON(ORDERS_FILE);
-
-      const order =
-        orders.find(
-          item =>
-            item.id ===
-              req.params.orderId &&
-            item.userId ===
-              req.params.userId &&
-            item.type === "order"
-        );
-
-      if (!order) {
-
-        return res.status(404).json({
-          success: false,
-          message:
-            "Commande introuvable."
-        });
-      }
-
-      if (!order.providerOrderId) {
-
-        return res.status(400).json({
-          success: false,
-          message:
-            "ID fournisseur manquant."
-        });
-      }
-
-      const data =
-        await smmAfricaRequest({
-
-          action: "status",
-
-          order:
-            order.providerOrderId
-
-        });
-
-      order.providerStatus =
-        data.status || null;
-
-      order.startCount =
-        data.start_count ?? null;
-
-      order.remains =
-        data.remains ?? null;
-
-      order.providerCharge =
-        data.charge ?? null;
-
-      order.lastCheckedAt =
-        new Date().toISOString();
-
-      writeJSON(
-        ORDERS_FILE,
-        orders
-      );
-
-      res.json({
-
-        success: true,
-
-        status:
-          data.status,
-
-        start_count:
-          data.start_count,
-
-        remains:
-          data.remains,
-
-        charge:
-          data.charge
-
-      });
-
-    } catch (error) {
-
-      console.error(
-        "Status SMM:",
-        error.message
-      );
-
-      res.status(500).json({
-        success: false,
-        message:
-          "Impossible de vérifier le statut."
-      });
-    }
-
-  }
-);
-
-/*
-========================================
- START
-========================================
-*/
-
-app.listen(
-  PORT,
-  () => {
-
-    console.log(
-      `LEADER NOSMY BOOST lancé sur le port ${PORT}`
-    );
-
-  }
-);
+      !Number
