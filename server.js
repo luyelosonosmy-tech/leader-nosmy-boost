@@ -190,10 +190,7 @@ app.get(
           "Impossible de vérifier le solde fournisseur."
       });
     }
-  }
-);
-
-/*
+  /*
 ========================================
  SMM SERVICES
 ========================================
@@ -210,7 +207,12 @@ app.get(
           action: "services"
         });
 
-      res.json({
+      console.log(
+        "✅ SERVICES SMM AFRICA:",
+        JSON.stringify(services, null, 2)
+      );
+
+      return res.json({
         success: true,
         services
       });
@@ -218,19 +220,21 @@ app.get(
     } catch (error) {
 
       console.error(
-        "SMM services:",
-        error.message
+        "❌ ERREUR SMM SERVICES:",
+        error
       );
 
-      res.status(500).json({
+      return res.status(500).json({
         success: false,
         message:
-          "Impossible de récupérer les services."
+          "Impossible de récupérer les services.",
+        error:
+          error.message
       });
+
     }
   }
 );
-
 /*
 ========================================
  REGISTER
