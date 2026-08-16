@@ -26,8 +26,6 @@ const PAYMENT_METHODS = [
 ========================================
 */
 
-async function smmAfricaRequest(payload, idempotencyKey = null) {
-
   async function smmAfricaRequest(payload, idempotencyKey = null) {
 
   if (!SMM_API_KEY) {
