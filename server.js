@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 3000;
 /*
 ==================================================
  LEADER NOSMY BOOST
- SERVER V2
+ SERVER V3
 ==================================================
 */
 
@@ -32,454 +32,27 @@ const PAYMENT_METHODS = [
  SERVICES
 ==================================================
 
- IMPORTANT:
- Remplace UNIQUEMENT les serviceId par les vrais
- IDs retournés par ton fournisseur.
+ IMPORTANT :
 
- Le prix est ton prix de vente client.
- Le prix est calculé pour 1K.
+ On NE met plus :
+
+ serviceId: 0
+
+ Les vrais IDs viennent automatiquement
+ de SMM Africa.
+
+ Structure :
+
+ id = vrai ID fournisseur
+ providerServiceId = vrai ID fournisseur
+==================================================
 */
 
-const SERVICES = [
-
-  // FACEBOOK
-  {
-    serviceId: 0,
-    name: "Facebook Post Likes 👍",
-    category: "Facebook",
-    pricePer1000: 360,
-    min: 10,
-    max: 100000,
-    refill: "NO REFILL",
-    speed: "Instant"
-  },
-
-  {
-    serviceId: 0,
-    name: "Facebook Post Reaction - Angry 😡",
-    category: "Facebook",
-    pricePer1000: 360,
-    min: 10,
-    max: 100000,
-    refill: "NO REFILL",
-    speed: "Instant"
-  },
-
-  {
-    serviceId: 0,
-    name: "Facebook Post Reaction - Care 🤗",
-    category: "Facebook",
-    pricePer1000: 360,
-    min: 10,
-    max: 100000,
-    refill: "NO REFILL",
-    speed: "Instant"
-  },
-
-  {
-    serviceId: 0,
-    name: "Facebook Post Reaction - Haha 😂",
-    category: "Facebook",
-    pricePer1000: 360,
-    min: 10,
-    max: 100000,
-    refill: "NO REFILL",
-    speed: "Instant"
-  },
-
-  {
-    serviceId: 0,
-    name: "Facebook Post Reaction - Likes 👍 Real",
-    category: "Facebook",
-    pricePer1000: 840,
-    min: 10,
-    max: 100000,
-    refill: "NO REFILL",
-    speed: "Instant"
-  },
-
-  {
-    serviceId: 0,
-    name: "Facebook Post Reaction - Love ❤️ Real",
-    category: "Facebook",
-    pricePer1000: 840,
-    min: 10,
-    max: 100000,
-    refill: "NO REFILL",
-    speed: "Instant"
-  },
-
-  {
-    serviceId: 0,
-    name: "Facebook Post Reaction - Love 💖",
-    category: "Facebook",
-    pricePer1000: 360,
-    min: 10,
-    max: 100000,
-    refill: "NO REFILL",
-    speed: "Instant"
-  },
-
-  {
-    serviceId: 0,
-    name: "Facebook Post Reaction - Sad 😭",
-    category: "Facebook",
-    pricePer1000: 360,
-    min: 10,
-    max: 100000,
-    refill: "NO REFILL",
-    speed: "Instant"
-  },
-
-  {
-    serviceId: 0,
-    name: "Facebook Post Reaction - Wow 😮",
-    category: "Facebook",
-    pricePer1000: 360,
-    min: 10,
-    max: 100000,
-    refill: "NO REFILL",
-    speed: "Instant"
-  },
-
-  {
-    serviceId: 0,
-    name: "Facebook Profile/Page Followers - Lifetime",
-    category: "Facebook",
-    pricePer1000: 1656,
-    min: 10,
-    max: 100000,
-    refill: "Lifetime",
-    speed: "Instant"
-  },
-
-  {
-    serviceId: 0,
-    name: "Facebook Profile/Page Followers - Refill 365D",
-    category: "Facebook",
-    pricePer1000: 1584,
-    min: 10,
-    max: 100000,
-    refill: "365D",
-    speed: "Instant"
-  },
-
-  {
-    serviceId: 0,
-    name: "Facebook Profile/Page Followers - Refill 90D",
-    category: "Facebook",
-    pricePer1000: 1536,
-    min: 10,
-    max: 100000,
-    refill: "90D",
-    speed: "Instant"
-  },
-
-  {
-    serviceId: 0,
-    name: "Facebook Shares",
-    category: "Facebook",
-    pricePer1000: 192,
-    min: 10,
-    max: 50000,
-    refill: "30D",
-    speed: "Instant"
-  },
-
-  {
-    serviceId: 0,
-    name: "Facebook Video/Reels Views - Refill 30D",
-    category: "Facebook",
-    pricePer1000: 72,
-    min: 10,
-    max: 1000000,
-    refill: "30D",
-    speed: "Instant"
-  },
-
-  {
-    serviceId: 0,
-    name: "Facebook Video/Reels Views - Refill 30D Premium",
-    category: "Facebook",
-    pricePer1000: 96,
-    min: 10,
-    max: 5000000,
-    refill: "30D",
-    speed: "Instant"
-  },
-
-  // INSTAGRAM
-  {
-    serviceId: 0,
-    name: "Instagram Followers - HQ - NO REFILL",
-    category: "Instagram",
-    pricePer1000: 1464,
-    min: 10,
-    max: 1000000,
-    refill: "NO REFILL",
-    speed: "Instant"
-  },
-
-  {
-    serviceId: 0,
-    name: "Instagram Followers - HQ - Refill 30D",
-    category: "Instagram",
-    pricePer1000: 1728,
-    min: 10,
-    max: 1000000,
-    refill: "30D",
-    speed: "Instant"
-  },
-
-  {
-    serviceId: 0,
-    name: "Instagram Followers - HQ - Refill 365D",
-    category: "Instagram",
-    pricePer1000: 2040,
-    min: 10,
-    max: 1000000,
-    refill: "365D",
-    speed: "Instant"
-  },
-
-  {
-    serviceId: 0,
-    name: "Instagram Followers - HQ - Refill 60D",
-    category: "Instagram",
-    pricePer1000: 1800,
-    min: 10,
-    max: 1000000,
-    refill: "60D",
-    speed: "Instant"
-  },
-
-  {
-    serviceId: 0,
-    name: "Instagram Followers - HQ - Refill 90D",
-    category: "Instagram",
-    pricePer1000: 1848,
-    min: 10,
-    max: 1000000,
-    refill: "90D",
-    speed: "Instant"
-  },
-
-  {
-    serviceId: 0,
-    name: "Instagram Followers - Old & Real - Refill 30D",
-    category: "Instagram",
-    pricePer1000: 1848,
-    min: 10,
-    max: 100000,
-    refill: "30D",
-    speed: "Instant"
-  },
-
-  {
-    serviceId: 0,
-    name: "Instagram Followers - Old & Real - Refill 365D",
-    category: "Instagram",
-    pricePer1000: 2136,
-    min: 10,
-    max: 100000,
-    refill: "365D",
-    speed: "Instant"
-  },
-
-  {
-    serviceId: 0,
-    name: "Instagram Likes - HQ - Lifetime",
-    category: "Instagram",
-    pricePer1000: 432,
-    min: 10,
-    max: 5000000,
-    refill: "Lifetime",
-    speed: "Instant"
-  },
-
-  {
-    serviceId: 0,
-    name: "Instagram Likes - HQ - Refill 365D",
-    category: "Instagram",
-    pricePer1000: 408,
-    min: 10,
-    max: 5000000,
-    refill: "365D",
-    speed: "Instant"
-  },
-
-  // TIKTOK
-  {
-    serviceId: 0,
-    name: "TikTok Followers - Real Users",
-    category: "TikTok",
-    pricePer1000: 6624,
-    min: 10,
-    max: 1000000,
-    refill: "NO REFILL",
-    speed: "Instant"
-  },
-
-  {
-    serviceId: 0,
-    name: "TikTok Likes + Views - Best Speed",
-    category: "TikTok",
-    pricePer1000: 1488,
-    min: 10,
-    max: 100000,
-    refill: "NO REFILL",
-    speed: "Fast"
-  },
-
-  {
-    serviceId: 0,
-    name: "TikTok Save - Refill 30D",
-    category: "TikTok",
-    pricePer1000: 384,
-    min: 10,
-    max: 10000000,
-    refill: "30D",
-    speed: "Instant"
-  },
-
-  {
-    serviceId: 0,
-    name: "TikTok Save - Lifetime",
-    category: "TikTok",
-    pricePer1000: 384,
-    min: 10,
-    max: 10000000,
-    refill: "Lifetime",
-    speed: "Instant"
-  },
-
-  {
-    serviceId: 0,
-    name: "TikTok Share - Lifetime",
-    category: "TikTok",
-    pricePer1000: 288,
-    min: 10,
-    max: 10000000,
-    refill: "Lifetime",
-    speed: "Instant"
-  },
-
-  {
-    serviceId: 0,
-    name: "TikTok Shares - NO REFILL",
-    category: "TikTok",
-    pricePer1000: 432,
-    min: 10,
-    max: 10000000,
-    refill: "NO REFILL",
-    speed: "Instant"
-  },
-
-  {
-    serviceId: 0,
-    name: "TikTok Video Views - Refill 15D",
-    category: "TikTok",
-    pricePer1000: 456,
-    min: 10,
-    max: 100000000,
-    refill: "15D",
-    speed: "Instant"
-  },
-
-  {
-    serviceId: 0,
-    name: "TikTok Video Views - Refill 21D",
-    category: "TikTok",
-    pricePer1000: 480,
-    min: 10,
-    max: 100000000,
-    refill: "21D",
-    speed: "Instant"
-  },
-
-  {
-    serviceId: 0,
-    name: "TikTok Video Views - Refill 7D",
-    category: "TikTok",
-    pricePer1000: 456,
-    min: 10,
-    max: 100000000,
-    refill: "7D",
-    speed: "Instant"
-  },
-
-  {
-    serviceId: 0,
-    name: "TikTok Video Views - Sans baisse",
-    category: "TikTok",
-    pricePer1000: 336,
-    min: 10,
-    max: 100000000,
-    refill: "Sans baisse",
-    speed: "Instant"
-  },
-
-  // YOUTUBE
-  {
-    serviceId: 0,
-    name: "YouTube Views - Native Social Ads",
-    category: "YouTube",
-    pricePer1000: 5328,
-    min: 500,
-    max: 100000000,
-    refill: "Lifetime",
-    speed: "0-3h"
-  },
-
-  {
-    serviceId: 0,
-    name: "YouTube Subscribers - BOT",
-    category: "YouTube",
-    pricePer1000: 648,
-    min: 10,
-    max: 100000,
-    refill: "NO REFILL",
-    speed: "Instant"
-  },
-
-  {
-    serviceId: 0,
-    name: "YouTube Views - Native Social Ads",
-    category: "YouTube",
-    pricePer1000: 5400,
-    min: 1000,
-    max: 100000000,
-    refill: "Lifetime",
-    speed: "0-3h"
-  },
-
-  {
-    serviceId: 0,
-    name: "YouTube Views - Video/Shorts",
-    category: "YouTube",
-    pricePer1000: 2304,
-    min: 10,
-    max: 1000000,
-    refill: "NO REFILL",
-    speed: "Instant"
-  },
-
-  {
-    serviceId: 0,
-    name: "YouTube Views - Video/Shorts - Refill 30D",
-    category: "YouTube",
-    pricePer1000: 2592,
-    min: 10,
-    max: 1000000,
-    refill: "30D",
-    speed: "Instant"
-  }
-
-];
+let SERVICES = [];
 
 /*
 ==================================================
- OUTILS
+ OUTILS JSON
 ==================================================
 */
 
@@ -505,7 +78,8 @@ function readJSON(file, fallback = []) {
       return fallback;
     }
 
-    const data = JSON.parse(content);
+    const data =
+      JSON.parse(content);
 
     return Array.isArray(data)
       ? data
@@ -531,6 +105,12 @@ function writeJSON(file, data) {
   );
 }
 
+/*
+==================================================
+ PASSWORD
+==================================================
+*/
+
 function hashPassword(password) {
 
   return crypto
@@ -539,21 +119,37 @@ function hashPassword(password) {
     .digest("hex");
 }
 
+/*
+==================================================
+ PRICE
+==================================================
+*/
+
 function calculatePrice(service, quantity) {
 
   return Math.ceil(
-    (Number(quantity) / 1000) *
+    (
+      Number(quantity) / 1000
+    ) *
     Number(service.pricePer1000)
   );
+
 }
+
+/*
+==================================================
+ GET SERVICE
+==================================================
+*/
 
 function getService(serviceId) {
 
   return SERVICES.find(
     service =>
-      Number(service.serviceId) ===
+      Number(service.id) ===
       Number(serviceId)
   );
+
 }
 
 /*
@@ -570,12 +166,23 @@ app.use(
   })
 );
 
-app.use(express.static(__dirname));
+app.use(
+  express.static(__dirname)
+);
+
+/*
+==================================================
+ PAGES
+==================================================
+*/
 
 app.get("/", (req, res) => {
 
   res.sendFile(
-    path.join(__dirname, "index.html")
+    path.join(
+      __dirname,
+      "index.html"
+    )
   );
 
 });
@@ -583,7 +190,10 @@ app.get("/", (req, res) => {
 app.get("/admin", (req, res) => {
 
   res.sendFile(
-    path.join(__dirname, "admin.html")
+    path.join(
+      __dirname,
+      "admin.html"
+    )
   );
 
 });
@@ -594,202 +204,40 @@ app.get("/admin", (req, res) => {
 ==================================================
 */
 
-app.get("/api/health", (req, res) => {
-
-  res.json({
-
-    success: true,
-
-    site:
-      "LEADER NOSMY BOOST",
-
-    status:
-      "online",
-
-    services:
-      SERVICES.length,
-
-    minimumDeposit:
-      MIN_DEPOSIT,
-
-    time:
-      new Date().toISOString()
-
-  });
-
-});
-
-/*
-==================================================
- SERVICES LOCAUX
-==================================================
-
- Plus besoin de demander au fournisseur
- la liste des services à chaque visite.
-==================================================
-*/
-
 app.get(
-  "/api/services",
+  "/api/health",
   (req, res) => {
-
-    const services =
-      SERVICES.map(service => ({
-
-        id:
-          service.serviceId,
-
-        name:
-          service.name,
-
-        category:
-          service.category,
-
-        pricePer1000:
-          service.pricePer1000,
-
-        min:
-          service.min,
-
-        max:
-          service.max,
-
-        refill:
-          service.refill,
-
-        speed:
-          service.speed
-
-      }));
 
     res.json({
 
       success: true,
 
-      currency: "CDF",
+      site:
+        "LEADER NOSMY BOOST",
 
-      services
+      status:
+        "online",
+
+      services:
+        SERVICES.length,
+
+      minimumDeposit:
+        MIN_DEPOSIT,
+
+      provider:
+        "SMM Africa",
+
+      time:
+        new Date().toISOString()
 
     });
 
   }
 );
 
-
-      /*
-      ------------------------------------------
-      Vérification réponse fournisseur
-      ------------------------------------------
-      */
-
-      if (!Array.isArray(data)) {
-
-        return res.status(502).json({
-
-          success: false,
-
-          message:
-            "Réponse services invalide du fournisseur.",
-
-          providerResponse:
-            data
-
-        });
-
-      }
-
-      /*
-      ------------------------------------------
-      Retourner les vrais services
-      ------------------------------------------
-      */
-
-      const services =
-        data.map(service => ({
-
-          serviceId:
-            Number(
-              service.service ||
-              service.serviceId ||
-              service.id
-            ),
-
-          name:
-            service.name ||
-            service.service_name ||
-            "Service sans nom",
-
-          category:
-            service.category ||
-            "Autres",
-
-          pricePer1000:
-            Number(
-              service.rate ||
-              service.pricePer1000 ||
-              0
-            ),
-
-          min:
-            Number(
-              service.min || 1
-            ),
-
-          max:
-            Number(
-              service.max || 1000000
-            ),
-
-          refill:
-            service.refill ||
-            "NO REFILL",
-
-          speed:
-            service.speed ||
-            "Normal"
-
-        }));
-
-      res.json({
-
-        success: true,
-
-        currency: "CDF",
-
-        count:
-          services.length,
-
-        services
-
-      });
-
-    } catch (error) {
-
-      console.error(
-        "SMM SERVICES ERROR:",
-        error.message
-      );
-
-      res.status(502).json({
-
-        success: false,
-
-        message:
-          "Impossible de récupérer les services.",
-
-        error:
-          error.message
-
-      });
-
-    }
-
-  }
-);
-
 /*
 ==================================================
- FOURNISSEUR
+ SMM AFRICA REQUEST
 ==================================================
 */
 
@@ -803,6 +251,7 @@ async function smmAfricaRequest(
     throw new Error(
       "SMM_API_KEY manquante dans Render."
     );
+
   }
 
   const headers = {
@@ -880,7 +329,194 @@ async function smmAfricaRequest(
   }
 
   return data;
+
 }
+
+/*
+==================================================
+ CHARGER LES VRAIS SERVICES
+==================================================
+
+ IMPORTANT :
+
+ Aucun serviceId: 0.
+
+ Les IDs sont récupérés directement
+ depuis SMM Africa.
+==================================================
+*/
+
+async function loadServices() {
+
+  try {
+
+    console.log(
+      "🔄 Chargement des services SMM Africa..."
+    );
+
+    const data =
+      await smmAfricaRequest({
+        action: "services"
+      });
+
+    if (!Array.isArray(data)) {
+
+      console.error(
+        "❌ Réponse services invalide."
+      );
+
+      SERVICES = [];
+
+      return false;
+
+    }
+
+    const services =
+      data
+        .map(service => {
+
+          const providerServiceId =
+            Number(
+              service.service ??
+              service.serviceId ??
+              service.id
+            );
+
+          /*
+          ------------------------------------------
+          IGNORER LES SERVICES SANS ID VALIDE
+          ------------------------------------------
+          */
+
+          if (
+            !Number.isInteger(
+              providerServiceId
+            ) ||
+            providerServiceId <= 0
+          ) {
+
+            return null;
+
+          }
+
+          const rate =
+            Number(
+              service.rate ??
+              service.pricePer1000 ??
+              0
+            );
+
+          return {
+
+            /*
+            ID LOCAL = VRAI ID FOURNISSEUR
+            */
+
+            id:
+              providerServiceId,
+
+            providerServiceId:
+              providerServiceId,
+
+            name:
+              service.name ||
+              service.service_name ||
+              "Service sans nom",
+
+            category:
+              service.category ||
+              "Autres",
+
+            pricePer1000:
+              rate,
+
+            min:
+              Number(
+                service.min ?? 1
+              ),
+
+            max:
+              Number(
+                service.max ?? 1000000
+              ),
+
+            refill:
+              service.refill ||
+              "NO REFILL",
+
+            speed:
+              service.speed ||
+              "Normal"
+
+          };
+
+        })
+        .filter(Boolean);
+
+    SERVICES = services;
+
+    console.log(
+      `✅ ${SERVICES.length} services SMM Africa chargés.`
+    );
+
+    return true;
+
+  } catch (error) {
+
+    console.error(
+      "❌ SMM SERVICES ERROR:",
+      error.message
+    );
+
+    SERVICES = [];
+
+    return false;
+
+  }
+
+}
+
+/*
+==================================================
+ API SERVICES
+==================================================
+*/
+
+app.get(
+  "/api/services",
+  async (req, res) => {
+
+    /*
+    Si les services ne sont pas encore chargés,
+    on essaie maintenant.
+    */
+
+    if (
+      SERVICES.length === 0
+    ) {
+
+      await loadServices();
+
+    }
+
+    res.json({
+
+      success:
+        SERVICES.length > 0,
+
+      currency:
+        "CDF",
+
+      count:
+        SERVICES.length,
+
+      services:
+        SERVICES
+
+    });
+
+  }
+);
 
 /*
 ==================================================
@@ -898,7 +534,11 @@ app.post(
       password
     } = req.body;
 
-    if (!name || !email || !password) {
+    if (
+      !name ||
+      !email ||
+      !password
+    ) {
 
       return res.status(400).json({
 
@@ -911,14 +551,16 @@ app.post(
 
     }
 
-    if (String(password).length < 6) {
+    if (
+      String(password).length < 6
+    ) {
 
       return res.status(400).json({
 
         success: false,
 
         message:
-          "Mot de passe: minimum 6 caractères."
+          "Mot de passe : minimum 6 caractères."
 
       });
 
@@ -933,7 +575,9 @@ app.post(
         .toLowerCase();
 
     const users =
-      readJSON(USERS_FILE);
+      readJSON(
+        USERS_FILE
+      );
 
     if (
       users.some(
@@ -1027,7 +671,9 @@ app.post(
     } = req.body;
 
     const users =
-      readJSON(USERS_FILE);
+      readJSON(
+        USERS_FILE
+      );
 
     const cleanEmail =
       String(email || "")
@@ -1037,7 +683,8 @@ app.post(
     const user =
       users.find(
         item =>
-          item.email === cleanEmail &&
+          item.email ===
+            cleanEmail &&
           item.password ===
             hashPassword(password)
       );
@@ -1074,7 +721,9 @@ app.post(
           user.email,
 
         balance:
-          Number(user.balance) || 0
+          Number(
+            user.balance
+          ) || 0
 
       }
 
@@ -1094,7 +743,9 @@ app.get(
   (req, res) => {
 
     const users =
-      readJSON(USERS_FILE);
+      readJSON(
+        USERS_FILE
+      );
 
     const user =
       users.find(
@@ -1132,7 +783,9 @@ app.get(
           user.email,
 
         balance:
-          Number(user.balance) || 0
+          Number(
+            user.balance
+          ) || 0
 
       }
 
@@ -1160,7 +813,10 @@ app.post(
     const numericAmount =
       Number(amount);
 
-    if (!userId || !method) {
+    if (
+      !userId ||
+      !method
+    ) {
 
       return res.status(400).json({
 
@@ -1174,8 +830,11 @@ app.post(
     }
 
     if (
-      !Number.isFinite(numericAmount) ||
-      numericAmount < MIN_DEPOSIT
+      !Number.isFinite(
+        numericAmount
+      ) ||
+      numericAmount <
+        MIN_DEPOSIT
     ) {
 
       return res.status(400).json({
@@ -1183,7 +842,7 @@ app.post(
         success: false,
 
         message:
-          `Dépôt minimum: ${MIN_DEPOSIT.toLocaleString("fr-FR")} FC.`
+          `Dépôt minimum : ${MIN_DEPOSIT.toLocaleString("fr-FR")} FC.`
 
       });
 
@@ -1207,12 +866,15 @@ app.post(
     }
 
     const users =
-      readJSON(USERS_FILE);
+      readJSON(
+        USERS_FILE
+      );
 
     const user =
       users.find(
         item =>
-          item.id === userId
+          item.id ===
+          userId
       );
 
     if (!user) {
@@ -1229,7 +891,9 @@ app.post(
     }
 
     const orders =
-      readJSON(ORDERS_FILE);
+      readJSON(
+        ORDERS_FILE
+      );
 
     const deposit = {
 
@@ -1288,7 +952,9 @@ app.get(
   (req, res) => {
 
     const orders =
-      readJSON(ORDERS_FILE);
+      readJSON(
+        ORDERS_FILE
+      );
 
     const deposits =
       orders.filter(
@@ -1319,10 +985,14 @@ app.post(
   (req, res) => {
 
     const orders =
-      readJSON(ORDERS_FILE);
+      readJSON(
+        ORDERS_FILE
+      );
 
     const users =
-      readJSON(USERS_FILE);
+      readJSON(
+        USERS_FILE
+      );
 
     const deposit =
       orders.find(
@@ -1383,8 +1053,12 @@ app.post(
     }
 
     user.balance =
-      Number(user.balance || 0) +
-      Number(deposit.amount);
+      Number(
+        user.balance || 0
+      ) +
+      Number(
+        deposit.amount
+      );
 
     deposit.status =
       "approved";
@@ -1428,7 +1102,9 @@ app.post(
   (req, res) => {
 
     const orders =
-      readJSON(ORDERS_FILE);
+      readJSON(
+        ORDERS_FILE
+      );
 
     const deposit =
       orders.find(
@@ -1514,6 +1190,12 @@ app.post(
     const numericQuantity =
       Number(quantity);
 
+    /*
+    ------------------------------------------
+    VALIDATION
+    ------------------------------------------
+    */
+
     if (
       !userId ||
       !Number.isInteger(
@@ -1538,6 +1220,26 @@ app.post(
 
     }
 
+    /*
+    ------------------------------------------
+    SI SERVICES NON CHARGÉS
+    ------------------------------------------
+    */
+
+    if (
+      SERVICES.length === 0
+    ) {
+
+      await loadServices();
+
+    }
+
+    /*
+    ------------------------------------------
+    SERVICE
+    ------------------------------------------
+    */
+
     const service =
       getService(
         numericServiceId
@@ -1550,17 +1252,23 @@ app.post(
         success: false,
 
         message:
-          "Service introuvable."
+          "Service introuvable ou ID fournisseur invalide."
 
       });
 
     }
 
+    /*
+    ------------------------------------------
+    QUANTITÉ
+    ------------------------------------------
+    */
+
     if (
       numericQuantity <
-      service.min ||
+        service.min ||
       numericQuantity >
-      service.max
+        service.max
     ) {
 
       return res.status(400).json({
@@ -1568,14 +1276,22 @@ app.post(
         success: false,
 
         message:
-          `Quantité autorisée: ${service.min} à ${service.max}.`
+          `Quantité autorisée : ${service.min} à ${service.max}.`
 
       });
 
     }
 
+    /*
+    ------------------------------------------
+    USER
+    ------------------------------------------
+    */
+
     const users =
-      readJSON(USERS_FILE);
+      readJSON(
+        USERS_FILE
+      );
 
     const user =
       users.find(
@@ -1597,6 +1313,12 @@ app.post(
 
     }
 
+    /*
+    ------------------------------------------
+    PRICE
+    ------------------------------------------
+    */
+
     const price =
       calculatePrice(
         service,
@@ -1604,9 +1326,13 @@ app.post(
       );
 
     const balance =
-      Number(user.balance) || 0;
+      Number(
+        user.balance
+      ) || 0;
 
-    if (balance < price) {
+    if (
+      balance < price
+    ) {
 
       return res.status(400).json({
 
@@ -1621,17 +1347,20 @@ app.post(
 
     /*
     ------------------------------------------
-    IMPORTANT
-    ------------------------------------------
-    Le service doit avoir son vrai ID fournisseur.
+    VRAI ID FOURNISSEUR
     ------------------------------------------
     */
 
+    const providerServiceId =
+      Number(
+        service.providerServiceId
+      );
+
     if (
       !Number.isInteger(
-        Number(service.serviceId)
+        providerServiceId
       ) ||
-      Number(service.serviceId) <= 0
+      providerServiceId <= 0
     ) {
 
       return res.status(503).json({
@@ -1639,11 +1368,17 @@ app.post(
         success: false,
 
         message:
-          "Ce service n'est pas encore relié au fournisseur. Ajoute son vrai serviceId avant de commander."
+          "Ce service n'a pas de vrai ID fournisseur."
 
       });
 
     }
+
+    /*
+    ------------------------------------------
+    ENVOI FOURNISSEUR
+    ------------------------------------------
+    */
 
     const idempotencyKey =
       crypto.randomUUID();
@@ -1661,9 +1396,7 @@ app.post(
               "add",
 
             service:
-              Number(
-                service.serviceId
-              ),
+              providerServiceId,
 
             link:
               String(link).trim(),
@@ -1695,7 +1428,16 @@ app.post(
 
     }
 
-    if (!providerData.order) {
+    /*
+    ------------------------------------------
+    FOURNISSEUR CONFIRMATION
+    ------------------------------------------
+    */
+
+    if (
+      !providerData ||
+      !providerData.order
+    ) {
 
       return res.status(502).json({
 
@@ -1710,15 +1452,23 @@ app.post(
 
     /*
     ------------------------------------------
-    FOURNISSEUR CONFIRMÉ
+    DÉBIT CLIENT
     ------------------------------------------
     */
 
     user.balance =
       balance - price;
 
+    /*
+    ------------------------------------------
+    ENREGISTREMENT
+    ------------------------------------------
+    */
+
     const orders =
-      readJSON(ORDERS_FILE);
+      readJSON(
+        ORDERS_FILE
+      );
 
     const order = {
 
@@ -1732,7 +1482,10 @@ app.post(
         user.id,
 
       serviceId:
-        numericServiceId,
+        providerServiceId,
+
+      providerServiceId:
+        providerServiceId,
 
       service:
         service.name,
@@ -1783,6 +1536,12 @@ app.post(
       orders
     );
 
+    /*
+    ------------------------------------------
+    RÉPONSE
+    ------------------------------------------
+    */
+
     res.json({
 
       success: true,
@@ -1811,7 +1570,9 @@ app.get(
   (req, res) => {
 
     const orders =
-      readJSON(ORDERS_FILE);
+      readJSON(
+        ORDERS_FILE
+      );
 
     const userOrders =
       orders.filter(
@@ -1845,7 +1606,9 @@ app.get(
   async (req, res) => {
 
     const orders =
-      readJSON(ORDERS_FILE);
+      readJSON(
+        ORDERS_FILE
+      );
 
     const order =
       orders.find(
@@ -1871,7 +1634,9 @@ app.get(
 
     }
 
-    if (!order.providerOrderId) {
+    if (
+      !order.providerOrderId
+    ) {
 
       return res.status(400).json({
 
@@ -1898,16 +1663,20 @@ app.get(
         });
 
       order.providerStatus =
-        data.status || null;
+        data.status ||
+        null;
 
       order.startCount =
-        data.start_count ?? null;
+        data.start_count ??
+        null;
 
       order.remains =
-        data.remains ?? null;
+        data.remains ??
+        null;
 
       order.providerCharge =
-        data.charge ?? null;
+        data.charge ??
+        null;
 
       order.lastCheckedAt =
         new Date().toISOString();
@@ -2011,37 +1780,73 @@ app.get(
 
 /*
 ==================================================
+ RECHARGEMENT SERVICES
+==================================================
+
+ Utile si Render démarre avant que
+ l'API soit disponible.
+==================================================
+*/
+
+setInterval(
+  async () => {
+
+    await loadServices();
+
+  },
+  10 * 60 * 1000
+);
+
+/*
+==================================================
  START
 ==================================================
 */
 
-app.listen(
-  PORT,
-  () => {
+async function startServer() {
 
-    console.log(
-      "========================================"
-    );
+  /*
+  Essaie de charger les services
+  avant de démarrer le serveur.
+  */
 
-    console.log(
-      "👑 LEADER NOSMY BOOST"
-    );
+  await loadServices();
 
-    console.log(
-      `🚀 Serveur: ${PORT}`
-    );
+  app.listen(
+    PORT,
+    () => {
 
-    console.log(
-      `💳 Dépôt minimum: ${MIN_DEPOSIT} FC`
-    );
+      console.log(
+        "========================================"
+      );
 
-    console.log(
-      `📦 Services: ${SERVICES.length}`
-    );
+      console.log(
+        "👑 LEADER NOSMY BOOST"
+      );
 
-    console.log(
-      "========================================"
-    );
+      console.log(
+        `🚀 Serveur : ${PORT}`
+      );
 
-  }
-);
+      console.log(
+        `💳 Dépôt minimum : ${MIN_DEPOSIT} FC`
+      );
+
+      console.log(
+        `📦 Services chargés : ${SERVICES.length}`
+      );
+
+      console.log(
+        "🔗 Fournisseur : SMM Africa"
+      );
+
+      console.log(
+        "========================================"
+      );
+
+    }
+  );
+
+}
+
+startServer();
