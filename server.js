@@ -677,21 +677,128 @@ app.get(
 
 /*
 ==================================================
- COMPATIBILITÉ
+ SMM AFRICA - SERVICES FOURNISSEUR
 ==================================================
 */
 
 app.get(
   "/api/smm/services",
-  (req, res) => {
+  async (req, res) => {
 
-    res.json({
+    try {
 
-      success: true,
+      const data =
+        await smmAfricaRequest({
+          action: "services"
+        });
 
-      services: SERVICES
+      /*
+      ------------------------------------------
+      Vérification réponse fournisseur
+      ------------------------------------------
+      */
 
-    });
+      if (!Array.isArray(data)) {
+
+        return res.status(502).json({
+
+          success: false,
+
+          message:
+            "Réponse services invalide du fournisseur.",
+
+          providerResponse:
+            data
+
+        });
+
+      }
+
+      /*
+      ------------------------------------------
+      Retourner les vrais services
+      ------------------------------------------
+      */
+
+      const services =
+        data.map(service => ({
+
+          serviceId:
+            Number(
+              service.service ||
+              service.serviceId ||
+              service.id
+            ),
+
+          name:
+            service.name ||
+            service.service_name ||
+            "Service sans nom",
+
+          category:
+            service.category ||
+            "Autres",
+
+          pricePer1000:
+            Number(
+              service.rate ||
+              service.pricePer1000 ||
+              0
+            ),
+
+          min:
+            Number(
+              service.min || 1
+            ),
+
+          max:
+            Number(
+              service.max || 1000000
+            ),
+
+          refill:
+            service.refill ||
+            "NO REFILL",
+
+          speed:
+            service.speed ||
+            "Normal"
+
+        }));
+
+      res.json({
+
+        success: true,
+
+        currency: "CDF",
+
+        count:
+          services.length,
+
+        services
+
+      });
+
+    } catch (error) {
+
+      console.error(
+        "SMM SERVICES ERROR:",
+        error.message
+      );
+
+      res.status(502).json({
+
+        success: false,
+
+        message:
+          "Impossible de récupérer les services.",
+
+        error:
+          error.message
+
+      });
+
+    }
 
   }
 );
