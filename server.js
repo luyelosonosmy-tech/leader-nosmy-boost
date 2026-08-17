@@ -675,22 +675,6 @@ app.get(
   }
 );
 
-/*
-==================================================
- SMM AFRICA - SERVICES FOURNISSEUR
-==================================================
-*/
-
-app.get(
-  "/api/smm/services",
-  async (req, res) => {
-
-    try {
-
-      const data =
-        await smmAfricaRequest({
-          action: "services"
-        });
 
       /*
       ------------------------------------------
