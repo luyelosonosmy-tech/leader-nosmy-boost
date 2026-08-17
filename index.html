@@ -16,8 +16,8 @@
 :root{
   --blue:#2563eb;
   --blue2:#1d4ed8;
-  --dark:#0f172a;
-  --dark2:#111827;
+  --dark:#07111f;
+  --dark2:#0f172a;
   --gold:#f5b301;
   --bg:#f4f7fb;
   --white:#fff;
@@ -25,6 +25,7 @@
   --border:#e2e8f0;
   --green:#16a34a;
   --red:#dc2626;
+  --orange:#f97316;
 }
 
 body{
@@ -33,7 +34,9 @@ body{
   color:#111827;
 }
 
-button,input,select{
+button,
+input,
+select{
   font:inherit;
 }
 
@@ -45,21 +48,25 @@ button{
   display:none!important;
 }
 
-/* HEADER */
+/* ================================
+   HEADER
+================================ */
 
 header{
-  background:var(--dark);
-  color:white;
   position:sticky;
   top:0;
   z-index:1000;
-  box-shadow:0 4px 18px rgba(0,0,0,.18);
+  background:var(--dark);
+  color:white;
+  box-shadow:0 4px 20px rgba(0,0,0,.2);
 }
 
 .nav{
-  max-width:1150px;
+  width:100%;
+  max-width:1200px;
   margin:auto;
-  padding:14px 16px;
+  min-height:64px;
+  padding:10px 15px;
   display:flex;
   align-items:center;
   justify-content:space-between;
@@ -71,6 +78,7 @@ header{
   text-decoration:none;
   font-size:20px;
   font-weight:900;
+  white-space:nowrap;
 }
 
 .logo span{
@@ -84,11 +92,12 @@ header{
 }
 
 .balance-mini{
-  background:#1e293b;
-  border:1px solid #334155;
-  padding:8px 12px;
+  background:#172337;
+  border:1px solid #30425d;
+  padding:9px 12px;
   border-radius:10px;
   font-size:13px;
+  font-weight:bold;
 }
 
 .menu-btn{
@@ -100,63 +109,21 @@ header{
   font-size:18px;
 }
 
-/* CONTAINER */
+/* ================================
+   GENERAL
+================================ */
 
 .container{
   width:100%;
-  max-width:1150px;
+  max-width:1200px;
   margin:auto;
   padding:18px 14px 50px;
-}
-
-/* HERO */
-
-.hero{
-  background:
-    radial-gradient(circle at top right,
-    rgba(245,179,1,.25),
-    transparent 35%),
-    linear-gradient(135deg,#0f172a,#1d4ed8);
-
-  color:white;
-  border-radius:20px;
-  padding:42px 20px;
-  text-align:center;
-  margin-bottom:20px;
-  box-shadow:0 10px 30px rgba(37,99,235,.18);
-}
-
-.crown{
-  font-size:42px;
-  margin-bottom:5px;
-}
-
-.hero h1{
-  font-size:34px;
-  margin-bottom:10px;
-}
-
-.hero h1 span{
-  color:var(--gold);
-}
-
-.hero p{
-  max-width:720px;
-  margin:auto;
-  line-height:1.6;
-}
-
-/* AUTH */
-
-.auth{
-  max-width:500px;
-  margin:35px auto;
 }
 
 .panel{
   background:white;
   border:1px solid var(--border);
-  border-radius:16px;
+  border-radius:17px;
   padding:22px;
   margin-bottom:20px;
   box-shadow:0 5px 20px rgba(15,23,42,.06);
@@ -168,61 +135,15 @@ header{
   margin-bottom:20px;
 }
 
-.tabs{
-  display:flex;
-  gap:8px;
-  margin-bottom:20px;
-}
-
-.tabs button{
-  flex:1;
-  border:1px solid var(--border);
-  background:#f8fafc;
-  padding:11px;
-  border-radius:9px;
-  font-weight:bold;
-}
-
-.tabs button.active{
-  background:var(--blue);
-  color:white;
-  border-color:var(--blue);
-}
-
-.form-group{
-  margin-bottom:15px;
-}
-
-.form-group label{
-  display:block;
-  font-weight:bold;
-  margin-bottom:7px;
-}
-
-input,
-select{
-  width:100%;
-  padding:13px;
-  border:1px solid #cbd5e1;
-  border-radius:9px;
-  background:white;
-  outline:none;
-}
-
-input:focus,
-select:focus{
-  border-color:var(--blue);
-  box-shadow:0 0 0 3px rgba(37,99,235,.1);
-}
-
 .primary,
 .success,
-.danger{
+.danger,
+.secondary{
   border:0;
   color:white;
   padding:12px 17px;
-  border-radius:9px;
-  font-weight:bold;
+  border-radius:10px;
+  font-weight:800;
 }
 
 .primary{
@@ -241,6 +162,10 @@ select:focus{
   background:var(--red);
 }
 
+.secondary{
+  background:#475569;
+}
+
 .full{
   width:100%;
 }
@@ -248,11 +173,111 @@ select:focus{
 .message{
   text-align:center;
   font-weight:bold;
-  margin-top:12px;
   line-height:1.5;
+  margin-top:12px;
 }
 
-/* MENU */
+.form-group{
+  margin-bottom:15px;
+}
+
+.form-group label{
+  display:block;
+  font-weight:bold;
+  margin-bottom:7px;
+}
+
+input,
+select{
+  width:100%;
+  padding:13px;
+  border:1px solid #cbd5e1;
+  border-radius:10px;
+  background:white;
+  outline:none;
+}
+
+input:focus,
+select:focus{
+  border-color:var(--blue);
+  box-shadow:0 0 0 3px rgba(37,99,235,.1);
+}
+
+/* ================================
+   AUTH
+================================ */
+
+.auth{
+  max-width:520px;
+  margin:35px auto;
+}
+
+.tabs{
+  display:flex;
+  gap:8px;
+  margin-bottom:20px;
+}
+
+.tabs button{
+  flex:1;
+  border:1px solid var(--border);
+  background:#f8fafc;
+  padding:12px;
+  border-radius:10px;
+  font-weight:bold;
+}
+
+.tabs button.active{
+  background:var(--blue);
+  color:white;
+  border-color:var(--blue);
+}
+
+/* ================================
+   HERO
+================================ */
+
+.hero{
+  position:relative;
+  overflow:hidden;
+  background:
+    radial-gradient(
+      circle at top right,
+      rgba(245,179,1,.25),
+      transparent 35%
+    ),
+    linear-gradient(135deg,#07111f,#1d4ed8);
+  color:white;
+  border-radius:20px;
+  padding:42px 20px;
+  text-align:center;
+  margin-bottom:20px;
+  box-shadow:0 10px 30px rgba(37,99,235,.2);
+}
+
+.crown{
+  font-size:43px;
+  margin-bottom:5px;
+}
+
+.hero h1{
+  font-size:35px;
+  margin-bottom:10px;
+}
+
+.hero h1 span{
+  color:var(--gold);
+}
+
+.hero p{
+  max-width:760px;
+  margin:auto;
+  line-height:1.6;
+}
+
+/* ================================
+   MENU
+================================ */
 
 .actions{
   display:grid;
@@ -262,11 +287,18 @@ select:focus{
 }
 
 .action{
+  width:100%;
   background:white;
   border:1px solid var(--border);
   border-radius:14px;
   padding:18px 10px;
   box-shadow:0 4px 15px rgba(15,23,42,.05);
+  transition:.2s;
+}
+
+.action:hover{
+  transform:translateY(-2px);
+  border-color:var(--blue);
 }
 
 .action-icon{
@@ -285,139 +317,190 @@ select:focus{
   color:var(--muted);
 }
 
-/* BALANCE */
+/* ================================
+   BALANCE
+================================ */
 
 .balance-box{
-  background:linear-gradient(135deg,#111827,#1e293b);
+  background:linear-gradient(135deg,#07111f,#1e293b);
   color:white;
-  border-radius:15px;
-  padding:25px;
+  border-radius:16px;
+  padding:27px;
   text-align:center;
   margin-bottom:20px;
 }
 
 .balance{
-  font-size:36px;
+  font-size:38px;
   font-weight:900;
   color:#60a5fa;
-  margin:8px 0 12px;
+  margin:9px 0 12px;
 }
 
-/* FORMULES */
+/* ================================
+   SERVICES
+================================ */
 
-.formules-header{
-  text-align:center;
+.services-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:18px;
+  flex-wrap:wrap;
+}
+
+.services-top h2{
+  color:var(--blue);
+}
+
+.services-info{
+  color:var(--muted);
+  font-size:14px;
+  margin-bottom:18px;
+  line-height:1.5;
+}
+
+.service-filter{
+  display:grid;
+  grid-template-columns:1fr 220px;
+  gap:12px;
   margin-bottom:20px;
 }
 
-.formules-header h2{
-  color:var(--blue);
-  font-size:28px;
-  margin-bottom:8px;
-}
-
-.formules-header p{
-  color:var(--muted);
-}
-
-.formules-grid{
+.services-grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:15px;
 }
 
-.formule{
+.service-card{
   background:white;
-  border:2px solid var(--border);
+  border:1px solid var(--border);
   border-radius:16px;
-  padding:20px;
-  position:relative;
-  box-shadow:0 5px 18px rgba(15,23,42,.06);
+  padding:18px;
+  box-shadow:0 5px 18px rgba(15,23,42,.05);
+  transition:.2s;
 }
 
-.formule:hover{
-  border-color:var(--blue);
+.service-card:hover{
   transform:translateY(-2px);
+  border-color:var(--blue);
 }
 
-.formule .icon{
-  font-size:34px;
-  margin-bottom:10px;
-}
-
-.formule .network{
+.service-network{
+  font-size:13px;
   color:var(--blue);
   font-weight:900;
-  font-size:15px;
+  margin-bottom:8px;
 }
 
-.formule h3{
-  margin:7px 0;
-  font-size:20px;
-}
-
-.formule .price{
-  font-size:24px;
+.service-name{
+  font-size:17px;
   font-weight:900;
+  line-height:1.4;
+  min-height:48px;
+}
+
+.service-price{
   color:var(--green);
+  font-size:22px;
+  font-weight:900;
   margin:12px 0;
 }
 
-.formule .desc{
+.service-details{
   color:var(--muted);
-  font-size:13px;
-  line-height:1.5;
-  min-height:40px;
+  font-size:12px;
+  line-height:1.7;
+  min-height:70px;
 }
 
-.formule button{
-  margin-top:15px;
+.service-card button{
   width:100%;
+  margin-top:12px;
 }
 
-/* ORDER */
+/* ================================
+   ORDER
+================================ */
 
 .order-box{
   background:#f8fafc;
   border:1px solid var(--border);
   border-radius:15px;
   padding:18px;
-  margin-top:18px;
 }
 
-.selected-formule{
+.selected-service{
   background:#eff6ff;
   border:1px solid #bfdbfe;
   border-radius:12px;
-  padding:15px;
+  padding:16px;
   margin-bottom:18px;
 }
 
-.selected-formule strong{
+.selected-service strong{
   color:var(--blue);
-  font-size:18px;
+  font-size:17px;
 }
 
-.price-display{
-  font-size:28px;
+.order-price{
+  font-size:30px;
   font-weight:900;
   color:var(--green);
   margin-top:7px;
 }
 
-/* PAYMENT */
+.order-note{
+  background:#fff7ed;
+  border:1px solid #fed7aa;
+  color:#9a3412;
+  border-radius:10px;
+  padding:12px;
+  font-size:13px;
+  line-height:1.5;
+  margin-bottom:16px;
+}
+
+.price-calculation{
+  background:white;
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:16px;
+  margin:15px 0;
+}
+
+.price-line{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  padding:6px 0;
+}
+
+.price-line.total{
+  border-top:1px solid var(--border);
+  margin-top:7px;
+  padding-top:12px;
+  font-size:18px;
+  font-weight:900;
+}
+
+/* ================================
+   PAYMENT
+================================ */
 
 .payment-list{
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:12px;
-  margin-bottom:18px;
+  margin:18px 0;
 }
 
 .payment-card{
   border:1px solid var(--border);
   border-radius:12px;
-  padding:16px;
+  padding:17px;
   background:#fafafa;
 }
 
@@ -429,11 +512,13 @@ select:focus{
   font-size:18px;
 }
 
-/* ORDERS */
+/* ================================
+   ORDERS
+================================ */
 
 .order-row{
   border:1px solid var(--border);
-  border-radius:12px;
+  border-radius:13px;
   padding:15px;
   margin-top:10px;
   background:#fafafa;
@@ -451,24 +536,44 @@ select:focus{
   font-weight:bold;
 }
 
-/* FOOTER */
+/* ================================
+   LOADING
+================================ */
+
+.loading{
+  text-align:center;
+  padding:30px 10px;
+  color:var(--muted);
+}
+
+.empty{
+  text-align:center;
+  padding:30px 10px;
+  color:var(--muted);
+}
+
+/* ================================
+   FOOTER
+================================ */
 
 footer{
-  background:#0f172a;
+  background:#07111f;
   color:white;
   text-align:center;
-  padding:25px 15px;
+  padding:27px 15px;
 }
 
 footer strong{
   color:var(--gold);
 }
 
-/* MOBILE */
+/* ================================
+   MOBILE
+================================ */
 
-@media(max-width:900px){
+@media(max-width:950px){
 
-  .formules-grid{
+  .services-grid{
     grid-template-columns:repeat(2,1fr);
   }
 
@@ -481,14 +586,19 @@ footer strong{
   }
 }
 
-@media(max-width:520px){
+@media(max-width:600px){
+
+  .nav{
+    min-height:58px;
+  }
 
   .logo{
-    font-size:15px;
+    font-size:14px;
   }
 
   .balance-mini{
-    font-size:11px;
+    font-size:10px;
+    padding:8px;
   }
 
   .hero{
@@ -499,16 +609,28 @@ footer strong{
     font-size:25px;
   }
 
-  .formules-grid{
-    grid-template-columns:1fr;
-  }
-
   .panel{
     padding:16px;
   }
 
+  .services-grid{
+    grid-template-columns:1fr;
+  }
+
+  .service-filter{
+    grid-template-columns:1fr;
+  }
+
   .actions{
     grid-template-columns:repeat(2,1fr);
+  }
+
+  .action{
+    padding:14px 8px;
+  }
+
+  .balance{
+    font-size:31px;
   }
 }
 </style>
@@ -546,7 +668,9 @@ onclick="toggleMenu()">
 
 <div class="container">
 
-<!-- AUTH -->
+<!-- ================================
+     AUTH
+================================ -->
 
 <section id="authSection" class="panel auth">
 
@@ -571,25 +695,34 @@ Créer un compte
 
 </div>
 
+
 <div id="loginForm">
 
 <div class="form-group">
+
 <label>📧 Email</label>
 
 <input
 id="loginEmail"
 type="email"
+autocomplete="email"
 placeholder="Votre email">
+
 </div>
 
+
 <div class="form-group">
+
 <label>🔐 Mot de passe</label>
 
 <input
 id="loginPassword"
 type="password"
+autocomplete="current-password"
 placeholder="Votre mot de passe">
+
 </div>
+
 
 <button
 class="primary full"
@@ -605,31 +738,42 @@ onclick="loginUser()">
 <div id="registerForm" class="hidden">
 
 <div class="form-group">
+
 <label>👤 Nom</label>
 
 <input
 id="registerName"
 type="text"
 placeholder="Votre nom">
+
 </div>
 
+
 <div class="form-group">
+
 <label>📧 Email</label>
 
 <input
 id="registerEmail"
 type="email"
+autocomplete="email"
 placeholder="Votre email">
+
 </div>
 
+
 <div class="form-group">
+
 <label>🔐 Mot de passe</label>
 
 <input
 id="registerPassword"
 type="password"
+autocomplete="new-password"
 placeholder="Minimum 6 caractères">
+
 </div>
+
 
 <button
 class="success full"
@@ -641,26 +785,38 @@ onclick="registerUser()">
 
 </div>
 
-<div id="authMessage" class="message"></div>
+
+<div
+id="authMessage"
+class="message">
+</div>
 
 </section>
 
 
-<!-- CLIENT -->
+<!-- ================================
+     CLIENT
+================================ -->
 
-<section id="clientPanel" class="hidden">
+<section
+id="clientPanel"
+class="hidden">
+
 
 <div class="hero">
 
-<div class="crown">👑</div>
+<div class="crown">
+👑
+</div>
 
 <h1>
 LEADER <span>NOSMY BOOST</span>
 </h1>
 
 <p>
-Boostez vos réseaux sociaux avec des formules
-simples, claires et faciles à commander.
+Boostez vos réseaux sociaux rapidement.
+Choisissez un service, indiquez votre quantité,
+entrez votre lien et commandez directement.
 </p>
 
 </div>
@@ -674,11 +830,17 @@ simples, claires et faciles à commander.
 class="action"
 onclick="showPanel('dashboard')">
 
-<div class="action-icon">🏠</div>
+<div class="action-icon">
+🏠
+</div>
 
-<strong>Dashboard</strong>
+<strong>
+Dashboard
+</strong>
 
-<p>Vue générale</p>
+<p>
+Vue générale
+</p>
 
 </button>
 
@@ -687,11 +849,17 @@ onclick="showPanel('dashboard')">
 class="action"
 onclick="showPanel('deposit')">
 
-<div class="action-icon">💳</div>
+<div class="action-icon">
+💳
+</div>
 
-<strong>Ajouter des fonds</strong>
+<strong>
+Ajouter des fonds
+</strong>
 
-<p>Recharger</p>
+<p>
+Minimum 2 500 FC
+</p>
 
 </button>
 
@@ -700,11 +868,17 @@ onclick="showPanel('deposit')">
 class="action"
 onclick="showPanel('order')">
 
-<div class="action-icon">🚀</div>
+<div class="action-icon">
+🚀
+</div>
 
-<strong>Commander</strong>
+<strong>
+Commander
+</strong>
 
-<p>Voir les formules</p>
+<p>
+Tous les services
+</p>
 
 </button>
 
@@ -713,18 +887,26 @@ onclick="showPanel('order')">
 class="action"
 onclick="showPanel('orders')">
 
-<div class="action-icon">📋</div>
+<div class="action-icon">
+📋
+</div>
 
-<strong>Mes commandes</strong>
+<strong>
+Mes commandes
+</strong>
 
-<p>Historique</p>
+<p>
+Historique
+</p>
 
 </button>
 
 </div>
 
 
-<!-- DASHBOARD -->
+<!-- ================================
+     DASHBOARD
+================================ -->
 
 <div
 id="dashboardPanel"
@@ -734,9 +916,12 @@ class="panel">
 🏠 DASHBOARD
 </h2>
 
+
 <div class="balance-box">
 
-<p>Votre solde disponible</p>
+<p>
+Votre solde disponible
+</p>
 
 <div
 id="balanceDisplay"
@@ -746,344 +931,81 @@ class="balance">
 
 </div>
 
-<p id="welcomeUser"></p>
-
-</div>
-
-<div class="formules-header">
-
-<h2>🚀 NOS FORMULES</h2>
-
-<p>
-Choisissez directement votre formule.
-Les prix sont affichés clairement.
+<p id="welcomeUser">
 </p>
 
 </div>
 
-<div class="formules-grid">
 
-<div class="formule">
+<div class="services-top">
 
-<div class="icon">👍</div>
-
-<div class="network">
-FACEBOOK
-</div>
-
-<h3>1K J'AIME</h3>
-
-<div class="price">
-1 500 FC
-</div>
-
-<div class="desc">
-1 000 mentions J'aime
-</div>
+<h2>
+🚀 SERVICES DISPONIBLES
+</h2>
 
 <button
 class="primary"
-onclick="selectFormule('Facebook - 1K Likes',1500)">
-CHOISIR
+onclick="loadServices()">
+
+🔄 Actualiser
+
 </button>
 
 </div>
 
 
-<div class="formule">
+<p class="services-info">
 
-<div class="icon">👍</div>
+Les services sont chargés directement depuis le fournisseur.
+Le prix affiché est calculé en CDF pour 1 000 unités.
 
-<div class="network">
-FACEBOOK
-</div>
-
-<h3>2K J'AIME</h3>
-
-<div class="price">
-3 000 FC
-</div>
-
-<div class="desc">
-2 000 mentions J'aime
-</div>
-
-<button
-class="primary"
-onclick="selectFormule('Facebook - 2K Likes',3000)">
-CHOISIR
-</button>
-
-</div>
+</p>
 
 
-<div class="formule">
+<div class="service-filter">
 
-<div class="icon">👍</div>
+<input
+id="serviceSearch"
+type="search"
+placeholder="🔎 Rechercher un service..."
+oninput="renderServices()">
 
-<div class="network">
-FACEBOOK
-</div>
 
-<h3>3K J'AIME</h3>
+<select
+id="networkFilter"
+onchange="renderServices()">
 
-<div class="price">
-4 500 FC
-</div>
+<option value="">
+🌐 Tous les réseaux
+</option>
 
-<div class="desc">
-3 000 mentions J'aime
-</div>
+<option value="facebook">
+Facebook
+</option>
 
-<button
-class="primary"
-onclick="selectFormule('Facebook - 3K Likes',4500)">
-CHOISIR
-</button>
+<option value="instagram">
+Instagram
+</option>
+
+<option value="tiktok">
+TikTok
+</option>
+
+<option value="youtube">
+YouTube
+</option>
+
+</select>
 
 </div>
 
 
-<div class="formule">
-
-<div class="icon">👥</div>
-
-<div class="network">
-FACEBOOK
-</div>
-
-<h3>1K ABONNÉS</h3>
-
-<div class="price">
-8 000 FC
-</div>
-
-<div class="desc">
-1 000 abonnés
-</div>
-
-<button
-class="primary"
-onclick="selectFormule('Facebook - 1K Followers',8000)">
-CHOISIR
-</button>
-
-</div>
-
-
-<div class="formule">
-
-<div class="icon">🎵</div>
-
-<div class="network">
-TIKTOK
-</div>
-
-<h3>1K ABONNÉS</h3>
-
-<div class="price">
-8 000 FC
-</div>
-
-<div class="desc">
-1 000 abonnés TikTok
-</div>
-
-<button
-class="primary"
-onclick="selectFormule('TikTok - 1K Abonnés',8000)">
-CHOISIR
-</button>
-
-</div>
-
-
-<div class="formule">
-
-<div class="icon">❤️</div>
-
-<div class="network">
-TIKTOK
-</div>
-
-<h3>1K VUES + 1K J'AIME</h3>
-
-<div class="price">
-6 000 FC
-</div>
-
-<div class="desc">
-1 000 vues + 1 000 J'aime
-</div>
-
-<button
-class="primary"
-onclick="selectFormule('TikTok - 1K Vues + 1K Likes',6000)">
-CHOISIR
-</button>
-
-</div>
-
-
-<div class="formule">
-
-<div class="icon">📸</div>
-
-<div class="network">
-INSTAGRAM
-</div>
-
-<h3>1K ABONNÉS</h3>
-
-<div class="price">
-8 000 FC
-</div>
-
-<div class="desc">
-1 000 followers Instagram
-</div>
-
-<button
-class="primary"
-onclick="selectFormule('Instagram - 1K Followers',8000)">
-CHOISIR
-</button>
-
-</div>
-
-
-<div class="formule">
-
-<div class="icon">▶️</div>
-
-<div class="network">
-YOUTUBE
-</div>
-
-<h3>1K ABONNÉS</h3>
-
-<div class="price">
-9 000 FC
-</div>
-
-<div class="desc">
-1 000 abonnés YouTube
-</div>
-
-<button
-class="primary"
-onclick="selectFormule('YouTube - 1K Abonnés',9000)">
-CHOISIR
-</button>
-
-</div>
-
-
-<div class="formule">
-
-<div class="icon">👁️</div>
-
-<div class="network">
-YOUTUBE
-</div>
-
-<h3>1K VUES</h3>
-
-<div class="price">
-5 000 FC
-</div>
-
-<div class="desc">
-1 000 vues YouTube
-</div>
-
-<button
-class="primary"
-onclick="selectFormule('YouTube - 1K Vues',5000)">
-CHOISIR
-</button>
-
-</div>
-
-
-<div class="formule">
-
-<div class="icon">🎂</div>
-
-<div class="network">
-DESIGN
-</div>
-
-<h3>AFFICHE ANNIVERSAIRE</h3>
-
-<div class="price">
-5 000 FC
-</div>
-
-<div class="desc">
-Création d'une affiche anniversaire
-</div>
-
-<button
-class="primary"
-onclick="selectFormule('Affiche Anniversaire',5000)">
-CHOISIR
-</button>
-
-</div>
-
-
-<div class="formule">
-
-<div class="icon">🎤</div>
-
-<div class="network">
-DESIGN
-</div>
-
-<h3>AFFICHE MUSIQUE</h3>
-
-<div class="price">
-5 000 FC
-</div>
-
-<div class="desc">
-Création d'une affiche musicale
-</div>
-
-<button
-class="primary"
-onclick="selectFormule('Affiche Musique',5000)">
-CHOISIR
-</button>
-
-</div>
-
-
-<div class="formule">
-
-<div class="icon">🎨</div>
-
-<div class="network">
-DESIGN
-</div>
-
-<h3>LOGO</h3>
-
-<div class="price">
-3 000 FC
-</div>
-
-<div class="desc">
-Création de logo personnalisé
-</div>
-
-<button
-class="primary"
-onclick="selectFormule('Logo',3000)">
-CHOISIR
-</button>
-
+<div
+id="servicesGrid"
+class="services-grid">
+
+<div class="loading">
+⏳ Chargement des services...
 </div>
 
 </div>
@@ -1091,7 +1013,9 @@ CHOISIR
 </div>
 
 
-<!-- DEPOSIT -->
+<!-- ================================
+     DEPOSIT
+================================ -->
 
 <div
 id="depositPanel"
@@ -1101,28 +1025,38 @@ class="panel hidden">
 💳 AJOUTER DES FONDS
 </h2>
 
+
 <p style="text-align:center;color:#64748b;margin-bottom:18px">
 
 Dépôt minimum :
-<strong>1 000 FC</strong>
+<strong>
+2 500 FC
+</strong>
 
 </p>
 
+
 <div class="form-group">
 
-<label>💰 Montant</label>
+<label>
+💰 Montant
+</label>
 
 <input
 id="depositAmount"
 type="number"
-min="1000"
-placeholder="Minimum 1000 FC">
+min="2500"
+step="1"
+placeholder="Minimum 2500 FC">
 
 </div>
 
+
 <div class="form-group">
 
-<label>💳 Moyen de paiement</label>
+<label>
+💳 Moyen de paiement
+</label>
 
 <select id="depositMethod">
 
@@ -1131,48 +1065,64 @@ Choisir
 </option>
 
 <option value="Orange Money">
-Orange Money
+🟠 Orange Money
 </option>
 
 <option value="Airtel Money">
-Airtel Money
+🔴 Airtel Money
 </option>
 
 <option value="Vodacom M-Pesa">
-Vodacom M-Pesa
+🔵 Vodacom M-Pesa
 </option>
 
 </select>
 
 </div>
 
+
 <div class="payment-list">
 
 <div class="payment-card">
 
-<h3>🟠 Orange Money</h3>
+<h3>
+🟠 Orange Money
+</h3>
 
-<strong>0843066709</strong>
+<strong>
+0843066709
+</strong>
 
 </div>
+
 
 <div class="payment-card">
 
-<h3>🔴 Airtel Money</h3>
+<h3>
+🔴 Airtel Money
+</h3>
 
-<strong>0980630622</strong>
+<strong>
+0980630622
+</strong>
 
 </div>
+
 
 <div class="payment-card">
 
-<h3>🔵 M-Pesa</h3>
+<h3>
+🔵 M-Pesa
+</h3>
 
-<strong>0822886387</strong>
+<strong>
+0822886387
+</strong>
 
 </div>
 
 </div>
+
 
 <button
 class="success full"
@@ -1182,6 +1132,7 @@ onclick="requestDeposit()">
 
 </button>
 
+
 <div
 id="depositMessage"
 class="message">
@@ -1190,7 +1141,9 @@ class="message">
 </div>
 
 
-<!-- ORDER -->
+<!-- ================================
+     ORDER
+================================ -->
 
 <div
 id="orderPanel"
@@ -1200,98 +1153,21 @@ class="panel hidden">
 🚀 PASSER UNE COMMANDE
 </h2>
 
-<div class="formules-header">
 
-<h2>Choisissez votre formule</h2>
-
-<p>
-Pas de confusion : le prix affiché correspond à la formule choisie.
-</p>
-
-</div>
+<div class="order-box">
 
 <div class="form-group">
 
-<label>📦 Formule</label>
+<label>
+📦 Service
+</label>
 
 <select
 id="orderService"
-onchange="updatePrice()">
+onchange="selectServiceFromList()">
 
 <option value="">
--- Choisir une formule --
-</option>
-
-<option
-value="Facebook - 1K Likes"
-data-price="1500">
-Facebook — 1K J'AIME — 1 500 FC
-</option>
-
-<option
-value="Facebook - 2K Likes"
-data-price="3000">
-Facebook — 2K J'AIME — 3 000 FC
-</option>
-
-<option
-value="Facebook - 3K Likes"
-data-price="4500">
-Facebook — 3K J'AIME — 4 500 FC
-</option>
-
-<option
-value="Facebook - 1K Followers"
-data-price="8000">
-Facebook — 1K ABONNÉS — 8 000 FC
-</option>
-
-<option
-value="TikTok - 1K Abonnés"
-data-price="8000">
-TikTok — 1K ABONNÉS — 8 000 FC
-</option>
-
-<option
-value="TikTok - 1K Vues + 1K Likes"
-data-price="6000">
-TikTok — 1K VUES + 1K J'AIME — 6 000 FC
-</option>
-
-<option
-value="Instagram - 1K Followers"
-data-price="8000">
-Instagram — 1K ABONNÉS — 8 000 FC
-</option>
-
-<option
-value="YouTube - 1K Abonnés"
-data-price="9000">
-YouTube — 1K ABONNÉS — 9 000 FC
-</option>
-
-<option
-value="YouTube - 1K Vues"
-data-price="5000">
-YouTube — 1K VUES — 5 000 FC
-</option>
-
-<option
-value="Affiche Anniversaire"
-data-price="5000">
-Affiche Anniversaire — 5 000 FC
-</option>
-
-<option
-value="Affiche Musique"
-data-price="5000">
-Affiche Musique — 5 000 FC
-</option>
-
-<option
-value="Logo"
-data-price="3000">
-Logo — 3 000 FC
+⏳ Chargement des services...
 </option>
 
 </select>
@@ -1300,18 +1176,31 @@ Logo — 3 000 FC
 
 
 <div
-id="selectedFormule"
-class="selected-formule">
+id="selectedService"
+class="selected-service">
 
 <strong>
-Aucune formule sélectionnée
+Aucun service sélectionné
 </strong>
 
 <div
 id="orderPrice"
-class="price-display">
+class="order-price">
+
 0 FC
+
 </div>
+
+</div>
+
+
+<div class="order-note">
+
+💡 <strong>Commande libre :</strong>
+tu peux entrer la quantité que tu veux,
+par exemple 10, 50, 100, 500, 1 000...
+La quantité doit respecter le minimum et le maximum
+du service choisi.
 
 </div>
 
@@ -1332,29 +1221,84 @@ placeholder="https://facebook.com/...">
 
 <div class="form-group">
 
-<label>🔢 Quantité</label>
+<label>
+🔢 Quantité
+</label>
 
 <input
 id="orderQuantity"
 type="number"
 min="1"
-placeholder="Exemple : 1000">
+step="1"
+placeholder="Exemple : 10"
+oninput="calculateOrderPrice()">
 
 </div>
 
 
-<div class="card">
+<div
+id="serviceLimits"
+style="font-size:13px;color:#64748b;margin-top:-8px;margin-bottom:15px;">
+</div>
 
-<p>
+
+<div class="price-calculation">
+
+<div class="price-line">
+
+<span>
+Prix pour 1K
+</span>
+
+<strong id="unitPrice">
+0 FC
+</strong>
+
+</div>
+
+
+<div class="price-line">
+
+<span>
+Quantité
+</span>
+
+<strong id="calculatedQuantity">
+0
+</strong>
+
+</div>
+
+
+<div class="price-line total">
+
+<span>
+TOTAL
+</span>
+
+<strong
+id="calculatedPrice">
+
+0 FC
+
+</strong>
+
+</div>
+
+</div>
+
+
+<div
+style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:13px;margin-bottom:15px;">
+
 💰 Solde disponible :
+
 <strong id="orderBalance">
 0 FC
 </strong>
-</p>
 
 </div>
 
-<br>
 
 <button
 class="primary full"
@@ -1364,6 +1308,7 @@ onclick="createOrder()">
 
 </button>
 
+
 <div
 id="orderMessage"
 class="message">
@@ -1371,8 +1316,12 @@ class="message">
 
 </div>
 
+</div>
 
-<!-- ORDERS -->
+
+<!-- ================================
+     ORDERS
+================================ -->
 
 <div
 id="ordersPanel"
@@ -1382,6 +1331,7 @@ class="panel hidden">
 📋 MES COMMANDES
 </h2>
 
+
 <button
 class="primary"
 onclick="loadOrders()">
@@ -1390,16 +1340,17 @@ onclick="loadOrders()">
 
 </button>
 
+
 <div
 id="ordersList"
 style="margin-top:15px">
 
-Chargement...
-
 </div>
 
 </div>
 
+
+<!-- LOGOUT -->
 
 <div class="panel">
 
@@ -1433,11 +1384,23 @@ onclick="logoutUser()">
 
 <script>
 
+/* =========================================
+   VARIABLES
+========================================= */
+
 let currentUser =
 JSON.parse(
 localStorage.getItem("leaderNosmyUser") || "null"
 );
 
+let services = [];
+
+let selectedService = null;
+
+
+/* =========================================
+   OUTILS
+========================================= */
 
 function formatMoney(value){
 
@@ -1447,7 +1410,135 @@ return Number(value || 0)
 }
 
 
-/* AUTH */
+function escapeHTML(value){
+
+return String(value ?? "")
+.replaceAll("&","&amp;")
+.replaceAll("<","&lt;")
+.replaceAll(">","&gt;")
+.replaceAll('"',"&quot;")
+.replaceAll("'","&#039;");
+
+}
+
+
+function serviceName(service){
+
+return String(
+service.name ||
+service.service ||
+service.title ||
+"Service"
+);
+
+}
+
+
+function serviceId(service){
+
+return Number(
+service.service ??
+service.id ??
+service.service_id ??
+0
+);
+
+}
+
+
+function serviceRate(service){
+
+return Number(
+service.rate ??
+service.price ??
+service.cost ??
+0
+);
+
+}
+
+
+function serviceMin(service){
+
+return Number(
+service.min ??
+service.minimum ??
+1
+);
+
+}
+
+
+function serviceMax(service){
+
+return Number(
+service.max ??
+service.maximum ??
+1000000
+);
+
+}
+
+
+function serviceNetwork(service){
+
+const text =
+serviceName(service).toLowerCase();
+
+if(text.includes("facebook"))
+return "facebook";
+
+if(text.includes("instagram"))
+return "instagram";
+
+if(text.includes("tiktok"))
+return "tiktok";
+
+if(text.includes("youtube"))
+return "youtube";
+
+return "other";
+
+}
+
+
+function serviceNetworkLabel(service){
+
+const network =
+serviceNetwork(service);
+
+if(network === "facebook")
+return "FACEBOOK";
+
+if(network === "instagram")
+return "INSTAGRAM";
+
+if(network === "tiktok")
+return "TIKTOK";
+
+if(network === "youtube")
+return "YOUTUBE";
+
+return "SERVICE";
+
+}
+
+
+function serviceRateCDF(service){
+
+/*
+  SMM Africa doit retourner le tarif
+  du fournisseur pour 1000 unités.
+*/
+
+return serviceRate(service);
+
+}
+
+
+/* =========================================
+   AUTH TABS
+========================================= */
 
 function showLogin(){
 
@@ -1483,7 +1574,9 @@ document.getElementById("registerTab")
 }
 
 
-/* REGISTER */
+/* =========================================
+   REGISTER
+========================================= */
 
 async function registerUser(){
 
@@ -1500,20 +1593,26 @@ document.getElementById("registerPassword")
 .value;
 
 
+const message =
+document.getElementById("authMessage");
+
+
 if(!name || !email || !password){
 
-document.getElementById("authMessage")
-.textContent =
+message.textContent =
 "❌ Remplissez tous les champs.";
 
 return;
 
 }
 
+
 try{
 
 const response =
-await fetch("/api/register",{
+await fetch(
+"/api/register",
+{
 
 method:"POST",
 
@@ -1527,14 +1626,17 @@ email,
 password
 })
 
-});
+}
+);
+
 
 const data =
 await response.json();
 
-document.getElementById("authMessage")
-.textContent =
+
+message.textContent =
 data.message || "Erreur";
+
 
 if(data.success){
 
@@ -1553,8 +1655,9 @@ showLogin();
 
 }catch(error){
 
-document.getElementById("authMessage")
-.textContent =
+console.error(error);
+
+message.textContent =
 "❌ Impossible de contacter le serveur.";
 
 }
@@ -1562,7 +1665,9 @@ document.getElementById("authMessage")
 }
 
 
-/* LOGIN */
+/* =========================================
+   LOGIN
+========================================= */
 
 async function loginUser(){
 
@@ -1574,20 +1679,26 @@ const password =
 document.getElementById("loginPassword")
 .value;
 
+const message =
+document.getElementById("authMessage");
+
+
 if(!email || !password){
 
-document.getElementById("authMessage")
-.textContent =
+message.textContent =
 "❌ Email et mot de passe obligatoires.";
 
 return;
 
 }
 
+
 try{
 
 const response =
-await fetch("/api/login",{
+await fetch(
+"/api/login",
+{
 
 method:"POST",
 
@@ -1600,18 +1711,22 @@ email,
 password
 })
 
-});
+}
+);
+
 
 const data =
 await response.json();
 
-document.getElementById("authMessage")
-.textContent =
+
+message.textContent =
 data.message || "Erreur";
+
 
 if(data.success){
 
-currentUser=data.user;
+currentUser =
+data.user;
 
 localStorage.setItem(
 "leaderNosmyUser",
@@ -1624,8 +1739,9 @@ showClient();
 
 }catch(error){
 
-document.getElementById("authMessage")
-.textContent =
+console.error(error);
+
+message.textContent =
 "❌ Impossible de contacter le serveur.";
 
 }
@@ -1633,7 +1749,9 @@ document.getElementById("authMessage")
 }
 
 
-/* CLIENT */
+/* =========================================
+   CLIENT
+========================================= */
 
 function showClient(){
 
@@ -1648,162 +1766,248 @@ document.getElementById("miniBalance")
 
 document.getElementById("welcomeUser")
 .textContent =
-"Bienvenue " + currentUser.name + " 👑";
+"Bienvenue " +
+currentUser.name +
+" 👑";
 
 refreshUser();
+
+loadServices();
 
 }
 
 
-/* REFRESH */
+/* =========================================
+   USER
+========================================= */
 
 async function refreshUser(){
 
-if(!currentUser)return;
+if(!currentUser)
+return;
+
 
 try{
 
 const response =
 await fetch(
-"/api/user/" + currentUser.id
+"/api/user/" +
+encodeURIComponent(currentUser.id)
 );
+
 
 const data =
 await response.json();
 
+
 if(data.success){
 
-currentUser=data.user;
+currentUser =
+data.user;
 
 localStorage.setItem(
 "leaderNosmyUser",
 JSON.stringify(currentUser)
 );
 
+
+const balance =
+formatMoney(currentUser.balance);
+
+
 document.getElementById("balanceDisplay")
 .textContent =
-formatMoney(currentUser.balance);
+balance;
+
 
 document.getElementById("orderBalance")
 .textContent =
-formatMoney(currentUser.balance);
+balance;
+
 
 document.getElementById("miniBalance")
 .textContent =
 "Solde : " +
-formatMoney(currentUser.balance);
+balance;
 
 }
 
 }catch(error){
 
-console.log(error);
+console.error(error);
 
 }
 
 }
 
 
-/* PANELS */
+/* =========================================
+   PANELS
+========================================= */
 
 function showPanel(name){
 
-const panels=[
+const panels = [
 "dashboardPanel",
 "depositPanel",
 "orderPanel",
 "ordersPanel"
 ];
 
-panels.forEach(id=>{
+
+panels.forEach(
+id => {
 
 document.getElementById(id)
 .classList.add("hidden");
 
-});
+}
+);
 
-document.getElementById(name+"Panel")
-.classList.remove("hidden");
+
+const target =
+document.getElementById(
+name + "Panel"
+);
+
+
+if(target){
+
+target.classList.remove("hidden");
+
+}
+
 
 window.scrollTo({
 top:0,
 behavior:"smooth"
 });
 
-if(name==="orders"){
+
+if(name === "orders"){
+
 loadOrders();
+
+}
+
+
+if(name === "order"){
+
+loadServices();
+
 }
 
 }
 
 
-/* FORMULE */
+/* =========================================
+   SERVICES
+========================================= */
 
-function selectFormule(service,price){
+async function loadServices(){
 
-showPanel("order");
+const grid =
+document.getElementById("servicesGrid");
 
-const select =
-document.getElementById("orderService");
 
-select.value=service;
+grid.innerHTML =
+`<div class="loading">
+⏳ Chargement des services...
+</div>`;
 
-updatePrice();
 
-window.scrollTo({
-top:0,
-behavior:"smooth"
-});
+try{
+
+const response =
+await fetch(
+"/api/smm/services"
+);
+
+
+const data =
+await response.json();
+
+
+if(!response.ok ||
+!data.success){
+
+throw new Error(
+data.message ||
+"Impossible de récupérer les services."
+);
 
 }
 
 
-/* PRICE */
+/*
+  Selon la réponse fournisseur,
+  services peut être directement un tableau
+  ou être contenu dans data.services.
+*/
 
-function updatePrice(){
+let list =
+data.services;
 
-const select =
-document.getElementById("orderService");
 
-const option =
-select.options[select.selectedIndex];
+if(!Array.isArray(list)){
 
-const service=select.value;
+if(Array.isArray(list?.services)){
 
-const price =
-Number(option?.dataset.price || 0);
-
-document.getElementById("orderPrice")
-.textContent =
-formatMoney(price);
-
-const box =
-document.getElementById("selectedFormule");
-
-if(service){
-
-box.innerHTML=`
-
-<strong>
-${escapeHTML(service)}
-</strong>
-
-<div class="price-display">
-${formatMoney(price)}
-</div>
-
-`;
+list =
+list.services;
 
 }else{
 
-box.innerHTML=`
+list = [];
 
-<strong>
-Aucune formule sélectionnée
-</strong>
+}
 
-<div class="price-display">
-0 FC
+}
+
+
+services =
+list
+.filter(service =>
+serviceId(service) > 0
+)
+.map(service => ({
+...service
+}));
+
+
+renderServices();
+
+populateOrderServices();
+
+
+}catch(error){
+
+console.error(
+"Services:",
+error
+);
+
+
+grid.innerHTML = `
+
+<div class="empty">
+
+❌ Impossible de charger les services.
+
+<br><br>
+
+<small>
+${escapeHTML(error.message)}
+</small>
+
+<br><br>
+
+<button
+class="primary"
+onclick="loadServices()">
+🔄 Réessayer
+</button>
+
 </div>
 
 `;
@@ -1813,7 +2017,396 @@ Aucune formule sélectionnée
 }
 
 
-/* DEPOSIT */
+/* =========================================
+   RENDER SERVICES
+========================================= */
+
+function renderServices(){
+
+const grid =
+document.getElementById("servicesGrid");
+
+
+const search =
+String(
+document.getElementById("serviceSearch")?.value || ""
+)
+.toLowerCase()
+.trim();
+
+
+const network =
+String(
+document.getElementById("networkFilter")?.value || ""
+)
+.toLowerCase();
+
+
+const filtered =
+services.filter(service => {
+
+const name =
+serviceName(service)
+.toLowerCase();
+
+const serviceNet =
+serviceNetwork(service);
+
+
+const matchSearch =
+!search ||
+name.includes(search);
+
+
+const matchNetwork =
+!network ||
+serviceNet === network;
+
+
+return matchSearch &&
+matchNetwork;
+
+});
+
+
+if(!filtered.length){
+
+grid.innerHTML = `
+
+<div
+class="empty"
+style="grid-column:1/-1;">
+
+😕 Aucun service trouvé.
+
+</div>
+
+`;
+
+return;
+
+}
+
+
+grid.innerHTML =
+filtered.map(service => {
+
+const id =
+serviceId(service);
+
+const name =
+serviceName(service);
+
+const rate =
+serviceRateCDF(service);
+
+const min =
+serviceMin(service);
+
+const max =
+serviceMax(service);
+
+const network =
+serviceNetworkLabel(service);
+
+
+return `
+
+<div class="service-card">
+
+<div class="service-network">
+${escapeHTML(network)}
+</div>
+
+<div class="service-name">
+${escapeHTML(name)}
+</div>
+
+<div class="service-price">
+${formatMoney(rate)} / 1K
+</div>
+
+<div class="service-details">
+
+🔢 Min :
+${escapeHTML(min.toLocaleString("fr-FR"))}
+
+<br>
+
+🔢 Max :
+${escapeHTML(max.toLocaleString("fr-FR"))}
+
+<br>
+
+⚡ Livraison selon le service
+
+</div>
+
+<button
+class="primary"
+onclick="chooseService(${id})">
+
+🚀 CHOISIR
+
+</button>
+
+</div>
+
+`;
+
+}).join("");
+
+}
+
+
+/* =========================================
+   ORDER SERVICE SELECT
+========================================= */
+
+function populateOrderServices(){
+
+const select =
+document.getElementById("orderService");
+
+
+select.innerHTML = `
+
+<option value="">
+-- Choisir un service --
+</option>
+
+`;
+
+
+services.forEach(service => {
+
+const id =
+serviceId(service);
+
+const name =
+serviceName(service);
+
+const rate =
+serviceRateCDF(service);
+
+const option =
+document.createElement("option");
+
+
+option.value =
+String(id);
+
+option.textContent =
+`${name} — ${formatMoney(rate)}/1K`;
+
+
+select.appendChild(option);
+
+});
+
+}
+
+
+function chooseService(id){
+
+showPanel("order");
+
+
+const service =
+services.find(
+item =>
+serviceId(item) === Number(id)
+);
+
+
+if(!service){
+
+return;
+
+}
+
+
+selectedService =
+service;
+
+
+const select =
+document.getElementById("orderService");
+
+
+select.value =
+String(id);
+
+
+selectServiceFromList();
+
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+}
+
+
+/* =========================================
+   SELECT SERVICE
+========================================= */
+
+function selectServiceFromList(){
+
+const id =
+Number(
+document.getElementById("orderService")
+.value
+);
+
+
+selectedService =
+services.find(
+service =>
+serviceId(service) === id
+) || null;
+
+
+const box =
+document.getElementById("selectedService");
+
+
+if(!selectedService){
+
+box.innerHTML = `
+
+<strong>
+Aucun service sélectionné
+</strong>
+
+<div
+id="orderPrice"
+class="order-price">
+
+0 FC
+
+</div>
+
+`;
+
+document.getElementById("serviceLimits")
+.textContent="";
+
+document.getElementById("unitPrice")
+.textContent="0 FC";
+
+calculateOrderPrice();
+
+return;
+
+}
+
+
+const name =
+serviceName(selectedService);
+
+const rate =
+serviceRateCDF(selectedService);
+
+const min =
+serviceMin(selectedService);
+
+const max =
+serviceMax(selectedService);
+
+
+box.innerHTML = `
+
+<strong>
+${escapeHTML(name)}
+</strong>
+
+<div
+id="orderPrice"
+class="order-price">
+
+${formatMoney(rate)} / 1K
+
+</div>
+
+`;
+
+
+document.getElementById("unitPrice")
+.textContent =
+formatMoney(rate);
+
+
+document.getElementById("serviceLimits")
+.textContent =
+`Minimum : ${min.toLocaleString("fr-FR")} — Maximum : ${max.toLocaleString("fr-FR")}`;
+
+
+document.getElementById("orderQuantity")
+.value =
+min;
+
+
+calculateOrderPrice();
+
+}
+
+
+/* =========================================
+   CALCUL PRIX
+========================================= */
+
+function calculateOrderPrice(){
+
+if(!selectedService){
+
+document.getElementById("calculatedQuantity")
+.textContent =
+"0";
+
+document.getElementById("calculatedPrice")
+.textContent =
+"0 FC";
+
+return;
+
+}
+
+
+const quantity =
+Number(
+document.getElementById("orderQuantity")
+.value
+);
+
+
+const rate =
+serviceRateCDF(selectedService);
+
+
+const total =
+(rate * quantity) / 1000;
+
+
+document.getElementById("calculatedQuantity")
+.textContent =
+Number.isFinite(quantity)
+? quantity.toLocaleString("fr-FR")
+: "0";
+
+
+document.getElementById("calculatedPrice")
+.textContent =
+formatMoney(total);
+
+}
+
+
+/* =========================================
+   DEPOSIT
+========================================= */
 
 async function requestDeposit(){
 
@@ -1827,40 +2420,52 @@ return;
 
 }
 
+
 const amount =
 Number(
 document.getElementById("depositAmount")
 .value
 );
 
+
 const method =
 document.getElementById("depositMethod")
 .value;
 
-if(!Number.isFinite(amount) || amount < 1000){
 
-document.getElementById("depositMessage")
-.textContent =
-"❌ Le dépôt minimum est de 1000 FC.";
+const message =
+document.getElementById("depositMessage");
+
+
+if(
+!Number.isFinite(amount) ||
+amount < 2500
+){
+
+message.textContent =
+"❌ Le dépôt minimum est de 2 500 FC.";
 
 return;
 
 }
 
+
 if(!method){
 
-document.getElementById("depositMessage")
-.textContent =
+message.textContent =
 "❌ Choisissez un moyen de paiement.";
 
 return;
 
 }
 
+
 try{
 
 const response =
-await fetch("/api/deposit",{
+await fetch(
+"/api/deposit",
+{
 
 method:"POST",
 
@@ -1870,20 +2475,27 @@ headers:{
 
 body:JSON.stringify({
 
-userId:currentUser.id,
+userId:
+currentUser.id,
+
 amount,
+
 method
 
 })
 
-});
+}
+);
+
 
 const data =
 await response.json();
 
-document.getElementById("depositMessage")
-.textContent =
-data.message || "Erreur";
+
+message.textContent =
+data.message ||
+"Erreur";
+
 
 if(data.success){
 
@@ -1897,8 +2509,9 @@ document.getElementById("depositMethod")
 
 }catch(error){
 
-document.getElementById("depositMessage")
-.textContent =
+console.error(error);
+
+message.textContent =
 "❌ Erreur de connexion au serveur.";
 
 }
@@ -1906,31 +2519,40 @@ document.getElementById("depositMessage")
 }
 
 
-/* ORDER */
+/* =========================================
+   CREATE ORDER
+========================================= */
 
 async function createOrder(){
 
+const message =
+document.getElementById("orderMessage");
+
+
 if(!currentUser){
 
-document.getElementById("orderMessage")
-.textContent =
+message.textContent =
 "❌ Connectez-vous d'abord.";
 
 return;
 
 }
 
-const select =
-document.getElementById("orderService");
 
-const option =
-select.options[select.selectedIndex];
+if(!selectedService){
 
-const service=select.value;
+message.textContent =
+"❌ Choisissez un service.";
+
+return;
+
+}
+
 
 const link =
 document.getElementById("orderLink")
 .value.trim();
+
 
 const quantity =
 Number(
@@ -1938,51 +2560,117 @@ document.getElementById("orderQuantity")
 .value
 );
 
+
+const id =
+serviceId(selectedService);
+
+
+const rate =
+serviceRateCDF(selectedService);
+
+
+const min =
+serviceMin(selectedService);
+
+
+const max =
+serviceMax(selectedService);
+
+
 const price =
-Number(
-option?.dataset.price || 0
-);
+(rate * quantity) / 1000;
+
+
+if(!id){
+
+message.textContent =
+"❌ Service invalide.";
+
+return;
+
+}
+
+
+if(!link){
+
+message.textContent =
+"❌ Entrez le lien de la publication ou du compte.";
+
+return;
+
+}
+
 
 if(
-!service ||
-!link ||
-!quantity ||
-quantity<=0 ||
-!price
+!Number.isInteger(quantity) ||
+quantity <= 0
 ){
 
-document.getElementById("orderMessage")
-.textContent =
-"❌ Choisissez une formule et remplissez correctement les champs.";
+message.textContent =
+"❌ Quantité invalide.";
 
 return;
 
 }
 
-if(quantity !== getPackageQuantity(service)){
 
-document.getElementById("orderMessage")
-.textContent =
-"❌ La quantité doit correspondre à la formule choisie.";
+if(quantity < min){
+
+message.textContent =
+`❌ Quantité minimum : ${min.toLocaleString("fr-FR")}.`;
 
 return;
 
 }
 
-if(Number(currentUser.balance || 0) < price){
 
-document.getElementById("orderMessage")
-.textContent =
+if(quantity > max){
+
+message.textContent =
+`❌ Quantité maximum : ${max.toLocaleString("fr-FR")}.`;
+
+return;
+
+}
+
+
+if(
+!Number.isFinite(price) ||
+price <= 0
+){
+
+message.textContent =
+"❌ Prix invalide.";
+
+return;
+
+}
+
+
+if(
+Number(currentUser.balance || 0)
+<
+price
+){
+
+message.textContent =
 "❌ Solde insuffisant. Rechargez votre compte.";
 
 return;
 
 }
 
+
+message.textContent =
+"⏳ Envoi de la commande au fournisseur...";
+
+
 try{
 
 const response =
-await fetch("/api/order",{
+await fetch(
+"/api/order",
+{
 
 method:"POST",
 
@@ -1992,46 +2680,79 @@ headers:{
 
 body:JSON.stringify({
 
-userId:currentUser.id,
-service,
+userId:
+currentUser.id,
+
+serviceId:
+id,
+
+service:
+serviceName(selectedService),
+
 link,
+
 quantity,
+
 price
 
 })
 
-});
+}
+);
+
 
 const data =
 await response.json();
 
-document.getElementById("orderMessage")
-.textContent =
-data.message || "Erreur";
+
+message.textContent =
+data.message ||
+"Erreur";
+
 
 if(data.success){
 
-currentUser.balance=data.balance;
+currentUser.balance =
+data.balance;
+
 
 localStorage.setItem(
 "leaderNosmyUser",
 JSON.stringify(currentUser)
 );
 
+
 await refreshUser();
+
 
 document.getElementById("orderLink")
 .value="";
 
+
 document.getElementById("orderQuantity")
-.value="";
+.value =
+serviceMin(selectedService);
+
+
+calculateOrderPrice();
+
+
+setTimeout(
+() => {
+
+showPanel("orders");
+
+},
+800
+);
 
 }
 
 }catch(error){
 
-document.getElementById("orderMessage")
-.textContent =
+console.error(error);
+
+message.textContent =
 "❌ Erreur de connexion au serveur.";
 
 }
@@ -2039,78 +2760,103 @@ document.getElementById("orderMessage")
 }
 
 
-/* QUANTITIES */
-
-function getPackageQuantity(service){
-
-if(
-service.includes("1K")
-)return 1000;
-
-if(
-service.includes("2K")
-)return 2000;
-
-if(
-service.includes("3K")
-)return 3000;
-
-return 1;
-
-}
-
-
-/* ORDERS */
+/* =========================================
+   ORDERS
+========================================= */
 
 async function loadOrders(){
 
-if(!currentUser)return;
+if(!currentUser)
+return;
+
 
 const container =
 document.getElementById("ordersList");
 
+
 container.innerHTML =
-"⏳ Chargement...";
+`<div class="loading">
+⏳ Chargement...
+</div>`;
+
 
 try{
 
 const response =
 await fetch(
-"/api/orders/" + currentUser.id
+"/api/orders/" +
+encodeURIComponent(currentUser.id)
 );
+
 
 const data =
 await response.json();
 
+
 if(
 !data.success ||
-!data.orders ||
+!Array.isArray(data.orders) ||
 !data.orders.length
 ){
 
-container.innerHTML =
-"<p>Aucune commande pour le moment.</p>";
+container.innerHTML = `
+
+<div class="empty">
+
+📋 Aucune commande pour le moment.
+
+</div>
+
+`;
 
 return;
 
 }
 
+
 container.innerHTML =
-data.orders.map(order=>`
+data.orders
+.slice()
+.reverse()
+.map(order => {
+
+return `
 
 <div class="order-row">
 
 <strong>
-🚀 ${escapeHTML(order.service || "Commande")}
+🚀 ${escapeHTML(
+order.service ||
+"Commande"
+)}
 </strong>
 
 <p style="margin-top:8px">
-🔗 ${escapeHTML(order.link || "—")}
+🆔 Commande :
+${escapeHTML(
+String(
+order.providerOrderId ||
+order.id ||
+"—"
+)
+)}
+</p>
+
+<p>
+🔗 ${escapeHTML(
+order.link ||
+"—"
+)}
 </p>
 
 <p>
 🔢 Quantité :
-${escapeHTML(String(order.quantity || "—"))}
+${escapeHTML(
+String(
+order.quantity ||
+"—"
+)
+)}
 </p>
 
 <p>
@@ -2119,23 +2865,42 @@ ${formatMoney(order.price)}
 </p>
 
 <span class="status">
-${escapeHTML(order.status || "pending")}
+${escapeHTML(
+order.providerStatus ||
+order.status ||
+"pending"
+)}
 </span>
 
-<p style="font-size:12px;color:#64748b;margin-top:8px">
+<p style="
+font-size:12px;
+color:#64748b;
+margin-top:8px;
+">
 
-${order.createdAt
-? new Date(order.createdAt)
-.toLocaleString("fr-FR")
-: ""}
+${
+order.createdAt
+?
+new Date(
+order.createdAt
+).toLocaleString("fr-FR")
+:
+""
+}
 
 </p>
 
 </div>
 
-`).join("");
+`;
+
+})
+.join("");
+
 
 }catch(error){
+
+console.error(error);
 
 container.innerHTML =
 "❌ Impossible de charger les commandes.";
@@ -2145,21 +2910,9 @@ container.innerHTML =
 }
 
 
-/* SECURITY */
-
-function escapeHTML(value){
-
-return String(value)
-.replaceAll("&","&amp;")
-.replaceAll("<","&lt;")
-.replaceAll(">","&gt;")
-.replaceAll('"',"&quot;")
-.replaceAll("'","&#039;");
-
-}
-
-
-/* MENU */
+/* =========================================
+   MENU
+========================================= */
 
 function toggleMenu(){
 
@@ -2173,12 +2926,15 @@ return;
 
 }
 
+
 showPanel("dashboard");
 
 }
 
 
-/* LOGOUT */
+/* =========================================
+   LOGOUT
+========================================= */
 
 function logoutUser(){
 
@@ -2186,18 +2942,25 @@ localStorage.removeItem(
 "leaderNosmyUser"
 );
 
-currentUser=null;
+currentUser =
+null;
 
 location.reload();
 
 }
 
 
-/* START */
+/* =========================================
+   START
+========================================= */
 
 if(currentUser){
 
 showClient();
+
+}else{
+
+showLogin();
 
 }
 
