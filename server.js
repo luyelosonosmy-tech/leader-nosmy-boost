@@ -29,26 +29,90 @@ const PAYMENT_METHODS = [
 
 /*
 ==================================================
- SERVICES
+ SERVICES DU FOURNISSEUR
 ==================================================
 
- IMPORTANT :
+ On ne met PAS serviceId: 0 ici.
 
- On NE met plus :
+ Les vrais IDs sont récupérés automatiquement
+ depuis SMM Africa avec /api/smm/services.
 
- serviceId: 0
-
- Les vrais IDs viennent automatiquement
- de SMM Africa.
-
- Structure :
-
- id = vrai ID fournisseur
- providerServiceId = vrai ID fournisseur
+ Ensuite ils sont utilisés pour les commandes.
 ==================================================
 */
 
-let SERVICES = [];
+let PROVIDER_SERVICES = [];
+
+/*
+==================================================
+ SERVICES CLIENT
+==================================================
+
+ Ces services sont construits à partir des services
+ réels du fournisseur.
+
+ Les prix ci-dessous sont des prix de vente client
+ en CDF pour 1000 unités.
+
+ Le mapping est fait selon le nom/catégorie.
+==================================================
+*/
+
+const CLIENT_PRICE_RULES = {
+
+  Facebook: {
+    like: 360,
+    reaction: 360,
+    follower: 1656,
+    share: 192,
+    view: 72
+  },
+
+  Instagram: {
+    follower: 1464,
+    like: 432,
+    view: 720,
+    comment: 1000
+  },
+
+  TikTok: {
+    follower: 6624,
+    like: 1488,
+    view: 456,
+    save: 384,
+    share: 288
+  },
+
+  YouTube: {
+    subscriber: 648,
+    view: 2304,
+    like: 500,
+    comment: 1000
+  },
+
+  Telegram: {
+    follower: 1500,
+    member: 1500,
+    view: 500
+  },
+
+  WhatsApp: {
+    follower: 1500,
+    member: 1500,
+    view: 500
+  },
+
+  Spotify: {
+    follower: 2000,
+    play: 500,
+    stream: 500
+  },
+
+  Autres: {
+    default: 1000
+  }
+
+};
 
 /*
 ==================================================
@@ -121,35 +185,395 @@ function hashPassword(password) {
 
 /*
 ==================================================
- PRICE
+ PRIX
 ==================================================
 */
 
 function calculatePrice(service, quantity) {
 
   return Math.ceil(
-    (
-      Number(quantity) / 1000
-    ) *
+    (Number(quantity) / 1000) *
     Number(service.pricePer1000)
   );
-
 }
 
 /*
 ==================================================
- GET SERVICE
+ TROUVER SERVICE
 ==================================================
 */
 
 function getService(serviceId) {
 
-  return SERVICES.find(
+  return PROVIDER_SERVICES.find(
     service =>
       Number(service.id) ===
       Number(serviceId)
   );
+}
 
+/*
+==================================================
+ CATÉGORIE
+==================================================
+*/
+
+function detectCategory(service) {
+
+  const text =
+    `${service.name || ""} ${service.category || ""}`
+      .toLowerCase();
+
+  if (text.includes("facebook")) {
+    return "Facebook";
+  }
+
+  if (text.includes("instagram")) {
+    return "Instagram";
+  }
+
+  if (text.includes("tiktok") || text.includes("tik tok")) {
+    return "TikTok";
+  }
+
+  if (text.includes("youtube")) {
+    return "YouTube";
+  }
+
+  if (text.includes("telegram")) {
+    return "Telegram";
+  }
+
+  if (text.includes("whatsapp")) {
+    return "WhatsApp";
+  }
+
+  if (text.includes("spotify")) {
+    return "Spotify";
+  }
+
+  return "Autres";
+}
+
+/*
+==================================================
+ TYPE SERVICE
+==================================================
+*/
+
+function detectServiceType(service) {
+
+  const text =
+    `${service.name || ""} ${service.category || ""}`
+      .toLowerCase();
+
+  if (
+    text.includes("follower") ||
+    text.includes("followers") ||
+    text.includes("abonné") ||
+    text.includes("subscriber") ||
+    text.includes("subscribers") ||
+    text.includes("membre") ||
+    text.includes("member")
+  ) {
+    return "follower";
+  }
+
+  if (
+    text.includes("like") ||
+    text.includes("likes")
+  ) {
+    return "like";
+  }
+
+  if (
+    text.includes("view") ||
+    text.includes("views") ||
+    text.includes("vue") ||
+    text.includes("vues")
+  ) {
+    return "view";
+  }
+
+  if (
+    text.includes("save") ||
+    text.includes("saves")
+  ) {
+    return "save";
+  }
+
+  if (
+    text.includes("share") ||
+    text.includes("shares") ||
+    text.includes("partage")
+  ) {
+    return "share";
+  }
+
+  if (
+    text.includes("play") ||
+    text.includes("plays") ||
+    text.includes("stream") ||
+    text.includes("streams")
+  ) {
+    return "play";
+  }
+
+  if (
+    text.includes("comment") ||
+    text.includes("comments")
+  ) {
+    return "comment";
+  }
+
+  if (
+    text.includes("reaction") ||
+    text.includes("angry") ||
+    text.includes("love") ||
+    text.includes("haha") ||
+    text.includes("wow") ||
+    text.includes("sad") ||
+    text.includes("care")
+  ) {
+    return "reaction";
+  }
+
+  return "default";
+}
+
+/*
+==================================================
+ PRIX CLIENT AUTOMATIQUE
+==================================================
+*/
+
+function getClientPrice(category, type) {
+
+  const rules =
+    CLIENT_PRICE_RULES[category] ||
+    CLIENT_PRICE_RULES.Autres;
+
+  return Number(
+    rules[type] ||
+    rules.default ||
+    1000
+  );
+}
+
+/*
+==================================================
+ FOURNISSEUR
+==================================================
+*/
+
+async function smmAfricaRequest(
+  payload,
+  idempotencyKey = null
+) {
+
+  if (!SMM_API_KEY) {
+
+    throw new Error(
+      "SMM_API_KEY manquante dans Render."
+    );
+  }
+
+  const headers = {
+
+    "Content-Type":
+      "application/json",
+
+    "Accept":
+      "application/json",
+
+    "Authorization":
+      `Bearer ${SMM_API_KEY}`
+
+  };
+
+  if (idempotencyKey) {
+
+    headers["Idempotency-Key"] =
+      idempotencyKey;
+  }
+
+  const response =
+    await fetch(
+      SMM_API_URL,
+      {
+        method: "POST",
+        headers,
+        body:
+          JSON.stringify(payload)
+      }
+    );
+
+  const text =
+    await response.text();
+
+  let data;
+
+  try {
+
+    data =
+      JSON.parse(text);
+
+  } catch {
+
+    throw new Error(
+      `Réponse fournisseur non JSON. HTTP ${response.status}`
+    );
+  }
+
+  console.log(
+    "SMM:",
+    payload.action,
+    response.status,
+    JSON.stringify(data)
+  );
+
+  if (!response.ok) {
+
+    throw new Error(
+      data.error ||
+      data.message ||
+      `Erreur fournisseur HTTP ${response.status}`
+    );
+  }
+
+  if (data.error) {
+
+    throw new Error(
+      String(data.error)
+    );
+  }
+
+  return data;
+}
+
+/*
+==================================================
+ CHARGER SERVICES FOURNISSEUR
+==================================================
+*/
+
+async function loadProviderServices() {
+
+  try {
+
+    const data =
+      await smmAfricaRequest({
+        action: "services"
+      });
+
+    if (!Array.isArray(data)) {
+
+      console.error(
+        "SMM SERVICES: réponse invalide"
+      );
+
+      PROVIDER_SERVICES = [];
+
+      return false;
+    }
+
+    PROVIDER_SERVICES =
+      data
+        .map(service => {
+
+          const id =
+            Number(
+              service.service ||
+              service.serviceId ||
+              service.id
+            );
+
+          if (
+            !Number.isInteger(id) ||
+            id <= 0
+          ) {
+            return null;
+          }
+
+          const name =
+            service.name ||
+            service.service_name ||
+            "Service sans nom";
+
+          const category =
+            detectCategory(service);
+
+          const type =
+            detectServiceType(service);
+
+          const pricePer1000 =
+            getClientPrice(
+              category,
+              type
+            );
+
+          return {
+
+            id,
+
+            providerId:
+              id,
+
+            name,
+
+            category,
+
+            type,
+
+            providerRate:
+              Number(
+                service.rate || 0
+              ),
+
+            pricePer1000,
+
+            min:
+              Number(
+                service.min || 1
+              ),
+
+            max:
+              Number(
+                service.max || 1000000
+              ),
+
+            refill:
+              service.refill ||
+              "NO REFILL",
+
+            speed:
+              service.speed ||
+              "Normal",
+
+            provider: "SMM Africa"
+
+          };
+
+        })
+        .filter(Boolean);
+
+    console.log(
+      `📦 ${PROVIDER_SERVICES.length} services fournisseur chargés`
+    );
+
+    return true;
+
+  } catch (error) {
+
+    console.error(
+      "SMM SERVICES ERROR:",
+      error.message
+    );
+
+    PROVIDER_SERVICES = [];
+
+    return false;
+  }
 }
 
 /*
@@ -172,7 +596,7 @@ app.use(
 
 /*
 ==================================================
- PAGES
+ ACCUEIL
 ==================================================
 */
 
@@ -186,6 +610,12 @@ app.get("/", (req, res) => {
   );
 
 });
+
+/*
+==================================================
+ ADMIN
+==================================================
+*/
 
 app.get("/admin", (req, res) => {
 
@@ -219,13 +649,10 @@ app.get(
         "online",
 
       services:
-        SERVICES.length,
+        PROVIDER_SERVICES.length,
 
       minimumDeposit:
         MIN_DEPOSIT,
-
-      provider:
-        "SMM Africa",
 
       time:
         new Date().toISOString()
@@ -237,248 +664,7 @@ app.get(
 
 /*
 ==================================================
- SMM AFRICA REQUEST
-==================================================
-*/
-
-async function smmAfricaRequest(
-  payload,
-  idempotencyKey = null
-) {
-
-  if (!SMM_API_KEY) {
-
-    throw new Error(
-      "SMM_API_KEY manquante dans Render."
-    );
-
-  }
-
-  const headers = {
-
-    "Content-Type":
-      "application/json",
-
-    "Accept":
-      "application/json",
-
-    "Authorization":
-      `Bearer ${SMM_API_KEY}`
-
-  };
-
-  if (idempotencyKey) {
-
-    headers["Idempotency-Key"] =
-      idempotencyKey;
-
-  }
-
-  const response =
-    await fetch(
-      SMM_API_URL,
-      {
-        method: "POST",
-        headers,
-        body:
-          JSON.stringify(payload)
-      }
-    );
-
-  const text =
-    await response.text();
-
-  let data;
-
-  try {
-
-    data =
-      JSON.parse(text);
-
-  } catch {
-
-    throw new Error(
-      `Réponse fournisseur non JSON. HTTP ${response.status}`
-    );
-
-  }
-
-  console.log(
-    "SMM:",
-    payload.action,
-    response.status,
-    JSON.stringify(data)
-  );
-
-  if (!response.ok) {
-
-    throw new Error(
-      data.error ||
-      data.message ||
-      `Erreur fournisseur HTTP ${response.status}`
-    );
-
-  }
-
-  if (data.error) {
-
-    throw new Error(
-      String(data.error)
-    );
-
-  }
-
-  return data;
-
-}
-
-/*
-==================================================
- CHARGER LES VRAIS SERVICES
-==================================================
-
- IMPORTANT :
-
- Aucun serviceId: 0.
-
- Les IDs sont récupérés directement
- depuis SMM Africa.
-==================================================
-*/
-
-async function loadServices() {
-
-  try {
-
-    console.log(
-      "🔄 Chargement des services SMM Africa..."
-    );
-
-    const data =
-      await smmAfricaRequest({
-        action: "services"
-      });
-
-    if (!Array.isArray(data)) {
-
-      console.error(
-        "❌ Réponse services invalide."
-      );
-
-      SERVICES = [];
-
-      return false;
-
-    }
-
-    const services =
-      data
-        .map(service => {
-
-          const providerServiceId =
-            Number(
-              service.service ??
-              service.serviceId ??
-              service.id
-            );
-
-          /*
-          ------------------------------------------
-          IGNORER LES SERVICES SANS ID VALIDE
-          ------------------------------------------
-          */
-
-          if (
-            !Number.isInteger(
-              providerServiceId
-            ) ||
-            providerServiceId <= 0
-          ) {
-
-            return null;
-
-          }
-
-          const rate =
-            Number(
-              service.rate ??
-              service.pricePer1000 ??
-              0
-            );
-
-          return {
-
-            /*
-            ID LOCAL = VRAI ID FOURNISSEUR
-            */
-
-            id:
-              providerServiceId,
-
-            providerServiceId:
-              providerServiceId,
-
-            name:
-              service.name ||
-              service.service_name ||
-              "Service sans nom",
-
-            category:
-              service.category ||
-              "Autres",
-
-            pricePer1000:
-              rate,
-
-            min:
-              Number(
-                service.min ?? 1
-              ),
-
-            max:
-              Number(
-                service.max ?? 1000000
-              ),
-
-            refill:
-              service.refill ||
-              "NO REFILL",
-
-            speed:
-              service.speed ||
-              "Normal"
-
-          };
-
-        })
-        .filter(Boolean);
-
-    SERVICES = services;
-
-    console.log(
-      `✅ ${SERVICES.length} services SMM Africa chargés.`
-    );
-
-    return true;
-
-  } catch (error) {
-
-    console.error(
-      "❌ SMM SERVICES ERROR:",
-      error.message
-    );
-
-    SERVICES = [];
-
-    return false;
-
-  }
-
-}
-
-/*
-==================================================
- API SERVICES
+ SERVICES CLIENT
 ==================================================
 */
 
@@ -486,34 +672,193 @@ app.get(
   "/api/services",
   async (req, res) => {
 
-    /*
-    Si les services ne sont pas encore chargés,
-    on essaie maintenant.
-    */
-
     if (
-      SERVICES.length === 0
+      PROVIDER_SERVICES.length === 0
     ) {
 
-      await loadServices();
-
+      await loadProviderServices();
     }
+
+    const services =
+      PROVIDER_SERVICES.map(
+        service => ({
+
+          id:
+            service.id,
+
+          serviceId:
+            service.id,
+
+          name:
+            service.name,
+
+          category:
+            service.category,
+
+          type:
+            service.type,
+
+          pricePer1000:
+            service.pricePer1000,
+
+          min:
+            service.min,
+
+          max:
+            service.max,
+
+          refill:
+            service.refill,
+
+          speed:
+            service.speed
+
+        })
+      );
 
     res.json({
 
-      success:
-        SERVICES.length > 0,
+      success: true,
 
-      currency:
-        "CDF",
+      currency: "CDF",
 
       count:
-        SERVICES.length,
+        services.length,
 
-      services:
-        SERVICES
+      services
 
     });
+
+  }
+);
+
+/*
+==================================================
+ SERVICES FOURNISSEUR
+==================================================
+*/
+
+app.get(
+  "/api/smm/services",
+  async (req, res) => {
+
+    try {
+
+      const data =
+        await smmAfricaRequest({
+          action: "services"
+        });
+
+      if (!Array.isArray(data)) {
+
+        return res.status(502).json({
+
+          success: false,
+
+          message:
+            "Réponse services invalide du fournisseur.",
+
+          providerResponse:
+            data
+
+        });
+
+      }
+
+      const services =
+        data
+          .map(service => {
+
+            const serviceId =
+              Number(
+                service.service ||
+                service.serviceId ||
+                service.id
+              );
+
+            if (
+              !Number.isInteger(
+                serviceId
+              ) ||
+              serviceId <= 0
+            ) {
+              return null;
+            }
+
+            return {
+
+              serviceId,
+
+              name:
+                service.name ||
+                service.service_name ||
+                "Service sans nom",
+
+              category:
+                service.category ||
+                detectCategory(service),
+
+              rate:
+                Number(
+                  service.rate || 0
+                ),
+
+              min:
+                Number(
+                  service.min || 1
+                ),
+
+              max:
+                Number(
+                  service.max || 1000000
+                ),
+
+              refill:
+                service.refill ||
+                "NO REFILL",
+
+              speed:
+                service.speed ||
+                "Normal"
+
+            };
+
+          })
+          .filter(Boolean);
+
+      res.json({
+
+        success: true,
+
+        currency: "CDF",
+
+        count:
+          services.length,
+
+        services
+
+      });
+
+    } catch (error) {
+
+      console.error(
+        "SMM SERVICES ERROR:",
+        error.message
+      );
+
+      res.status(502).json({
+
+        success: false,
+
+        message:
+          "Impossible de récupérer les services.",
+
+        error:
+          error.message
+
+      });
+
+    }
 
   }
 );
@@ -560,7 +905,7 @@ app.post(
         success: false,
 
         message:
-          "Mot de passe : minimum 6 caractères."
+          "Mot de passe: minimum 6 caractères."
 
       });
 
@@ -575,9 +920,7 @@ app.post(
         .toLowerCase();
 
     const users =
-      readJSON(
-        USERS_FILE
-      );
+      readJSON(USERS_FILE);
 
     if (
       users.some(
@@ -671,9 +1014,7 @@ app.post(
     } = req.body;
 
     const users =
-      readJSON(
-        USERS_FILE
-      );
+      readJSON(USERS_FILE);
 
     const cleanEmail =
       String(email || "")
@@ -721,9 +1062,7 @@ app.post(
           user.email,
 
         balance:
-          Number(
-            user.balance
-          ) || 0
+          Number(user.balance) || 0
 
       }
 
@@ -743,9 +1082,7 @@ app.get(
   (req, res) => {
 
     const users =
-      readJSON(
-        USERS_FILE
-      );
+      readJSON(USERS_FILE);
 
     const user =
       users.find(
@@ -783,9 +1120,7 @@ app.get(
           user.email,
 
         balance:
-          Number(
-            user.balance
-          ) || 0
+          Number(user.balance) || 0
 
       }
 
@@ -842,7 +1177,7 @@ app.post(
         success: false,
 
         message:
-          `Dépôt minimum : ${MIN_DEPOSIT.toLocaleString("fr-FR")} FC.`
+          `Dépôt minimum: ${MIN_DEPOSIT.toLocaleString("fr-FR")} FC.`
 
       });
 
@@ -866,9 +1201,7 @@ app.post(
     }
 
     const users =
-      readJSON(
-        USERS_FILE
-      );
+      readJSON(USERS_FILE);
 
     const user =
       users.find(
@@ -891,9 +1224,7 @@ app.post(
     }
 
     const orders =
-      readJSON(
-        ORDERS_FILE
-      );
+      readJSON(ORDERS_FILE);
 
     const deposit = {
 
@@ -952,9 +1283,7 @@ app.get(
   (req, res) => {
 
     const orders =
-      readJSON(
-        ORDERS_FILE
-      );
+      readJSON(ORDERS_FILE);
 
     const deposits =
       orders.filter(
@@ -985,14 +1314,10 @@ app.post(
   (req, res) => {
 
     const orders =
-      readJSON(
-        ORDERS_FILE
-      );
+      readJSON(ORDERS_FILE);
 
     const users =
-      readJSON(
-        USERS_FILE
-      );
+      readJSON(USERS_FILE);
 
     const deposit =
       orders.find(
@@ -1053,12 +1378,8 @@ app.post(
     }
 
     user.balance =
-      Number(
-        user.balance || 0
-      ) +
-      Number(
-        deposit.amount
-      );
+      Number(user.balance || 0) +
+      Number(deposit.amount);
 
     deposit.status =
       "approved";
@@ -1102,9 +1423,7 @@ app.post(
   (req, res) => {
 
     const orders =
-      readJSON(
-        ORDERS_FILE
-      );
+      readJSON(ORDERS_FILE);
 
     const deposit =
       orders.find(
@@ -1190,12 +1509,6 @@ app.post(
     const numericQuantity =
       Number(quantity);
 
-    /*
-    ------------------------------------------
-    VALIDATION
-    ------------------------------------------
-    */
-
     if (
       !userId ||
       !Number.isInteger(
@@ -1221,23 +1534,10 @@ app.post(
     }
 
     /*
-    ------------------------------------------
-    SI SERVICES NON CHARGÉS
-    ------------------------------------------
-    */
-
-    if (
-      SERVICES.length === 0
-    ) {
-
-      await loadServices();
-
-    }
-
-    /*
-    ------------------------------------------
-    SERVICE
-    ------------------------------------------
+    ==============================================
+    IMPORTANT
+    ==============================================
+    Le serviceId doit être un vrai ID fournisseur.
     */
 
     const service =
@@ -1258,12 +1558,6 @@ app.post(
 
     }
 
-    /*
-    ------------------------------------------
-    QUANTITÉ
-    ------------------------------------------
-    */
-
     if (
       numericQuantity <
         service.min ||
@@ -1276,22 +1570,14 @@ app.post(
         success: false,
 
         message:
-          `Quantité autorisée : ${service.min} à ${service.max}.`
+          `Quantité autorisée: ${service.min} à ${service.max}.`
 
       });
 
     }
 
-    /*
-    ------------------------------------------
-    USER
-    ------------------------------------------
-    */
-
     const users =
-      readJSON(
-        USERS_FILE
-      );
+      readJSON(USERS_FILE);
 
     const user =
       users.find(
@@ -1313,12 +1599,6 @@ app.post(
 
     }
 
-    /*
-    ------------------------------------------
-    PRICE
-    ------------------------------------------
-    */
-
     const price =
       calculatePrice(
         service,
@@ -1326,12 +1606,11 @@ app.post(
       );
 
     const balance =
-      Number(
-        user.balance
-      ) || 0;
+      Number(user.balance) || 0;
 
     if (
-      balance < price
+      balance <
+      price
     ) {
 
       return res.status(400).json({
@@ -1346,38 +1625,9 @@ app.post(
     }
 
     /*
-    ------------------------------------------
-    VRAI ID FOURNISSEUR
-    ------------------------------------------
-    */
-
-    const providerServiceId =
-      Number(
-        service.providerServiceId
-      );
-
-    if (
-      !Number.isInteger(
-        providerServiceId
-      ) ||
-      providerServiceId <= 0
-    ) {
-
-      return res.status(503).json({
-
-        success: false,
-
-        message:
-          "Ce service n'a pas de vrai ID fournisseur."
-
-      });
-
-    }
-
-    /*
-    ------------------------------------------
+    ==============================================
     ENVOI FOURNISSEUR
-    ------------------------------------------
+    ==============================================
     */
 
     const idempotencyKey =
@@ -1396,7 +1646,9 @@ app.post(
               "add",
 
             service:
-              providerServiceId,
+              Number(
+                service.providerId
+              ),
 
             link:
               String(link).trim(),
@@ -1422,20 +1674,16 @@ app.post(
         success: false,
 
         message:
-          "Le fournisseur n'a pas accepté la commande. Votre solde reste intact."
+          "Le fournisseur n'a pas accepté la commande. Votre solde reste intact.",
+
+        error:
+          error.message
 
       });
 
     }
 
-    /*
-    ------------------------------------------
-    FOURNISSEUR CONFIRMATION
-    ------------------------------------------
-    */
-
     if (
-      !providerData ||
       !providerData.order
     ) {
 
@@ -1451,24 +1699,17 @@ app.post(
     }
 
     /*
-    ------------------------------------------
-    DÉBIT CLIENT
-    ------------------------------------------
+    ==============================================
+    FOURNISSEUR CONFIRMÉ
+    ==============================================
     */
 
     user.balance =
-      balance - price;
-
-    /*
-    ------------------------------------------
-    ENREGISTREMENT
-    ------------------------------------------
-    */
+      balance -
+      price;
 
     const orders =
-      readJSON(
-        ORDERS_FILE
-      );
+      readJSON(ORDERS_FILE);
 
     const order = {
 
@@ -1482,16 +1723,19 @@ app.post(
         user.id,
 
       serviceId:
-        providerServiceId,
+        service.id,
 
       providerServiceId:
-        providerServiceId,
+        service.providerId,
 
       service:
         service.name,
 
       category:
         service.category,
+
+      typeService:
+        service.type,
 
       link:
         String(link).trim(),
@@ -1536,12 +1780,6 @@ app.post(
       orders
     );
 
-    /*
-    ------------------------------------------
-    RÉPONSE
-    ------------------------------------------
-    */
-
     res.json({
 
       success: true,
@@ -1570,9 +1808,7 @@ app.get(
   (req, res) => {
 
     const orders =
-      readJSON(
-        ORDERS_FILE
-      );
+      readJSON(ORDERS_FILE);
 
     const userOrders =
       orders.filter(
@@ -1606,9 +1842,7 @@ app.get(
   async (req, res) => {
 
     const orders =
-      readJSON(
-        ORDERS_FILE
-      );
+      readJSON(ORDERS_FILE);
 
     const order =
       orders.find(
@@ -1769,7 +2003,10 @@ app.get(
         success: false,
 
         message:
-          "Impossible de vérifier le solde fournisseur."
+          "Impossible de vérifier le solde fournisseur.",
+
+        error:
+          error.message
 
       });
 
@@ -1780,21 +2017,43 @@ app.get(
 
 /*
 ==================================================
- RECHARGEMENT SERVICES
-==================================================
-
- Utile si Render démarre avant que
- l'API soit disponible.
+ RAFRAÎCHISSEMENT SERVICES
 ==================================================
 */
 
-setInterval(
-  async () => {
+app.post(
+  "/api/admin/refresh-services",
+  async (req, res) => {
 
-    await loadServices();
+    const success =
+      await loadProviderServices();
 
-  },
-  10 * 60 * 1000
+    if (!success) {
+
+      return res.status(502).json({
+
+        success: false,
+
+        message:
+          "Impossible de charger les services fournisseur."
+
+      });
+
+    }
+
+    res.json({
+
+      success: true,
+
+      message:
+        "Services fournisseur actualisés.",
+
+      count:
+        PROVIDER_SERVICES.length
+
+    });
+
+  }
 );
 
 /*
@@ -1805,12 +2064,30 @@ setInterval(
 
 async function startServer() {
 
+  console.log(
+    "========================================"
+  );
+
+  console.log(
+    "👑 LEADER NOSMY BOOST"
+  );
+
+  console.log(
+    "🚀 Démarrage du serveur..."
+  );
+
+  console.log(
+    `💳 Dépôt minimum: ${MIN_DEPOSIT} FC`
+  );
+
   /*
-  Essaie de charger les services
-  avant de démarrer le serveur.
+  Charger les vrais services.
+  Si la clé est invalide, le serveur reste
+  quand même démarré mais les services fournisseur
+  seront à 0 jusqu'à correction de la clé.
   */
 
-  await loadServices();
+  await loadProviderServices();
 
   app.listen(
     PORT,
@@ -1825,19 +2102,15 @@ async function startServer() {
       );
 
       console.log(
-        `🚀 Serveur : ${PORT}`
+        `🚀 Serveur: ${PORT}`
       );
 
       console.log(
-        `💳 Dépôt minimum : ${MIN_DEPOSIT} FC`
+        `💳 Dépôt minimum: ${MIN_DEPOSIT} FC`
       );
 
       console.log(
-        `📦 Services chargés : ${SERVICES.length}`
-      );
-
-      console.log(
-        "🔗 Fournisseur : SMM Africa"
+        `📦 Services: ${PROVIDER_SERVICES.length}`
       );
 
       console.log(
@@ -1846,7 +2119,6 @@ async function startServer() {
 
     }
   );
-
 }
 
 startServer();
