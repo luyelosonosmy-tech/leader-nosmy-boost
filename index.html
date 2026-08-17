@@ -34,9 +34,7 @@ body{
   color:#111827;
 }
 
-button,
-input,
-select{
+button,input,select{
   font:inherit;
 }
 
@@ -47,10 +45,6 @@ button{
 .hidden{
   display:none!important;
 }
-
-/* ================================
-   HEADER
-================================ */
 
 header{
   position:sticky;
@@ -108,10 +102,6 @@ header{
   border-radius:9px;
   font-size:18px;
 }
-
-/* ================================
-   GENERAL
-================================ */
 
 .container{
   width:100%;
@@ -203,10 +193,6 @@ select:focus{
   box-shadow:0 0 0 3px rgba(37,99,235,.1);
 }
 
-/* ================================
-   AUTH
-================================ */
-
 .auth{
   max-width:520px;
   margin:35px auto;
@@ -232,10 +218,6 @@ select:focus{
   color:white;
   border-color:var(--blue);
 }
-
-/* ================================
-   HERO
-================================ */
 
 .hero{
   position:relative;
@@ -275,10 +257,6 @@ select:focus{
   line-height:1.6;
 }
 
-/* ================================
-   MENU
-================================ */
-
 .actions{
   display:grid;
   grid-template-columns:repeat(4,1fr);
@@ -317,10 +295,6 @@ select:focus{
   color:var(--muted);
 }
 
-/* ================================
-   BALANCE
-================================ */
-
 .balance-box{
   background:linear-gradient(135deg,#07111f,#1e293b);
   color:white;
@@ -336,10 +310,6 @@ select:focus{
   color:#60a5fa;
   margin:9px 0 12px;
 }
-
-/* ================================
-   SERVICES
-================================ */
 
 .services-top{
   display:flex;
@@ -421,10 +391,6 @@ select:focus{
   margin-top:12px;
 }
 
-/* ================================
-   ORDER
-================================ */
-
 .order-box{
   background:#f8fafc;
   border:1px solid var(--border);
@@ -486,10 +452,6 @@ select:focus{
   font-weight:900;
 }
 
-/* ================================
-   PAYMENT
-================================ */
-
 .payment-list{
   display:grid;
   grid-template-columns:repeat(3,1fr);
@@ -512,10 +474,6 @@ select:focus{
   font-size:18px;
 }
 
-/* ================================
-   ORDERS
-================================ */
-
 .order-row{
   border:1px solid var(--border);
   border-radius:13px;
@@ -536,25 +494,12 @@ select:focus{
   font-weight:bold;
 }
 
-/* ================================
-   LOADING
-================================ */
-
-.loading{
-  text-align:center;
-  padding:30px 10px;
-  color:var(--muted);
-}
-
+.loading,
 .empty{
   text-align:center;
   padding:30px 10px;
   color:var(--muted);
 }
-
-/* ================================
-   FOOTER
-================================ */
 
 footer{
   background:#07111f;
@@ -566,10 +511,6 @@ footer{
 footer strong{
   color:var(--gold);
 }
-
-/* ================================
-   MOBILE
-================================ */
 
 @media(max-width:950px){
 
@@ -639,7 +580,6 @@ footer strong{
 <body>
 
 <header>
-
 <div class="nav">
 
 <a href="#" class="logo">
@@ -660,17 +600,10 @@ onclick="toggleMenu()">
 </button>
 
 </div>
-
 </div>
-
 </header>
 
-
 <div class="container">
-
-<!-- ================================
-     AUTH
-================================ -->
 
 <section id="authSection" class="panel auth">
 
@@ -695,119 +628,79 @@ Créer un compte
 
 </div>
 
-
 <div id="loginForm">
 
 <div class="form-group">
-
 <label>📧 Email</label>
-
 <input
 id="loginEmail"
 type="email"
 autocomplete="email"
 placeholder="Votre email">
-
 </div>
 
-
 <div class="form-group">
-
 <label>🔐 Mot de passe</label>
-
 <input
 id="loginPassword"
 type="password"
 autocomplete="current-password"
 placeholder="Votre mot de passe">
-
 </div>
-
 
 <button
 class="primary full"
 onclick="loginUser()">
-
 🔐 SE CONNECTER
-
 </button>
 
 </div>
 
-
 <div id="registerForm" class="hidden">
 
 <div class="form-group">
-
 <label>👤 Nom</label>
-
 <input
 id="registerName"
 type="text"
 placeholder="Votre nom">
-
 </div>
 
-
 <div class="form-group">
-
 <label>📧 Email</label>
-
 <input
 id="registerEmail"
 type="email"
 autocomplete="email"
 placeholder="Votre email">
-
 </div>
 
-
 <div class="form-group">
-
 <label>🔐 Mot de passe</label>
-
 <input
 id="registerPassword"
 type="password"
 autocomplete="new-password"
 placeholder="Minimum 6 caractères">
-
 </div>
-
 
 <button
 class="success full"
 onclick="registerUser()">
-
 ➕ CRÉER MON COMPTE
-
 </button>
 
 </div>
 
-
-<div
-id="authMessage"
-class="message">
-</div>
+<div id="authMessage" class="message"></div>
 
 </section>
 
-
-<!-- ================================
-     CLIENT
-================================ -->
-
-<section
-id="clientPanel"
-class="hidden">
-
+<section id="clientPanel" class="hidden">
 
 <div class="hero">
 
-<div class="crown">
-👑
-</div>
+<div class="crown">👑</div>
 
 <h1>
 LEADER <span>NOSMY BOOST</span>
@@ -821,146 +714,63 @@ entrez votre lien et commandez directement.
 
 </div>
 
-
-<!-- MENU -->
-
 <div class="actions">
 
-<button
-class="action"
-onclick="showPanel('dashboard')">
-
-<div class="action-icon">
-🏠
-</div>
-
-<strong>
-Dashboard
-</strong>
-
-<p>
-Vue générale
-</p>
-
+<button class="action" onclick="showPanel('dashboard')">
+<div class="action-icon">🏠</div>
+<strong>Dashboard</strong>
+<p>Vue générale</p>
 </button>
 
-
-<button
-class="action"
-onclick="showPanel('deposit')">
-
-<div class="action-icon">
-💳
-</div>
-
-<strong>
-Ajouter des fonds
-</strong>
-
-<p>
-Minimum 2 500 FC
-</p>
-
+<button class="action" onclick="showPanel('deposit')">
+<div class="action-icon">💳</div>
+<strong>Ajouter des fonds</strong>
+<p>Minimum 2 500 FC</p>
 </button>
 
-
-<button
-class="action"
-onclick="showPanel('order')">
-
-<div class="action-icon">
-🚀
-</div>
-
-<strong>
-Commander
-</strong>
-
-<p>
-Tous les services
-</p>
-
+<button class="action" onclick="showPanel('order')">
+<div class="action-icon">🚀</div>
+<strong>Commander</strong>
+<p>Tous les services</p>
 </button>
 
-
-<button
-class="action"
-onclick="showPanel('orders')">
-
-<div class="action-icon">
-📋
-</div>
-
-<strong>
-Mes commandes
-</strong>
-
-<p>
-Historique
-</p>
-
+<button class="action" onclick="showPanel('orders')">
+<div class="action-icon">📋</div>
+<strong>Mes commandes</strong>
+<p>Historique</p>
 </button>
 
 </div>
 
+<div id="dashboardPanel" class="panel">
 
-<!-- ================================
-     DASHBOARD
-================================ -->
-
-<div
-id="dashboardPanel"
-class="panel">
-
-<h2 class="title">
-🏠 DASHBOARD
-</h2>
-
+<h2 class="title">🏠 DASHBOARD</h2>
 
 <div class="balance-box">
 
-<p>
-Votre solde disponible
-</p>
+<p>Votre solde disponible</p>
 
-<div
-id="balanceDisplay"
-class="balance">
-
+<div id="balanceDisplay" class="balance">
 0 FC
-
 </div>
 
-<p id="welcomeUser">
-</p>
+<p id="welcomeUser"></p>
 
 </div>
-
 
 <div class="services-top">
 
-<h2>
-🚀 SERVICES DISPONIBLES
-</h2>
+<h2>🚀 SERVICES DISPONIBLES</h2>
 
-<button
-class="primary"
-onclick="loadServices()">
-
+<button class="primary" onclick="loadServices()">
 🔄 Actualiser
-
 </button>
 
 </div>
 
-
 <p class="services-info">
-
-Les services sont chargés directement depuis le fournisseur.
-Le prix affiché est calculé en CDF pour 1 000 unités.
-
+Les prix ci-dessous sont les prix de vente LEADER NOSMY BOOST en CDF pour 1 000 unités.
 </p>
-
 
 <div class="service-filter">
 
@@ -970,77 +780,36 @@ type="search"
 placeholder="🔎 Rechercher un service..."
 oninput="renderServices()">
 
-
 <select
 id="networkFilter"
 onchange="renderServices()">
 
-<option value="">
-🌐 Tous les réseaux
-</option>
-
-<option value="facebook">
-Facebook
-</option>
-
-<option value="instagram">
-Instagram
-</option>
-
-<option value="tiktok">
-TikTok
-</option>
-
-<option value="youtube">
-YouTube
-</option>
+<option value="">🌐 Tous les réseaux</option>
+<option value="facebook">Facebook</option>
+<option value="instagram">Instagram</option>
+<option value="tiktok">TikTok</option>
+<option value="youtube">YouTube</option>
 
 </select>
 
 </div>
 
-
-<div
-id="servicesGrid"
-class="services-grid">
-
-<div class="loading">
-⏳ Chargement des services...
-</div>
+<div id="servicesGrid" class="services-grid"></div>
 
 </div>
 
-</div>
+<div id="depositPanel" class="panel hidden">
 
-
-<!-- ================================
-     DEPOSIT
-================================ -->
-
-<div
-id="depositPanel"
-class="panel hidden">
-
-<h2 class="title">
-💳 AJOUTER DES FONDS
-</h2>
-
+<h2 class="title">💳 AJOUTER DES FONDS</h2>
 
 <p style="text-align:center;color:#64748b;margin-bottom:18px">
-
 Dépôt minimum :
-<strong>
-2 500 FC
-</strong>
-
+<strong>2 500 FC</strong>
 </p>
-
 
 <div class="form-group">
 
-<label>
-💰 Montant
-</label>
+<label>💰 Montant</label>
 
 <input
 id="depositAmount"
@@ -1051,165 +820,91 @@ placeholder="Minimum 2500 FC">
 
 </div>
 
-
 <div class="form-group">
 
-<label>
-💳 Moyen de paiement
-</label>
+<label>💳 Moyen de paiement</label>
 
 <select id="depositMethod">
 
-<option value="">
-Choisir
-</option>
-
-<option value="Orange Money">
-🟠 Orange Money
-</option>
-
-<option value="Airtel Money">
-🔴 Airtel Money
-</option>
-
-<option value="Vodacom M-Pesa">
-🔵 Vodacom M-Pesa
-</option>
+<option value="">Choisir</option>
+<option value="Orange Money">🟠 Orange Money</option>
+<option value="Airtel Money">🔴 Airtel Money</option>
+<option value="Vodacom M-Pesa">🔵 Vodacom M-Pesa</option>
 
 </select>
 
 </div>
 
-
 <div class="payment-list">
 
 <div class="payment-card">
-
-<h3>
-🟠 Orange Money
-</h3>
-
-<strong>
-0843066709
-</strong>
-
+<h3>🟠 Orange Money</h3>
+<strong>0843066709</strong>
 </div>
-
 
 <div class="payment-card">
-
-<h3>
-🔴 Airtel Money
-</h3>
-
-<strong>
-0980630622
-</strong>
-
+<h3>🔴 Airtel Money</h3>
+<strong>0980630622</strong>
 </div>
-
 
 <div class="payment-card">
-
-<h3>
-🔵 M-Pesa
-</h3>
-
-<strong>
-0822886387
-</strong>
-
+<h3>🔵 M-Pesa</h3>
+<strong>0822886387</strong>
 </div>
 
 </div>
-
 
 <button
 class="success full"
 onclick="requestDeposit()">
-
 💳 ENREGISTRER MA DEMANDE
-
 </button>
 
-
-<div
-id="depositMessage"
-class="message">
-</div>
+<div id="depositMessage" class="message"></div>
 
 </div>
 
+<div id="orderPanel" class="panel hidden">
 
-<!-- ================================
-     ORDER
-================================ -->
-
-<div
-id="orderPanel"
-class="panel hidden">
-
-<h2 class="title">
-🚀 PASSER UNE COMMANDE
-</h2>
-
+<h2 class="title">🚀 PASSER UNE COMMANDE</h2>
 
 <div class="order-box">
 
 <div class="form-group">
 
-<label>
-📦 Service
-</label>
+<label>📦 Service</label>
 
 <select
 id="orderService"
 onchange="selectServiceFromList()">
 
-<option value="">
-⏳ Chargement des services...
-</option>
+<option value="">-- Choisir un service --</option>
 
 </select>
 
 </div>
 
+<div id="selectedService" class="selected-service">
 
-<div
-id="selectedService"
-class="selected-service">
+<strong>Aucun service sélectionné</strong>
 
-<strong>
-Aucun service sélectionné
-</strong>
-
-<div
-id="orderPrice"
-class="order-price">
-
+<div id="orderPrice" class="order-price">
 0 FC
-
 </div>
 
 </div>
-
 
 <div class="order-note">
 
 💡 <strong>Commande libre :</strong>
-tu peux entrer la quantité que tu veux,
-par exemple 10, 50, 100, 500, 1 000...
-La quantité doit respecter le minimum et le maximum
-du service choisi.
+entre la quantité souhaitée.
+Le minimum et maximum dépendent du service.
 
 </div>
 
-
 <div class="form-group">
 
-<label>
-🔗 Lien de la publication / compte
-</label>
+<label>🔗 Lien de la publication / compte</label>
 
 <input
 id="orderLink"
@@ -1218,12 +913,9 @@ placeholder="https://facebook.com/...">
 
 </div>
 
-
 <div class="form-group">
 
-<label>
-🔢 Quantité
-</label>
+<label>🔢 Quantité</label>
 
 <input
 id="orderQuantity"
@@ -1235,131 +927,66 @@ oninput="calculateOrderPrice()">
 
 </div>
 
-
 <div
 id="serviceLimits"
 style="font-size:13px;color:#64748b;margin-top:-8px;margin-bottom:15px;">
 </div>
 
-
 <div class="price-calculation">
 
 <div class="price-line">
-
-<span>
-Prix pour 1K
-</span>
-
-<strong id="unitPrice">
-0 FC
-</strong>
-
+<span>Prix pour 1K</span>
+<strong id="unitPrice">0 FC</strong>
 </div>
-
 
 <div class="price-line">
-
-<span>
-Quantité
-</span>
-
-<strong id="calculatedQuantity">
-0
-</strong>
-
+<span>Quantité</span>
+<strong id="calculatedQuantity">0</strong>
 </div>
-
 
 <div class="price-line total">
-
-<span>
-TOTAL
-</span>
-
-<strong
-id="calculatedPrice">
-
-0 FC
-
-</strong>
-
+<span>TOTAL</span>
+<strong id="calculatedPrice">0 FC</strong>
 </div>
 
 </div>
 
-
-<div
-style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:13px;margin-bottom:15px;">
+<div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:13px;margin-bottom:15px;">
 
 💰 Solde disponible :
-
-<strong id="orderBalance">
-0 FC
-</strong>
+<strong id="orderBalance">0 FC</strong>
 
 </div>
-
 
 <button
 class="primary full"
 onclick="createOrder()">
-
 🚀 COMMANDER MAINTENANT
-
 </button>
 
-
-<div
-id="orderMessage"
-class="message">
-</div>
+<div id="orderMessage" class="message"></div>
 
 </div>
-
 </div>
 
+<div id="ordersPanel" class="panel hidden">
 
-<!-- ================================
-     ORDERS
-================================ -->
+<h2 class="title">📋 MES COMMANDES</h2>
 
-<div
-id="ordersPanel"
-class="panel hidden">
-
-<h2 class="title">
-📋 MES COMMANDES
-</h2>
-
-
-<button
-class="primary"
-onclick="loadOrders()">
-
+<button class="primary" onclick="loadOrders()">
 🔄 ACTUALISER
-
 </button>
 
-
-<div
-id="ordersList"
-style="margin-top:15px">
+<div id="ordersList" style="margin-top:15px"></div>
 
 </div>
-
-</div>
-
-
-<!-- LOGOUT -->
 
 <div class="panel">
 
 <button
 class="danger full"
 onclick="logoutUser()">
-
 🚪 SE DÉCONNECTER
-
 </button>
 
 </div>
@@ -1368,19 +995,15 @@ onclick="logoutUser()">
 
 </div>
 
-
 <footer>
 
-<p>
-👑 <strong>LEADER NOSMY BOOST</strong>
-</p>
+<p>👑 <strong>LEADER NOSMY BOOST</strong></p>
 
 <p style="margin-top:7px">
 © 2026 — Tous droits réservés.
 </p>
 
 </footer>
-
 
 <script>
 
@@ -1394,8 +1017,224 @@ localStorage.getItem("leaderNosmyUser") || "null"
 );
 
 let services = [];
-
 let selectedService = null;
+
+
+/* =========================================
+   PRIX LEADER NOSMY BOOST
+========================================= */
+
+const CUSTOM_PRICES = [
+
+/* FACEBOOK */
+
+{
+  match:["facebook","post","likes"],
+  price:360
+},
+
+{
+  match:["facebook","post","reaction","angry"],
+  price:360
+},
+
+{
+  match:["facebook","post","reaction","care"],
+  price:360
+},
+
+{
+  match:["facebook","post","reaction","haha"],
+  price:360
+},
+
+{
+  match:["facebook","post","reaction","love"],
+  price:360
+},
+
+{
+  match:["facebook","post","reaction","sad"],
+  price:360
+},
+
+{
+  match:["facebook","post","reaction","wow"],
+  price:360
+},
+
+{
+  match:["facebook","post","reaction","likes","100%reel"],
+  price:840
+},
+
+{
+  match:["facebook","post","reaction","love","100%reel"],
+  price:840
+},
+
+{
+  match:["facebook","profile/page","followers","lifetime"],
+  price:1656
+},
+
+{
+  match:["facebook","profile/page","followers","refill 365d"],
+  price:1584
+},
+
+{
+  match:["facebook","profile/page","followers","refill 90d"],
+  price:1536
+},
+
+{
+  match:["facebook","shares"],
+  price:192
+},
+
+{
+  match:["facebook","video/reels","views","300k-5m"],
+  price:96
+},
+
+{
+  match:["facebook","video/reels","views"],
+  price:72
+},
+
+/* TIKTOK */
+
+{
+  match:["tiktok","followers"],
+  price:6624
+},
+
+{
+  match:["tiktok","likes","views"],
+  price:1488
+},
+
+{
+  match:["tiktok","save"],
+  price:384
+},
+
+{
+  match:["tiktok","shares"],
+  price:432
+},
+
+{
+  match:["tiktok","share"],
+  price:288
+},
+
+{
+  match:["tiktok","video views","15d"],
+  price:456
+},
+
+{
+  match:["tiktok","video views","21d"],
+  price:480
+},
+
+{
+  match:["tiktok","video views","7d"],
+  price:456
+},
+
+{
+  match:["tiktok","video views","sans baisse"],
+  price:336
+},
+
+{
+  match:["tiktok","video views"],
+  price:336
+},
+
+/* YOUTUBE */
+
+{
+  match:["youtube","views","native social ads","min 500"],
+  price:5328
+},
+
+{
+  match:["youtube","subscribers"],
+  price:648
+},
+
+{
+  match:["youtube","views","native social ads"],
+  price:5400
+},
+
+{
+  match:["youtube","views","video/shorts","refill 30d"],
+  price:2592
+},
+
+{
+  match:["youtube","views","video/shorts"],
+  price:2304
+},
+
+/* INSTAGRAM */
+
+{
+  match:["instagram","followers","hq account","365d"],
+  price:2040
+},
+
+{
+  match:["instagram","followers","hq account","90d"],
+  price:1848
+},
+
+{
+  match:["instagram","followers","hq account","60d"],
+  price:1800
+},
+
+{
+  match:["instagram","followers","hq account","30d"],
+  price:1728
+},
+
+{
+  match:["instagram","followers","hq account"],
+  price:1464
+},
+
+{
+  match:["instagram","followers","old","real","365d"],
+  price:2136
+},
+
+{
+  match:["instagram","followers","old","real","60d"],
+  price:1944
+},
+
+{
+  match:["instagram","followers","old","real","30d"],
+  price:1848
+},
+
+{
+  match:["instagram","likes","lifetime"],
+  price:432
+},
+
+{
+  match:["instagram","likes","365d"],
+  price:408
+}
+
+];
 
 
 /* =========================================
@@ -1404,8 +1243,13 @@ let selectedService = null;
 
 function formatMoney(value){
 
-return Number(value || 0)
-.toLocaleString("fr-FR") + " FC";
+  const number = Number(value || 0);
+
+  return number.toLocaleString("fr-FR",{
+    minimumFractionDigits:
+      Number.isInteger(number) ? 0 : 1,
+    maximumFractionDigits:2
+  }) + " FC";
 
 }
 
@@ -1418,6 +1262,23 @@ return String(value ?? "")
 .replaceAll(">","&gt;")
 .replaceAll('"',"&quot;")
 .replaceAll("'","&#039;");
+
+}
+
+
+function normalizeServiceText(service){
+
+return String(
+service.name ||
+service.service ||
+service.title ||
+""
+)
+.toLowerCase()
+.replace(/&amp;/g,"&")
+.replace(/[–—]/g,"-")
+.replace(/\s+/g," ")
+.trim();
 
 }
 
@@ -1480,55 +1341,368 @@ service.maximum ??
 }
 
 
-function serviceNetwork(service){
-
-const text =
-serviceName(service).toLowerCase();
-
-if(text.includes("facebook"))
-return "facebook";
-
-if(text.includes("instagram"))
-return "instagram";
-
-if(text.includes("tiktok"))
-return "tiktok";
-
-if(text.includes("youtube"))
-return "youtube";
-
-return "other";
-
-}
-
-
-function serviceNetworkLabel(service){
-
-const network =
-serviceNetwork(service);
-
-if(network === "facebook")
-return "FACEBOOK";
-
-if(network === "instagram")
-return "INSTAGRAM";
-
-if(network === "tiktok")
-return "TIKTOK";
-
-if(network === "youtube")
-return "YOUTUBE";
-
-return "SERVICE";
-
-}
-
+/* =========================================
+   PRIX CDF
+========================================= */
 
 function serviceRateCDF(service){
 
+const text =
+normalizeServiceText(service);
+
+
 /*
-  SMM Africa doit retourner le tarif
-  du fournisseur pour 1000 unités.
+========================================
+FACEBOOK
+========================================
+*/
+
+if(
+text.includes("facebook") &&
+text.includes("post likes")
+){
+return 360;
+}
+
+if(
+text.includes("facebook") &&
+text.includes("reaction") &&
+text.includes("angry")
+){
+return 360;
+}
+
+if(
+text.includes("facebook") &&
+text.includes("reaction") &&
+text.includes("care")
+){
+return 360;
+}
+
+if(
+text.includes("facebook") &&
+text.includes("reaction") &&
+text.includes("haha")
+){
+return 360;
+}
+
+if(
+text.includes("facebook") &&
+text.includes("reaction") &&
+text.includes("love")
+){
+return 360;
+}
+
+if(
+text.includes("facebook") &&
+text.includes("reaction") &&
+text.includes("sad")
+){
+return 360;
+}
+
+if(
+text.includes("facebook") &&
+text.includes("reaction") &&
+text.includes("wow")
+){
+return 360;
+}
+
+if(
+text.includes("facebook") &&
+text.includes("100%reel") &&
+text.includes("likes")
+){
+return 840;
+}
+
+if(
+text.includes("facebook") &&
+text.includes("100%reel") &&
+text.includes("love")
+){
+return 840;
+}
+
+if(
+text.includes("facebook") &&
+text.includes("followers") &&
+text.includes("lifetime")
+){
+return 1656;
+}
+
+if(
+text.includes("facebook") &&
+text.includes("followers") &&
+text.includes("365d")
+){
+return 1584;
+}
+
+if(
+text.includes("facebook") &&
+text.includes("followers") &&
+text.includes("90d")
+){
+return 1536;
+}
+
+if(
+text.includes("facebook") &&
+text.includes("shares")
+){
+return 192;
+}
+
+if(
+text.includes("facebook") &&
+text.includes("video/reels") &&
+text.includes("views") &&
+text.includes("300k-5m")
+){
+return 96;
+}
+
+if(
+text.includes("facebook") &&
+text.includes("video/reels") &&
+text.includes("views")
+){
+return 72;
+}
+
+
+/*
+========================================
+TIKTOK
+========================================
+*/
+
+if(
+text.includes("tiktok") &&
+text.includes("followers")
+){
+return 6624;
+}
+
+if(
+text.includes("tiktok") &&
+text.includes("likes") &&
+text.includes("views")
+){
+return 1488;
+}
+
+if(
+text.includes("tiktok") &&
+text.includes("save")
+){
+return 384;
+}
+
+if(
+text.includes("tiktok") &&
+text.includes("shares")
+){
+return 432;
+}
+
+if(
+text.includes("tiktok") &&
+text.includes("share")
+){
+return 288;
+}
+
+if(
+text.includes("tiktok") &&
+text.includes("video views") &&
+text.includes("21d")
+){
+return 480;
+}
+
+if(
+text.includes("tiktok") &&
+text.includes("video views") &&
+(
+text.includes("15d") ||
+text.includes("7d")
+)
+){
+return 456;
+}
+
+if(
+text.includes("tiktok") &&
+text.includes("video views") &&
+text.includes("sans baisse")
+){
+return 336;
+}
+
+if(
+text.includes("tiktok") &&
+text.includes("video views")
+){
+return 336;
+}
+
+
+/*
+========================================
+YOUTUBE
+========================================
+*/
+
+if(
+text.includes("youtube") &&
+text.includes("subscribers")
+){
+return 648;
+}
+
+if(
+text.includes("youtube") &&
+text.includes("views") &&
+text.includes("native social ads") &&
+text.includes("min 500")
+){
+return 5328;
+}
+
+if(
+text.includes("youtube") &&
+text.includes("views") &&
+text.includes("native social ads")
+){
+return 5400;
+}
+
+if(
+text.includes("youtube") &&
+text.includes("views") &&
+text.includes("video/shorts") &&
+text.includes("refill 30d")
+){
+return 2592;
+}
+
+if(
+text.includes("youtube") &&
+text.includes("views") &&
+text.includes("video/shorts")
+){
+return 2304;
+}
+
+
+/*
+========================================
+INSTAGRAM
+========================================
+*/
+
+if(
+text.includes("instagram") &&
+text.includes("followers") &&
+text.includes("hq account") &&
+text.includes("365d")
+){
+return 2040;
+}
+
+if(
+text.includes("instagram") &&
+text.includes("followers") &&
+text.includes("hq account") &&
+text.includes("90d")
+){
+return 1848;
+}
+
+if(
+text.includes("instagram") &&
+text.includes("followers") &&
+text.includes("hq account") &&
+text.includes("60d")
+){
+return 1800;
+}
+
+if(
+text.includes("instagram") &&
+text.includes("followers") &&
+text.includes("hq account") &&
+text.includes("30d")
+){
+return 1728;
+}
+
+if(
+text.includes("instagram") &&
+text.includes("followers") &&
+text.includes("hq account")
+){
+return 1464;
+}
+
+if(
+text.includes("instagram") &&
+text.includes("followers") &&
+text.includes("old") &&
+text.includes("real") &&
+text.includes("365d")
+){
+return 2136;
+}
+
+if(
+text.includes("instagram") &&
+text.includes("followers") &&
+text.includes("old") &&
+text.includes("real") &&
+text.includes("60d")
+){
+return 1944;
+}
+
+if(
+text.includes("instagram") &&
+text.includes("followers") &&
+text.includes("old") &&
+text.includes("real") &&
+text.includes("30d")
+){
+return 1848;
+}
+
+if(
+text.includes("instagram") &&
+text.includes("likes") &&
+text.includes("lifetime")
+){
+return 432;
+}
+
+if(
+text.includes("instagram") &&
+text.includes("likes") &&
+text.includes("365d")
+){
+return 408;
+}
+
+
+/*
+========================================
+FALLBACK
+========================================
 */
 
 return serviceRate(service);
@@ -1537,7 +1711,7 @@ return serviceRate(service);
 
 
 /* =========================================
-   AUTH TABS
+   AUTH
 ========================================= */
 
 function showLogin(){
@@ -1555,7 +1729,6 @@ document.getElementById("registerTab")
 .classList.remove("active");
 
 }
-
 
 function showRegister(){
 
@@ -1592,10 +1765,8 @@ const password =
 document.getElementById("registerPassword")
 .value;
 
-
 const message =
 document.getElementById("authMessage");
-
 
 if(!name || !email || !password){
 
@@ -1606,13 +1777,10 @@ return;
 
 }
 
-
 try{
 
 const response =
-await fetch(
-"/api/register",
-{
+await fetch("/api/register",{
 
 method:"POST",
 
@@ -1626,28 +1794,19 @@ email,
 password
 })
 
-}
-);
-
+});
 
 const data =
 await response.json();
 
-
 message.textContent =
 data.message || "Erreur";
 
-
 if(data.success){
 
-document.getElementById("registerName")
-.value="";
-
-document.getElementById("registerEmail")
-.value="";
-
-document.getElementById("registerPassword")
-.value="";
+document.getElementById("registerName").value="";
+document.getElementById("registerEmail").value="";
+document.getElementById("registerPassword").value="";
 
 showLogin();
 
@@ -1682,7 +1841,6 @@ document.getElementById("loginPassword")
 const message =
 document.getElementById("authMessage");
 
-
 if(!email || !password){
 
 message.textContent =
@@ -1692,13 +1850,10 @@ return;
 
 }
 
-
 try{
 
 const response =
-await fetch(
-"/api/login",
-{
+await fetch("/api/login",{
 
 method:"POST",
 
@@ -1711,22 +1866,17 @@ email,
 password
 })
 
-}
-);
-
+});
 
 const data =
 await response.json();
 
-
 message.textContent =
 data.message || "Erreur";
 
-
 if(data.success){
 
-currentUser =
-data.user;
+currentUser=data.user;
 
 localStorage.setItem(
 "leaderNosmyUser",
@@ -1766,9 +1916,7 @@ document.getElementById("miniBalance")
 
 document.getElementById("welcomeUser")
 .textContent =
-"Bienvenue " +
-currentUser.name +
-" 👑";
+"Bienvenue " + currentUser.name + " 👑";
 
 refreshUser();
 
@@ -1783,9 +1931,7 @@ loadServices();
 
 async function refreshUser(){
 
-if(!currentUser)
-return;
-
+if(!currentUser)return;
 
 try{
 
@@ -1795,40 +1941,29 @@ await fetch(
 encodeURIComponent(currentUser.id)
 );
 
-
 const data =
 await response.json();
 
-
 if(data.success){
 
-currentUser =
-data.user;
+currentUser=data.user;
 
 localStorage.setItem(
 "leaderNosmyUser",
 JSON.stringify(currentUser)
 );
 
-
 const balance =
 formatMoney(currentUser.balance);
 
-
 document.getElementById("balanceDisplay")
-.textContent =
-balance;
-
+.textContent=balance;
 
 document.getElementById("orderBalance")
-.textContent =
-balance;
-
+.textContent=balance;
 
 document.getElementById("miniBalance")
-.textContent =
-"Solde : " +
-balance;
+.textContent="Solde : "+balance;
 
 }
 
@@ -1847,55 +1982,77 @@ console.error(error);
 
 function showPanel(name){
 
-const panels = [
+const panels=[
 "dashboardPanel",
 "depositPanel",
 "orderPanel",
 "ordersPanel"
 ];
 
-
-panels.forEach(
-id => {
-
+panels.forEach(id=>{
 document.getElementById(id)
 .classList.add("hidden");
+});
 
-}
-);
-
-
-const target =
-document.getElementById(
-name + "Panel"
-);
-
+const target=
+document.getElementById(name+"Panel");
 
 if(target){
-
 target.classList.remove("hidden");
-
 }
-
 
 window.scrollTo({
 top:0,
 behavior:"smooth"
 });
 
-
-if(name === "orders"){
-
+if(name==="orders"){
 loadOrders();
-
 }
 
-
-if(name === "order"){
-
+if(name==="order"){
 loadServices();
+}
 
 }
+
+
+/* =========================================
+   NETWORK
+========================================= */
+
+function serviceNetwork(service){
+
+const text =
+serviceName(service).toLowerCase();
+
+if(text.includes("facebook"))
+return "facebook";
+
+if(text.includes("instagram"))
+return "instagram";
+
+if(text.includes("tiktok"))
+return "tiktok";
+
+if(text.includes("youtube"))
+return "youtube";
+
+return "other";
+
+}
+
+function serviceNetworkLabel(service){
+
+const network=
+serviceNetwork(service);
+
+if(network==="facebook")return "FACEBOOK";
+if(network==="instagram")return "INSTAGRAM";
+if(network==="tiktok")return "TIKTOK";
+if(network==="youtube")return "YOUTUBE";
+
+return "SERVICE";
 
 }
 
@@ -1906,30 +2063,23 @@ loadServices();
 
 async function loadServices(){
 
-const grid =
+const grid=
 document.getElementById("servicesGrid");
 
-
-grid.innerHTML =
+grid.innerHTML=
 `<div class="loading">
 ⏳ Chargement des services...
 </div>`;
 
-
 try{
 
-const response =
-await fetch(
-"/api/smm/services"
-);
+const response=
+await fetch("/api/smm/services");
 
-
-const data =
+const data=
 await response.json();
 
-
-if(!response.ok ||
-!data.success){
+if(!response.ok || !data.success){
 
 throw new Error(
 data.message ||
@@ -1938,59 +2088,35 @@ data.message ||
 
 }
 
-
-/*
-  Selon la réponse fournisseur,
-  services peut être directement un tableau
-  ou être contenu dans data.services.
-*/
-
-let list =
-data.services;
-
+let list=data.services;
 
 if(!Array.isArray(list)){
 
 if(Array.isArray(list?.services)){
-
-list =
-list.services;
-
+list=list.services;
 }else{
-
-list = [];
-
+list=[];
 }
 
 }
 
-
-services =
+services=
 list
-.filter(service =>
-serviceId(service) > 0
-)
-.map(service => ({
-...service
-}));
-
+.filter(service=>serviceId(service)>0)
+.map(service=>({...service}));
 
 renderServices();
 
 populateOrderServices();
 
-
 }catch(error){
 
-console.error(
-"Services:",
-error
-);
+console.error("Services:",error);
 
+grid.innerHTML=`
 
-grid.innerHTML = `
-
-<div class="empty">
+<div class="empty"
+style="grid-column:1/-1;">
 
 ❌ Impossible de charger les services.
 
@@ -2008,9 +2134,7 @@ onclick="loadServices()">
 🔄 Réessayer
 </button>
 
-</div>
-
-`;
+</div>`;
 
 }
 
@@ -2018,97 +2142,71 @@ onclick="loadServices()">
 
 
 /* =========================================
-   RENDER SERVICES
+   RENDER
 ========================================= */
 
 function renderServices(){
 
-const grid =
+const grid=
 document.getElementById("servicesGrid");
 
-
-const search =
+const search=
 String(
 document.getElementById("serviceSearch")?.value || ""
 )
 .toLowerCase()
 .trim();
 
-
-const network =
+const network=
 String(
 document.getElementById("networkFilter")?.value || ""
 )
 .toLowerCase();
 
+const filtered=
+services.filter(service=>{
 
-const filtered =
-services.filter(service => {
-
-const name =
+const name=
 serviceName(service)
 .toLowerCase();
 
-const serviceNet =
+const serviceNet=
 serviceNetwork(service);
 
-
-const matchSearch =
+return(
 !search ||
-name.includes(search);
-
-
-const matchNetwork =
+name.includes(search)
+)&&(
 !network ||
-serviceNet === network;
-
-
-return matchSearch &&
-matchNetwork;
+serviceNet===network
+);
 
 });
 
-
 if(!filtered.length){
 
-grid.innerHTML = `
+grid.innerHTML=`
 
-<div
-class="empty"
+<div class="empty"
 style="grid-column:1/-1;">
 
 😕 Aucun service trouvé.
 
-</div>
-
-`;
+</div>`;
 
 return;
 
 }
 
+grid.innerHTML=
+filtered.map(service=>{
 
-grid.innerHTML =
-filtered.map(service => {
-
-const id =
-serviceId(service);
-
-const name =
-serviceName(service);
-
-const rate =
-serviceRateCDF(service);
-
-const min =
-serviceMin(service);
-
-const max =
-serviceMax(service);
-
-const network =
-serviceNetworkLabel(service);
-
+const id=serviceId(service);
+const name=serviceName(service);
+const rate=serviceRateCDF(service);
+const min=serviceMin(service);
+const max=serviceMax(service);
+const network=serviceNetworkLabel(service);
 
 return `
 
@@ -2129,12 +2227,12 @@ ${formatMoney(rate)} / 1K
 <div class="service-details">
 
 🔢 Min :
-${escapeHTML(min.toLocaleString("fr-FR"))}
+${min.toLocaleString("fr-FR")}
 
 <br>
 
 🔢 Max :
-${escapeHTML(max.toLocaleString("fr-FR"))}
+${max.toLocaleString("fr-FR")}
 
 <br>
 
@@ -2160,45 +2258,32 @@ onclick="chooseService(${id})">
 
 
 /* =========================================
-   ORDER SERVICE SELECT
+   ORDER SELECT
 ========================================= */
 
 function populateOrderServices(){
 
-const select =
+const select=
 document.getElementById("orderService");
 
-
-select.innerHTML = `
-
-<option value="">
+select.innerHTML=
+`<option value="">
 -- Choisir un service --
-</option>
+</option>`;
 
-`;
+services.forEach(service=>{
 
+const id=serviceId(service);
+const name=serviceName(service);
+const rate=serviceRateCDF(service);
 
-services.forEach(service => {
-
-const id =
-serviceId(service);
-
-const name =
-serviceName(service);
-
-const rate =
-serviceRateCDF(service);
-
-const option =
+const option=
 document.createElement("option");
 
+option.value=String(id);
 
-option.value =
-String(id);
-
-option.textContent =
+option.textContent=
 `${name} — ${formatMoney(rate)}/1K`;
-
 
 select.appendChild(option);
 
@@ -2211,71 +2296,47 @@ function chooseService(id){
 
 showPanel("order");
 
-
-const service =
+const service=
 services.find(
-item =>
-serviceId(item) === Number(id)
+item=>serviceId(item)===Number(id)
 );
 
+if(!service)return;
 
-if(!service){
+selectedService=service;
 
-return;
-
-}
-
-
-selectedService =
-service;
-
-
-const select =
+const select=
 document.getElementById("orderService");
 
-
-select.value =
-String(id);
-
+select.value=String(id);
 
 selectServiceFromList();
-
-
-window.scrollTo({
-top:0,
-behavior:"smooth"
-});
 
 }
 
 
 /* =========================================
-   SELECT SERVICE
+   SELECT
 ========================================= */
 
 function selectServiceFromList(){
 
-const id =
+const id=
 Number(
-document.getElementById("orderService")
-.value
+document.getElementById("orderService").value
 );
 
-
-selectedService =
+selectedService=
 services.find(
-service =>
-serviceId(service) === id
-) || null;
+service=>serviceId(service)===id
+)||null;
 
-
-const box =
+const box=
 document.getElementById("selectedService");
-
 
 if(!selectedService){
 
-box.innerHTML = `
+box.innerHTML=`
 
 <strong>
 Aucun service sélectionné
@@ -2284,12 +2345,8 @@ Aucun service sélectionné
 <div
 id="orderPrice"
 class="order-price">
-
 0 FC
-
-</div>
-
-`;
+</div>`;
 
 document.getElementById("serviceLimits")
 .textContent="";
@@ -2303,21 +2360,12 @@ return;
 
 }
 
+const name=serviceName(selectedService);
+const rate=serviceRateCDF(selectedService);
+const min=serviceMin(selectedService);
+const max=serviceMax(selectedService);
 
-const name =
-serviceName(selectedService);
-
-const rate =
-serviceRateCDF(selectedService);
-
-const min =
-serviceMin(selectedService);
-
-const max =
-serviceMax(selectedService);
-
-
-box.innerHTML = `
+box.innerHTML=`
 
 <strong>
 ${escapeHTML(name)}
@@ -2326,28 +2374,19 @@ ${escapeHTML(name)}
 <div
 id="orderPrice"
 class="order-price">
-
 ${formatMoney(rate)} / 1K
-
-</div>
-
-`;
-
+</div>`;
 
 document.getElementById("unitPrice")
-.textContent =
+.textContent=
 formatMoney(rate);
 
-
 document.getElementById("serviceLimits")
-.textContent =
+.textContent=
 `Minimum : ${min.toLocaleString("fr-FR")} — Maximum : ${max.toLocaleString("fr-FR")}`;
 
-
 document.getElementById("orderQuantity")
-.value =
-min;
-
+.value=min;
 
 calculateOrderPrice();
 
@@ -2355,50 +2394,42 @@ calculateOrderPrice();
 
 
 /* =========================================
-   CALCUL PRIX
+   CALCUL
 ========================================= */
 
 function calculateOrderPrice(){
 
+const quantity=
+Number(
+document.getElementById("orderQuantity").value
+);
+
 if(!selectedService){
 
 document.getElementById("calculatedQuantity")
-.textContent =
-"0";
+.textContent="0";
 
 document.getElementById("calculatedPrice")
-.textContent =
-"0 FC";
+.textContent="0 FC";
 
 return;
 
 }
 
-
-const quantity =
-Number(
-document.getElementById("orderQuantity")
-.value
-);
-
-
-const rate =
+const rate=
 serviceRateCDF(selectedService);
 
-
-const total =
+const total=
 (rate * quantity) / 1000;
 
-
 document.getElementById("calculatedQuantity")
-.textContent =
+.textContent=
 Number.isFinite(quantity)
-? quantity.toLocaleString("fr-FR")
-: "0";
-
+?quantity.toLocaleString("fr-FR")
+:"0";
 
 document.getElementById("calculatedPrice")
-.textContent =
+.textContent=
 formatMoney(total);
 
 }
@@ -2413,59 +2444,49 @@ async function requestDeposit(){
 if(!currentUser){
 
 document.getElementById("depositMessage")
-.textContent =
+.textContent=
 "❌ Connectez-vous d'abord.";
 
 return;
 
 }
 
-
-const amount =
+const amount=
 Number(
-document.getElementById("depositAmount")
-.value
+document.getElementById("depositAmount").value
 );
 
+const method=
+document.getElementById("depositMethod").value;
 
-const method =
-document.getElementById("depositMethod")
-.value;
-
-
-const message =
+const message=
 document.getElementById("depositMessage");
-
 
 if(
 !Number.isFinite(amount) ||
-amount < 2500
+amount<2500
 ){
 
-message.textContent =
+message.textContent=
 "❌ Le dépôt minimum est de 2 500 FC.";
 
 return;
 
 }
 
-
 if(!method){
 
-message.textContent =
+message.textContent=
 "❌ Choisissez un moyen de paiement.";
 
 return;
 
 }
 
-
 try{
 
-const response =
-await fetch(
-"/api/deposit",
-{
+const response=
+await fetch("/api/deposit",{
 
 method:"POST",
 
@@ -2474,28 +2495,18 @@ headers:{
 },
 
 body:JSON.stringify({
-
-userId:
-currentUser.id,
-
+userId:currentUser.id,
 amount,
-
 method
-
 })
 
-}
-);
+});
 
-
-const data =
+const data=
 await response.json();
 
-
-message.textContent =
-data.message ||
-"Erreur";
-
+message.textContent=
+data.message||"Erreur";
 
 if(data.success){
 
@@ -2511,7 +2522,7 @@ document.getElementById("depositMethod")
 
 console.error(error);
 
-message.textContent =
+message.textContent=
 "❌ Erreur de connexion au serveur.";
 
 }
@@ -2525,152 +2536,134 @@ message.textContent =
 
 async function createOrder(){
 
-const message =
+const message=
 document.getElementById("orderMessage");
-
 
 if(!currentUser){
 
-message.textContent =
+message.textContent=
 "❌ Connectez-vous d'abord.";
 
 return;
 
 }
 
-
 if(!selectedService){
 
-message.textContent =
+message.textContent=
 "❌ Choisissez un service.";
 
 return;
 
 }
 
-
-const link =
+const link=
 document.getElementById("orderLink")
 .value.trim();
 
-
-const quantity =
+const quantity=
 Number(
-document.getElementById("orderQuantity")
-.value
+document.getElementById("orderQuantity").value
 );
 
-
-const id =
+const id=
 serviceId(selectedService);
 
-
-const rate =
+const rate=
 serviceRateCDF(selectedService);
 
-
-const min =
+const min=
 serviceMin(selectedService);
 
-
-const max =
+const max=
 serviceMax(selectedService);
 
-
-const price =
-(rate * quantity) / 1000;
-
+const price=
+(rate*quantity)/1000;
 
 if(!id){
 
-message.textContent =
+message.textContent=
 "❌ Service invalide.";
 
 return;
 
 }
 
-
 if(!link){
 
-message.textContent =
+message.textContent=
 "❌ Entrez le lien de la publication ou du compte.";
 
 return;
 
 }
 
-
 if(
 !Number.isInteger(quantity) ||
-quantity <= 0
+quantity<=0
 ){
 
-message.textContent =
+message.textContent=
 "❌ Quantité invalide.";
 
 return;
 
 }
 
+if(quantity<min){
 
-if(quantity < min){
-
-message.textContent =
+message.textContent=
 `❌ Quantité minimum : ${min.toLocaleString("fr-FR")}.`;
 
 return;
 
 }
 
+if(quantity>max){
 
-if(quantity > max){
-
-message.textContent =
+message.textContent=
 `❌ Quantité maximum : ${max.toLocaleString("fr-FR")}.`;
 
 return;
 
 }
 
-
 if(
 !Number.isFinite(price) ||
-price <= 0
+price<=0
 ){
 
-message.textContent =
+message.textContent=
 "❌ Prix invalide.";
 
 return;
 
 }
 
-
 if(
-Number(currentUser.balance || 0)
-<
-price
+Number(currentUser.balance||0)<price
 ){
 
-message.textContent =
+message.textContent=
 "❌ Solde insuffisant. Rechargez votre compte.";
 
 return;
 
 }
 
-
-message.textContent =
+message.textContent=
 "⏳ Envoi de la commande au fournisseur...";
-
 
 try{
 
-const response =
-await fetch(
-"/api/order",
-{
+/*
+ IMPORTANT :
+ Le serveur doit recevoir le service ID.
+*/
+
+const response=
+await fetch("/api/smm/order",{
 
 method:"POST",
 
@@ -2680,68 +2673,39 @@ headers:{
 
 body:JSON.stringify({
 
-userId:
-currentUser.id,
+userId:currentUser.id,
 
-serviceId:
-id,
-
-service:
-serviceName(selectedService),
+service:id,
 
 link,
 
-quantity,
-
-price
+quantity
 
 })
 
-}
-);
+});
 
-
-const data =
+const data=
 await response.json();
 
-
-message.textContent =
-data.message ||
-"Erreur";
-
+message.textContent=
+data.message||"Erreur";
 
 if(data.success){
 
-currentUser.balance =
-data.balance;
-
-
-localStorage.setItem(
-"leaderNosmyUser",
-JSON.stringify(currentUser)
-);
-
-
 await refreshUser();
-
 
 document.getElementById("orderLink")
 .value="";
 
-
 document.getElementById("orderQuantity")
-.value =
-serviceMin(selectedService);
-
+.value=serviceMin(selectedService);
 
 calculateOrderPrice();
 
-
 setTimeout(
-() => {
-
+()=>{
 showPanel("orders");
-
 },
 800
 );
@@ -2752,7 +2716,7 @@ showPanel("orders");
 
 console.error(error);
 
-message.textContent =
+message.textContent=
 "❌ Erreur de connexion au serveur.";
 
 }
@@ -2766,32 +2730,26 @@ message.textContent =
 
 async function loadOrders(){
 
-if(!currentUser)
-return;
+if(!currentUser)return;
 
-
-const container =
+const container=
 document.getElementById("ordersList");
 
-
-container.innerHTML =
+container.innerHTML=
 `<div class="loading">
 ⏳ Chargement...
 </div>`;
 
-
 try{
 
-const response =
+const response=
 await fetch(
 "/api/orders/" +
 encodeURIComponent(currentUser.id)
 );
 
-
-const data =
+const data=
 await response.json();
-
 
 if(
 !data.success ||
@@ -2799,26 +2757,21 @@ if(
 !data.orders.length
 ){
 
-container.innerHTML = `
+container.innerHTML=`
 
 <div class="empty">
-
 📋 Aucune commande pour le moment.
-
-</div>
-
-`;
+</div>`;
 
 return;
 
 }
 
-
-container.innerHTML =
+container.innerHTML=
 data.orders
 .slice()
 .reverse()
-.map(order => {
+.map(order=>{
 
 return `
 
@@ -2826,6 +2779,7 @@ return `
 
 <strong>
 🚀 ${escapeHTML(
+order.serviceName ||
 order.service ||
 "Commande"
 )}
@@ -2835,6 +2789,7 @@ order.service ||
 🆔 Commande :
 ${escapeHTML(
 String(
+order.smmOrderId ||
 order.providerOrderId ||
 order.id ||
 "—"
@@ -2843,32 +2798,28 @@ order.id ||
 </p>
 
 <p>
-🔗 ${escapeHTML(
-order.link ||
-"—"
-)}
+🔗 ${escapeHTML(order.link||"—")}
 </p>
 
 <p>
 🔢 Quantité :
-${escapeHTML(
-String(
-order.quantity ||
-"—"
-)
-)}
+${escapeHTML(String(order.quantity||"—"))}
 </p>
 
 <p>
 💰 Prix :
-${formatMoney(order.price)}
+${formatMoney(
+order.chargeFC ??
+order.price ??
+0
+)}
 </p>
 
 <span class="status">
 ${escapeHTML(
-order.providerStatus ||
 order.status ||
-"pending"
+order.providerStatus ||
+"Pending"
 )}
 </span>
 
@@ -2881,28 +2832,23 @@ margin-top:8px;
 ${
 order.createdAt
 ?
-new Date(
-order.createdAt
-).toLocaleString("fr-FR")
-:
-""
+new Date(order.createdAt)
+.toLocaleString("fr-FR")
+:""
 }
 
 </p>
 
-</div>
-
-`;
+</div>`;
 
 })
 .join("");
-
 
 }catch(error){
 
 console.error(error);
 
-container.innerHTML =
+container.innerHTML=
 "❌ Impossible de charger les commandes.";
 
 }
@@ -2926,7 +2872,6 @@ return;
 
 }
 
-
 showPanel("dashboard");
 
 }
@@ -2942,8 +2887,7 @@ localStorage.removeItem(
 "leaderNosmyUser"
 );
 
-currentUser =
-null;
+currentUser=null;
 
 location.reload();
 
