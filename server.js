@@ -310,6 +310,30 @@ app.get(
 );
 
 /* ========================================
+   SERVICES
+======================================== */
+
+app.get("/api/services", (req, res) => {
+  try {
+    const services = getServices();
+
+    return res.json({
+      success: true,
+      services: services
+    });
+
+  } catch (error) {
+    console.error("SERVICES ERROR:", error);
+
+    return res.status(500).json({
+      success: false,
+      message: "Impossible de récupérer les services.",
+      error: error.message
+    });
+  }
+});
+
+/* ========================================
    INSCRIPTION
 ======================================== */
 
