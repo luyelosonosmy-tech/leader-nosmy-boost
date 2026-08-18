@@ -36,6 +36,7 @@ function ensureFile(file, defaultData) {
 ensureFile(USERS_FILE, []);
 ensureFile(ORDERS_FILE, []);
 ensureFile(DEPOSITS_FILE, []);
+ensureFile(PRINCE_FILE, {});
 
 /* ========================================
    JSON
