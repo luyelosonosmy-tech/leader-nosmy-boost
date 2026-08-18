@@ -25,9 +25,19 @@
       min-height: 100vh;
     }
 
-    /* =========================
-       HEADER
-    ========================= */
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .hidden {
+      display: none !important;
+    }
 
     header {
       background: linear-gradient(135deg, #111827, #1e3a8a);
@@ -51,7 +61,6 @@
     .logo {
       font-size: 20px;
       font-weight: 900;
-      letter-spacing: .5px;
     }
 
     .logo span {
@@ -61,6 +70,8 @@
     nav {
       display: flex;
       gap: 8px;
+      flex-wrap: wrap;
+      justify-content: center;
     }
 
     nav button {
@@ -69,17 +80,27 @@
       border-radius: 8px;
       cursor: pointer;
       font-weight: bold;
-      background: rgba(255,255,255,.12);
+    }
+
+    .nav-login {
+      background: white;
+      color: #111827;
+    }
+
+    .nav-register {
+      background: #facc15;
+      color: #111827;
+    }
+
+    .nav-account {
+      background: #16a34a;
       color: white;
     }
 
-    nav button:hover {
-      background: rgba(255,255,255,.25);
+    .nav-logout {
+      background: #dc2626;
+      color: white;
     }
-
-    /* =========================
-       HERO
-    ========================= */
 
     .hero {
       max-width: 1100px;
@@ -136,14 +157,6 @@
       background: white;
       color: #111827;
     }
-
-    .btn:hover {
-      transform: translateY(-2px);
-    }
-
-    /* =========================
-       SERVICES
-    ========================= */
 
     .container {
       max-width: 1100px;
@@ -207,9 +220,7 @@
       white-space: nowrap;
     }
 
-    /* =========================
-       MODAL
-    ========================= */
+    /* MODALS */
 
     .modal {
       display: none;
@@ -252,9 +263,7 @@
       color: #6b7280;
     }
 
-    /* =========================
-       FORM
-    ========================= */
+    /* FORM */
 
     .form-group {
       margin-bottom: 15px;
@@ -274,6 +283,7 @@
       border-radius: 9px;
       outline: none;
       font-size: 15px;
+      background: white;
     }
 
     .form-group input:focus,
@@ -311,6 +321,7 @@
       border-radius: 8px;
       display: none;
       font-size: 14px;
+      font-weight: bold;
     }
 
     .message.success {
@@ -325,12 +336,17 @@
       color: #991b1b;
     }
 
-    /* =========================
-       DASHBOARD
-    ========================= */
+    .message.info {
+      display: block;
+      background: #dbeafe;
+      color: #1e40af;
+    }
+
+    /* DASHBOARD */
 
     #dashboard {
       display: none;
+      margin-top: 35px;
     }
 
     .dashboard-grid {
@@ -384,9 +400,14 @@
       color: white;
     }
 
-    /* =========================
-       FOOTER
-    ========================= */
+    .order-item {
+      padding: 14px;
+      margin-bottom: 10px;
+      background: #f8fafc;
+      border-radius: 10px;
+      border: 1px solid #e5e7eb;
+      line-height: 1.7;
+    }
 
     footer {
       margin-top: 40px;
@@ -400,10 +421,6 @@
       color: #facc15;
     }
 
-    /* =========================
-       MOBILE
-    ========================= */
-
     @media (max-width: 650px) {
 
       .header-content {
@@ -412,7 +429,6 @@
 
       nav {
         width: 100%;
-        justify-content: center;
       }
 
       nav button {
@@ -443,10 +459,6 @@
 
 <body>
 
-<!-- =========================
-     HEADER
-========================= -->
-
 <header>
   <div class="header-content">
 
@@ -455,21 +467,50 @@
     </div>
 
     <nav>
-      <button onclick="openLogin()">CONNEXION</button>
-      <button onclick="openRegister()">CRÉER UN COMPTE</button>
+
+      <button
+        id="loginHeaderBtn"
+        class="nav-login"
+        onclick="openLogin()"
+      >
+        CONNEXION
+      </button>
+
+      <button
+        id="registerHeaderBtn"
+        class="nav-register"
+        onclick="openRegister()"
+      >
+        CRÉER UN COMPTE
+      </button>
+
+      <button
+        id="accountHeaderBtn"
+        class="nav-account hidden"
+        onclick="showDashboard()"
+      >
+        MON COMPTE
+      </button>
+
+      <button
+        id="logoutHeaderBtn"
+        class="nav-logout hidden"
+        onclick="logout()"
+      >
+        DÉCONNEXION
+      </button>
+
     </nav>
 
   </div>
 </header>
 
 
-<!-- =========================
-     HERO
-========================= -->
-
 <section class="hero">
 
-  <h1>BIENVENUE CHEZ LEADER NOSMY BOOST 👑</h1>
+  <h1>
+    BIENVENUE CHEZ LEADER NOSMY BOOST 👑
+  </h1>
 
   <p>
     Boostez votre présence sur les réseaux sociaux avec
@@ -497,10 +538,6 @@
 
 </section>
 
-
-<!-- =========================
-     SERVICES
-========================= -->
 
 <main class="container">
 
@@ -550,40 +587,55 @@
   </div>
 
 
-  <!-- =========================
-       DASHBOARD
-  ========================= -->
-
   <section id="dashboard">
 
     <div class="section-title">
+
       <h2>MON COMPTE 👤</h2>
+
       <p id="welcomeUser"></p>
+
     </div>
 
     <div class="dashboard-grid">
 
       <div class="card">
+
         <strong>💰 Mon solde</strong>
+
         <div
           class="balance"
           id="userBalance"
         >
           0 FC
         </div>
+
       </div>
 
       <div class="card">
+
         <strong>👤 Nom</strong>
-        <p id="userName" style="margin-top:8px;"></p>
+
+        <p
+          id="userName"
+          style="margin-top:8px;"
+        ></p>
+
       </div>
 
       <div class="card">
+
         <strong>📧 E-mail</strong>
-        <p id="userEmail" style="margin-top:8px;"></p>
+
+        <p
+          id="userEmail"
+          style="margin-top:8px;"
+        ></p>
+
       </div>
 
     </div>
+
 
     <div class="dashboard-actions">
 
@@ -617,6 +669,7 @@
 
     </div>
 
+
     <div
       class="card"
       id="ordersBox"
@@ -638,9 +691,7 @@
 </main>
 
 
-<!-- =========================
-     MODAL CONNEXION
-========================= -->
+<!-- CONNEXION -->
 
 <div
   class="modal"
@@ -712,9 +763,7 @@
 </div>
 
 
-<!-- =========================
-     MODAL INSCRIPTION
-========================= -->
+<!-- INSCRIPTION -->
 
 <div
   class="modal"
@@ -800,9 +849,7 @@
 </div>
 
 
-<!-- =========================
-     MODAL DÉPÔT
-========================= -->
+<!-- DÉPÔT -->
 
 <div
   class="modal"
@@ -845,7 +892,10 @@
 
         <label>Moyen de paiement</label>
 
-        <select id="depositMethod" required>
+        <select
+          id="depositMethod"
+          required
+        >
 
           <option value="">
             Choisir un moyen
@@ -893,9 +943,7 @@
 </div>
 
 
-<!-- =========================
-     MODAL COMMANDE
-========================= -->
+<!-- COMMANDE -->
 
 <div
   class="modal"
@@ -979,10 +1027,6 @@
 </div>
 
 
-<!-- =========================
-     FOOTER
-========================= -->
-
 <footer>
 
   <p>
@@ -999,219 +1043,1524 @@
 
 <script>
 
-  /* ========================================
-     VARIABLES
-  ======================================== */
-
-  let currentUser = null;
-  let allServices = {};
+let currentUser = null;
+let allServices = {};
 
 
-  /* ========================================
-     FORMAT PRIX
-  ======================================== */
+/* ================================
+   PRIX
+================================ */
 
-  function formatPrice(value) {
+function formatPrice(value) {
 
-    return Number(value || 0).toLocaleString("fr-FR") + " FC";
+  return Number(value || 0)
+    .toLocaleString("fr-FR") + " FC";
+
+}
+
+
+/* ================================
+   MODALS
+================================ */
+
+function closeModals() {
+
+  document
+    .querySelectorAll(".modal")
+    .forEach(modal => {
+
+      modal.classList.remove("active");
+
+    });
+
+}
+
+
+function openLogin() {
+
+  closeModals();
+
+  document
+    .getElementById("loginMessage")
+    .className = "message";
+
+  document
+    .getElementById("loginMessage")
+    .textContent = "";
+
+  document
+    .getElementById("loginModal")
+    .classList.add("active");
+
+}
+
+
+function openRegister() {
+
+  closeModals();
+
+  document
+    .getElementById("registerMessage")
+    .className = "message";
+
+  document
+    .getElementById("registerMessage")
+    .textContent = "";
+
+  document
+    .getElementById("registerModal")
+    .classList.add("active");
+
+}
+
+
+function openDeposit() {
+
+  if (!currentUser) {
+
+    openLogin();
+
+    return;
 
   }
 
+  closeModals();
 
-  /* ========================================
-     MODALS
-  ======================================== */
+  document
+    .getElementById("depositMessage")
+    .className = "message";
 
-  function closeModals() {
+  document
+    .getElementById("depositModal")
+    .classList.add("active");
+
+}
+
+
+function openOrder() {
+
+  if (!currentUser) {
+
+    openLogin();
+
+    return;
+
+  }
+
+  closeModals();
+
+  document
+    .getElementById("orderMessage")
+    .className = "message";
+
+  document
+    .getElementById("orderModal")
+    .classList.add("active");
+
+  loadOrderServices();
+
+}
+
+
+/* ================================
+   MESSAGE
+================================ */
+
+function showMessage(id, message, type) {
+
+  const element =
+    document.getElementById(id);
+
+  element.className =
+    "message " + type;
+
+  element.style.display =
+    "block";
+
+  element.textContent =
+    message;
+
+}
+
+
+/* ================================
+   SERVICES
+================================ */
+
+async function loadServices() {
+
+  try {
+
+    const response =
+      await fetch("/api/services");
+
+    const data =
+      await response.json();
+
+    console.log("SERVICES:", data);
+
+    if (!data.success) {
+
+      throw new Error(
+        data.message ||
+        "Impossible de charger les services."
+      );
+
+    }
+
+    allServices =
+      data.services || {};
+
+    displayServices();
+
+    loadOrderServices();
+
+  } catch (error) {
+
+    console.error(
+      "SERVICES ERROR:",
+      error
+    );
 
     document
-      .querySelectorAll(".modal")
-      .forEach(modal => {
-        modal.classList.remove("active");
+      .querySelectorAll(".service-list")
+      .forEach(element => {
+
+        element.innerHTML =
+          "<p>Services indisponibles.</p>";
+
       });
 
   }
 
-
-  function openLogin() {
-
-    closeModals();
-
-    document
-      .getElementById("loginModal")
-      .classList.add("active");
-
-  }
+}
 
 
-  function openRegister() {
+function displayServices() {
 
-    closeModals();
+  const platforms = [
+    "facebook",
+    "tiktok",
+    "youtube",
+    "instagram"
+  ];
 
-    document
-      .getElementById("registerModal")
-      .classList.add("active");
+  const titles = {
 
-  }
+    facebook: "📘 Facebook",
 
+    tiktok: "🎵 TikTok",
 
-  function openDeposit() {
+    youtube: "▶️ YouTube",
 
-    if (!currentUser) {
+    instagram: "📸 Instagram"
 
-      openLogin();
+  };
 
-      return;
+  const container =
+    document.getElementById(
+      "servicesContainer"
+    );
+
+  container.innerHTML = "";
+
+  platforms.forEach(platform => {
+
+    const services =
+      allServices[platform] || [];
+
+    const card =
+      document.createElement("div");
+
+    card.className =
+      "platform";
+
+    const title =
+      document.createElement("h3");
+
+    title.textContent =
+      titles[platform];
+
+    card.appendChild(title);
+
+    const list =
+      document.createElement("div");
+
+    list.className =
+      "service-list";
+
+    if (!services.length) {
+
+      list.innerHTML =
+        "<p>Aucun service disponible.</p>";
+
+    } else {
+
+      services.forEach(service => {
+
+        const item =
+          document.createElement("div");
+
+        item.className =
+          "service-item";
+
+        const name =
+          document.createElement("span");
+
+        name.textContent =
+          service.name || "Service";
+
+        const price =
+          document.createElement("span");
+
+        price.className =
+          "price";
+
+        price.textContent =
+          formatPrice(service.price);
+
+        item.appendChild(name);
+        item.appendChild(price);
+
+        list.appendChild(item);
+
+      });
 
     }
 
-    closeModals();
+    card.appendChild(list);
 
-    document
-      .getElementById("depositModal")
-      .classList.add("active");
+    container.appendChild(card);
 
-  }
+  });
 
-
-  function openOrder() {
-
-    if (!currentUser) {
-
-      openLogin();
-
-      return;
-
-    }
-
-    closeModals();
-
-    document
-      .getElementById("orderModal")
-      .classList.add("active");
-
-    loadOrderServices();
-
-  }
+}
 
 
-  /* ========================================
-     MESSAGE
-  ======================================== */
+function loadOrderServices() {
 
-  function showMessage(id, message, type) {
+  const select =
+    document.getElementById(
+      "orderService"
+    );
 
-    const element =
-      document.getElementById(id);
+  if (!select) return;
 
-    element.textContent = message;
+  select.innerHTML =
+    '<option value="">Choisir un service</option>';
 
-    element.className =
-      "message " + type;
+  const platforms = [
+    "facebook",
+    "tiktok",
+    "youtube",
+    "instagram"
+  ];
 
-  }
+  platforms.forEach(platform => {
+
+    const services =
+      allServices[platform] || [];
+
+    if (!services.length) return;
+
+    const group =
+      document.createElement("optgroup");
+
+    group.label =
+      platform.toUpperCase();
+
+    services.forEach(service => {
+
+      const option =
+        document.createElement("option");
+
+      option.value =
+        service.id;
+
+      option.textContent =
+        `${service.name} — ${formatPrice(service.price)}`;
+
+      group.appendChild(option);
+
+    });
+
+    select.appendChild(group);
+
+  });
+
+}
 
 
-  /* ========================================
-     CHARGER SERVICES
-  ======================================== */
+/* ================================
+   REGISTER
+================================ */
 
-  async function loadServices() {
+document
+  .getElementById("registerForm")
+  .addEventListener(
+    "submit",
+    async function(event) {
 
-    try {
+      event.preventDefault();
 
-      const response =
-        await fetch("/api/services");
+      const name =
+        document
+          .getElementById("registerName")
+          .value
+          .trim();
 
-      const data =
-        await response.json();
+      const email =
+        document
+          .getElementById("registerEmail")
+          .value
+          .trim();
 
-      if (!data.success) {
+      const password =
+        document
+          .getElementById("registerPassword")
+          .value;
 
-        throw new Error(
-          "Impossible de charger les services."
+      const message =
+        document.getElementById(
+          "registerMessage"
+        );
+
+
+      message.className =
+        "message info";
+
+      message.style.display =
+        "block";
+
+      message.textContent =
+        "Création du compte en cours...";
+
+
+      if (!name || !email || !password) {
+
+        showMessage(
+          "registerMessage",
+          "Remplis tous les champs.",
+          "error"
+        );
+
+        return;
+
+      }
+
+
+      if (password.length < 6) {
+
+        showMessage(
+          "registerMessage",
+          "Le mot de passe doit contenir au moins 6 caractères.",
+          "error"
+        );
+
+        return;
+
+      }
+
+
+      try {
+
+        const response =
+          await fetch(
+            "/api/register",
+            {
+
+              method: "POST",
+
+              headers: {
+                "Content-Type":
+                  "application/json"
+              },
+
+              body: JSON.stringify({
+
+                name: name,
+
+                email: email,
+
+                password: password
+
+              })
+
+            }
+          );
+
+
+        const data =
+          await response.json();
+
+        console.log(
+          "REGISTER RESPONSE:",
+          data
+        );
+
+
+        if (!data.success) {
+
+          showMessage(
+            "registerMessage",
+            data.message ||
+              "Impossible de créer le compte.",
+            "error"
+          );
+
+          return;
+
+        }
+
+
+        showMessage(
+          "registerMessage",
+          "Compte créé avec succès 🎉",
+          "success"
+        );
+
+
+        currentUser =
+          data.user;
+
+
+        localStorage.setItem(
+          "leaderUser",
+          JSON.stringify(
+            currentUser
+          )
+        );
+
+
+        updateHeader();
+
+
+        setTimeout(() => {
+
+          closeModals();
+
+          updateDashboard();
+
+        }, 800);
+
+
+      } catch (error) {
+
+        console.error(
+          "REGISTER ERROR:",
+          error
+        );
+
+
+        showMessage(
+          "registerMessage",
+          "Impossible de contacter le serveur.",
+          "error"
         );
 
       }
 
-      allServices = data.services || {};
+    }
+  );
 
-      displayServices();
 
-      loadOrderServices();
+/* ================================
+   LOGIN
+================================ */
 
-    } catch (error) {
+document
+  .getElementById("loginForm")
+  .addEventListener(
+    "submit",
+    async function(event) {
 
-      console.error(error);
+      event.preventDefault();
 
-      document
-        .querySelectorAll(".service-list")
-        .forEach(element => {
 
-          element.innerHTML =
-            "<p>Services indisponibles.</p>";
+      const email =
+        document
+          .getElementById("loginEmail")
+          .value
+          .trim();
 
-        });
+      const password =
+        document
+          .getElementById("loginPassword")
+          .value;
+
+
+      showMessage(
+        "loginMessage",
+        "Connexion en cours...",
+        "info"
+      );
+
+
+      try {
+
+        const response =
+          await fetch(
+            "/api/login",
+            {
+
+              method: "POST",
+
+              headers: {
+                "Content-Type":
+                  "application/json"
+              },
+
+              body: JSON.stringify({
+
+                email: email,
+
+                password: password
+
+              })
+
+            }
+          );
+
+
+        const data =
+          await response.json();
+
+
+        console.log(
+          "LOGIN RESPONSE:",
+          data
+        );
+
+
+        if (!data.success) {
+
+          showMessage(
+            "loginMessage",
+            data.message ||
+              "Connexion impossible.",
+            "error"
+          );
+
+          return;
+
+        }
+
+
+        currentUser =
+          data.user;
+
+
+        localStorage.setItem(
+          "leaderUser",
+          JSON.stringify(
+            currentUser
+          )
+        );
+
+
+        showMessage(
+          "loginMessage",
+          "Connexion réussie 🎉",
+          "success"
+        );
+
+
+        updateHeader();
+
+
+        setTimeout(() => {
+
+          closeModals();
+
+          updateDashboard();
+
+        }, 500);
+
+
+      } catch (error) {
+
+        console.error(
+          "LOGIN ERROR:",
+          error
+        );
+
+
+        showMessage(
+          "loginMessage",
+          "Impossible de contacter le serveur.",
+          "error"
+        );
+
+      }
 
     }
+  );
+
+
+/* ================================
+   HEADER
+================================ */
+
+function updateHeader() {
+
+  const login =
+    document.getElementById(
+      "loginHeaderBtn"
+    );
+
+  const register =
+    document.getElementById(
+      "registerHeaderBtn"
+    );
+
+  const account =
+    document.getElementById(
+      "accountHeaderBtn"
+    );
+
+  const logoutBtn =
+    document.getElementById(
+      "logoutHeaderBtn"
+    );
+
+
+  if (currentUser) {
+
+    login.classList.add("hidden");
+
+    register.classList.add("hidden");
+
+    account.classList.remove("hidden");
+
+    logoutBtn.classList.remove("hidden");
+
+  } else {
+
+    login.classList.remove("hidden");
+
+    register.classList.remove("hidden");
+
+    account.classList.add("hidden");
+
+    logoutBtn.classList.add("hidden");
+
+  }
+
+}
+
+
+/* ================================
+   DASHBOARD
+================================ */
+
+function updateDashboard() {
+
+  const dashboard =
+    document.getElementById(
+      "dashboard"
+    );
+
+
+  if (!currentUser) {
+
+    dashboard.style.display =
+      "none";
+
+    updateHeader();
+
+    return;
 
   }
 
 
-  /* ========================================
-     AFFICHER SERVICES
-  ======================================== */
+  dashboard.style.display =
+    "block";
 
-  function displayServices() {
 
-    const platforms = [
-      "facebook",
-      "tiktok",
-      "youtube",
-      "instagram"
-    ];
+  document.getElementById(
+    "welcomeUser"
+  ).textContent =
+    "Bienvenue " +
+    (currentUser.name || "") +
+    " 👑";
 
-    const titles = {
-      facebook: "📘 Facebook",
-      tiktok: "🎵 TikTok",
-      youtube: "▶️ YouTube",
-      instagram: "📸 Instagram"
-    };
 
-    const container =
-      document.getElementById(
-        "servicesContainer"
+  document.getElementById(
+    "userName"
+  ).textContent =
+    currentUser.name || "";
+
+
+  document.getElementById(
+    "userEmail"
+  ).textContent =
+    currentUser.email || "";
+
+
+  document.getElementById(
+    "userBalance"
+  ).textContent =
+    formatPrice(
+      currentUser.balance
+    );
+
+
+  updateHeader();
+
+}
+
+
+function showDashboard() {
+
+  if (!currentUser) {
+
+    openLogin();
+
+    return;
+
+  }
+
+  updateDashboard();
+
+  document
+    .getElementById("dashboard")
+    .scrollIntoView({
+      behavior: "smooth"
+    });
+
+}
+
+
+/* ================================
+   REFRESH USER
+================================ */
+
+async function refreshUser() {
+
+  if (!currentUser) return;
+
+
+  try {
+
+    const response =
+      await fetch(
+        "/api/user/" +
+        encodeURIComponent(
+          currentUser.id
+        )
       );
 
-    container.innerHTML = "";
 
-    platforms.forEach(platform => {
+    const data =
+      await response.json();
 
-      const services =
-        allServices[platform] || [];
 
-      const card =
-        document.createElement("div");
+    if (data.success) {
 
-      card.className = "platform";
+      currentUser =
+        data.user;
 
-      const title =
-        document.createElement("h3");
 
-      title.textContent =
-        titles[platform];
+      localStorage.setItem(
+        "leaderUser",
+        JSON.stringify(
+          currentUser
+        )
+      );
 
-      card.appendChild(title);
 
-      const list =
-        document.createElement("div");
+      updateDashboard();
 
-      list.className =
-        "service-list";
+    }
 
-      if (!services.length) {
+  } catch (error) {
 
-        list.innerHTML =
-          "<p>Aucun service disponible.</p>";
+    console.error(
+      "REFRESH USER ERROR:",
+      error
+    );
 
-      } e
+  }
+
+}
+
+
+/* ================================
+   DEPÔT
+================================ */
+
+document
+  .getElementById("depositForm")
+  .addEventListener(
+    "submit",
+    async function(event) {
+
+      event.preventDefault();
+
+
+      if (!currentUser) {
+
+        openLogin();
+
+        return;
+
+      }
+
+
+      const amount =
+        Number(
+          document
+            .getElementById(
+              "depositAmount"
+            )
+            .value
+        );
+
+
+      const method =
+        document
+          .getElementById(
+            "depositMethod"
+          )
+          .value;
+
+
+      const transactionId =
+        document
+          .getElementById(
+            "transactionId"
+          )
+          .value
+          .trim();
+
+
+      if (amount < 1000) {
+
+        showMessage(
+          "depositMessage",
+          "Le dépôt minimum est de 1 000 FC.",
+          "error"
+        );
+
+        return;
+
+      }
+
+
+      showMessage(
+        "depositMessage",
+        "Envoi de la demande...",
+        "info"
+      );
+
+
+      try {
+
+        const response =
+          await fetch(
+            "/api/deposit",
+            {
+
+              method: "POST",
+
+              headers: {
+                "Content-Type":
+                  "application/json"
+              },
+
+              body: JSON.stringify({
+
+                userId:
+                  currentUser.id,
+
+                amount:
+                  amount,
+
+                method:
+                  method,
+
+                transactionId:
+                  transactionId
+
+              })
+
+            }
+          );
+
+
+        const data =
+          await response.json();
+
+
+        console.log(
+          "DEPOSIT RESPONSE:",
+          data
+        );
+
+
+        if (!data.success) {
+
+          showMessage(
+            "depositMessage",
+            data.message ||
+              "Impossible d'envoyer le dépôt.",
+            "error"
+          );
+
+          return;
+
+        }
+
+
+        showMessage(
+          "depositMessage",
+          data.message ||
+            "Demande de dépôt envoyée.",
+          "success"
+        );
+
+
+        document
+          .getElementById(
+            "depositForm"
+          )
+          .reset();
+
+
+      } catch (error) {
+
+        console.error(
+          "DEPOSIT ERROR:",
+          error
+        );
+
+
+        showMessage(
+          "depositMessage",
+          "Impossible de contacter le serveur.",
+          "error"
+        );
+
+      }
+
+    }
+  );
+
+
+/* ================================
+   COMMANDE
+================================ */
+
+document
+  .getElementById("orderForm")
+  .addEventListener(
+    "submit",
+    async function(event) {
+
+      event.preventDefault();
+
+
+      if (!currentUser) {
+
+        openLogin();
+
+        return;
+
+      }
+
+
+      const serviceId =
+        document
+          .getElementById(
+            "orderService"
+          )
+          .value;
+
+
+      const link =
+        document
+          .getElementById(
+            "orderLink"
+          )
+          .value
+          .trim();
+
+
+      const quantity =
+        Number(
+          document
+            .getElementById(
+              "orderQuantity"
+            )
+            .value
+        );
+
+
+      if (!serviceId) {
+
+        showMessage(
+          "orderMessage",
+          "Choisis un service.",
+          "error"
+        );
+
+        return;
+
+      }
+
+
+      if (!link) {
+
+        showMessage(
+          "orderMessage",
+          "Entre le lien de ta publication.",
+          "error"
+        );
+
+        return;
+
+      }
+
+
+      if (quantity < 1000) {
+
+        showMessage(
+          "orderMessage",
+          "La quantité minimum est de 1 000.",
+          "error"
+        );
+
+        return;
+
+      }
+
+
+      showMessage(
+        "orderMessage",
+        "Traitement de la commande...",
+        "info"
+      );
+
+
+      try {
+
+        const response =
+          await fetch(
+            "/api/order",
+            {
+
+              method: "POST",
+
+              headers: {
+                "Content-Type":
+                  "application/json"
+              },
+
+              body: JSON.stringify({
+
+                userId:
+                  currentUser.id,
+
+                serviceId:
+                  serviceId,
+
+                link:
+                  link,
+
+                quantity:
+                  quantity
+
+              })
+
+            }
+          );
+
+
+        const data =
+          await response.json();
+
+
+        console.log(
+          "ORDER RESPONSE:",
+          data
+        );
+
+
+        if (!data.success) {
+
+          showMessage(
+            "orderMessage",
+            data.message ||
+              "Impossible de passer la commande.",
+            "error"
+          );
+
+          return;
+
+        }
+
+
+        showMessage(
+          "orderMessage",
+          data.message ||
+            "Commande créée avec succès 🎉",
+          "success"
+        );
+
+
+        if (data.user) {
+
+          currentUser =
+            data.user;
+
+        } else if (data.order) {
+
+          currentUser.balance =
+            Number(
+              currentUser.balance || 0
+            ) -
+            Number(
+              data.order.price || 0
+            );
+
+        }
+
+
+        localStorage.setItem(
+          "leaderUser",
+          JSON.stringify(
+            currentUser
+          )
+        );
+
+
+        updateDashboard();
+
+
+        document
+          .getElementById(
+            "orderForm"
+          )
+          .reset();
+
+
+        setTimeout(() => {
+
+          closeModals();
+
+        }, 1200);
+
+
+      } catch (error) {
+
+        console.error(
+          "ORDER ERROR:",
+          error
+        );
+
+
+        showMessage(
+          "orderMessage",
+          "Impossible de contacter le serveur.",
+          "error"
+        );
+
+      }
+
+    }
+  );
+
+
+/* ================================
+   COMMANDES
+================================ */
+
+async function loadOrders() {
+
+  if (!currentUser) {
+
+    openLogin();
+
+    return;
+
+  }
+
+
+  const box =
+    document.getElementById(
+      "ordersBox"
+    );
+
+
+  const list =
+    document.getElementById(
+      "ordersList"
+    );
+
+
+  box.style.display =
+    "block";
+
+
+  list.innerHTML =
+    "Chargement...";
+
+
+  try {
+
+    const response =
+      await fetch(
+        "/api/orders/" +
+        encodeURIComponent(
+          currentUser.id
+        )
+      );
+
+
+    const data =
+      await response.json();
+
+
+    console.log(
+      "ORDERS RESPONSE:",
+      data
+    );
+
+
+    if (!data.success) {
+
+      list.innerHTML =
+        "Impossible de charger les commandes.";
+
+      return;
+
+    }
+
+
+    if (
+      !Array.isArray(data.orders) ||
+      !data.orders.length
+    ) {
+
+      list.innerHTML =
+        "<p>Aucune commande pour le moment.</p>";
+
+      return;
+
+    }
+
+
+    list.innerHTML = "";
+
+
+    data.orders.forEach(order => {
+
+      const item =
+        document.createElement(
+          "div"
+        );
+
+
+      item.className =
+        "order-item";
+
+
+      const serviceName =
+        document.createElement(
+          "strong"
+        );
+
+      serviceName.textContent =
+        order.serviceName ||
+        "Service";
+
+
+      item.appendChild(
+        serviceName
+      );
+
+
+      item.innerHTML +=
+        "<br>Quantité : " +
+        Number(
+          order.quantity || 0
+        ).toLocaleString(
+          "fr-FR"
+        );
+
+
+      item.innerHTML +=
+        "<br>Prix : " +
+        formatPrice(
+          order.price
+        );
+
+
+      const status =
+        document.createElement(
+          "div"
+        );
+
+      status.textContent =
+        "Statut : " +
+        (order.status || "En attente");
+
+
+      item.appendChild(
+        status
+      );
+
+
+      list.appendChild(
+        item
+      );
+
+    });
+
+
+  } catch (error) {
+
+    console.error(
+      "ORDERS ERROR:",
+      error
+    );
+
+
+    list.innerHTML =
+      "Erreur de connexion au serveur.";
+
+  }
+
+}
+
+
+/* ================================
+   LOGOUT
+================================ */
+
+function logout() {
+
+  currentUser =
+    null;
+
+
+  localStorage.removeItem(
+    "leaderUser"
+  );
+
+
+  document.getElementById(
+    "dashboard"
+  ).style.display =
+    "none";
+
+
+  updateHeader();
+
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+
+}
+
+
+/* ================================
+   RESTAURER SESSION
+================================ */
+
+function restoreUser() {
+
+  try {
+
+    const saved =
+      localStorage.getItem(
+        "leaderUser"
+      );
+
+
+    if (!saved) {
+
+      updateHeader();
+
+      return;
+
+    }
+
+
+    currentUser =
+      JSON.parse(
+        saved
+      );
+
+
+    updateDashboard();
+
+    refreshUser();
+
+
+  } catch (error) {
+
+    console.error(
+      "SESSION ERROR:",
+      error
+    );
+
+
+    localStorage.removeItem(
+      "leaderUser"
+    );
+
+
+    currentUser =
+      null;
+
+
+    updateHeader();
+
+  }
+
+}
+
+
+/* ================================
+   FERMER EN CLIQUANT DEHORS
+================================ */
+
+document
+  .querySelectorAll(".modal")
+  .forEach(modal => {
+
+    modal.addEventListener(
+      "click",
+      function(event) {
+
+        if (
+          event.target === modal
+        ) {
+
+          closeModals();
+
+        }
+
+      }
+    );
+
+  });
+
+
+/* ================================
+   DÉMARRAGE
+================================ */
+
+updateHeader();
+
+loadServices();
+
+restoreUser();
+
+</script>
+
+</body>
+</html>
