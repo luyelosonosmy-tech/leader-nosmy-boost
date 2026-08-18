@@ -1,0 +1,135 @@
+{
+  "facebook": [
+    { "id": "fb_likes_1k", "name": "Facebook Likes 1K", "price": 1000, "providerServiceId": "" },
+    { "id": "fb_likes_2k", "name": "Facebook Likes 2K", "price": 2000, "providerServiceId": "" },
+    { "id": "fb_likes_3k", "name": "Facebook Likes 3K", "price": 3000, "providerServiceId": "" },
+    { "id": "fb_likes_4k", "name": "Facebook Likes 4K", "price": 4000, "providerServiceId": "" },
+    { "id": "fb_likes_5k", "name": "Facebook Likes 5K", "price": 5000, "providerServiceId": "" },
+    { "id": "fb_likes_10k", "name": "Facebook Likes 10K", "price": 10000, "providerServiceId": "" },
+
+    { "id": "fb_comments_1k", "name": "Facebook Commentaires 1K", "price": 2000, "providerServiceId": "" },
+    { "id": "fb_comments_2k", "name": "Facebook Commentaires 2K", "price": 4000, "providerServiceId": "" },
+    { "id": "fb_comments_3k", "name": "Facebook Commentaires 3K", "price": 6000, "providerServiceId": "" },
+    { "id": "fb_comments_4k", "name": "Facebook Commentaires 4K", "price": 8000, "providerServiceId": "" },
+    { "id": "fb_comments_5k", "name": "Facebook Commentaires 5K", "price": 10000, "providerServiceId": "" },
+    { "id": "fb_comments_10k", "name": "Facebook Commentaires 10K", "price": 20000, "providerServiceId": "" },
+
+    { "id": "fb_shares_1k", "name": "Facebook Partages 1K", "price": 500, "providerServiceId": "" },
+    { "id": "fb_shares_2k", "name": "Facebook Partages 2K", "price": 1000, "providerServiceId": "" },
+    { "id": "fb_shares_3k", "name": "Facebook Partages 3K", "price": 1500, "providerServiceId": "" },
+    { "id": "fb_shares_4k", "name": "Facebook Partages 4K", "price": 2000, "providerServiceId": "" },
+    { "id": "fb_shares_5k", "name": "Facebook Partages 5K", "price": 2500, "providerServiceId": "" },
+    { "id": "fb_shares_10k", "name": "Facebook Partages 10K", "price": 5000, "providerServiceId": "" },
+
+    { "id": "fb_views_1k", "name": "Facebook Vues 1K", "price": 1500, "providerServiceId": "" },
+    { "id": "fb_views_2k", "name": "Facebook Vues 2K", "price": 3000, "providerServiceId": "" },
+    { "id": "fb_views_3k", "name": "Facebook Vues 3K", "price": 4500, "providerServiceId": "" },
+    { "id": "fb_views_4k", "name": "Facebook Vues 4K", "price": 6000, "providerServiceId": "" },
+    { "id": "fb_views_5k", "name": "Facebook Vues 5K", "price": 7500, "providerServiceId": "" },
+    { "id": "fb_views_10k", "name": "Facebook Vues 10K", "price": 15000, "providerServiceId": "" },
+
+    { "id": "fb_followers_1k", "name": "Facebook Followers 1K", "price": 6000, "providerServiceId": "" },
+    { "id": "fb_followers_2k", "name": "Facebook Followers 2K", "price": 12000, "providerServiceId": "" },
+    { "id": "fb_followers_3k", "name": "Facebook Followers 3K", "price": 18000, "providerServiceId": "" },
+    { "id": "fb_followers_4k", "name": "Facebook Followers 4K", "price": 24000, "providerServiceId": "" },
+    { "id": "fb_followers_5k", "name": "Facebook Followers 5K", "price": 30000, "providerServiceId": "" },
+    { "id": "fb_followers_10k", "name": "Facebook Followers 10K", "price": 60000, "providerServiceId": "" }
+  ],
+
+  "tiktok": [
+    { "id": "tt_followers_1k", "name": "TikTok Followers 1K", "price": 8000, "providerServiceId": "" },
+    { "id": "tt_followers_2k", "name": "TikTok Followers 2K", "price": 16000, "providerServiceId": "" },
+    { "id": "tt_followers_3k", "name": "TikTok Followers 3K", "price": 24000, "providerServiceId": "" },
+    { "id": "tt_followers_4k", "name": "TikTok Followers 4K", "price": 32000, "providerServiceId": "" },
+    { "id": "tt_followers_5k", "name": "TikTok Followers 5K", "price": 40000, "providerServiceId": "" },
+    { "id": "tt_followers_10k", "name": "TikTok Followers 10K", "price": 80000, "providerServiceId": "" },
+
+    { "id": "tt_likes_1k", "name": "TikTok Likes 1K", "price": 3000, "providerServiceId": "" },
+    { "id": "tt_likes_2k", "name": "TikTok Likes 2K", "price": 6000, "providerServiceId": "" },
+    { "id": "tt_likes_3k", "name": "TikTok Likes 3K", "price": 9000, "providerServiceId": "" },
+    { "id": "tt_likes_4k", "name": "TikTok Likes 4K", "price": 12000, "providerServiceId": "" },
+    { "id": "tt_likes_5k", "name": "TikTok Likes 5K", "price": 15000, "providerServiceId": "" },
+    { "id": "tt_likes_10k", "name": "TikTok Likes 10K", "price": 30000, "providerServiceId": "" },
+
+    { "id": "tt_views_1k", "name": "TikTok Vues 1K", "price": 1500, "providerServiceId": "" },
+    { "id": "tt_views_2k", "name": "TikTok Vues 2K", "price": 3000, "providerServiceId": "" },
+    { "id": "tt_views_3k", "name": "TikTok Vues 3K", "price": 4500, "providerServiceId": "" },
+    { "id": "tt_views_4k", "name": "TikTok Vues 4K", "price": 6000, "providerServiceId": "" },
+    { "id": "tt_views_5k", "name": "TikTok Vues 5K", "price": 7500, "providerServiceId": "" },
+    { "id": "tt_views_10k", "name": "TikTok Vues 10K", "price": 15000, "providerServiceId": "" },
+
+    { "id": "tt_comments_1k", "name": "TikTok Commentaires 1K", "price": 2500, "providerServiceId": "" },
+    { "id": "tt_comments_2k", "name": "TikTok Commentaires 2K", "price": 5000, "providerServiceId": "" },
+    { "id": "tt_comments_3k", "name": "TikTok Commentaires 3K", "price": 7500, "providerServiceId": "" },
+    { "id": "tt_comments_4k", "name": "TikTok Commentaires 4K", "price": 10000, "providerServiceId": "" },
+    { "id": "tt_comments_5k", "name": "TikTok Commentaires 5K", "price": 12500, "providerServiceId": "" },
+    { "id": "tt_comments_10k", "name": "TikTok Commentaires 10K", "price": 25000, "providerServiceId": "" },
+
+    { "id": "tt_favorites_1k", "name": "TikTok Favoris 1K", "price": 1500, "providerServiceId": "" },
+    { "id": "tt_favorites_2k", "name": "TikTok Favoris 2K", "price": 3000, "providerServiceId": "" },
+    { "id": "tt_favorites_3k", "name": "TikTok Favoris 3K", "price": 4500, "providerServiceId": "" },
+    { "id": "tt_favorites_4k", "name": "TikTok Favoris 4K", "price": 6000, "providerServiceId": "" },
+    { "id": "tt_favorites_5k", "name": "TikTok Favoris 5K", "price": 7500, "providerServiceId": "" },
+    { "id": "tt_favorites_10k", "name": "TikTok Favoris 10K", "price": 15000, "providerServiceId": "" }
+  ],
+
+  "youtube": [
+    { "id": "yt_followers_1k", "name": "YouTube Followers 1K", "price": 12000, "providerServiceId": "" },
+    { "id": "yt_followers_2k", "name": "YouTube Followers 2K", "price": 24000, "providerServiceId": "" },
+    { "id": "yt_followers_3k", "name": "YouTube Followers 3K", "price": 36000, "providerServiceId": "" },
+    { "id": "yt_followers_4k", "name": "YouTube Followers 4K", "price": 48000, "providerServiceId": "" },
+    { "id": "yt_followers_5k", "name": "YouTube Followers 5K", "price": 60000, "providerServiceId": "" },
+    { "id": "yt_followers_10k", "name": "YouTube Followers 10K", "price": 120000, "providerServiceId": "" },
+
+    { "id": "yt_likes_1k", "name": "YouTube Likes 1K", "price": 7000, "providerServiceId": "" },
+    { "id": "yt_likes_2k", "name": "YouTube Likes 2K", "price": 14000, "providerServiceId": "" },
+    { "id": "yt_likes_3k", "name": "YouTube Likes 3K", "price": 21000, "providerServiceId": "" },
+    { "id": "yt_likes_4k", "name": "YouTube Likes 4K", "price": 28000, "providerServiceId": "" },
+    { "id": "yt_likes_5k", "name": "YouTube Likes 5K", "price": 35000, "providerServiceId": "" },
+    { "id": "yt_likes_10k", "name": "YouTube Likes 10K", "price": 70000, "providerServiceId": "" },
+
+    { "id": "yt_views_1k", "name": "YouTube Vues 1K", "price": 5000, "providerServiceId": "" },
+    { "id": "yt_views_2k", "name": "YouTube Vues 2K", "price": 10000, "providerServiceId": "" },
+    { "id": "yt_views_3k", "name": "YouTube Vues 3K", "price": 15000, "providerServiceId": "" },
+    { "id": "yt_views_4k", "name": "YouTube Vues 4K", "price": 20000, "providerServiceId": "" },
+    { "id": "yt_views_5k", "name": "YouTube Vues 5K", "price": 25000, "providerServiceId": "" },
+    { "id": "yt_views_10k", "name": "YouTube Vues 10K", "price": 50000, "providerServiceId": "" },
+
+    { "id": "yt_comments_1k", "name": "YouTube Commentaires 1K", "price": 4000, "providerServiceId": "" },
+    { "id": "yt_comments_2k", "name": "YouTube Commentaires 2K", "price": 8000, "providerServiceId": "" },
+    { "id": "yt_comments_3k", "name": "YouTube Commentaires 3K", "price": 12000, "providerServiceId": "" },
+    { "id": "yt_comments_4k", "name": "YouTube Commentaires 4K", "price": 16000, "providerServiceId": "" },
+    { "id": "yt_comments_5k", "name": "YouTube Commentaires 5K", "price": 20000, "providerServiceId": "" },
+    { "id": "yt_comments_10k", "name": "YouTube Commentaires 10K", "price": 40000, "providerServiceId": "" }
+  ],
+
+  "instagram": [
+    { "id": "ig_followers_1k", "name": "Instagram Followers 1K", "price": 10000, "providerServiceId": "" },
+    { "id": "ig_followers_2k", "name": "Instagram Followers 2K", "price": 20000, "providerServiceId": "" },
+    { "id": "ig_followers_3k", "name": "Instagram Followers 3K", "price": 30000, "providerServiceId": "" },
+    { "id": "ig_followers_4k", "name": "Instagram Followers 4K", "price": 40000, "providerServiceId": "" },
+    { "id": "ig_followers_5k", "name": "Instagram Followers 5K", "price": 50000, "providerServiceId": "" },
+    { "id": "ig_followers_10k", "name": "Instagram Followers 10K", "price": 100000, "providerServiceId": "" },
+
+    { "id": "ig_likes_1k", "name": "Instagram Likes 1K", "price": 6000, "providerServiceId": "" },
+    { "id": "ig_likes_2k", "name": "Instagram Likes 2K", "price": 12000, "providerServiceId": "" },
+    { "id": "ig_likes_3k", "name": "Instagram Likes 3K", "price": 18000, "providerServiceId": "" },
+    { "id": "ig_likes_4k", "name": "Instagram Likes 4K", "price": 24000, "providerServiceId": "" },
+    { "id": "ig_likes_5k", "name": "Instagram Likes 5K", "price": 30000, "providerServiceId": "" },
+    { "id": "ig_likes_10k", "name": "Instagram Likes 10K", "price": 60000, "providerServiceId": "" },
+
+    { "id": "ig_views_1k", "name": "Instagram Vues 1K", "price": 4000, "providerServiceId": "" },
+    { "id": "ig_views_2k", "name": "Instagram Vues 2K", "price": 8000, "providerServiceId": "" },
+    { "id": "ig_views_3k", "name": "Instagram Vues 3K", "price": 12000, "providerServiceId": "" },
+    { "id": "ig_views_4k", "name": "Instagram Vues 4K", "price": 16000, "providerServiceId": "" },
+    { "id": "ig_views_5k", "name": "Instagram Vues 5K", "price": 20000, "providerServiceId": "" },
+    { "id": "ig_views_10k", "name": "Instagram Vues 10K", "price": 40000, "providerServiceId": "" },
+
+    { "id": "ig_comments_1k", "name": "Instagram Commentaires 1K", "price": 5000, "providerServiceId": "" },
+    { "id": "ig_comments_2k", "name": "Instagram Commentaires 2K", "price": 10000, "providerServiceId": "" },
+    { "id": "ig_comments_3k", "name": "Instagram Commentaires 3K", "price": 15000, "providerServiceId": "" },
+    { "id": "ig_comments_4k", "name": "Instagram Commentaires 4K", "price": 20000, "providerServiceId": "" },
+    { "id": "ig_comments_5k", "name": "Instagram Commentaires 5K", "price": 25000, "providerServiceId": "" },
+    { "id": "ig_comments_10k", "name": "Instagram Commentaires 10K", "price": 50000, "providerServiceId": "" }
+  ]
+}
