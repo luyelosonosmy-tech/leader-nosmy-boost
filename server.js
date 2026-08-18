@@ -12,31 +12,33 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
 app.use(express.static(__dirname));
 
 const USERS_FILE = path.join(__dirname, "users.json");
 const ORDERS_FILE = path.join(__dirname, "orders.json");
+const DEPOSITS_FILE = path.join(__dirname, "deposits.json");
 const PRINCE_FILE = path.join(__dirname, "prince.json");
 
 /* ========================================
-   FICHIERS JSON
+   FICHIERS
 ======================================== */
 
 function ensureFile(file, defaultData) {
   if (!fs.existsSync(file)) {
     fs.writeFileSync(
       file,
-      JSON.stringify(defaultData, null, 2)
+      JSON.stringify(defaultData, null, 2),
+      "utf8"
     );
   }
 }
 
 ensureFile(USERS_FILE, []);
 ensureFile(ORDERS_FILE, []);
+ensureFile(DEPOSITS_FILE, []);
 
 /* ========================================
-   LECTURE / ÉCRITURE
+   JSON
 ======================================== */
 
 function readJson(file, fallback = []) {
@@ -51,8 +53,9 @@ function readJson(file, fallback = []) {
       return fallback;
     }
 
-    return JSON.parse(content);
+    const data = JSON.parse(content);
 
+    return data;
   } catch (error) {
     console.error("Erreur lecture JSON:", error);
     return fallback;
@@ -62,12 +65,38 @@ function readJson(file, fallback = []) {
 function writeJson(file, data) {
   fs.writeFileSync(
     file,
-    JSON.stringify(data, null, 2)
+    JSON.stringify(data, null, 2),
+    "utf8"
   );
 }
 
 /* ========================================
-   PRINCE.JSON
+   ID
+======================================== */
+
+function generateId(prefix) {
+  return (
+    prefix +
+    "_" +
+    Date.now() +
+    "_" +
+    crypto.randomBytes(4).toString("hex")
+  );
+}
+
+/* ========================================
+   PASSWORD
+======================================== */
+
+function hashPassword(password) {
+  return crypto
+    .createHash("sha256")
+    .update(String(password))
+    .digest("hex");
+}
+
+/* ========================================
+   SERVICES
 ======================================== */
 
 function getServices() {
@@ -76,49 +105,27 @@ function getServices() {
       return {};
     }
 
-    const services =
-      readJson(PRINCE_FILE, {});
-
-    return services || {};
-
+    return readJson(PRINCE_FILE, {}) || {};
   } catch (error) {
-
-    console.error(
-      "Erreur prince.json:",
-      error
-    );
-
+    console.error("Erreur prince.json:", error);
     return {};
   }
 }
 
 /* ========================================
-   PASSWORD
+   UTILITAIRE USER
 ======================================== */
 
-function hashPassword(password) {
+function safeUser(user) {
+  if (!user) return null;
 
-  return crypto
-    .createHash("sha256")
-    .update(String(password))
-    .digest("hex");
-
-}
-
-/* ========================================
-   ID
-======================================== */
-
-function generateId(prefix) {
-
-  return (
-    prefix +
-    "_" +
-    Date.now() +
-    "_" +
-    crypto.randomBytes(4).toString("hex")
-  );
-
+  return {
+    id: user.id,
+    name: user.name,
+    email: user.email,
+    balance: Number(user.balance || 0),
+    createdAt: user.createdAt
+  };
 }
 
 /* ========================================
@@ -126,11 +133,20 @@ function generateId(prefix) {
 ======================================== */
 
 app.get("/", (req, res) => {
-
   res.sendFile(
     path.join(__dirname, "index.html")
   );
+});
 
+/* ========================================
+   TEST SERVEUR
+======================================== */
+
+app.get("/api/health", (req, res) => {
+  res.json({
+    success: true,
+    message: "LEADER NOSMY BOOST fonctionne correctement 🚀"
+  });
 });
 
 /* ========================================
@@ -138,27 +154,21 @@ app.get("/", (req, res) => {
 ======================================== */
 
 app.get("/api/services", (req, res) => {
-
   try {
-
     const services = getServices();
 
     res.json({
       success: true,
       services
     });
-
   } catch (error) {
-
-    console.error(error);
+    console.error("SERVICES ERROR:", error);
 
     res.status(500).json({
       success: false,
       message: "Impossible de récupérer les services."
     });
-
   }
-
 });
 
 /* ========================================
@@ -166,79 +176,60 @@ app.get("/api/services", (req, res) => {
 ======================================== */
 
 app.post("/api/register", (req, res) => {
-
   try {
+    const name = String(req.body.name || "").trim();
+    const email = String(req.body.email || "")
+      .trim()
+      .toLowerCase();
+    const password = String(req.body.password || "");
 
-    const {
+    console.log("REGISTER:", {
       name,
-      email,
-      password
-    } = req.body;
+      email
+    });
 
     if (!name || !email || !password) {
-
-      return res.json({
+      return res.status(400).json({
         success: false,
-        message:
-          "Tous les champs sont obligatoires."
+        message: "Remplis tous les champs."
       });
-
     }
 
-    if (String(password).length < 6) {
-
-      return res.json({
+    if (password.length < 6) {
+      return res.status(400).json({
         success: false,
         message:
           "Le mot de passe doit contenir au moins 6 caractères."
       });
-
     }
 
-    const users =
-      readJson(USERS_FILE, []);
+    const users = readJson(
+      USERS_FILE,
+      []
+    );
 
-    const normalizedEmail =
-      String(email)
-        .trim()
-        .toLowerCase();
-
-    const existingUser =
-      users.find(
-        user =>
-          String(user.email)
-            .toLowerCase() ===
-          normalizedEmail
-      );
+    const existingUser = users.find(
+      user =>
+        String(user.email || "")
+          .trim()
+          .toLowerCase() === email
+    );
 
     if (existingUser) {
-
-      return res.json({
+      return res.status(409).json({
         success: false,
         message:
           "Cette adresse e-mail existe déjà."
       });
-
     }
 
     const user = {
-
       id: generateId("user"),
-
-      name:
-        String(name).trim(),
-
-      email:
-        normalizedEmail,
-
-      password:
-        hashPassword(password),
-
+      name,
+      email,
+      password: hashPassword(password),
       balance: 0,
-
-      createdAt:
-        new Date().toISOString()
-
+      createdAt: new Date().toISOString()
     };
 
     users.push(user);
@@ -248,42 +239,30 @@ app.post("/api/register", (req, res) => {
       users
     );
 
-    const safeUser = {
-      id: user.id,
-      name: user.name,
-      email: user.email,
-      balance: user.balance
-    };
+    console.log(
+      "COMPTE CRÉÉ:",
+      user.email
+    );
 
-    res.json({
-
+    return res.status(201).json({
       success: true,
-
       message:
-        "Compte créé avec succès.",
-
-      user: safeUser
-
+        "Compte créé avec succès 🎉",
+      user: safeUser(user)
     });
 
   } catch (error) {
-
     console.error(
-      "Erreur inscription:",
+      "REGISTER ERROR:",
       error
     );
 
-    res.status(500).json({
-
+    return res.status(500).json({
       success: false,
-
       message:
-        "Erreur du serveur."
-
+        "Erreur du serveur pendant la création du compte."
     });
-
   }
-
 });
 
 /* ========================================
@@ -291,51 +270,470 @@ app.post("/api/register", (req, res) => {
 ======================================== */
 
 app.post("/api/login", (req, res) => {
-
   try {
+    const email = String(
+      req.body.email || ""
+    )
+      .trim()
+      .toLowerCase();
 
-    const {
-      email,
-      password
-    } = req.body;
+    const password = String(
+      req.body.password || ""
+    );
 
     if (!email || !password) {
-
-      return res.json({
-
+      return res.status(400).json({
         success: false,
-
         message:
           "E-mail et mot de passe obligatoires."
-
       });
-
     }
 
-    const users =
-      readJson(
-        USERS_FILE,
-        []
-      );
+    const users = readJson(
+      USERS_FILE,
+      []
+    );
 
-    const normalizedEmail =
-      String(email)
-        .trim()
-        .toLowerCase();
-
-    const hashedPassword =
+    const passwordHash =
       hashPassword(password);
 
-    const user =
-      users.find(
-        item =>
-          String(item.email)
-            .toLowerCase() ===
-            normalizedEmail &&
-          item.password ===
-            hashedPassword
-      );
+    const user = users.find(
+      item =>
+        String(item.email || "")
+          .trim()
+          .toLowerCase() === email &&
+        item.password === passwordHash
+    );
 
     if (!user) {
+      return res.status(401).json({
+        success: false,
+        message:
+          "E-mail ou mot de passe incorrect."
+      });
+    }
 
-      return res.json({
+    return res.json({
+      success: true,
+      message:
+        "Connexion réussie.",
+      user: safeUser(user)
+    });
+
+  } catch (error) {
+    console.error(
+      "LOGIN ERROR:",
+      error
+    );
+
+    return res.status(500).json({
+      success: false,
+      message:
+        "Erreur du serveur."
+    });
+  }
+});
+
+/* ========================================
+   INFORMATIONS UTILISATEUR
+======================================== */
+
+app.get("/api/user/:id", (req, res) => {
+  try {
+    const users = readJson(
+      USERS_FILE,
+      []
+    );
+
+    const user = users.find(
+      item => item.id === req.params.id
+    );
+
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message:
+          "Utilisateur introuvable."
+      });
+    }
+
+    return res.json({
+      success: true,
+      user: safeUser(user)
+    });
+
+  } catch (error) {
+    console.error(
+      "USER ERROR:",
+      error
+    );
+
+    return res.status(500).json({
+      success: false,
+      message:
+        "Erreur du serveur."
+    });
+  }
+});
+
+/* ========================================
+   DÉPÔT
+======================================== */
+
+app.post("/api/deposit", (req, res) => {
+  try {
+    const userId = String(
+      req.body.userId || ""
+    );
+
+    const amount = Number(
+      req.body.amount
+    );
+
+    const method = String(
+      req.body.method || ""
+    ).trim();
+
+    const transactionId = String(
+      req.body.transactionId || ""
+    ).trim();
+
+    if (!userId) {
+      return res.status(400).json({
+        success: false,
+        message:
+          "Utilisateur invalide."
+      });
+    }
+
+    if (!Number.isFinite(amount) || amount < 1000) {
+      return res.status(400).json({
+        success: false,
+        message:
+          "Le dépôt minimum est de 1 000 FC."
+      });
+    }
+
+    if (!method) {
+      return res.status(400).json({
+        success: false,
+        message:
+          "Choisis un moyen de paiement."
+      });
+    }
+
+    const users = readJson(
+      USERS_FILE,
+      []
+    );
+
+    const user = users.find(
+      item => item.id === userId
+    );
+
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message:
+          "Utilisateur introuvable."
+      });
+    }
+
+    const deposits = readJson(
+      DEPOSITS_FILE,
+      []
+    );
+
+    const deposit = {
+      id: generateId("deposit"),
+      userId,
+      userName: user.name,
+      userEmail: user.email,
+      amount,
+      method,
+      transactionId,
+      status: "pending",
+      createdAt: new Date().toISOString()
+    };
+
+    deposits.push(deposit);
+
+    writeJson(
+      DEPOSITS_FILE,
+      deposits
+    );
+
+    return res.json({
+      success: true,
+      message:
+        "Demande de dépôt envoyée avec succès.",
+      deposit
+    });
+
+  } catch (error) {
+    console.error(
+      "DEPOSIT ERROR:",
+      error
+    );
+
+    return res.status(500).json({
+      success: false,
+      message:
+        "Erreur pendant la demande de dépôt."
+    });
+  }
+});
+
+/* ========================================
+   COMMANDER
+======================================== */
+
+app.post("/api/order", (req, res) => {
+  try {
+    const userId = String(
+      req.body.userId || ""
+    );
+
+    const serviceId = String(
+      req.body.serviceId || ""
+    );
+
+    const link = String(
+      req.body.link || ""
+    ).trim();
+
+    const quantity = Number(
+      req.body.quantity
+    );
+
+    if (!userId || !serviceId || !link) {
+      return res.status(400).json({
+        success: false,
+        message:
+          "Informations de commande invalides."
+      });
+    }
+
+    if (
+      !Number.isFinite(quantity) ||
+      quantity < 1000
+    ) {
+      return res.status(400).json({
+        success: false,
+        message:
+          "La quantité minimum est de 1 000."
+      });
+    }
+
+    const users = readJson(
+      USERS_FILE,
+      []
+    );
+
+    const user = users.find(
+      item => item.id === userId
+    );
+
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message:
+          "Utilisateur introuvable."
+      });
+    }
+
+    const services = getServices();
+
+    let selectedService = null;
+    let selectedPlatform = "";
+
+    for (const platform of Object.keys(services)) {
+      const list = Array.isArray(
+        services[platform]
+      )
+        ? services[platform]
+        : [];
+
+      const found = list.find(
+        service =>
+          String(service.id) === serviceId
+      );
+
+      if (found) {
+        selectedService = found;
+        selectedPlatform = platform;
+        break;
+      }
+    }
+
+    if (!selectedService) {
+      return res.status(404).json({
+        success: false,
+        message:
+          "Service introuvable."
+      });
+    }
+
+    const servicePrice = Number(
+      selectedService.price || 0
+    );
+
+    /*
+      Le prix dans prince.json est considéré
+      comme le prix pour 1 000 unités.
+    */
+
+    const totalPrice =
+      (servicePrice * quantity) / 1000;
+
+    if (!Number.isFinite(totalPrice)) {
+      return res.status(400).json({
+        success: false,
+        message:
+          "Prix du service invalide."
+      });
+    }
+
+    const balance = Number(
+      user.balance || 0
+    );
+
+    if (balance < totalPrice) {
+      return res.status(400).json({
+        success: false,
+        message:
+          "Solde insuffisant. Fais un dépôt avant de commander."
+      });
+    }
+
+    user.balance =
+      balance - totalPrice;
+
+    writeJson(
+      USERS_FILE,
+      users
+    );
+
+    const orders = readJson(
+      ORDERS_FILE,
+      []
+    );
+
+    const order = {
+      id: generateId("order"),
+      userId,
+      userName: user.name,
+      userEmail: user.email,
+      serviceId,
+      serviceName:
+        selectedService.name ||
+        "Service",
+      platform: selectedPlatform,
+      link,
+      quantity,
+      price: totalPrice,
+      status: "pending",
+      createdAt: new Date().toISOString()
+    };
+
+    orders.push(order);
+
+    writeJson(
+      ORDERS_FILE,
+      orders
+    );
+
+    return res.json({
+      success: true,
+      message:
+        "Commande créée avec succès 🚀",
+      order,
+      user: safeUser(user)
+    });
+
+  } catch (error) {
+    console.error(
+      "ORDER ERROR:",
+      error
+    );
+
+    return res.status(500).json({
+      success: false,
+      message:
+        "Erreur pendant la création de la commande."
+    });
+  }
+});
+
+/* ========================================
+   COMMANDES UTILISATEUR
+======================================== */
+
+app.get("/api/orders/:userId", (req, res) => {
+  try {
+    const orders = readJson(
+      ORDERS_FILE,
+      []
+    );
+
+    const userOrders = orders
+      .filter(
+        order =>
+          order.userId === req.params.userId
+      )
+      .reverse();
+
+    return res.json({
+      success: true,
+      orders: userOrders
+    });
+
+  } catch (error) {
+    console.error(
+      "ORDERS ERROR:",
+      error
+    );
+
+    return res.status(500).json({
+      success: false,
+      message:
+        "Impossible de charger les commandes."
+    });
+  }
+});
+
+/* ========================================
+   DÉMARRAGE
+======================================== */
+
+app.use((req, res) => {
+  if (req.path.startsWith("/api/")) {
+    return res.status(404).json({
+      success: false,
+      message: "Route API introuvable."
+    });
+  }
+
+  res.sendFile(
+    path.join(__dirname, "index.html")
+  );
+});
+
+app.listen(PORT, () => {
+  console.log(
+    "========================================"
+  );
+
+  console.log(
+    "🚀 LEADER NOSMY BOOST"
+  );
+
+  console.log(
+    "✅ Serveur démarré sur le port:",
+    PORT
+  );
+
+  console.log(
+    "========================================"
+  );
+});
