@@ -1,10 +1,13 @@
 {
   "name": "leader-nosmy-boost",
   "version": "1.0.0",
-  "description": "LEADER NOSMY BOOST",
+  "description": "LEADER NOSMY BOOST - SMM Panel",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
   },
   "dependencies": {
     "express": "^4.21.2"
