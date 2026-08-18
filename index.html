@@ -19,22 +19,45 @@
       font-family: Arial, Helvetica, sans-serif;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       background: #f4f6f9;
       color: #111827;
     }
 
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* ==============================
+       HEADER
+    ============================== */
+
     header {
       background: #111827;
       color: white;
-      padding: 18px 20px;
+      padding: 15px 20px;
       position: sticky;
       top: 0;
       z-index: 1000;
+      box-shadow: 0 3px 15px rgba(0,0,0,.15);
     }
 
     .header-content {
-      max-width: 1100px;
+      max-width: 1150px;
       margin: auto;
       display: flex;
       justify-content: space-between;
@@ -43,20 +66,25 @@
     }
 
     .logo {
-      font-size: 20px;
-      font-weight: 800;
+      font-size: 21px;
+      font-weight: 900;
     }
 
     .logo span {
       color: #22c55e;
     }
 
+    .header-actions {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
     .btn {
       border: none;
-      padding: 12px 18px;
+      padding: 11px 16px;
       border-radius: 10px;
-      cursor: pointer;
-      font-weight: 700;
+      font-weight: 800;
       text-decoration: none;
       display: inline-block;
     }
@@ -66,41 +94,222 @@
       color: white;
     }
 
+    .btn-primary:hover {
+      background: #16a34a;
+    }
+
     .btn-dark {
-      background: #111827;
+      background: #1f2937;
       color: white;
     }
 
+    .btn-light {
+      background: white;
+      color: #111827;
+    }
+
+    .btn-danger {
+      background: #dc2626;
+      color: white;
+    }
+
+    /* ==============================
+       HERO
+    ============================== */
+
     .hero {
       max-width: 1100px;
-      margin: 35px auto;
-      padding: 25px;
+      margin: 30px auto;
+      padding: 40px 20px;
       text-align: center;
     }
 
     .hero h1 {
-      font-size: 38px;
+      font-size: 40px;
       margin-bottom: 15px;
     }
 
     .hero p {
       color: #6b7280;
       font-size: 17px;
-      line-height: 1.6;
-      margin-bottom: 25px;
+      line-height: 1.7;
+      max-width: 750px;
+      margin: 0 auto 25px;
     }
 
+    .hero-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    /* ==============================
+       CONTAINER
+    ============================== */
+
     .container {
-      max-width: 1100px;
+      max-width: 1150px;
       margin: auto;
       padding: 20px;
     }
 
     .section-title {
       text-align: center;
-      margin: 35px 0 20px;
+      margin: 30px 0 20px;
       font-size: 28px;
     }
+
+    /* ==============================
+       AUTH
+    ============================== */
+
+    .auth-section {
+      max-width: 500px;
+      margin: 30px auto;
+      padding: 20px;
+    }
+
+    .auth-card {
+      background: white;
+      padding: 28px;
+      border-radius: 18px;
+      box-shadow: 0 5px 25px rgba(0,0,0,.08);
+    }
+
+    .auth-card h2 {
+      margin-bottom: 8px;
+    }
+
+    .auth-card p {
+      color: #6b7280;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 7px;
+      font-weight: 700;
+    }
+
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 13px;
+      border: 1px solid #d1d5db;
+      border-radius: 10px;
+      outline: none;
+      background: white;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus {
+      border-color: #22c55e;
+    }
+
+    .form-submit {
+      width: 100%;
+      border: none;
+      padding: 14px;
+      border-radius: 10px;
+      background: #22c55e;
+      color: white;
+      font-weight: 800;
+    }
+
+    .auth-switch {
+      margin-top: 15px;
+      text-align: center;
+      color: #6b7280;
+    }
+
+    .auth-switch button {
+      border: none;
+      background: none;
+      color: #16a34a;
+      font-weight: 800;
+    }
+
+    /* ==============================
+       DASHBOARD
+    ============================== */
+
+    .dashboard {
+      max-width: 1150px;
+      margin: 25px auto;
+      padding: 20px;
+    }
+
+    .dashboard-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .dashboard-top h2 {
+      font-size: 28px;
+    }
+
+    .dashboard-top p {
+      color: #6b7280;
+      margin-top: 5px;
+    }
+
+    .dashboard-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .balance-card {
+      background: linear-gradient(135deg, #111827, #1f2937);
+      color: white;
+      padding: 25px;
+      border-radius: 18px;
+      margin-bottom: 20px;
+    }
+
+    .balance-label {
+      color: #d1d5db;
+      margin-bottom: 8px;
+    }
+
+    .balance-value {
+      font-size: 35px;
+      font-weight: 900;
+    }
+
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 15px;
+    }
+
+    .dashboard-card {
+      background: white;
+      border-radius: 16px;
+      padding: 22px;
+      box-shadow: 0 5px 20px rgba(0,0,0,.06);
+    }
+
+    .dashboard-card h3 {
+      margin-bottom: 8px;
+    }
+
+    .dashboard-card p {
+      color: #6b7280;
+      line-height: 1.5;
+    }
+
+    /* ==============================
+       SERVICE
+    ============================== */
 
     .platform {
       background: white;
@@ -147,7 +356,6 @@
       border-radius: 8px;
       background: #111827;
       color: white;
-      cursor: pointer;
       font-weight: 700;
     }
 
@@ -155,11 +363,122 @@
       background: #22c55e;
     }
 
+    /* ==============================
+       MODAL
+    ============================== */
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.65);
+      z-index: 3000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .modal-card {
+      width: 100%;
+      max-width: 520px;
+      max-height: 90vh;
+      overflow-y: auto;
+      background: white;
+      border-radius: 18px;
+      padding: 25px;
+      box-shadow: 0 10px 40px rgba(0,0,0,.25);
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .close-btn {
+      border: none;
+      background: #f3f4f6;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      font-size: 20px;
+      font-weight: 800;
+    }
+
+    .order-summary {
+      background: #f3f4f6;
+      border-radius: 12px;
+      padding: 15px;
+      margin-bottom: 18px;
+    }
+
+    .order-summary p {
+      margin-bottom: 6px;
+    }
+
+    .order-summary p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* ==============================
+       HISTORY
+    ============================== */
+
+    .history {
+      margin-top: 25px;
+    }
+
+    .history-card {
+      background: white;
+      border-radius: 14px;
+      padding: 17px;
+      margin-bottom: 10px;
+      border: 1px solid #e5e7eb;
+    }
+
+    .history-card strong {
+      display: block;
+      margin-bottom: 7px;
+    }
+
+    .history-card p {
+      color: #6b7280;
+      margin: 4px 0;
+      word-break: break-word;
+    }
+
+    .status {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 6px 10px;
+      border-radius: 20px;
+      background: #dcfce7;
+      color: #166534;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .status.pending {
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+    .status.processing {
+      background: #dbeafe;
+      color: #1d4ed8;
+    }
+
+    /* ==============================
+       FEATURES
+    ============================== */
+
     .features {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 15px;
-      margin-top: 25px;
+      margin-top: 30px;
     }
 
     .feature {
@@ -177,6 +496,34 @@
     .feature p {
       color: #6b7280;
     }
+
+    /* ==============================
+       ALERT
+    ============================== */
+
+    .alert {
+      padding: 13px;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      font-weight: 700;
+      display: none;
+    }
+
+    .alert.success {
+      display: block;
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .alert.error {
+      display: block;
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    /* ==============================
+       FOOTER
+    ============================== */
 
     footer {
       margin-top: 50px;
@@ -200,13 +547,41 @@
       z-index: 2000;
     }
 
-    @media (max-width: 600px) {
+    /* ==============================
+       MOBILE
+    ============================== */
+
+    @media (max-width: 700px) {
+
+      .header-content {
+        flex-direction: column;
+      }
+
+      .header-actions {
+        width: 100%;
+        justify-content: center;
+      }
+
       .hero h1 {
         font-size: 29px;
       }
 
-      .header-content {
+      .dashboard-top {
         flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .dashboard-actions {
+        width: 100%;
+      }
+
+      .dashboard-actions .btn {
+        flex: 1;
+        text-align: center;
+      }
+
+      .services {
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -214,21 +589,68 @@
 
 <body>
 
+<!-- ==========================================
+     HEADER
+========================================== -->
+
 <header>
+
   <div class="header-content">
+
     <div class="logo">
       LEADER NOSMY <span>BOOST</span>
     </div>
 
-    <a href="#services" class="btn btn-primary">
-      COMMANDER 🚀
-    </a>
+    <div class="header-actions">
+
+      <button
+        id="loginHeaderBtn"
+        class="btn btn-light"
+        onclick="showAuth('login')"
+      >
+        CONNEXION
+      </button>
+
+      <button
+        id="registerHeaderBtn"
+        class="btn btn-primary"
+        onclick="showAuth('register')"
+      >
+        CRÉER UN COMPTE
+      </button>
+
+      <button
+        id="dashboardHeaderBtn"
+        class="btn btn-primary hidden"
+        onclick="showDashboard()"
+      >
+        MON COMPTE
+      </button>
+
+      <button
+        id="logoutHeaderBtn"
+        class="btn btn-danger hidden"
+        onclick="logout()"
+      >
+        DÉCONNEXION
+      </button>
+
+    </div>
+
   </div>
+
 </header>
 
-<section class="hero">
 
-  <h1>BIENVENUE CHEZ LEADER NOSMY BOOST 👑</h1>
+<!-- ==========================================
+     HERO
+========================================== -->
+
+<section class="hero" id="home">
+
+  <h1>
+    BIENVENUE CHEZ LEADER NOSMY BOOST 👑
+  </h1>
 
   <p>
     Boostez votre présence sur les réseaux sociaux avec
@@ -236,865 +658,126 @@
     Likes, abonnés, vues, commentaires et services digitaux rapides.
   </p>
 
-  <a href="#services" class="btn btn-primary">
-    COMMANDER MAINTENANT 🚀
-  </a>
+  <div class="hero-buttons">
+
+    <button
+      class="btn btn-primary"
+      onclick="goToServices()"
+    >
+      COMMANDER MAINTENANT 🚀
+    </button>
+
+    <button
+      id="heroAccountBtn"
+      class="btn btn-dark"
+      onclick="showAuth('login')"
+    >
+      MON COMPTE 👤
+    </button>
+
+  </div>
 
 </section>
 
-<main class="container">
 
-  <h2 class="section-title" id="services">
-    NOS SERVICES 🚀
-  </h2>
+<!-- ==========================================
+     AUTH SECTION
+========================================== -->
 
-  <!-- FACEBOOK -->
-
-  <section class="platform">
-
-    <h2>📘 FACEBOOK</h2>
-
-    <div class="services">
-
-      <div class="service">
-        <div class="service-title">1K LIKES</div>
-        <div class="price">1 000 FC</div>
-        <button class="order-btn" onclick="order('Facebook Likes 1K', 1000)">
-          COMMANDER
-        </button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">2K LIKES</div>
-        <div class="price">2 000 FC</div>
-        <button class="order-btn" onclick="order('Facebook Likes 2K', 2000)">
-          COMMANDER
-        </button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">3K LIKES</div>
-        <div class="price">3 000 FC</div>
-        <button class="order-btn" onclick="order('Facebook Likes 3K', 3000)">
-          COMMANDER
-        </button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">4K LIKES</div>
-        <div class="price">4 000 FC</div>
-        <button class="order-btn" onclick="order('Facebook Likes 4K', 4000)">
-          COMMANDER
-        </button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">5K LIKES</div>
-        <div class="price">5 000 FC</div>
-        <button class="order-btn" onclick="order('Facebook Likes 5K', 5000)">
-          COMMANDER
-        </button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">10K LIKES</div>
-        <div class="price">10 000 FC</div>
-        <button class="order-btn" onclick="order('Facebook Likes 10K', 10000)">
-          COMMANDER
-        </button>
-      </div>
-
-
-      <div class="service">
-        <div class="service-title">1K COMMENTAIRES</div>
-        <div class="price">2 000 FC</div>
-        <button class="order-btn" onclick="order('Facebook Commentaires 1K', 2000)">
-          COMMANDER
-        </button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">2K COMMENTAIRES</div>
-        <div class="price">4 000 FC</div>
-        <button class="order-btn" onclick="order('Facebook Commentaires 2K', 4000)">
-          COMMANDER
-        </button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">3K COMMENTAIRES</div>
-        <div class="price">6 000 FC</div>
-        <button class="order-btn" onclick="order('Facebook Commentaires 3K', 6000)">
-          COMMANDER
-        </button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">4K COMMENTAIRES</div>
-        <div class="price">8 000 FC</div>
-        <button class="order-btn" onclick="order('Facebook Commentaires 4K', 8000)">
-          COMMANDER
-        </button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">5K COMMENTAIRES</div>
-        <div class="price">10 000 FC</div>
-        <button class="order-btn" onclick="order('Facebook Commentaires 5K', 10000)">
-          COMMANDER
-        </button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">10K COMMENTAIRES</div>
-        <div class="price">20 000 FC</div>
-        <button class="order-btn" onclick="order('Facebook Commentaires 10K', 20000)">
-          COMMANDER
-        </button>
-      </div>
-
-
-      <div class="service">
-        <div class="service-title">1K PARTAGES</div>
-        <div class="price">500 FC</div>
-        <button class="order-btn" onclick="order('Facebook Partages 1K', 500)">
-          COMMANDER
-        </button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">2K PARTAGES</div>
-        <div class="price">1 000 FC</div>
-        <button class="order-btn" onclick="order('Facebook Partages 2K', 1000)">
-          COMMANDER
-        </button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">3K PARTAGES</div>
-        <div class="price">1 500 FC</div>
-        <button class="order-btn" onclick="order('Facebook Partages 3K', 1500)">
-          COMMANDER
-        </button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">4K PARTAGES</div>
-        <div class="price">2 000 FC</div>
-        <button class="order-btn" onclick="order('Facebook Partages 4K', 2000)">
-          COMMANDER
-        </button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">5K PARTAGES</div>
-        <div class="price">2 500 FC</div>
-        <button class="order-btn" onclick="order('Facebook Partages 5K', 2500)">
-          COMMANDER
-        </button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">10K PARTAGES</div>
-        <div class="price">5 000 FC</div>
-        <button class="order-btn" onclick="order('Facebook Partages 10K', 5000)">
-          COMMANDER
-        </button>
-      </div>
-
-
-      <div class="service">
-        <div class="service-title">1K VUES</div>
-        <div class="price">1 500 FC</div>
-        <button class="order-btn" onclick="order('Facebook Vues 1K', 1500)">
-          COMMANDER
-        </button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">2K VUES</div>
-        <div class="price">3 000 FC</div>
-        <button class="order-btn" onclick="order('Facebook Vues 2K', 3000)">
-          COMMANDER
-        </button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">3K VUES</div>
-        <div class="price">4 500 FC</div>
-        <button class="order-btn" onclick="order('Facebook Vues 3K', 4500)">
-          COMMANDER
-        </button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">4K VUES</div>
-        <div class="price">6 000 FC</div>
-        <button class="order-btn" onclick="order('Facebook Vues 4K', 6000)">
-          COMMANDER
-        </button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">5K VUES</div>
-        <div class="price">7 500 FC</div>
-        <button class="order-btn" onclick="order('Facebook Vues 5K', 7500)">
-          COMMANDER
-        </button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">10K VUES</div>
-        <div class="price">15 000 FC</div>
-        <button class="order-btn" onclick="order('Facebook Vues 10K', 15000)">
-          COMMANDER
-        </button>
-      </div>
-
-
-      <div class="service">
-        <div class="service-title">1K FOLLOWERS</div>
-        <div class="price">6 000 FC</div>
-        <button class="order-btn" onclick="order('Facebook Followers 1K', 6000)">
-          COMMANDER
-        </button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">2K FOLLOWERS</div>
-        <div class="price">12 000 FC</div>
-        <button class="order-btn" onclick="order('Facebook Followers 2K', 12000)">
-          COMMANDER
-        </button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">3K FOLLOWERS</div>
-        <div class="price">18 000 FC</div>
-        <button class="order-btn" onclick="order('Facebook Followers 3K', 18000)">
-          COMMANDER
-        </button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">4K FOLLOWERS</div>
-        <div class="price">24 000 FC</div>
-        <button class="order-btn" onclick="order('Facebook Followers 4K', 24000)">
-          COMMANDER
-        </button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">5K FOLLOWERS</div>
-        <div class="price">30 000 FC</div>
-        <button class="order-btn" onclick="order('Facebook Followers 5K', 30000)">
-          COMMANDER
-        </button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">10K FOLLOWERS</div>
-        <div class="price">60 000 FC</div>
-        <button class="order-btn" onclick="order('Facebook Followers 10K', 60000)">
-          COMMANDER
-        </button>
-      </div>
-
-    </div>
-  </section>
-
-
-  <!-- TIKTOK -->
-
-  <section class="platform">
-
-    <h2>🎵 TIKTOK</h2>
-
-    <div class="services">
-
-      <div class="service">
-        <div class="service-title">1K FOLLOWERS</div>
-        <div class="price">8 000 FC</div>
-        <button class="order-btn" onclick="order('TikTok Followers 1K', 8000)">COMMANDER</button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">2K FOLLOWERS</div>
-        <div class="price">16 000 FC</div>
-        <button class="order-btn" onclick="order('TikTok Followers 2K', 16000)">COMMANDER</button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">3K FOLLOWERS</div>
-        <div class="price">24 000 FC</div>
-        <button class="order-btn" onclick="order('TikTok Followers 3K', 24000)">COMMANDER</button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">4K FOLLOWERS</div>
-        <div class="price">32 000 FC</div>
-        <button class="order-btn" onclick="order('TikTok Followers 4K', 32000)">COMMANDER</button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">5K FOLLOWERS</div>
-        <div class="price">40 000 FC</div>
-        <button class="order-btn" onclick="order('TikTok Followers 5K', 40000)">COMMANDER</button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">10K FOLLOWERS</div>
-        <div class="price">80 000 FC</div>
-        <button class="order-btn" onclick="order('TikTok Followers 10K', 80000)">COMMANDER</button>
-      </div>
-
-
-      <div class="service">
-        <div class="service-title">1K LIKES</div>
-        <div class="price">3 000 FC</div>
-        <button class="order-btn" onclick="order('TikTok Likes 1K', 3000)">COMMANDER</button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">2K LIKES</div>
-        <div class="price">6 000 FC</div>
-        <button class="order-btn" onclick="order('TikTok Likes 2K', 6000)">COMMANDER</button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">3K LIKES</div>
-        <div class="price">9 000 FC</div>
-        <button class="order-btn" onclick="order('TikTok Likes 3K', 9000)">COMMANDER</button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">4K LIKES</div>
-        <div class="price">12 000 FC</div>
-        <button class="order-btn" onclick="order('TikTok Likes 4K', 12000)">COMMANDER</button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">5K LIKES</div>
-        <div class="price">15 000 FC</div>
-        <button class="order-btn" onclick="order('TikTok Likes 5K', 15000)">COMMANDER</button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">10K LIKES</div>
-        <div class="price">30 000 FC</div>
-        <button class="order-btn" onclick="order('TikTok Likes 10K', 30000)">COMMANDER</button>
-      </div>
-
-
-      <div class="service">
-        <div class="service-title">1K VUES</div>
-        <div class="price">1 500 FC</div>
-        <button class="order-btn" onclick="order('TikTok Vues 1K', 1500)">COMMANDER</button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">2K VUES</div>
-        <div class="price">3 000 FC</div>
-        <button class="order-btn" onclick="order('TikTok Vues 2K', 3000)">COMMANDER</button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">3K VUES</div>
-        <div class="price">4 500 FC</div>
-        <button class="order-btn" onclick="order('TikTok Vues 3K', 4500)">COMMANDER</button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">4K VUES</div>
-        <div class="price">6 000 FC</div>
-        <button class="order-btn" onclick="order('TikTok Vues 4K', 6000)">COMMANDER</button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">5K VUES</div>
-        <div class="price">7 500 FC</div>
-        <button class="order-btn" onclick="order('TikTok Vues 5K', 7500)">COMMANDER</button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">10K VUES</div>
-        <div class="price">15 000 FC</div>
-        <button class="order-btn" onclick="order('TikTok Vues 10K', 15000)">COMMANDER</button>
-      </div>
-
-
-      <div class="service">
-        <div class="service-title">1K COMMENTAIRES</div>
-        <div class="price">2 500 FC</div>
-        <button class="order-btn" onclick="order('TikTok Commentaires 1K', 2500)">COMMANDER</button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">2K COMMENTAIRES</div>
-        <div class="price">5 000 FC</div>
-        <button class="order-btn" onclick="order('TikTok Commentaires 2K', 5000)">COMMANDER</button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">3K COMMENTAIRES</div>
-        <div class="price">7 500 FC</div>
-        <button class="order-btn" onclick="order('TikTok Commentaires 3K', 7500)">COMMANDER</button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">4K COMMENTAIRES</div>
-        <div class="price">10 000 FC</div>
-        <button class="order-btn" onclick="order('TikTok Commentaires 4K', 10000)">COMMANDER</button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">5K COMMENTAIRES</div>
-        <div class="price">12 500 FC</div>
-        <button class="order-btn" onclick="order('TikTok Commentaires 5K', 12500)">COMMANDER</button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">10K COMMENTAIRES</div>
-        <div class="price">25 000 FC</div>
-        <button class="order-btn" onclick="order('TikTok Commentaires 10K', 25000)">COMMANDER</button>
-      </div>
-
-
-      <div class="service">
-        <div class="service-title">1K FAVORIS</div>
-        <div class="price">1 500 FC</div>
-        <button class="order-btn" onclick="order('TikTok Favoris 1K', 1500)">COMMANDER</button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">2K FAVORIS</div>
-        <div class="price">3 000 FC</div>
-        <button class="order-btn" onclick="order('TikTok Favoris 2K', 3000)">COMMANDER</button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">3K FAVORIS</div>
-        <div class="price">4 500 FC</div>
-        <button class="order-btn" onclick="order('TikTok Favoris 3K', 4500)">COMMANDER</button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">4K FAVORIS</div>
-        <div class="price">6 000 FC</div>
-        <button class="order-btn" onclick="order('TikTok Favoris 4K', 6000)">COMMANDER</button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">5K FAVORIS</div>
-        <div class="price">7 500 FC</div>
-        <button class="order-btn" onclick="order('TikTok Favoris 5K', 7500)">COMMANDER</button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">10K FAVORIS</div>
-        <div class="price">15 000 FC</div>
-        <button class="order-btn" onclick="order('TikTok Favoris 10K', 15000)">COMMANDER</button>
-      </div>
-
-    </div>
-  </section>
-
-
-  <!-- YOUTUBE -->
-
-  <section class="platform">
-
-    <h2>▶️ YOUTUBE</h2>
-
-    <div class="services">
-
-      <div class="service">
-        <div class="service-title">1K FOLLOWERS</div>
-        <div class="price">12 000 FC</div>
-        <button class="order-btn" onclick="order('YouTube Followers 1K', 12000)">COMMANDER</button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">2K FOLLOWERS</div>
-        <div class="price">24 000 FC</div>
-        <button class="order-btn" onclick="order('YouTube Followers 2K', 24000)">COMMANDER</button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">3K FOLLOWERS</div>
-        <div class="price">36 000 FC</div>
-        <button class="order-btn" onclick="order('YouTube Followers 3K', 36000)">COMMANDER</button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">4K FOLLOWERS</div>
-        <div class="price">48 000 FC</div>
-        <button class="order-btn" onclick="order('YouTube Followers 4K', 48000)">COMMANDER</button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">5K FOLLOWERS</div>
-        <div class="price">60 000 FC</div>
-        <button class="order-btn" onclick="order('YouTube Followers 5K', 60000)">COMMANDER</button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">10K FOLLOWERS</div>
-        <div class="price">120 000 FC</div>
-        <button class="order-btn" onclick="order('YouTube Followers 10K', 120000)">COMMANDER</button>
-      </div>
-
-
-      <div class="service">
-        <div class="service-title">1K LIKES</div>
-        <div class="price">7 000 FC</div>
-        <button class="order-btn" onclick="order('YouTube Likes 1K', 7000)">COMMANDER</button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">2K LIKES</div>
-        <div class="price">14 000 FC</div>
-        <button class="order-btn" onclick="order('YouTube Likes 2K', 14000)">COMMANDER</button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">3K LIKES</div>
-        <div class="price">21 000 FC</div>
-        <button class="order-btn" onclick="order('YouTube Likes 3K', 21000)">COMMANDER</button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">4K LIKES</div>
-        <div class="price">28 000 FC</div>
-        <button class="order-btn" onclick="order('YouTube Likes 4K', 28000)">COMMANDER</button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">5K LIKES</div>
-        <div class="price">35 000 FC</div>
-        <button class="order-btn" onclick="order('YouTube Likes 5K', 35000)">COMMANDER</button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">10K LIKES</div>
-        <div class="price">70 000 FC</div>
-        <button class="order-btn" onclick="order('YouTube Likes 10K', 70000)">COMMANDER</button>
-      </div>
-
-
-      <div class="service">
-        <div class="service-title">1K VUES</div>
-        <div class="price">5 000 FC</div>
-        <button class="order-btn" onclick="order('YouTube Vues 1K', 5000)">COMMANDER</button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">2K VUES</div>
-        <div class="price">10 000 FC</div>
-        <button class="order-btn" onclick="order('YouTube Vues 2K', 10000)">COMMANDER</button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">3K VUES</div>
-        <div class="price">15 000 FC</div>
-        <button class="order-btn" onclick="order('YouTube Vues 3K', 15000)">COMMANDER</button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">4K VUES</div>
-        <div class="price">20 000 FC</div>
-        <button class="order-btn" onclick="order('YouTube Vues 4K', 20000)">COMMANDER</button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">5K VUES</div>
-        <div class="price">25 000 FC</div>
-        <button class="order-btn" onclick="order('YouTube Vues 5K', 25000)">COMMANDER</button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">10K VUES</div>
-        <div class="price">50 000 FC</div>
-        <button class="order-btn" onclick="order('YouTube Vues 10K', 50000)">COMMANDER</button>
-      </div>
-
-
-      <div class="service">
-        <div class="service-title">1K COMMENTAIRES</div>
-        <div class="price">4 000 FC</div>
-        <button class="order-btn" onclick="order('YouTube Commentaires 1K', 4000)">COMMANDER</button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">2K COMMENTAIRES</div>
-        <div class="price">8 000 FC</div>
-        <button class="order-btn" onclick="order('YouTube Commentaires 2K', 8000)">COMMANDER</button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">3K COMMENTAIRES</div>
-        <div class="price">12 000 FC</div>
-        <button class="order-btn" onclick="order('YouTube Commentaires 3K', 12000)">COMMANDER</button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">4K COMMENTAIRES</div>
-        <div class="price">16 000 FC</div>
-        <button class="order-btn" onclick="order('YouTube Commentaires 4K', 16000)">COMMANDER</button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">5K COMMENTAIRES</div>
-        <div class="price">20 000 FC</div>
-        <button class="order-btn" onclick="order('YouTube Commentaires 5K', 20000)">COMMANDER</button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">10K COMMENTAIRES</div>
-        <div class="price">40 000 FC</div>
-        <button class="order-btn" onclick="order('YouTube Commentaires 10K', 40000)">COMMANDER</button>
-      </div>
-
-    </div>
-  </section>
-
-
-  <!-- INSTAGRAM -->
-
-  <section class="platform">
-
-    <h2>📸 INSTAGRAM</h2>
-
-    <div class="services">
-
-      <div class="service">
-        <div class="service-title">1K FOLLOWERS</div>
-        <div class="price">10 000 FC</div>
-        <button class="order-btn" onclick="order('Instagram Followers 1K', 10000)">COMMANDER</button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">2K FOLLOWERS</div>
-        <div class="price">20 000 FC</div>
-        <button class="order-btn" onclick="order('Instagram Followers 2K', 20000)">COMMANDER</button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">3K FOLLOWERS</div>
-        <div class="price">30 000 FC</div>
-        <button class="order-btn" onclick="order('Instagram Followers 3K', 30000)">COMMANDER</button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">4K FOLLOWERS</div>
-        <div class="price">40 000 FC</div>
-        <button class="order-btn" onclick="order('Instagram Followers 4K', 40000)">COMMANDER</button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">5K FOLLOWERS</div>
-        <div class="price">50 000 FC</div>
-        <button class="order-btn" onclick="order('Instagram Followers 5K', 50000)">COMMANDER</button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">10K FOLLOWERS</div>
-        <div class="price">100 000 FC</div>
-        <button class="order-btn" onclick="order('Instagram Followers 10K', 100000)">COMMANDER</button>
-      </div>
-
-
-      <div class="service">
-        <div class="service-title">1K LIKES</div>
-        <div class="price">6 000 FC</div>
-        <button class="order-btn" onclick="order('Instagram Likes 1K', 6000)">COMMANDER</button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">2K LIKES</div>
-        <div class="price">12 000 FC</div>
-        <button class="order-btn" onclick="order('Instagram Likes 2K', 12000)">COMMANDER</button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">3K LIKES</div>
-        <div class="price">18 000 FC</div>
-        <button class="order-btn" onclick="order('Instagram Likes 3K', 18000)">COMMANDER</button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">4K LIKES</div>
-        <div class="price">24 000 FC</div>
-        <button class="order-btn" onclick="order('Instagram Likes 4K', 24000)">COMMANDER</button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">5K LIKES</div>
-        <div class="price">30 000 FC</div>
-        <button class="order-btn" onclick="order('Instagram Likes 5K', 30000)">COMMANDER</button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">10K LIKES</div>
-        <div class="price">60 000 FC</div>
-        <button class="order-btn" onclick="order('Instagram Likes 10K', 60000)">COMMANDER</button>
-      </div>
-
-
-      <div class="service">
-        <div class="service-title">1K VUES</div>
-        <div class="price">4 000 FC</div>
-        <button class="order-btn" onclick="order('Instagram Vues 1K', 4000)">COMMANDER</button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">2K VUES</div>
-        <div class="price">8 000 FC</div>
-        <button class="order-btn" onclick="order('Instagram Vues 2K', 8000)">COMMANDER</button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">3K VUES</div>
-        <div class="price">12 000 FC</div>
-        <button class="order-btn" onclick="order('Instagram Vues 3K', 12000)">COMMANDER</button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">4K VUES</div>
-        <div class="price">16 000 FC</div>
-        <button class="order-btn" onclick="order('Instagram Vues 4K', 16000)">COMMANDER</button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">5K VUES</div>
-        <div class="price">20 000 FC</div>
-        <button class="order-btn" onclick="order('Instagram Vues 5K', 20000)">COMMANDER</button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">10K VUES</div>
-        <div class="price">40 000 FC</div>
-        <button class="order-btn" onclick="order('Instagram Vues 10K', 40000)">COMMANDER</button>
-      </div>
-
-
-      <div class="service">
-        <div class="service-title">1K COMMENTAIRES</div>
-        <div class="price">5 000 FC</div>
-        <button class="order-btn" onclick="order('Instagram Commentaires 1K', 5000)">COMMANDER</button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">2K COMMENTAIRES</div>
-        <div class="price">10 000 FC</div>
-        <button class="order-btn" onclick="order('Instagram Commentaires 2K', 10000)">COMMANDER</button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">3K COMMENTAIRES</div>
-        <div class="price">15 000 FC</div>
-        <button class="order-btn" onclick="order('Instagram Commentaires 3K', 15000)">COMMANDER</button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">4K COMMENTAIRES</div>
-        <div class="price">20 000 FC</div>
-        <button class="order-btn" onclick="order('Instagram Commentaires 4K', 20000)">COMMANDER</button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">5K COMMENTAIRES</div>
-        <div class="price">25 000 FC</div>
-        <button class="order-btn" onclick="order('Instagram Commentaires 5K', 25000)">COMMANDER</button>
-      </div>
-
-      <div class="service">
-        <div class="service-title">10K COMMENTAIRES</div>
-        <div class="price">50 000 FC</div>
-        <button class="order-btn" onclick="order('Instagram Commentaires 10K', 50000)">COMMANDER</button>
-      </div>
-
-    </div>
-  </section>
-
-
-  <section class="features">
-
-    <div class="feature">
-      <h3>⚡ RAPIDE</h3>
-      <p>Traitement rapide des commandes.</p>
-    </div>
-
-    <div class="feature">
-      <h3>🔐 SÉCURISÉ</h3>
-      <p>Vos commandes sont protégées.</p>
-    </div>
-
-    <div class="feature">
-      <h3>📱 MULTI-RÉSEAUX</h3>
-      <p>TikTok, Facebook, Instagram et YouTube.</p>
-    </div>
-
-    <div class="feature">
-      <h3>💰 FC</h3>
-      <p>Prix affichés directement en francs congolais.</p>
-    </div>
-
-  </section>
-
-</main>
-
-
-<footer>
-
-  <h2>LEADER NOSMY BOOST 💪🏽🔥</h2>
-
-  <p style="margin:12px 0;">
-    Boostez vos réseaux sociaux 🚀
-  </p>
-
-  <a
-    class="btn btn-primary"
-    href="https://wa.me/243843066709"
-    target="_blank"
-  >
-    WHATSAPP 📲
-  </a>
-
-  <p style="margin-top:20px;">
-    TikTok • Facebook • Instagram • YouTube
-  </p>
-
-</footer>
-
-
-<a
-  class="whatsapp"
-  href="https://wa.me/243843066709"
-  target="_blank"
+<section
+  id="authSection"
+  class="auth-section hidden"
 >
-  WhatsApp 📲
-</a>
+
+  <div class="auth-card">
+
+    <div id="authAlert" class="alert"></div>
+
+    <!-- LOGIN -->
+
+    <div id="loginBox">
+
+      <h2>🔐 Connexion</h2>
+
+      <p>
+        Connectez-vous à votre compte LEADER NOSMY BOOST.
+      </p>
+
+      <form onsubmit="login(event)">
+
+        <div class="form-group">
+
+          <label>E-mail</label>
+
+          <input
+            id="loginEmail"
+            type="email"
+            placeholder="Votre e-mail"
+            required
+          >
+
+        </div>
+
+        <div class="form-group">
+
+          <label>Mot de passe</label>
+
+          <input
+            id="loginPassword"
+            type="password"
+            placeholder="Votre mot de passe"
+            required
+          >
+
+        </div>
+
+        <button
+          class="form-submit"
+          type="submit"
+        >
+          SE CONNECTER
+        </button>
+
+      </form>
+
+      <div class="auth-switch">
+
+        Pas encore de compte ?
+
+        <button onclick="showAuth('register')">
+          Créer un compte
+        </button>
+
+      </div>
+
+    </div>
 
 
-<script>
+    <!-- REGISTER -->
 
-  function order(service, price) {
+    <div id="registerBox" class="hidden">
 
-    const message =
-      "Bonjour LEADER NOSMY BOOST 👑%0A%0A" +
-      "Je souhaite commander :%0A" +
-      "Service : " + service + "%0A" +
-      "Prix : " + price.toLocaleString("fr-FR") + " FC%0A%0A" +
-      "Merci.";
+      <h2>👤 Créer un compte</h2>
 
-    window.open(
-      "https://wa.me/243843066709?text=" + message,
-      "_blank"
-    );
-  }
+      <p>
+        Créez votre compte pour commander vos services.
+      </p>
 
-</script>
+      <form onsubmit="register(event)">
 
-</body>
-</html>
+        <div class="form-group">
+
+          <label>Nom</label>
+
+          <input
+            id="registerName"
+            type="text"
+            placeholder="Votre nom"
+            required
+          >
+
+        </div>
+
+        <div class="form-group">
+
+          <label>E
