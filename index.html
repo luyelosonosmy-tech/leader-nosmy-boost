@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>LEADER NOSMY BOOST</title>
+<title>LEADER NOSMY BOOST 👑</title>
 
 <style>
 *{
@@ -512,6 +512,10 @@ footer strong{
   color:var(--gold);
 }
 
+.whatsapp{
+  background:#25d366!important;
+}
+
 @media(max-width:950px){
 
   .services-grid{
@@ -696,6 +700,7 @@ onclick="registerUser()">
 
 </section>
 
+
 <section id="clientPanel" class="hidden">
 
 <div class="hero">
@@ -708,11 +713,12 @@ LEADER <span>NOSMY BOOST</span>
 
 <p>
 Boostez vos réseaux sociaux rapidement.
-Choisissez un service, indiquez votre quantité,
-entrez votre lien et commandez directement.
+Likes, followers, vues, commentaires et partages.
+Choisissez votre service et commandez facilement. 🚀
 </p>
 
 </div>
+
 
 <div class="actions">
 
@@ -731,7 +737,7 @@ entrez votre lien et commandez directement.
 <button class="action" onclick="showPanel('order')">
 <div class="action-icon">🚀</div>
 <strong>Commander</strong>
-<p>Tous les services</p>
+<p>Choisir un service</p>
 </button>
 
 <button class="action" onclick="showPanel('orders')">
@@ -742,9 +748,12 @@ entrez votre lien et commandez directement.
 
 </div>
 
+
 <div id="dashboardPanel" class="panel">
 
-<h2 class="title">🏠 DASHBOARD</h2>
+<h2 class="title">
+🏠 DASHBOARD
+</h2>
 
 <div class="balance-box">
 
@@ -769,7 +778,7 @@ entrez votre lien et commandez directement.
 </div>
 
 <p class="services-info">
-Les prix ci-dessous sont les prix de vente LEADER NOSMY BOOST en CDF pour 1 000 unités.
+Les prix affichés sont les prix clients LEADER NOSMY BOOST en CDF pour 1 000 unités.
 </p>
 
 <div class="service-filter">
@@ -798,9 +807,12 @@ onchange="renderServices()">
 
 </div>
 
+
 <div id="depositPanel" class="panel hidden">
 
-<h2 class="title">💳 AJOUTER DES FONDS</h2>
+<h2 class="title">
+💳 AJOUTER DES FONDS
+</h2>
 
 <p style="text-align:center;color:#64748b;margin-bottom:18px">
 Dépôt minimum :
@@ -826,10 +838,21 @@ placeholder="Minimum 2500 FC">
 
 <select id="depositMethod">
 
-<option value="">Choisir</option>
-<option value="Orange Money">🟠 Orange Money</option>
-<option value="Airtel Money">🔴 Airtel Money</option>
-<option value="Vodacom M-Pesa">🔵 Vodacom M-Pesa</option>
+<option value="">
+Choisir
+</option>
+
+<option value="Orange Money">
+🟠 Orange Money
+</option>
+
+<option value="Airtel Money">
+🔴 Airtel Money
+</option>
+
+<option value="Vodacom M-Pesa">
+🔵 Vodacom M-Pesa
+</option>
 
 </select>
 
@@ -864,9 +887,12 @@ onclick="requestDeposit()">
 
 </div>
 
+
 <div id="orderPanel" class="panel hidden">
 
-<h2 class="title">🚀 PASSER UNE COMMANDE</h2>
+<h2 class="title">
+🚀 PASSER UNE COMMANDE
+</h2>
 
 <div class="order-box">
 
@@ -878,7 +904,9 @@ onclick="requestDeposit()">
 id="orderService"
 onchange="selectServiceFromList()">
 
-<option value="">-- Choisir un service --</option>
+<option value="">
+-- Choisir un service --
+</option>
 
 </select>
 
@@ -886,7 +914,9 @@ onchange="selectServiceFromList()">
 
 <div id="selectedService" class="selected-service">
 
-<strong>Aucun service sélectionné</strong>
+<strong>
+Aucun service sélectionné
+</strong>
 
 <div id="orderPrice" class="order-price">
 0 FC
@@ -897,14 +927,16 @@ onchange="selectServiceFromList()">
 <div class="order-note">
 
 💡 <strong>Commande libre :</strong>
-entre la quantité souhaitée.
+entrez la quantité souhaitée.
 Le minimum et maximum dépendent du service.
 
 </div>
 
 <div class="form-group">
 
-<label>🔗 Lien de la publication / compte</label>
+<label>
+🔗 Lien de la publication / compte
+</label>
 
 <input
 id="orderLink"
@@ -915,14 +947,16 @@ placeholder="https://facebook.com/...">
 
 <div class="form-group">
 
-<label>🔢 Quantité</label>
+<label>
+🔢 Quantité
+</label>
 
 <input
 id="orderQuantity"
 type="number"
 min="1"
 step="1"
-placeholder="Exemple : 10"
+placeholder="Exemple : 1000"
 oninput="calculateOrderPrice()">
 
 </div>
@@ -954,7 +988,9 @@ style="font-size:13px;color:#64748b;margin-top:-8px;margin-bottom:15px;">
 <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:13px;margin-bottom:15px;">
 
 💰 Solde disponible :
-<strong id="orderBalance">0 FC</strong>
+<strong id="orderBalance">
+0 FC
+</strong>
 
 </div>
 
@@ -967,21 +1003,39 @@ onclick="createOrder()">
 <div id="orderMessage" class="message"></div>
 
 </div>
+
 </div>
+
 
 <div id="ordersPanel" class="panel hidden">
 
-<h2 class="title">📋 MES COMMANDES</h2>
+<h2 class="title">
+📋 MES COMMANDES
+</h2>
 
-<button class="primary" onclick="loadOrders()">
+<button
+class="primary"
+onclick="loadOrders()">
 🔄 ACTUALISER
 </button>
 
-<div id="ordersList" style="margin-top:15px"></div>
+<div
+id="ordersList"
+style="margin-top:15px">
+</div>
 
 </div>
 
+
 <div class="panel">
+
+<button
+class="whatsapp full"
+onclick="openWhatsApp()">
+📲 COMMANDER SUR WHATSAPP
+</button>
+
+<br><br>
 
 <button
 class="danger full"
@@ -995,9 +1049,16 @@ onclick="logoutUser()">
 
 </div>
 
+
 <footer>
 
-<p>👑 <strong>LEADER NOSMY BOOST</strong></p>
+<p>
+👑 <strong>LEADER NOSMY BOOST</strong>
+</p>
+
+<p style="margin-top:7px">
+Boostez vos réseaux sociaux 🚀
+</p>
 
 <p style="margin-top:7px">
 © 2026 — Tous droits réservés.
@@ -1005,10 +1066,17 @@ onclick="logoutUser()">
 
 </footer>
 
+
 <script>
 
+const WHATSAPP_NUMBER =
+"243843066709";
+
+const MIN_DEPOSIT = 2500;
+
+
 /* =========================================
-   VARIABLES
+   UTILISATEUR
 ========================================= */
 
 let currentUser =
@@ -1017,239 +1085,61 @@ localStorage.getItem("leaderNosmyUser") || "null"
 );
 
 let services = [];
+
 let selectedService = null;
 
 
 /* =========================================
-   PRIX LEADER NOSMY BOOST
+   PRIX CLIENTS
 ========================================= */
 
-const CUSTOM_PRICES = [
+const PRICE_TABLE = {
 
-/* FACEBOOK */
-
-{
-  match:["facebook","post","likes"],
-  price:360
+facebook:{
+likes:1000,
+comments:2000,
+shares:500,
+views:1500,
+followers:6000
 },
 
-{
-  match:["facebook","post","reaction","angry"],
-  price:360
+tiktok:{
+followers:8000,
+likes:3000,
+views:1500,
+comments:2500,
+favorites:1500
 },
 
-{
-  match:["facebook","post","reaction","care"],
-  price:360
+youtube:{
+followers:12000,
+likes:7000,
+views:5000,
+comments:4000
 },
 
-{
-  match:["facebook","post","reaction","haha"],
-  price:360
-},
-
-{
-  match:["facebook","post","reaction","love"],
-  price:360
-},
-
-{
-  match:["facebook","post","reaction","sad"],
-  price:360
-},
-
-{
-  match:["facebook","post","reaction","wow"],
-  price:360
-},
-
-{
-  match:["facebook","post","reaction","likes","100%reel"],
-  price:840
-},
-
-{
-  match:["facebook","post","reaction","love","100%reel"],
-  price:840
-},
-
-{
-  match:["facebook","profile/page","followers","lifetime"],
-  price:1656
-},
-
-{
-  match:["facebook","profile/page","followers","refill 365d"],
-  price:1584
-},
-
-{
-  match:["facebook","profile/page","followers","refill 90d"],
-  price:1536
-},
-
-{
-  match:["facebook","shares"],
-  price:192
-},
-
-{
-  match:["facebook","video/reels","views","300k-5m"],
-  price:96
-},
-
-{
-  match:["facebook","video/reels","views"],
-  price:72
-},
-
-/* TIKTOK */
-
-{
-  match:["tiktok","followers"],
-  price:6624
-},
-
-{
-  match:["tiktok","likes","views"],
-  price:1488
-},
-
-{
-  match:["tiktok","save"],
-  price:384
-},
-
-{
-  match:["tiktok","shares"],
-  price:432
-},
-
-{
-  match:["tiktok","share"],
-  price:288
-},
-
-{
-  match:["tiktok","video views","15d"],
-  price:456
-},
-
-{
-  match:["tiktok","video views","21d"],
-  price:480
-},
-
-{
-  match:["tiktok","video views","7d"],
-  price:456
-},
-
-{
-  match:["tiktok","video views","sans baisse"],
-  price:336
-},
-
-{
-  match:["tiktok","video views"],
-  price:336
-},
-
-/* YOUTUBE */
-
-{
-  match:["youtube","views","native social ads","min 500"],
-  price:5328
-},
-
-{
-  match:["youtube","subscribers"],
-  price:648
-},
-
-{
-  match:["youtube","views","native social ads"],
-  price:5400
-},
-
-{
-  match:["youtube","views","video/shorts","refill 30d"],
-  price:2592
-},
-
-{
-  match:["youtube","views","video/shorts"],
-  price:2304
-},
-
-/* INSTAGRAM */
-
-{
-  match:["instagram","followers","hq account","365d"],
-  price:2040
-},
-
-{
-  match:["instagram","followers","hq account","90d"],
-  price:1848
-},
-
-{
-  match:["instagram","followers","hq account","60d"],
-  price:1800
-},
-
-{
-  match:["instagram","followers","hq account","30d"],
-  price:1728
-},
-
-{
-  match:["instagram","followers","hq account"],
-  price:1464
-},
-
-{
-  match:["instagram","followers","old","real","365d"],
-  price:2136
-},
-
-{
-  match:["instagram","followers","old","real","60d"],
-  price:1944
-},
-
-{
-  match:["instagram","followers","old","real","30d"],
-  price:1848
-},
-
-{
-  match:["instagram","likes","lifetime"],
-  price:432
-},
-
-{
-  match:["instagram","likes","365d"],
-  price:408
+instagram:{
+followers:10000,
+likes:6000,
+views:4000,
+comments:5000
 }
 
-];
+};
 
 
 /* =========================================
-   OUTILS
+   FORMAT
 ========================================= */
 
 function formatMoney(value){
 
-  const number = Number(value || 0);
+const n =
+Number(value || 0);
 
-  return number.toLocaleString("fr-FR",{
-    minimumFractionDigits:
-      Number.isInteger(number) ? 0 : 1,
-    maximumFractionDigits:2
-  }) + " FC";
+return n.toLocaleString(
+"fr-FR"
+) + " FC";
 
 }
 
@@ -1266,765 +1156,32 @@ return String(value ?? "")
 }
 
 
-function normalizeServiceText(service){
+function normalizeText(value){
 
-return String(
-service.name ||
-service.service ||
-service.title ||
-""
-)
+return String(value || "")
 .toLowerCase()
-.replace(/&amp;/g,"&")
-.replace(/[–—]/g,"-")
+.normalize("NFD")
+.replace(/[\u0300-\u036f]/g,"")
+.replace(/[_\-\/]+/g," ")
 .replace(/\s+/g," ")
 .trim();
 
 }
 
 
-function serviceName(service){
+/* =========================================
+   DETECTION RESEAU
+========================================= */
 
-return String(
+function detectNetwork(service){
+
+const text =
+normalizeText(
 service.name ||
 service.service ||
 service.title ||
-"Service"
+""
 );
-
-}
-
-
-function serviceId(service){
-
-return Number(
-service.service ??
-service.id ??
-service.service_id ??
-0
-);
-
-}
-
-
-function serviceRate(service){
-
-return Number(
-service.rate ??
-service.price ??
-service.cost ??
-0
-);
-
-}
-
-
-function serviceMin(service){
-
-return Number(
-service.min ??
-service.minimum ??
-1
-);
-
-}
-
-
-function serviceMax(service){
-
-return Number(
-service.max ??
-service.maximum ??
-1000000
-);
-
-}
-
-
-/* =========================================
-   PRIX CDF
-========================================= */
-
-function serviceRateCDF(service){
-
-const text =
-normalizeServiceText(service);
-
-
-/*
-========================================
-FACEBOOK
-========================================
-*/
-
-if(
-text.includes("facebook") &&
-text.includes("post likes")
-){
-return 360;
-}
-
-if(
-text.includes("facebook") &&
-text.includes("reaction") &&
-text.includes("angry")
-){
-return 360;
-}
-
-if(
-text.includes("facebook") &&
-text.includes("reaction") &&
-text.includes("care")
-){
-return 360;
-}
-
-if(
-text.includes("facebook") &&
-text.includes("reaction") &&
-text.includes("haha")
-){
-return 360;
-}
-
-if(
-text.includes("facebook") &&
-text.includes("reaction") &&
-text.includes("love")
-){
-return 360;
-}
-
-if(
-text.includes("facebook") &&
-text.includes("reaction") &&
-text.includes("sad")
-){
-return 360;
-}
-
-if(
-text.includes("facebook") &&
-text.includes("reaction") &&
-text.includes("wow")
-){
-return 360;
-}
-
-if(
-text.includes("facebook") &&
-text.includes("100%reel") &&
-text.includes("likes")
-){
-return 840;
-}
-
-if(
-text.includes("facebook") &&
-text.includes("100%reel") &&
-text.includes("love")
-){
-return 840;
-}
-
-if(
-text.includes("facebook") &&
-text.includes("followers") &&
-text.includes("lifetime")
-){
-return 1656;
-}
-
-if(
-text.includes("facebook") &&
-text.includes("followers") &&
-text.includes("365d")
-){
-return 1584;
-}
-
-if(
-text.includes("facebook") &&
-text.includes("followers") &&
-text.includes("90d")
-){
-return 1536;
-}
-
-if(
-text.includes("facebook") &&
-text.includes("shares")
-){
-return 192;
-}
-
-if(
-text.includes("facebook") &&
-text.includes("video/reels") &&
-text.includes("views") &&
-text.includes("300k-5m")
-){
-return 96;
-}
-
-if(
-text.includes("facebook") &&
-text.includes("video/reels") &&
-text.includes("views")
-){
-return 72;
-}
-
-
-/*
-========================================
-TIKTOK
-========================================
-*/
-
-if(
-text.includes("tiktok") &&
-text.includes("followers")
-){
-return 6624;
-}
-
-if(
-text.includes("tiktok") &&
-text.includes("likes") &&
-text.includes("views")
-){
-return 1488;
-}
-
-if(
-text.includes("tiktok") &&
-text.includes("save")
-){
-return 384;
-}
-
-if(
-text.includes("tiktok") &&
-text.includes("shares")
-){
-return 432;
-}
-
-if(
-text.includes("tiktok") &&
-text.includes("share")
-){
-return 288;
-}
-
-if(
-text.includes("tiktok") &&
-text.includes("video views") &&
-text.includes("21d")
-){
-return 480;
-}
-
-if(
-text.includes("tiktok") &&
-text.includes("video views") &&
-(
-text.includes("15d") ||
-text.includes("7d")
-)
-){
-return 456;
-}
-
-if(
-text.includes("tiktok") &&
-text.includes("video views") &&
-text.includes("sans baisse")
-){
-return 336;
-}
-
-if(
-text.includes("tiktok") &&
-text.includes("video views")
-){
-return 336;
-}
-
-
-/*
-========================================
-YOUTUBE
-========================================
-*/
-
-if(
-text.includes("youtube") &&
-text.includes("subscribers")
-){
-return 648;
-}
-
-if(
-text.includes("youtube") &&
-text.includes("views") &&
-text.includes("native social ads") &&
-text.includes("min 500")
-){
-return 5328;
-}
-
-if(
-text.includes("youtube") &&
-text.includes("views") &&
-text.includes("native social ads")
-){
-return 5400;
-}
-
-if(
-text.includes("youtube") &&
-text.includes("views") &&
-text.includes("video/shorts") &&
-text.includes("refill 30d")
-){
-return 2592;
-}
-
-if(
-text.includes("youtube") &&
-text.includes("views") &&
-text.includes("video/shorts")
-){
-return 2304;
-}
-
-
-/*
-========================================
-INSTAGRAM
-========================================
-*/
-
-if(
-text.includes("instagram") &&
-text.includes("followers") &&
-text.includes("hq account") &&
-text.includes("365d")
-){
-return 2040;
-}
-
-if(
-text.includes("instagram") &&
-text.includes("followers") &&
-text.includes("hq account") &&
-text.includes("90d")
-){
-return 1848;
-}
-
-if(
-text.includes("instagram") &&
-text.includes("followers") &&
-text.includes("hq account") &&
-text.includes("60d")
-){
-return 1800;
-}
-
-if(
-text.includes("instagram") &&
-text.includes("followers") &&
-text.includes("hq account") &&
-text.includes("30d")
-){
-return 1728;
-}
-
-if(
-text.includes("instagram") &&
-text.includes("followers") &&
-text.includes("hq account")
-){
-return 1464;
-}
-
-if(
-text.includes("instagram") &&
-text.includes("followers") &&
-text.includes("old") &&
-text.includes("real") &&
-text.includes("365d")
-){
-return 2136;
-}
-
-if(
-text.includes("instagram") &&
-text.includes("followers") &&
-text.includes("old") &&
-text.includes("real") &&
-text.includes("60d")
-){
-return 1944;
-}
-
-if(
-text.includes("instagram") &&
-text.includes("followers") &&
-text.includes("old") &&
-text.includes("real") &&
-text.includes("30d")
-){
-return 1848;
-}
-
-if(
-text.includes("instagram") &&
-text.includes("likes") &&
-text.includes("lifetime")
-){
-return 432;
-}
-
-if(
-text.includes("instagram") &&
-text.includes("likes") &&
-text.includes("365d")
-){
-return 408;
-}
-
-
-/*
-========================================
-FALLBACK
-========================================
-*/
-
-return serviceRate(service);
-
-}
-
-
-/* =========================================
-   AUTH
-========================================= */
-
-function showLogin(){
-
-document.getElementById("loginForm")
-.classList.remove("hidden");
-
-document.getElementById("registerForm")
-.classList.add("hidden");
-
-document.getElementById("loginTab")
-.classList.add("active");
-
-document.getElementById("registerTab")
-.classList.remove("active");
-
-}
-
-function showRegister(){
-
-document.getElementById("loginForm")
-.classList.add("hidden");
-
-document.getElementById("registerForm")
-.classList.remove("hidden");
-
-document.getElementById("loginTab")
-.classList.remove("active");
-
-document.getElementById("registerTab")
-.classList.add("active");
-
-}
-
-
-/* =========================================
-   REGISTER
-========================================= */
-
-async function registerUser(){
-
-const name =
-document.getElementById("registerName")
-.value.trim();
-
-const email =
-document.getElementById("registerEmail")
-.value.trim();
-
-const password =
-document.getElementById("registerPassword")
-.value;
-
-const message =
-document.getElementById("authMessage");
-
-if(!name || !email || !password){
-
-message.textContent =
-"❌ Remplissez tous les champs.";
-
-return;
-
-}
-
-try{
-
-const response =
-await fetch("/api/register",{
-
-method:"POST",
-
-headers:{
-"Content-Type":"application/json"
-},
-
-body:JSON.stringify({
-name,
-email,
-password
-})
-
-});
-
-const data =
-await response.json();
-
-message.textContent =
-data.message || "Erreur";
-
-if(data.success){
-
-document.getElementById("registerName").value="";
-document.getElementById("registerEmail").value="";
-document.getElementById("registerPassword").value="";
-
-showLogin();
-
-}
-
-}catch(error){
-
-console.error(error);
-
-message.textContent =
-"❌ Impossible de contacter le serveur.";
-
-}
-
-}
-
-
-/* =========================================
-   LOGIN
-========================================= */
-
-async function loginUser(){
-
-const email =
-document.getElementById("loginEmail")
-.value.trim();
-
-const password =
-document.getElementById("loginPassword")
-.value;
-
-const message =
-document.getElementById("authMessage");
-
-if(!email || !password){
-
-message.textContent =
-"❌ Email et mot de passe obligatoires.";
-
-return;
-
-}
-
-try{
-
-const response =
-await fetch("/api/login",{
-
-method:"POST",
-
-headers:{
-"Content-Type":"application/json"
-},
-
-body:JSON.stringify({
-email,
-password
-})
-
-});
-
-const data =
-await response.json();
-
-message.textContent =
-data.message || "Erreur";
-
-if(data.success){
-
-currentUser=data.user;
-
-localStorage.setItem(
-"leaderNosmyUser",
-JSON.stringify(currentUser)
-);
-
-showClient();
-
-}
-
-}catch(error){
-
-console.error(error);
-
-message.textContent =
-"❌ Impossible de contacter le serveur.";
-
-}
-
-}
-
-
-/* =========================================
-   CLIENT
-========================================= */
-
-function showClient(){
-
-document.getElementById("authSection")
-.classList.add("hidden");
-
-document.getElementById("clientPanel")
-.classList.remove("hidden");
-
-document.getElementById("miniBalance")
-.classList.remove("hidden");
-
-document.getElementById("welcomeUser")
-.textContent =
-"Bienvenue " + currentUser.name + " 👑";
-
-refreshUser();
-
-loadServices();
-
-}
-
-
-/* =========================================
-   USER
-========================================= */
-
-async function refreshUser(){
-
-if(!currentUser)return;
-
-try{
-
-const response =
-await fetch(
-"/api/user/" +
-encodeURIComponent(currentUser.id)
-);
-
-const data =
-await response.json();
-
-if(data.success){
-
-currentUser=data.user;
-
-localStorage.setItem(
-"leaderNosmyUser",
-JSON.stringify(currentUser)
-);
-
-const balance =
-formatMoney(currentUser.balance);
-
-document.getElementById("balanceDisplay")
-.textContent=balance;
-
-document.getElementById("orderBalance")
-.textContent=balance;
-
-document.getElementById("miniBalance")
-.textContent="Solde : "+balance;
-
-}
-
-}catch(error){
-
-console.error(error);
-
-}
-
-}
-
-
-/* =========================================
-   PANELS
-========================================= */
-
-function showPanel(name){
-
-const panels=[
-"dashboardPanel",
-"depositPanel",
-"orderPanel",
-"ordersPanel"
-];
-
-panels.forEach(id=>{
-document.getElementById(id)
-.classList.add("hidden");
-});
-
-const target=
-document.getElementById(name+"Panel");
-
-if(target){
-target.classList.remove("hidden");
-}
-
-window.scrollTo({
-top:0,
-behavior:"smooth"
-});
-
-if(name==="orders"){
-loadOrders();
-}
-
-if(name==="order"){
-loadServices();
-}
-
-}
-
-
-/* =========================================
-   NETWORK
-========================================= */
-
-function serviceNetwork(service){
-
-const text =
-serviceName(service).toLowerCase();
 
 if(text.includes("facebook"))
 return "facebook";
@@ -2042,99 +1199,344 @@ return "other";
 
 }
 
-function serviceNetworkLabel(service){
 
-const network=
-serviceNetwork(service);
+/* =========================================
+   DETECTION CATEGORIE
+========================================= */
 
-if(network==="facebook")return "FACEBOOK";
-if(network==="instagram")return "INSTAGRAM";
-if(network==="tiktok")return "TIKTOK";
-if(network==="youtube")return "YOUTUBE";
+function detectCategory(service){
 
-return "SERVICE";
+const text =
+normalizeText(
+service.name ||
+service.service ||
+service.title ||
+""
+);
+
+if(
+text.includes("follower") ||
+text.includes("followers") ||
+text.includes("abonne") ||
+text.includes("subscriber")
+){
+return "followers";
+}
+
+if(
+text.includes("like") ||
+text.includes("likes")
+){
+return "likes";
+}
+
+if(
+text.includes("view") ||
+text.includes("views") ||
+text.includes("vue") ||
+text.includes("vues")
+){
+return "views";
+}
+
+if(
+text.includes("comment")
+){
+return "comments";
+}
+
+if(
+text.includes("share") ||
+text.includes("shares") ||
+text.includes("partage")
+){
+return "shares";
+}
+
+if(
+text.includes("favorite") ||
+text.includes("favorites") ||
+text.includes("save") ||
+text.includes("saves")
+){
+return "favorites";
+}
+
+return "other";
 
 }
 
 
 /* =========================================
-   SERVICES
+   PRIX CLIENT
 ========================================= */
 
-async function loadServices(){
+function getClientPrice(service){
 
-const grid=
-document.getElementById("servicesGrid");
+const network =
+detectNetwork(service);
 
-grid.innerHTML=
-`<div class="loading">
-⏳ Chargement des services...
-</div>`;
+const category =
+detectCategory(service);
+
+if(
+PRICE_TABLE[network] &&
+PRICE_TABLE[network][category]
+){
+return PRICE_TABLE[network][category];
+}
+
+
+/*
+Prix de secours :
+si le service fournisseur ne correspond
+pas exactement à la grille principale,
+on utilise son tarif fournisseur converti.
+*/
+
+const providerRate =
+Number(service.rate || 0);
+
+if(
+Number.isFinite(providerRate) &&
+providerRate > 0
+){
+
+return Math.ceil(
+providerRate * 2800
+);
+
+}
+
+return 0;
+
+}
+
+
+/* =========================================
+   ID SERVICE
+========================================= */
+
+function getServiceId(service){
+
+return String(
+service.service ??
+service.id ??
+service.service_id ??
+""
+);
+
+}
+
+
+/* =========================================
+   NOM SERVICE
+========================================= */
+
+function getServiceName(service){
+
+return String(
+service.name ||
+service.service ||
+service.title ||
+"Service"
+);
+
+}
+
+
+/* =========================================
+   LIMITES
+========================================= */
+
+function getServiceMin(service){
+
+return Number(
+service.min ??
+service.minimum ??
+1
+);
+
+}
+
+function getServiceMax(service){
+
+return Number(
+service.max ??
+service.maximum ??
+1000000
+);
+
+}
+
+
+/* =========================================
+   AUTH UI
+========================================= */
+
+function showLogin(){
+
+document
+.getElementById("loginForm")
+.classList.remove("hidden");
+
+document
+.getElementById("registerForm")
+.classList.add("hidden");
+
+document
+.getElementById("loginTab")
+.classList.add("active");
+
+document
+.getElementById("registerTab")
+.classList.remove("active");
+
+}
+
+
+function showRegister(){
+
+document
+.getElementById("loginForm")
+.classList.add("hidden");
+
+document
+.getElementById("registerForm")
+.classList.remove("hidden");
+
+document
+.getElementById("loginTab")
+.classList.remove("active");
+
+document
+.getElementById("registerTab")
+.classList.add("active");
+
+}
+
+
+/* =========================================
+   MESSAGE
+========================================= */
+
+function showMessage(
+elementId,
+message,
+success=false
+){
+
+const el =
+document.getElementById(elementId);
+
+if(!el)
+return;
+
+el.textContent =
+message;
+
+el.style.color =
+success
+? "#16a34a"
+: "#dc2626";
+
+}
+
+
+/* =========================================
+   INSCRIPTION
+========================================= */
+
+async function registerUser(){
+
+const name =
+document
+.getElementById("registerName")
+.value
+.trim();
+
+const email =
+document
+.getElementById("registerEmail")
+.value
+.trim();
+
+const password =
+document
+.getElementById("registerPassword")
+.value;
+
+if(!name || !email || !password){
+
+showMessage(
+"authMessage",
+"❌ Tous les champs sont obligatoires."
+);
+
+return;
+
+}
+
+if(password.length < 6){
+
+showMessage(
+"authMessage",
+"❌ Le mot de passe doit contenir au moins 6 caractères."
+);
+
+return;
+
+}
 
 try{
 
-const response=
-await fetch("/api/smm/services");
+const response =
+await fetch(
+"/api/register",
+{
+method:"POST",
+headers:{
+"Content-Type":
+"application/json"
+},
+body:JSON.stringify({
+name,
+email,
+password
+})
+}
+);
 
-const data=
+const data =
 await response.json();
 
 if(!response.ok || !data.success){
 
 throw new Error(
 data.message ||
-"Impossible de récupérer les services."
+"Erreur d'inscription."
 );
 
 }
 
-let list=data.services;
+showMessage(
+"authMessage",
+"✅ Compte créé avec succès. Vous pouvez maintenant vous connecter.",
+true
+);
 
-if(!Array.isArray(list)){
+document
+.getElementById("registerPassword")
+.value="";
 
-if(Array.isArray(list?.services)){
-list=list.services;
-}else{
-list=[];
-}
-
-}
-
-services=
-list
-.filter(service=>serviceId(service)>0)
-.map(service=>({...service}));
-
-renderServices();
-
-populateOrderServices();
+showLogin();
 
 }catch(error){
 
-console.error("Services:",error);
-
-grid.innerHTML=`
-
-<div class="empty"
-style="grid-column:1/-1;">
-
-❌ Impossible de charger les services.
-
-<br><br>
-
-<small>
-${escapeHTML(error.message)}
-</small>
-
-<br><br>
-
-<button
-class="primary"
-onclick="loadServices()">
-🔄 Réessayer
-</button>
-
-</div>`;
+showMessage(
+"authMessage",
+"❌ " + error.message
+);
 
 }
 
@@ -2142,716 +1544,250 @@ onclick="loadServices()">
 
 
 /* =========================================
-   RENDER
+   CONNEXION
 ========================================= */
 
-function renderServices(){
+async function loginUser(){
 
-const grid=
-document.getElementById("servicesGrid");
-
-const search=
-String(
-document.getElementById("serviceSearch")?.value || ""
-)
-.toLowerCase()
+const email =
+document
+.getElementById("loginEmail")
+.value
 .trim();
 
-const network=
-String(
-document.getElementById("networkFilter")?.value || ""
-)
-.toLowerCase();
+const password =
+document
+.getElementById("loginPassword")
+.value;
 
-const filtered=
-services.filter(service=>{
+if(!email || !password){
 
-const name=
-serviceName(service)
-.toLowerCase();
-
-const serviceNet=
-serviceNetwork(service);
-
-return(
-!search ||
-name.includes(search)
-)&&(
-!network ||
-serviceNet===network
+showMessage(
+"authMessage",
+"❌ Entrez votre email et votre mot de passe."
 );
-
-});
-
-if(!filtered.length){
-
-grid.innerHTML=`
-
-<div class="empty"
-style="grid-column:1/-1;">
-
-😕 Aucun service trouvé.
-
-</div>`;
 
 return;
 
 }
 
-grid.innerHTML=
-filtered.map(service=>{
+try{
 
-const id=serviceId(service);
-const name=serviceName(service);
-const rate=serviceRateCDF(service);
-const min=serviceMin(service);
-const max=serviceMax(service);
-const network=serviceNetworkLabel(service);
+const response =
+await fetch(
+"/api/login",
+{
+method:"POST",
+headers:{
+"Content-Type":
+"application/json"
+},
+body:JSON.stringify({
+email,
+password
+})
+}
+);
 
-return `
+const data =
+await response.json();
 
-<div class="service-card">
+if(!response.ok || !data.success){
 
-<div class="service-network">
-${escapeHTML(network)}
-</div>
+throw new Error(
+data.message ||
+"Connexion impossible."
+);
 
-<div class="service-name">
-${escapeHTML(name)}
-</div>
+}
 
-<div class="service-price">
-${formatMoney(rate)} / 1K
-</div>
+currentUser =
+data.user;
 
-<div class="service-details">
+localStorage.setItem(
+"leaderNosmyUser",
+JSON.stringify(currentUser)
+);
 
-🔢 Min :
-${min.toLocaleString("fr-FR")}
+showClient();
 
-<br>
+}catch(error){
 
-🔢 Max :
-${max.toLocaleString("fr-FR")}
+showMessage(
+"authMessage",
+"❌ " + error.message
+);
 
-<br>
-
-⚡ Livraison selon le service
-
-</div>
-
-<button
-class="primary"
-onclick="chooseService(${id})">
-
-🚀 CHOISIR
-
-</button>
-
-</div>
-
-`;
-
-}).join("");
+}
 
 }
 
 
 /* =========================================
-   ORDER SELECT
+   AFFICHER CLIENT
 ========================================= */
 
-function populateOrderServices(){
+function showClient(){
 
-const select=
-document.getElementById("orderService");
+document
+.getElementById("authSection")
+.classList.add("hidden");
 
-select.innerHTML=
-`<option value="">
--- Choisir un service --
-</option>`;
+document
+.getElementById("clientPanel")
+.classList.remove("hidden");
 
-services.forEach(service=>{
+document
+.getElementById("miniBalance")
+.classList.remove("hidden");
 
-const id=serviceId(service);
-const name=serviceName(service);
-const rate=serviceRateCDF(service);
+document
+.getElementById("welcomeUser")
+.textContent =
+"Bienvenue " +
+(currentUser.name || "") +
+" 👑";
 
-const option=
-document.createElement("option");
+updateBalanceUI();
 
-option.value=String(id);
+loadServices();
 
-option.textContent=
-`${name} — ${formatMoney(rate)}/1K`;
+showPanel("dashboard");
 
-select.appendChild(option);
+}
+
+
+/* =========================================
+   SOLDE
+========================================= */
+
+function updateBalanceUI(){
+
+const balance =
+Number(
+currentUser?.balance || 0
+);
+
+document
+.getElementById("balanceDisplay")
+.textContent =
+formatMoney(balance);
+
+document
+.getElementById("miniBalance")
+.textContent =
+"Solde : " +
+formatMoney(balance);
+
+document
+.getElementById("orderBalance")
+.textContent =
+formatMoney(balance);
+
+}
+
+
+async function refreshUser(){
+
+if(!currentUser?.id)
+return;
+
+try{
+
+const response =
+await fetch(
+"/api/user/" +
+encodeURIComponent(
+currentUser.id
+)
+);
+
+const data =
+await response.json();
+
+if(
+response.ok &&
+data.success &&
+data.user
+){
+
+currentUser =
+data.user;
+
+localStorage.setItem(
+"leaderNosmyUser",
+JSON.stringify(currentUser)
+);
+
+updateBalanceUI();
+
+}
+
+}catch(error){
+
+console.error(error);
+
+}
+
+}
+
+
+/* =========================================
+   PANELS
+========================================= */
+
+function showPanel(panel){
+
+const panels = [
+"dashboardPanel",
+"depositPanel",
+"orderPanel",
+"ordersPanel"
+];
+
+panels.forEach(id => {
+
+document
+.getElementById(id)
+.classList.add("hidden");
 
 });
 
-}
-
-
-function chooseService(id){
-
-showPanel("order");
-
-const service=
-services.find(
-item=>serviceId(item)===Number(id)
+const target =
+document.getElementById(
+panel + "Panel"
 );
 
-if(!service)return;
+if(target){
 
-selectedService=service;
-
-const select=
-document.getElementById("orderService");
-
-select.value=String(id);
-
-selectServiceFromList();
+target.classList.remove("hidden");
 
 }
 
+if(panel === "order"){
 
-/* =========================================
-   SELECT
-========================================= */
+fillOrderServices();
 
-function selectServiceFromList(){
+}
 
-const id=
-Number(
-document.getElementById("orderService").value
-);
+if(panel === "orders"){
 
-selectedService=
-services.find(
-service=>serviceId(service)===id
-)||null;
+loadOrders();
 
-const box=
-document.getElementById("selectedService");
+}
 
-if(!selectedService){
+if(panel === "deposit"){
 
-box.innerHTML=`
-
-<strong>
-Aucun service sélectionné
-</strong>
-
-<div
-id="orderPrice"
-class="order-price">
-0 FC
-</div>`;
-
-document.getElementById("serviceLimits")
+document
+.getElementById("depositMessage")
 .textContent="";
 
-document.getElementById("unitPrice")
-.textContent="0 FC";
-
-calculateOrderPrice();
-
-return;
-
 }
 
-const name=serviceName(selectedService);
-const rate=serviceRateCDF(selectedService);
-const min=serviceMin(selectedService);
-const max=serviceMax(selectedService);
-
-box.innerHTML=`
-
-<strong>
-${escapeHTML(name)}
-</strong>
-
-<div
-id="orderPrice"
-class="order-price">
-${formatMoney(rate)} / 1K
-</div>`;
-
-document.getElementById("unitPrice")
-.textContent=
-formatMoney(rate);
-
-document.getElementById("serviceLimits")
-.textContent=
-`Minimum : ${min.toLocaleString("fr-FR")} — Maximum : ${max.toLocaleString("fr-FR")}`;
-
-document.getElementById("orderQuantity")
-.value=min;
-
-calculateOrderPrice();
-
-}
-
-
-/* =========================================
-   CALCUL
-========================================= */
-
-function calculateOrderPrice(){
-
-const quantity=
-Number(
-document.getElementById("orderQuantity").value
-);
-
-if(!selectedService){
-
-document.getElementById("calculatedQuantity")
-.textContent="0";
-
-document.getElementById("calculatedPrice")
-.textContent="0 FC";
-
-return;
-
-}
-
-const rate=
-serviceRateCDF(selectedService);
-
-const total=
-(rate * quantity) / 1000;
-
-document.getElementById("calculatedQuantity")
-.textContent=
-Number.isFinite(quantity)
-?quantity.toLocaleString("fr-FR")
-:"0";
-
-document.getElementById("calculatedPrice")
-.textContent=
-formatMoney(total);
-
-}
-
-
-/* =========================================
-   DEPOSIT
-========================================= */
-
-async function requestDeposit(){
-
-if(!currentUser){
-
-document.getElementById("depositMessage")
-.textContent=
-"❌ Connectez-vous d'abord.";
-
-return;
-
-}
-
-const amount=
-Number(
-document.getElementById("depositAmount").value
-);
-
-const method=
-document.getElementById("depositMethod").value;
-
-const message=
-document.getElementById("depositMessage");
-
-if(
-!Number.isFinite(amount) ||
-amount<2500
-){
-
-message.textContent=
-"❌ Le dépôt minimum est de 2 500 FC.";
-
-return;
-
-}
-
-if(!method){
-
-message.textContent=
-"❌ Choisissez un moyen de paiement.";
-
-return;
-
-}
-
-try{
-
-const response=
-await fetch("/api/deposit",{
-
-method:"POST",
-
-headers:{
-"Content-Type":"application/json"
-},
-
-body:JSON.stringify({
-userId:currentUser.id,
-amount,
-method
-})
-
+window.scrollTo({
+top:0,
+behavior:"smooth"
 });
-
-const data=
-await response.json();
-
-message.textContent=
-data.message||"Erreur";
-
-if(data.success){
-
-document.getElementById("depositAmount")
-.value="";
-
-document.getElementById("depositMethod")
-.value="";
-
-}
-
-}catch(error){
-
-console.error(error);
-
-message.textContent=
-"❌ Erreur de connexion au serveur.";
-
-}
-
-}
-
-
-/* =========================================
-   CREATE ORDER
-========================================= */
-
-async function createOrder(){
-
-const message=
-document.getElementById("orderMessage");
-
-if(!currentUser){
-
-message.textContent=
-"❌ Connectez-vous d'abord.";
-
-return;
-
-}
-
-if(!selectedService){
-
-message.textContent=
-"❌ Choisissez un service.";
-
-return;
-
-}
-
-const link=
-document.getElementById("orderLink")
-.value.trim();
-
-const quantity=
-Number(
-document.getElementById("orderQuantity").value
-);
-
-const id=
-serviceId(selectedService);
-
-const rate=
-serviceRateCDF(selectedService);
-
-const min=
-serviceMin(selectedService);
-
-const max=
-serviceMax(selectedService);
-
-const price=
-(rate*quantity)/1000;
-
-if(!id){
-
-message.textContent=
-"❌ Service invalide.";
-
-return;
-
-}
-
-if(!link){
-
-message.textContent=
-"❌ Entrez le lien de la publication ou du compte.";
-
-return;
-
-}
-
-if(
-!Number.isInteger(quantity) ||
-quantity<=0
-){
-
-message.textContent=
-"❌ Quantité invalide.";
-
-return;
-
-}
-
-if(quantity<min){
-
-message.textContent=
-`❌ Quantité minimum : ${min.toLocaleString("fr-FR")}.`;
-
-return;
-
-}
-
-if(quantity>max){
-
-message.textContent=
-`❌ Quantité maximum : ${max.toLocaleString("fr-FR")}.`;
-
-return;
-
-}
-
-if(
-!Number.isFinite(price) ||
-price<=0
-){
-
-message.textContent=
-"❌ Prix invalide.";
-
-return;
-
-}
-
-if(
-Number(currentUser.balance||0)<price
-){
-
-message.textContent=
-"❌ Solde insuffisant. Rechargez votre compte.";
-
-return;
-
-}
-
-message.textContent=
-"⏳ Envoi de la commande au fournisseur...";
-
-try{
-
-/*
- IMPORTANT :
- Le serveur doit recevoir le service ID.
-*/
-
-const response=
-await fetch("/api/smm/order",{
-
-method:"POST",
-
-headers:{
-"Content-Type":"application/json"
-},
-
-body:JSON.stringify({
-
-userId:currentUser.id,
-
-service:id,
-
-link,
-
-quantity
-
-})
-
-});
-
-const data=
-await response.json();
-
-message.textContent=
-data.message||"Erreur";
-
-if(data.success){
-
-await refreshUser();
-
-document.getElementById("orderLink")
-.value="";
-
-document.getElementById("orderQuantity")
-.value=serviceMin(selectedService);
-
-calculateOrderPrice();
-
-setTimeout(
-()=>{
-showPanel("orders");
-},
-800
-);
-
-}
-
-}catch(error){
-
-console.error(error);
-
-message.textContent=
-"❌ Erreur de connexion au serveur.";
-
-}
-
-}
-
-
-/* =========================================
-   ORDERS
-========================================= */
-
-async function loadOrders(){
-
-if(!currentUser)return;
-
-const container=
-document.getElementById("ordersList");
-
-container.innerHTML=
-`<div class="loading">
-⏳ Chargement...
-</div>`;
-
-try{
-
-const response=
-await fetch(
-"/api/orders/" +
-encodeURIComponent(currentUser.id)
-);
-
-const data=
-await response.json();
-
-if(
-!data.success ||
-!Array.isArray(data.orders) ||
-!data.orders.length
-){
-
-container.innerHTML=`
-
-<div class="empty">
-📋 Aucune commande pour le moment.
-</div>`;
-
-return;
-
-}
-
-container.innerHTML=
-data.orders
-.slice()
-.reverse()
-.map(order=>{
-
-return `
-
-<div class="order-row">
-
-<strong>
-🚀 ${escapeHTML(
-order.serviceName ||
-order.service ||
-"Commande"
-)}
-</strong>
-
-<p style="margin-top:8px">
-🆔 Commande :
-${escapeHTML(
-String(
-order.smmOrderId ||
-order.providerOrderId ||
-order.id ||
-"—"
-)
-)}
-</p>
-
-<p>
-🔗 ${escapeHTML(order.link||"—")}
-</p>
-
-<p>
-🔢 Quantité :
-${escapeHTML(String(order.quantity||"—"))}
-</p>
-
-<p>
-💰 Prix :
-${formatMoney(
-order.chargeFC ??
-order.price ??
-0
-)}
-</p>
-
-<span class="status">
-${escapeHTML(
-order.status ||
-order.providerStatus ||
-"Pending"
-)}
-</span>
-
-<p style="
-font-size:12px;
-color:#64748b;
-margin-top:8px;
-">
-
-${
-order.createdAt
-?
-new Date(order.createdAt)
-.toLocaleString("fr-FR")
-:""
-}
-
-</p>
-
-</div>`;
-
-})
-.join("");
-
-}catch(error){
-
-console.error(error);
-
-container.innerHTML=
-"❌ Impossible de charger les commandes.";
-
-}
 
 }
 
@@ -2862,17 +1798,917 @@ container.innerHTML=
 
 function toggleMenu(){
 
+showPanel("dashboard");
+
+}
+
+
+/* =========================================
+   SERVICES
+========================================= */
+
+async function loadServices(){
+
+const grid =
+document.getElementById(
+"servicesGrid"
+);
+
+grid.innerHTML =
+'<div class="loading">⏳ Chargement des services...</div>';
+
+try{
+
+const response =
+await fetch(
+"/api/smm/services"
+);
+
+const data =
+await response.json();
+
+if(
+!response.ok ||
+!data.success
+){
+
+throw new Error(
+data.message ||
+"Impossible de charger les services."
+);
+
+}
+
+services =
+Array.isArray(data.services)
+? data.services
+: [];
+
+renderServices();
+
+fillOrderServices();
+
+}catch(error){
+
+console.error(error);
+
+grid.innerHTML =
+`<div class="empty">
+❌ ${escapeHTML(error.message)}
+<br><br>
+<button class="primary"
+onclick="loadServices()">
+Réessayer
+</button>
+</div>`;
+
+}
+
+}
+
+
+/* =========================================
+   AFFICHAGE SERVICES
+========================================= */
+
+function renderServices(){
+
+const grid =
+document.getElementById(
+"servicesGrid"
+);
+
+const search =
+normalizeText(
+document
+.getElementById("serviceSearch")
+?.value
+);
+
+const network =
+document
+.getElementById("networkFilter")
+?.value || "";
+
+const filtered =
+services.filter(service => {
+
+const name =
+normalizeText(
+getServiceName(service)
+);
+
+const detectedNetwork =
+detectNetwork(service);
+
+const matchesSearch =
+!search ||
+name.includes(search);
+
+const matchesNetwork =
+!network ||
+detectedNetwork === network;
+
+return (
+matchesSearch &&
+matchesNetwork
+);
+
+});
+
+if(!filtered.length){
+
+grid.innerHTML =
+'<div class="empty">Aucun service trouvé.</div>';
+
+return;
+
+}
+
+grid.innerHTML =
+filtered.map(service => {
+
+const name =
+getServiceName(service);
+
+const price =
+getClientPrice(service);
+
+const min =
+getServiceMin(service);
+
+const max =
+getServiceMax(service);
+
+const network =
+detectNetwork(service);
+
+const providerId =
+getServiceId(service);
+
+return `
+<div class="service-card">
+
+<div class="service-network">
+${escapeHTML(
+network.toUpperCase()
+)}
+</div>
+
+<div class="service-name">
+${escapeHTML(name)}
+</div>
+
+<div class="service-price">
+${formatMoney(price)}
+<span style="font-size:12px;color:#64748b">
+/ 1K
+</span>
+</div>
+
+<div class="service-details">
+Minimum : ${min.toLocaleString("fr-FR")}<br>
+Maximum : ${max.toLocaleString("fr-FR")}<br>
+ID : ${escapeHTML(providerId)}
+</div>
+
+<button
+class="primary"
+onclick="chooseService('${escapeHTML(providerId)}')">
+📦 COMMANDER
+</button>
+
+</div>
+`;
+
+}).join("");
+
+}
+
+
+/* =========================================
+   LISTE COMMANDE
+========================================= */
+
+function fillOrderServices(){
+
+const select =
+document.getElementById(
+"orderService"
+);
+
+if(!select)
+return;
+
+select.innerHTML =
+'<option value="">-- Choisir un service --</option>';
+
+services.forEach((service,index)=>{
+
+const option =
+document.createElement("option");
+
+option.value =
+String(index);
+
+option.textContent =
+`${getServiceName(service)} — ${formatMoney(getClientPrice(service))}/1K`;
+
+select.appendChild(option);
+
+});
+
+}
+
+
+/* =========================================
+   CHOISIR SERVICE
+========================================= */
+
+function chooseService(id){
+
+const index =
+services.findIndex(
+service =>
+getServiceId(service) === String(id)
+);
+
+if(index === -1)
+return;
+
+selectedService =
+services[index];
+
+showPanel("order");
+
+const select =
+document.getElementById(
+"orderService"
+);
+
+select.value =
+String(index);
+
+updateSelectedService();
+
+}
+
+
+/* =========================================
+   SELECT SERVICE
+========================================= */
+
+function selectServiceFromList(){
+
+const index =
+document.getElementById(
+"orderService"
+).value;
+
+if(index === ""){
+
+selectedService = null;
+
+document
+.getElementById("selectedService")
+.innerHTML =
+"<strong>Aucun service sélectionné</strong>";
+
+document
+.getElementById("orderPrice")
+.textContent =
+"0 FC";
+
+document
+.getElementById("unitPrice")
+.textContent =
+"0 FC";
+
+document
+.getElementById("serviceLimits")
+.textContent="";
+
+return;
+
+}
+
+selectedService =
+services[Number(index)];
+
+updateSelectedService();
+
+}
+
+
+/* =========================================
+   SERVICE SELECTIONNE
+========================================= */
+
+function updateSelectedService(){
+
+if(!selectedService)
+return;
+
+const name =
+getServiceName(
+selectedService
+);
+
+const price =
+getClientPrice(
+selectedService
+);
+
+const min =
+getServiceMin(
+selectedService
+);
+
+const max =
+getServiceMax(
+selectedService
+);
+
+document
+.getElementById("selectedService")
+.innerHTML =
+`
+<strong>
+${escapeHTML(name)}
+</strong>
+
+<div id="orderPrice"
+class="order-price">
+${formatMoney(price)} / 1K
+</div>
+`;
+
+document
+.getElementById("unitPrice")
+.textContent =
+formatMoney(price);
+
+document
+.getElementById("serviceLimits")
+textContent =
+`Quantité autorisée : ${min.toLocaleString("fr-FR")} à ${max.toLocaleString("fr-FR")}.`;
+
+calculateOrderPrice();
+
+}
+
+
+/* =========================================
+   CALCUL PRIX
+========================================= */
+
+function calculateOrderPrice(){
+
+const quantity =
+Number(
+document
+.getElementById("orderQuantity")
+.value || 0
+);
+
+const price =
+selectedService
+? getClientPrice(selectedService)
+: 0;
+
+const total =
+Math.ceil(
+(price * quantity) / 1000
+);
+
+document
+.getElementById("calculatedQuantity")
+.textContent =
+quantity.toLocaleString("fr-FR");
+
+document
+.getElementById("calculatedPrice")
+.textContent =
+formatMoney(total);
+
+document
+.getElementById("unitPrice")
+.textContent =
+formatMoney(price);
+
+}
+
+
+/* =========================================
+   CREER COMMANDE
+========================================= */
+
+async function createOrder(){
+
 if(!currentUser){
 
-alert(
-"Connectez-vous pour accéder au menu."
+showMessage(
+"orderMessage",
+"❌ Connectez-vous d'abord."
 );
 
 return;
 
 }
 
-showPanel("dashboard");
+if(!selectedService){
+
+showMessage(
+"orderMessage",
+"❌ Choisissez un service."
+);
+
+return;
+
+}
+
+const link =
+document
+.getElementById("orderLink")
+.value
+.trim();
+
+const quantity =
+Number(
+document
+.getElementById("orderQuantity")
+.value
+);
+
+if(!link){
+
+showMessage(
+"orderMessage",
+"❌ Entrez le lien."
+);
+
+return;
+
+}
+
+if(
+!Number.isInteger(quantity) ||
+quantity <= 0
+){
+
+showMessage(
+"orderMessage",
+"❌ Quantité invalide."
+);
+
+return;
+
+}
+
+const min =
+getServiceMin(
+selectedService
+);
+
+const max =
+getServiceMax(
+selectedService
+);
+
+if(
+quantity < min ||
+quantity > max
+){
+
+showMessage(
+"orderMessage",
+`❌ Quantité autorisée : ${min.toLocaleString("fr-FR")} à ${max.toLocaleString("fr-FR")}.`
+);
+
+return;
+
+}
+
+const clientPrice =
+getClientPrice(
+selectedService
+);
+
+const total =
+Math.ceil(
+(clientPrice * quantity) /
+1000
+);
+
+if(
+Number(currentUser.balance || 0) <
+total
+){
+
+showMessage(
+"orderMessage",
+`❌ Solde insuffisant. Il faut ${formatMoney(total)}.`
+);
+
+return;
+
+}
+
+const button =
+document.querySelector(
+"#orderPanel button.primary"
+);
+
+if(button){
+
+button.disabled = true;
+button.textContent =
+"⏳ ENVOI...";
+
+}
+
+try{
+
+const response =
+await fetch(
+"/api/order",
+{
+method:"POST",
+headers:{
+"Content-Type":
+"application/json"
+},
+body:JSON.stringify({
+
+userId:
+currentUser.id,
+
+serviceId:
+getServiceId(
+selectedService
+),
+
+service:
+getServiceName(
+selectedService
+),
+
+link,
+
+quantity
+
+})
+}
+);
+
+const data =
+await response.json();
+
+if(
+!response.ok ||
+!data.success
+){
+
+throw new Error(
+data.message ||
+"Commande impossible."
+);
+
+}
+
+if(
+typeof data.balance !==
+"undefined"
+){
+
+currentUser.balance =
+Number(data.balance);
+
+localStorage.setItem(
+"leaderNosmyUser",
+JSON.stringify(currentUser)
+);
+
+}
+
+updateBalanceUI();
+
+showMessage(
+"orderMessage",
+"✅ Commande envoyée avec succès !",
+true
+);
+
+document
+.getElementById("orderLink")
+.value="";
+
+document
+.getElementById("orderQuantity")
+.value="";
+
+calculateOrderPrice();
+
+}catch(error){
+
+showMessage(
+"orderMessage",
+"❌ " + error.message
+);
+
+}finally{
+
+if(button){
+
+button.disabled = false;
+button.textContent =
+"🚀 COMMANDER MAINTENANT";
+
+}
+
+}
+
+}
+
+
+/* =========================================
+   DEPOT
+========================================= */
+
+async function requestDeposit(){
+
+if(!currentUser){
+
+showMessage(
+"depositMessage",
+"❌ Connectez-vous d'abord."
+);
+
+return;
+
+}
+
+const amount =
+Number(
+document
+.getElementById("depositAmount")
+.value
+);
+
+const method =
+document
+.getElementById("depositMethod")
+.value;
+
+if(
+!Number.isFinite(amount) ||
+amount < MIN_DEPOSIT
+){
+
+showMessage(
+"depositMessage",
+`❌ Le dépôt minimum est de ${formatMoney(MIN_DEPOSIT)}.`
+);
+
+return;
+
+}
+
+if(!method){
+
+showMessage(
+"depositMessage",
+"❌ Choisissez un moyen de paiement."
+);
+
+return;
+
+}
+
+try{
+
+const response =
+await fetch(
+"/api/deposit",
+{
+method:"POST",
+headers:{
+"Content-Type":
+"application/json"
+},
+body:JSON.stringify({
+
+userId:
+currentUser.id,
+
+amount,
+
+method
+
+})
+}
+);
+
+const data =
+await response.json();
+
+if(
+!response.ok ||
+!data.success
+){
+
+throw new Error(
+data.message ||
+"Impossible d'enregistrer le dépôt."
+);
+
+}
+
+showMessage(
+"depositMessage",
+"✅ Demande enregistrée. Effectuez le paiement puis attendez la validation.",
+true
+);
+
+document
+.getElementById("depositAmount")
+.value="";
+
+document
+.getElementById("depositMethod")
+.value="";
+
+}catch(error){
+
+showMessage(
+"depositMessage",
+"❌ " + error.message
+);
+
+}
+
+}
+
+
+/* =========================================
+   COMMANDES
+========================================= */
+
+async function loadOrders(){
+
+if(!currentUser)
+return;
+
+const list =
+document.getElementById(
+"ordersList"
+);
+
+list.innerHTML =
+'<div class="loading">⏳ Chargement...</div>';
+
+try{
+
+const response =
+await fetch(
+"/api/orders/" +
+encodeURIComponent(
+currentUser.id
+)
+);
+
+const data =
+await response.json();
+
+if(
+!response.ok ||
+!data.success
+){
+
+throw new Error(
+data.message ||
+"Erreur."
+);
+
+}
+
+const orders =
+Array.isArray(data.orders)
+? data.orders
+: [];
+
+if(!orders.length){
+
+list.innerHTML =
+'<div class="empty">📋 Aucune commande pour le moment.</div>';
+
+return;
+
+}
+
+list.innerHTML =
+orders
+.slice()
+.reverse()
+.map(order => {
+
+const status =
+order.status ||
+"Pending";
+
+return `
+<div class="order-row">
+
+<strong>
+📦 ${escapeHTML(
+order.serviceName ||
+"Service"
+)}
+</strong>
+
+<br>
+
+<span>
+Quantité :
+${Number(
+order.quantity || 0
+).toLocaleString("fr-FR")}
+</span>
+
+<br>
+
+<span>
+Montant :
+<strong>
+${formatMoney(
+order.chargeFC ||
+order.price ||
+0
+)}
+</strong>
+</span>
+
+<br>
+
+<span>
+Commande fournisseur :
+${escapeHTML(
+order.providerOrderId ||
+order.smmOrderId ||
+"—"
+)}
+</span>
+
+<br>
+
+<span>
+Lien :
+${escapeHTML(
+order.link ||
+""
+)}
+</span>
+
+<br>
+
+<span class="status">
+${escapeHTML(status)}
+</span>
+
+</div>
+`;
+
+})
+.join("");
+
+}catch(error){
+
+list.innerHTML =
+`<div class="empty">
+❌ ${escapeHTML(error.message)}
+</div>`;
+
+}
+
+}
+
+
+/* =========================================
+   WHATSAPP
+========================================= */
+
+function openWhatsApp(){
+
+const text =
+"Bonjour LEADER NOSMY BOOST 👑%0A%0AJe voudrais passer une commande.";
+
+window.open(
+"https://wa.me/" +
+WHATSAPP_NUMBER +
+"?text=" +
+text,
+"_blank"
+);
 
 }
 
@@ -2887,26 +2723,43 @@ localStorage.removeItem(
 "leaderNosmyUser"
 );
 
-currentUser=null;
+currentUser = null;
 
-location.reload();
+document
+.getElementById("clientPanel")
+.classList.add("hidden");
+
+document
+.getElementById("authSection")
+.classList.remove("hidden");
+
+document
+.getElementById("miniBalance")
+.classList.add("hidden");
+
+showLogin();
 
 }
 
 
 /* =========================================
-   START
+   DEMARRAGE
 ========================================= */
+
+document.addEventListener(
+"DOMContentLoaded",
+async () => {
 
 if(currentUser){
 
+await refreshUser();
+
 showClient();
 
-}else{
-
-showLogin();
+}
 
 }
+);
 
 </script>
 
