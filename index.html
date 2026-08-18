@@ -8,7 +8,7 @@
 
   <meta
     name="description"
-    content="LEADER NOSMY BOOST - SMM Panel pour TikTok, Facebook, Instagram et YouTube."
+    content="LEADER NOSMY BOOST - Boostez vos réseaux sociaux rapidement."
   >
 
   <style>
@@ -19,37 +19,20 @@
       font-family: Arial, Helvetica, sans-serif;
     }
 
-    html {
-      scroll-behavior: smooth;
-    }
-
     body {
-      background: #f4f6f9;
+      background: #f4f7fb;
       color: #111827;
+      min-height: 100vh;
     }
 
-    button,
-    input,
-    select {
-      font: inherit;
-    }
-
-    button {
-      cursor: pointer;
-    }
-
-    .hidden {
-      display: none !important;
-    }
-
-    /* ==============================
+    /* =========================
        HEADER
-    ============================== */
+    ========================= */
 
     header {
-      background: #111827;
+      background: linear-gradient(135deg, #111827, #1e3a8a);
       color: white;
-      padding: 15px 20px;
+      padding: 16px 20px;
       position: sticky;
       top: 0;
       z-index: 1000;
@@ -57,7 +40,7 @@
     }
 
     .header-content {
-      max-width: 1150px;
+      max-width: 1100px;
       margin: auto;
       display: flex;
       justify-content: space-between;
@@ -66,125 +49,212 @@
     }
 
     .logo {
-      font-size: 21px;
+      font-size: 20px;
       font-weight: 900;
+      letter-spacing: .5px;
     }
 
     .logo span {
-      color: #22c55e;
+      color: #facc15;
     }
 
-    .header-actions {
+    nav {
       display: flex;
       gap: 8px;
-      align-items: center;
+    }
+
+    nav button {
+      border: 0;
+      padding: 10px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      background: rgba(255,255,255,.12);
+      color: white;
+    }
+
+    nav button:hover {
+      background: rgba(255,255,255,.25);
+    }
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero {
+      max-width: 1100px;
+      margin: 35px auto;
+      padding: 50px 25px;
+      border-radius: 22px;
+      background: linear-gradient(
+        135deg,
+        #1d4ed8,
+        #312e81,
+        #111827
+      );
+      color: white;
+      text-align: center;
+      box-shadow: 0 10px 35px rgba(0,0,0,.15);
+    }
+
+    .hero h1 {
+      font-size: clamp(28px, 6vw, 52px);
+      margin-bottom: 18px;
+    }
+
+    .hero p {
+      max-width: 750px;
+      margin: auto;
+      font-size: 17px;
+      line-height: 1.7;
+      color: #e5e7eb;
+    }
+
+    .hero-buttons {
+      margin-top: 28px;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
     }
 
     .btn {
-      border: none;
-      padding: 11px 16px;
+      border: 0;
+      padding: 14px 22px;
       border-radius: 10px;
+      cursor: pointer;
       font-weight: 800;
-      text-decoration: none;
-      display: inline-block;
+      font-size: 15px;
     }
 
     .btn-primary {
-      background: #22c55e;
-      color: white;
+      background: #facc15;
+      color: #111827;
     }
 
-    .btn-primary:hover {
-      background: #16a34a;
-    }
-
-    .btn-dark {
-      background: #1f2937;
-      color: white;
-    }
-
-    .btn-light {
+    .btn-secondary {
       background: white;
       color: #111827;
     }
 
-    .btn-danger {
-      background: #dc2626;
-      color: white;
+    .btn:hover {
+      transform: translateY(-2px);
     }
 
-    /* ==============================
-       HERO
-    ============================== */
-
-    .hero {
-      max-width: 1100px;
-      margin: 30px auto;
-      padding: 40px 20px;
-      text-align: center;
-    }
-
-    .hero h1 {
-      font-size: 40px;
-      margin-bottom: 15px;
-    }
-
-    .hero p {
-      color: #6b7280;
-      font-size: 17px;
-      line-height: 1.7;
-      max-width: 750px;
-      margin: 0 auto 25px;
-    }
-
-    .hero-buttons {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    /* ==============================
-       CONTAINER
-    ============================== */
+    /* =========================
+       SERVICES
+    ========================= */
 
     .container {
-      max-width: 1150px;
+      max-width: 1100px;
       margin: auto;
-      padding: 20px;
+      padding: 0 20px 40px;
     }
 
     .section-title {
       text-align: center;
-      margin: 30px 0 20px;
-      font-size: 28px;
+      margin: 35px 0 22px;
     }
 
-    /* ==============================
-       AUTH
-    ============================== */
-
-    .auth-section {
-      max-width: 500px;
-      margin: 30px auto;
-      padding: 20px;
-    }
-
-    .auth-card {
-      background: white;
-      padding: 28px;
-      border-radius: 18px;
-      box-shadow: 0 5px 25px rgba(0,0,0,.08);
-    }
-
-    .auth-card h2 {
+    .section-title h2 {
+      font-size: 30px;
       margin-bottom: 8px;
     }
 
-    .auth-card p {
+    .section-title p {
       color: #6b7280;
+    }
+
+    .platforms {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 18px;
+    }
+
+    .platform {
+      background: white;
+      border-radius: 16px;
+      padding: 22px;
+      box-shadow: 0 5px 20px rgba(0,0,0,.07);
+    }
+
+    .platform h3 {
+      margin-bottom: 15px;
+      font-size: 21px;
+    }
+
+    .service-list {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .service-item {
+      padding: 12px;
+      background: #f8fafc;
+      border: 1px solid #e5e7eb;
+      border-radius: 9px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+    }
+
+    .price {
+      font-weight: 900;
+      color: #1d4ed8;
+      white-space: nowrap;
+    }
+
+    /* =========================
+       MODAL
+    ========================= */
+
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.65);
+      z-index: 3000;
+      padding: 20px;
+      overflow-y: auto;
+    }
+
+    .modal.active {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-box {
+      width: 100%;
+      max-width: 480px;
+      background: white;
+      border-radius: 18px;
+      padding: 25px;
+      position: relative;
+      box-shadow: 0 20px 60px rgba(0,0,0,.3);
+    }
+
+    .modal-box h2 {
       margin-bottom: 20px;
     }
+
+    .close {
+      position: absolute;
+      top: 12px;
+      right: 15px;
+      border: 0;
+      background: none;
+      font-size: 28px;
+      cursor: pointer;
+      color: #6b7280;
+    }
+
+    /* =========================
+       FORM
+    ========================= */
 
     .form-group {
       margin-bottom: 15px;
@@ -193,7 +263,7 @@
     .form-group label {
       display: block;
       margin-bottom: 7px;
-      font-weight: 700;
+      font-weight: bold;
     }
 
     .form-group input,
@@ -201,387 +271,171 @@
       width: 100%;
       padding: 13px;
       border: 1px solid #d1d5db;
-      border-radius: 10px;
+      border-radius: 9px;
       outline: none;
-      background: white;
+      font-size: 15px;
     }
 
     .form-group input:focus,
     .form-group select:focus {
-      border-color: #22c55e;
+      border-color: #2563eb;
     }
 
     .form-submit {
       width: 100%;
-      border: none;
       padding: 14px;
-      border-radius: 10px;
-      background: #22c55e;
+      border: 0;
+      border-radius: 9px;
+      background: #1d4ed8;
       color: white;
-      font-weight: 800;
-    }
-
-    .auth-switch {
-      margin-top: 15px;
-      text-align: center;
-      color: #6b7280;
-    }
-
-    .auth-switch button {
-      border: none;
-      background: none;
-      color: #16a34a;
-      font-weight: 800;
-    }
-
-    /* ==============================
-       DASHBOARD
-    ============================== */
-
-    .dashboard {
-      max-width: 1150px;
-      margin: 25px auto;
-      padding: 20px;
-    }
-
-    .dashboard-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 15px;
-      margin-bottom: 20px;
-    }
-
-    .dashboard-top h2 {
-      font-size: 28px;
-    }
-
-    .dashboard-top p {
-      color: #6b7280;
-      margin-top: 5px;
-    }
-
-    .dashboard-actions {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    .balance-card {
-      background: linear-gradient(135deg, #111827, #1f2937);
-      color: white;
-      padding: 25px;
-      border-radius: 18px;
-      margin-bottom: 20px;
-    }
-
-    .balance-label {
-      color: #d1d5db;
-      margin-bottom: 8px;
-    }
-
-    .balance-value {
-      font-size: 35px;
       font-weight: 900;
+      cursor: pointer;
+      font-size: 15px;
     }
 
-    .dashboard-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-      gap: 15px;
+    .form-submit:hover {
+      background: #1e40af;
     }
 
-    .dashboard-card {
-      background: white;
-      border-radius: 16px;
-      padding: 22px;
-      box-shadow: 0 5px 20px rgba(0,0,0,.06);
-    }
-
-    .dashboard-card h3 {
-      margin-bottom: 8px;
-    }
-
-    .dashboard-card p {
-      color: #6b7280;
-      line-height: 1.5;
-    }
-
-    /* ==============================
-       SERVICE
-    ============================== */
-
-    .platform {
-      background: white;
-      border-radius: 16px;
-      padding: 22px;
-      margin-bottom: 25px;
-      box-shadow: 0 5px 20px rgba(0,0,0,.06);
-    }
-
-    .platform h2 {
-      margin-bottom: 18px;
-      font-size: 24px;
-    }
-
-    .services {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 12px;
-    }
-
-    .service {
-      border: 1px solid #e5e7eb;
-      border-radius: 12px;
-      padding: 15px;
-      background: #fafafa;
-    }
-
-    .service-title {
-      font-weight: 800;
-      margin-bottom: 8px;
-    }
-
-    .price {
-      color: #16a34a;
-      font-weight: 800;
-      font-size: 17px;
-      margin-bottom: 12px;
-    }
-
-    .order-btn {
-      width: 100%;
-      border: none;
-      padding: 10px;
-      border-radius: 8px;
-      background: #111827;
-      color: white;
-      font-weight: 700;
-    }
-
-    .order-btn:hover {
-      background: #22c55e;
-    }
-
-    /* ==============================
-       MODAL
-    ============================== */
-
-    .modal {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,.65);
-      z-index: 3000;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-    }
-
-    .modal-card {
-      width: 100%;
-      max-width: 520px;
-      max-height: 90vh;
-      overflow-y: auto;
-      background: white;
-      border-radius: 18px;
-      padding: 25px;
-      box-shadow: 0 10px 40px rgba(0,0,0,.25);
-    }
-
-    .modal-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 20px;
-    }
-
-    .close-btn {
-      border: none;
-      background: #f3f4f6;
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
-      font-size: 20px;
-      font-weight: 800;
-    }
-
-    .order-summary {
-      background: #f3f4f6;
-      border-radius: 12px;
-      padding: 15px;
-      margin-bottom: 18px;
-    }
-
-    .order-summary p {
-      margin-bottom: 6px;
-    }
-
-    .order-summary p:last-child {
-      margin-bottom: 0;
-    }
-
-    /* ==============================
-       HISTORY
-    ============================== */
-
-    .history {
-      margin-top: 25px;
-    }
-
-    .history-card {
-      background: white;
-      border-radius: 14px;
-      padding: 17px;
-      margin-bottom: 10px;
-      border: 1px solid #e5e7eb;
-    }
-
-    .history-card strong {
-      display: block;
-      margin-bottom: 7px;
-    }
-
-    .history-card p {
-      color: #6b7280;
-      margin: 4px 0;
-      word-break: break-word;
-    }
-
-    .status {
-      display: inline-block;
-      margin-top: 8px;
-      padding: 6px 10px;
-      border-radius: 20px;
-      background: #dcfce7;
-      color: #166534;
-      font-size: 13px;
-      font-weight: 800;
-    }
-
-    .status.pending {
-      background: #fef3c7;
-      color: #92400e;
-    }
-
-    .status.processing {
-      background: #dbeafe;
-      color: #1d4ed8;
-    }
-
-    /* ==============================
-       FEATURES
-    ============================== */
-
-    .features {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 15px;
-      margin-top: 30px;
-    }
-
-    .feature {
-      background: white;
-      padding: 22px;
-      border-radius: 14px;
+    .switch {
       text-align: center;
-      box-shadow: 0 5px 20px rgba(0,0,0,.05);
+      margin-top: 15px;
+      color: #2563eb;
+      cursor: pointer;
+      font-weight: bold;
     }
 
-    .feature h3 {
-      margin-bottom: 8px;
-    }
-
-    .feature p {
-      color: #6b7280;
-    }
-
-    /* ==============================
-       ALERT
-    ============================== */
-
-    .alert {
-      padding: 13px;
-      border-radius: 10px;
+    .message {
       margin-bottom: 15px;
-      font-weight: 700;
+      padding: 11px;
+      border-radius: 8px;
       display: none;
+      font-size: 14px;
     }
 
-    .alert.success {
+    .message.success {
       display: block;
       background: #dcfce7;
       color: #166534;
     }
 
-    .alert.error {
+    .message.error {
       display: block;
       background: #fee2e2;
       color: #991b1b;
     }
 
-    /* ==============================
+    /* =========================
+       DASHBOARD
+    ========================= */
+
+    #dashboard {
+      display: none;
+    }
+
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-bottom: 25px;
+    }
+
+    .card {
+      background: white;
+      padding: 22px;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0,0,0,.07);
+    }
+
+    .balance {
+      font-size: 30px;
+      font-weight: 900;
+      color: #16a34a;
+      margin-top: 8px;
+    }
+
+    .dashboard-actions {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin-bottom: 25px;
+    }
+
+    .dashboard-actions button {
+      padding: 14px;
+      border: 0;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .btn-blue {
+      background: #2563eb;
+      color: white;
+    }
+
+    .btn-green {
+      background: #16a34a;
+      color: white;
+    }
+
+    .btn-red {
+      background: #dc2626;
+      color: white;
+    }
+
+    /* =========================
        FOOTER
-    ============================== */
+    ========================= */
 
     footer {
-      margin-top: 50px;
+      margin-top: 40px;
       background: #111827;
       color: white;
       text-align: center;
-      padding: 30px 20px;
+      padding: 25px 15px;
     }
 
-    .whatsapp {
-      position: fixed;
-      right: 18px;
-      bottom: 18px;
-      background: #25d366;
-      color: white;
-      padding: 15px 18px;
-      border-radius: 50px;
-      text-decoration: none;
-      font-weight: 800;
-      box-shadow: 0 5px 20px rgba(0,0,0,.2);
-      z-index: 2000;
+    footer strong {
+      color: #facc15;
     }
 
-    /* ==============================
+    /* =========================
        MOBILE
-    ============================== */
+    ========================= */
 
-    @media (max-width: 700px) {
+    @media (max-width: 650px) {
 
       .header-content {
         flex-direction: column;
       }
 
-      .header-actions {
+      nav {
         width: 100%;
         justify-content: center;
       }
 
-      .hero h1 {
-        font-size: 29px;
+      nav button {
+        flex: 1;
       }
 
-      .dashboard-top {
+      .hero {
+        margin: 20px 12px;
+        padding: 40px 18px;
+      }
+
+      .hero p {
+        font-size: 15px;
+      }
+
+      .container {
+        padding-left: 12px;
+        padding-right: 12px;
+      }
+
+      .service-item {
         flex-direction: column;
         align-items: flex-start;
-      }
-
-      .dashboard-actions {
-        width: 100%;
-      }
-
-      .dashboard-actions .btn {
-        flex: 1;
-        text-align: center;
-      }
-
-      .services {
-        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -589,68 +443,33 @@
 
 <body>
 
-<!-- ==========================================
+<!-- =========================
      HEADER
-========================================== -->
+========================= -->
 
 <header>
-
   <div class="header-content">
 
     <div class="logo">
       LEADER NOSMY <span>BOOST</span>
     </div>
 
-    <div class="header-actions">
-
-      <button
-        id="loginHeaderBtn"
-        class="btn btn-light"
-        onclick="showAuth('login')"
-      >
-        CONNEXION
-      </button>
-
-      <button
-        id="registerHeaderBtn"
-        class="btn btn-primary"
-        onclick="showAuth('register')"
-      >
-        CRÉER UN COMPTE
-      </button>
-
-      <button
-        id="dashboardHeaderBtn"
-        class="btn btn-primary hidden"
-        onclick="showDashboard()"
-      >
-        MON COMPTE
-      </button>
-
-      <button
-        id="logoutHeaderBtn"
-        class="btn btn-danger hidden"
-        onclick="logout()"
-      >
-        DÉCONNEXION
-      </button>
-
-    </div>
+    <nav>
+      <button onclick="openLogin()">CONNEXION</button>
+      <button onclick="openRegister()">CRÉER UN COMPTE</button>
+    </nav>
 
   </div>
-
 </header>
 
 
-<!-- ==========================================
+<!-- =========================
      HERO
-========================================== -->
+========================= -->
 
-<section class="hero" id="home">
+<section class="hero">
 
-  <h1>
-    BIENVENUE CHEZ LEADER NOSMY BOOST 👑
-  </h1>
+  <h1>BIENVENUE CHEZ LEADER NOSMY BOOST 👑</h1>
 
   <p>
     Boostez votre présence sur les réseaux sociaux avec
@@ -662,15 +481,14 @@
 
     <button
       class="btn btn-primary"
-      onclick="goToServices()"
+      onclick="openRegister()"
     >
       COMMANDER MAINTENANT 🚀
     </button>
 
     <button
-      id="heroAccountBtn"
-      class="btn btn-dark"
-      onclick="showAuth('login')"
+      class="btn btn-secondary"
+      onclick="openLogin()"
     >
       MON COMPTE 👤
     </button>
@@ -680,104 +498,720 @@
 </section>
 
 
-<!-- ==========================================
-     AUTH SECTION
-========================================== -->
+<!-- =========================
+     SERVICES
+========================= -->
 
-<section
-  id="authSection"
-  class="auth-section hidden"
->
+<main class="container">
 
-  <div class="auth-card">
+  <div class="section-title">
 
-    <div id="authAlert" class="alert"></div>
+    <h2>NOS SERVICES 🚀</h2>
 
-    <!-- LOGIN -->
+    <p>
+      Choisissez votre plateforme et découvrez nos services.
+    </p>
 
-    <div id="loginBox">
+  </div>
 
-      <h2>🔐 Connexion</h2>
+  <div
+    id="servicesContainer"
+    class="platforms"
+  >
 
-      <p>
-        Connectez-vous à votre compte LEADER NOSMY BOOST.
-      </p>
+    <div class="platform">
+      <h3>📘 Facebook</h3>
+      <div class="service-list">
+        Chargement...
+      </div>
+    </div>
 
-      <form onsubmit="login(event)">
+    <div class="platform">
+      <h3>🎵 TikTok</h3>
+      <div class="service-list">
+        Chargement...
+      </div>
+    </div>
 
-        <div class="form-group">
+    <div class="platform">
+      <h3>▶️ YouTube</h3>
+      <div class="service-list">
+        Chargement...
+      </div>
+    </div>
 
-          <label>E-mail</label>
+    <div class="platform">
+      <h3>📸 Instagram</h3>
+      <div class="service-list">
+        Chargement...
+      </div>
+    </div>
 
-          <input
-            id="loginEmail"
-            type="email"
-            placeholder="Votre e-mail"
-            required
-          >
+  </div>
 
-        </div>
 
-        <div class="form-group">
+  <!-- =========================
+       DASHBOARD
+  ========================= -->
 
-          <label>Mot de passe</label>
+  <section id="dashboard">
 
-          <input
-            id="loginPassword"
-            type="password"
-            placeholder="Votre mot de passe"
-            required
-          >
+    <div class="section-title">
+      <h2>MON COMPTE 👤</h2>
+      <p id="welcomeUser"></p>
+    </div>
 
-        </div>
+    <div class="dashboard-grid">
 
-        <button
-          class="form-submit"
-          type="submit"
+      <div class="card">
+        <strong>💰 Mon solde</strong>
+        <div
+          class="balance"
+          id="userBalance"
         >
-          SE CONNECTER
-        </button>
+          0 FC
+        </div>
+      </div>
 
-      </form>
+      <div class="card">
+        <strong>👤 Nom</strong>
+        <p id="userName" style="margin-top:8px;"></p>
+      </div>
 
-      <div class="auth-switch">
-
-        Pas encore de compte ?
-
-        <button onclick="showAuth('register')">
-          Créer un compte
-        </button>
-
+      <div class="card">
+        <strong>📧 E-mail</strong>
+        <p id="userEmail" style="margin-top:8px;"></p>
       </div>
 
     </div>
 
+    <div class="dashboard-actions">
 
-    <!-- REGISTER -->
+      <button
+        class="btn-blue"
+        onclick="openDeposit()"
+      >
+        💰 DÉPOSER
+      </button>
 
-    <div id="registerBox" class="hidden">
+      <button
+        class="btn-green"
+        onclick="openOrder()"
+      >
+        🚀 NOUVELLE COMMANDE
+      </button>
 
-      <h2>👤 Créer un compte</h2>
+      <button
+        class="btn-blue"
+        onclick="loadOrders()"
+      >
+        📦 MES COMMANDES
+      </button>
 
-      <p>
-        Créez votre compte pour commander vos services.
-      </p>
+      <button
+        class="btn-red"
+        onclick="logout()"
+      >
+        🚪 DÉCONNEXION
+      </button>
 
-      <form onsubmit="register(event)">
+    </div>
 
-        <div class="form-group">
+    <div
+      class="card"
+      id="ordersBox"
+      style="display:none;"
+    >
 
-          <label>Nom</label>
+      <h3 style="margin-bottom:15px;">
+        📦 Historique des commandes
+      </h3>
 
-          <input
-            id="registerName"
-            type="text"
-            placeholder="Votre nom"
-            required
-          >
+      <div id="ordersList">
+        Chargement...
+      </div>
 
-        </div>
+    </div>
 
-        <div class="form-group">
+  </section>
 
-          <label>E
+</main>
+
+
+<!-- =========================
+     MODAL CONNEXION
+========================= -->
+
+<div
+  class="modal"
+  id="loginModal"
+>
+
+  <div class="modal-box">
+
+    <button
+      class="close"
+      onclick="closeModals()"
+    >
+      ×
+    </button>
+
+    <h2>CONNEXION 👤</h2>
+
+    <div
+      id="loginMessage"
+      class="message"
+    ></div>
+
+    <form id="loginForm">
+
+      <div class="form-group">
+
+        <label>E-mail</label>
+
+        <input
+          type="email"
+          id="loginEmail"
+          required
+          placeholder="Votre e-mail"
+        >
+
+      </div>
+
+      <div class="form-group">
+
+        <label>Mot de passe</label>
+
+        <input
+          type="password"
+          id="loginPassword"
+          required
+          placeholder="Votre mot de passe"
+        >
+
+      </div>
+
+      <button
+        class="form-submit"
+        type="submit"
+      >
+        SE CONNECTER
+      </button>
+
+    </form>
+
+    <div
+      class="switch"
+      onclick="openRegister()"
+    >
+      Pas encore de compte ? Créer un compte
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- =========================
+     MODAL INSCRIPTION
+========================= -->
+
+<div
+  class="modal"
+  id="registerModal"
+>
+
+  <div class="modal-box">
+
+    <button
+      class="close"
+      onclick="closeModals()"
+    >
+      ×
+    </button>
+
+    <h2>CRÉER UN COMPTE 🚀</h2>
+
+    <div
+      id="registerMessage"
+      class="message"
+    ></div>
+
+    <form id="registerForm">
+
+      <div class="form-group">
+
+        <label>Nom</label>
+
+        <input
+          type="text"
+          id="registerName"
+          required
+          placeholder="Votre nom"
+        >
+
+      </div>
+
+      <div class="form-group">
+
+        <label>E-mail</label>
+
+        <input
+          type="email"
+          id="registerEmail"
+          required
+          placeholder="Votre e-mail"
+        >
+
+      </div>
+
+      <div class="form-group">
+
+        <label>Mot de passe</label>
+
+        <input
+          type="password"
+          id="registerPassword"
+          minlength="6"
+          required
+          placeholder="Minimum 6 caractères"
+        >
+
+      </div>
+
+      <button
+        class="form-submit"
+        type="submit"
+      >
+        CRÉER MON COMPTE
+      </button>
+
+    </form>
+
+    <div
+      class="switch"
+      onclick="openLogin()"
+    >
+      J'ai déjà un compte → Connexion
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- =========================
+     MODAL DÉPÔT
+========================= -->
+
+<div
+  class="modal"
+  id="depositModal"
+>
+
+  <div class="modal-box">
+
+    <button
+      class="close"
+      onclick="closeModals()"
+    >
+      ×
+    </button>
+
+    <h2>💰 DÉPÔT</h2>
+
+    <div
+      id="depositMessage"
+      class="message"
+    ></div>
+
+    <form id="depositForm">
+
+      <div class="form-group">
+
+        <label>Montant</label>
+
+        <input
+          type="number"
+          id="depositAmount"
+          min="1000"
+          required
+          placeholder="Minimum 1 000 FC"
+        >
+
+      </div>
+
+      <div class="form-group">
+
+        <label>Moyen de paiement</label>
+
+        <select id="depositMethod" required>
+
+          <option value="">
+            Choisir un moyen
+          </option>
+
+          <option value="Orange Money">
+            🟠 Orange Money
+          </option>
+
+          <option value="Airtel Money">
+            🔴 Airtel Money
+          </option>
+
+          <option value="M-Pesa">
+            🟢 Vodacom M-Pesa
+          </option>
+
+        </select>
+
+      </div>
+
+      <div class="form-group">
+
+        <label>ID / Référence de transaction</label>
+
+        <input
+          type="text"
+          id="transactionId"
+          placeholder="Référence de paiement"
+        >
+
+      </div>
+
+      <button
+        class="form-submit"
+        type="submit"
+      >
+        ENVOYER LA DEMANDE
+      </button>
+
+    </form>
+
+  </div>
+
+</div>
+
+
+<!-- =========================
+     MODAL COMMANDE
+========================= -->
+
+<div
+  class="modal"
+  id="orderModal"
+>
+
+  <div class="modal-box">
+
+    <button
+      class="close"
+      onclick="closeModals()"
+    >
+      ×
+    </button>
+
+    <h2>🚀 NOUVELLE COMMANDE</h2>
+
+    <div
+      id="orderMessage"
+      class="message"
+    ></div>
+
+    <form id="orderForm">
+
+      <div class="form-group">
+
+        <label>Service</label>
+
+        <select
+          id="orderService"
+          required
+        >
+
+          <option value="">
+            Chargement des services...
+          </option>
+
+        </select>
+
+      </div>
+
+      <div class="form-group">
+
+        <label>Lien</label>
+
+        <input
+          type="url"
+          id="orderLink"
+          required
+          placeholder="https://..."
+        >
+
+      </div>
+
+      <div class="form-group">
+
+        <label>Quantité</label>
+
+        <input
+          type="number"
+          id="orderQuantity"
+          min="1000"
+          step="1000"
+          required
+          placeholder="Exemple : 1000"
+        >
+
+      </div>
+
+      <button
+        class="form-submit"
+        type="submit"
+      >
+        PASSER LA COMMANDE 🚀
+      </button>
+
+    </form>
+
+  </div>
+
+</div>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+  <p>
+    © 2026
+    <strong>LEADER NOSMY BOOST</strong>
+  </p>
+
+  <p style="margin-top:8px;">
+    Boostez vos réseaux sociaux 🚀🔥
+  </p>
+
+</footer>
+
+
+<script>
+
+  /* ========================================
+     VARIABLES
+  ======================================== */
+
+  let currentUser = null;
+  let allServices = {};
+
+
+  /* ========================================
+     FORMAT PRIX
+  ======================================== */
+
+  function formatPrice(value) {
+
+    return Number(value || 0).toLocaleString("fr-FR") + " FC";
+
+  }
+
+
+  /* ========================================
+     MODALS
+  ======================================== */
+
+  function closeModals() {
+
+    document
+      .querySelectorAll(".modal")
+      .forEach(modal => {
+        modal.classList.remove("active");
+      });
+
+  }
+
+
+  function openLogin() {
+
+    closeModals();
+
+    document
+      .getElementById("loginModal")
+      .classList.add("active");
+
+  }
+
+
+  function openRegister() {
+
+    closeModals();
+
+    document
+      .getElementById("registerModal")
+      .classList.add("active");
+
+  }
+
+
+  function openDeposit() {
+
+    if (!currentUser) {
+
+      openLogin();
+
+      return;
+
+    }
+
+    closeModals();
+
+    document
+      .getElementById("depositModal")
+      .classList.add("active");
+
+  }
+
+
+  function openOrder() {
+
+    if (!currentUser) {
+
+      openLogin();
+
+      return;
+
+    }
+
+    closeModals();
+
+    document
+      .getElementById("orderModal")
+      .classList.add("active");
+
+    loadOrderServices();
+
+  }
+
+
+  /* ========================================
+     MESSAGE
+  ======================================== */
+
+  function showMessage(id, message, type) {
+
+    const element =
+      document.getElementById(id);
+
+    element.textContent = message;
+
+    element.className =
+      "message " + type;
+
+  }
+
+
+  /* ========================================
+     CHARGER SERVICES
+  ======================================== */
+
+  async function loadServices() {
+
+    try {
+
+      const response =
+        await fetch("/api/services");
+
+      const data =
+        await response.json();
+
+      if (!data.success) {
+
+        throw new Error(
+          "Impossible de charger les services."
+        );
+
+      }
+
+      allServices = data.services || {};
+
+      displayServices();
+
+      loadOrderServices();
+
+    } catch (error) {
+
+      console.error(error);
+
+      document
+        .querySelectorAll(".service-list")
+        .forEach(element => {
+
+          element.innerHTML =
+            "<p>Services indisponibles.</p>";
+
+        });
+
+    }
+
+  }
+
+
+  /* ========================================
+     AFFICHER SERVICES
+  ======================================== */
+
+  function displayServices() {
+
+    const platforms = [
+      "facebook",
+      "tiktok",
+      "youtube",
+      "instagram"
+    ];
+
+    const titles = {
+      facebook: "📘 Facebook",
+      tiktok: "🎵 TikTok",
+      youtube: "▶️ YouTube",
+      instagram: "📸 Instagram"
+    };
+
+    const container =
+      document.getElementById(
+        "servicesContainer"
+      );
+
+    container.innerHTML = "";
+
+    platforms.forEach(platform => {
+
+      const services =
+        allServices[platform] || [];
+
+      const card =
+        document.createElement("div");
+
+      card.className = "platform";
+
+      const title =
+        document.createElement("h3");
+
+      title.textContent =
+        titles[platform];
+
+      card.appendChild(title);
+
+      const list =
+        document.createElement("div");
+
+      list.className =
+        "service-list";
+
+      if (!services.length) {
+
+        list.innerHTML =
+          "<p>Aucun service disponible.</p>";
+
+      } e
