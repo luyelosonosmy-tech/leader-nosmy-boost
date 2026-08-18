@@ -1,2765 +1,1098 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>LEADER NOSMY BOOST 👑</title>
-
-<style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
-
-:root{
-  --blue:#2563eb;
-  --blue2:#1d4ed8;
-  --dark:#07111f;
-  --dark2:#0f172a;
-  --gold:#f5b301;
-  --bg:#f4f7fb;
-  --white:#fff;
-  --muted:#64748b;
-  --border:#e2e8f0;
-  --green:#16a34a;
-  --red:#dc2626;
-  --orange:#f97316;
-}
-
-body{
-  font-family:Arial,Helvetica,sans-serif;
-  background:var(--bg);
-  color:#111827;
-}
-
-button,input,select{
-  font:inherit;
-}
-
-button{
-  cursor:pointer;
-}
-
-.hidden{
-  display:none!important;
-}
-
-header{
-  position:sticky;
-  top:0;
-  z-index:1000;
-  background:var(--dark);
-  color:white;
-  box-shadow:0 4px 20px rgba(0,0,0,.2);
-}
-
-.nav{
-  width:100%;
-  max-width:1200px;
-  margin:auto;
-  min-height:64px;
-  padding:10px 15px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:10px;
-}
-
-.logo{
-  color:white;
-  text-decoration:none;
-  font-size:20px;
-  font-weight:900;
-  white-space:nowrap;
-}
-
-.logo span{
-  color:var(--gold);
-}
-
-.nav-right{
-  display:flex;
-  align-items:center;
-  gap:8px;
-}
-
-.balance-mini{
-  background:#172337;
-  border:1px solid #30425d;
-  padding:9px 12px;
-  border-radius:10px;
-  font-size:13px;
-  font-weight:bold;
-}
-
-.menu-btn{
-  border:0;
-  background:var(--blue);
-  color:white;
-  padding:9px 12px;
-  border-radius:9px;
-  font-size:18px;
-}
-
-.container{
-  width:100%;
-  max-width:1200px;
-  margin:auto;
-  padding:18px 14px 50px;
-}
-
-.panel{
-  background:white;
-  border:1px solid var(--border);
-  border-radius:17px;
-  padding:22px;
-  margin-bottom:20px;
-  box-shadow:0 5px 20px rgba(15,23,42,.06);
-}
-
-.title{
-  text-align:center;
-  color:var(--blue);
-  margin-bottom:20px;
-}
-
-.primary,
-.success,
-.danger,
-.secondary{
-  border:0;
-  color:white;
-  padding:12px 17px;
-  border-radius:10px;
-  font-weight:800;
-}
-
-.primary{
-  background:var(--blue);
-}
-
-.primary:hover{
-  background:var(--blue2);
-}
-
-.success{
-  background:var(--green);
-}
-
-.danger{
-  background:var(--red);
-}
-
-.secondary{
-  background:#475569;
-}
-
-.full{
-  width:100%;
-}
-
-.message{
-  text-align:center;
-  font-weight:bold;
-  line-height:1.5;
-  margin-top:12px;
-}
-
-.form-group{
-  margin-bottom:15px;
-}
-
-.form-group label{
-  display:block;
-  font-weight:bold;
-  margin-bottom:7px;
-}
-
-input,
-select{
-  width:100%;
-  padding:13px;
-  border:1px solid #cbd5e1;
-  border-radius:10px;
-  background:white;
-  outline:none;
-}
-
-input:focus,
-select:focus{
-  border-color:var(--blue);
-  box-shadow:0 0 0 3px rgba(37,99,235,.1);
-}
-
-.auth{
-  max-width:520px;
-  margin:35px auto;
-}
-
-.tabs{
-  display:flex;
-  gap:8px;
-  margin-bottom:20px;
-}
-
-.tabs button{
-  flex:1;
-  border:1px solid var(--border);
-  background:#f8fafc;
-  padding:12px;
-  border-radius:10px;
-  font-weight:bold;
-}
-
-.tabs button.active{
-  background:var(--blue);
-  color:white;
-  border-color:var(--blue);
-}
-
-.hero{
-  position:relative;
-  overflow:hidden;
-  background:
-    radial-gradient(
-      circle at top right,
-      rgba(245,179,1,.25),
-      transparent 35%
-    ),
-    linear-gradient(135deg,#07111f,#1d4ed8);
-  color:white;
-  border-radius:20px;
-  padding:42px 20px;
-  text-align:center;
-  margin-bottom:20px;
-  box-shadow:0 10px 30px rgba(37,99,235,.2);
-}
-
-.crown{
-  font-size:43px;
-  margin-bottom:5px;
-}
-
-.hero h1{
-  font-size:35px;
-  margin-bottom:10px;
-}
-
-.hero h1 span{
-  color:var(--gold);
-}
-
-.hero p{
-  max-width:760px;
-  margin:auto;
-  line-height:1.6;
-}
-
-.actions{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:12px;
-  margin-bottom:20px;
-}
-
-.action{
-  width:100%;
-  background:white;
-  border:1px solid var(--border);
-  border-radius:14px;
-  padding:18px 10px;
-  box-shadow:0 4px 15px rgba(15,23,42,.05);
-  transition:.2s;
-}
-
-.action:hover{
-  transform:translateY(-2px);
-  border-color:var(--blue);
-}
-
-.action-icon{
-  font-size:29px;
-  margin-bottom:7px;
-}
-
-.action strong{
-  display:block;
-  color:var(--blue);
-  margin-bottom:5px;
-}
-
-.action p{
-  font-size:13px;
-  color:var(--muted);
-}
-
-.balance-box{
-  background:linear-gradient(135deg,#07111f,#1e293b);
-  color:white;
-  border-radius:16px;
-  padding:27px;
-  text-align:center;
-  margin-bottom:20px;
-}
-
-.balance{
-  font-size:38px;
-  font-weight:900;
-  color:#60a5fa;
-  margin:9px 0 12px;
-}
-
-.services-top{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-  margin-bottom:18px;
-  flex-wrap:wrap;
-}
-
-.services-top h2{
-  color:var(--blue);
-}
-
-.services-info{
-  color:var(--muted);
-  font-size:14px;
-  margin-bottom:18px;
-  line-height:1.5;
-}
-
-.service-filter{
-  display:grid;
-  grid-template-columns:1fr 220px;
-  gap:12px;
-  margin-bottom:20px;
-}
-
-.services-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:15px;
-}
-
-.service-card{
-  background:white;
-  border:1px solid var(--border);
-  border-radius:16px;
-  padding:18px;
-  box-shadow:0 5px 18px rgba(15,23,42,.05);
-  transition:.2s;
-}
-
-.service-card:hover{
-  transform:translateY(-2px);
-  border-color:var(--blue);
-}
-
-.service-network{
-  font-size:13px;
-  color:var(--blue);
-  font-weight:900;
-  margin-bottom:8px;
-}
-
-.service-name{
-  font-size:17px;
-  font-weight:900;
-  line-height:1.4;
-  min-height:48px;
-}
-
-.service-price{
-  color:var(--green);
-  font-size:22px;
-  font-weight:900;
-  margin:12px 0;
-}
-
-.service-details{
-  color:var(--muted);
-  font-size:12px;
-  line-height:1.7;
-  min-height:70px;
-}
-
-.service-card button{
-  width:100%;
-  margin-top:12px;
-}
-
-.order-box{
-  background:#f8fafc;
-  border:1px solid var(--border);
-  border-radius:15px;
-  padding:18px;
-}
-
-.selected-service{
-  background:#eff6ff;
-  border:1px solid #bfdbfe;
-  border-radius:12px;
-  padding:16px;
-  margin-bottom:18px;
-}
-
-.selected-service strong{
-  color:var(--blue);
-  font-size:17px;
-}
-
-.order-price{
-  font-size:30px;
-  font-weight:900;
-  color:var(--green);
-  margin-top:7px;
-}
-
-.order-note{
-  background:#fff7ed;
-  border:1px solid #fed7aa;
-  color:#9a3412;
-  border-radius:10px;
-  padding:12px;
-  font-size:13px;
-  line-height:1.5;
-  margin-bottom:16px;
-}
-
-.price-calculation{
-  background:white;
-  border:1px solid var(--border);
-  border-radius:12px;
-  padding:16px;
-  margin:15px 0;
-}
-
-.price-line{
-  display:flex;
-  justify-content:space-between;
-  gap:10px;
-  padding:6px 0;
-}
-
-.price-line.total{
-  border-top:1px solid var(--border);
-  margin-top:7px;
-  padding-top:12px;
-  font-size:18px;
-  font-weight:900;
-}
-
-.payment-list{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:12px;
-  margin:18px 0;
-}
-
-.payment-card{
-  border:1px solid var(--border);
-  border-radius:12px;
-  padding:17px;
-  background:#fafafa;
-}
-
-.payment-card h3{
-  margin-bottom:8px;
-}
-
-.payment-card strong{
-  font-size:18px;
-}
-
-.order-row{
-  border:1px solid var(--border);
-  border-radius:13px;
-  padding:15px;
-  margin-top:10px;
-  background:#fafafa;
-  overflow-wrap:anywhere;
-}
-
-.status{
-  display:inline-block;
-  margin-top:8px;
-  padding:5px 9px;
-  border-radius:7px;
-  background:#fef3c7;
-  color:#92400e;
-  font-size:12px;
-  font-weight:bold;
-}
-
-.loading,
-.empty{
-  text-align:center;
-  padding:30px 10px;
-  color:var(--muted);
-}
-
-footer{
-  background:#07111f;
-  color:white;
-  text-align:center;
-  padding:27px 15px;
-}
-
-footer strong{
-  color:var(--gold);
-}
-
-.whatsapp{
-  background:#25d366!important;
-}
-
-@media(max-width:950px){
-
-  .services-grid{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .actions{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .payment-list{
-    grid-template-columns:1fr;
-  }
-}
-
-@media(max-width:600px){
-
-  .nav{
-    min-height:58px;
-  }
-
-  .logo{
-    font-size:14px;
-  }
-
-  .balance-mini{
-    font-size:10px;
-    padding:8px;
-  }
-
-  .hero{
-    padding:30px 15px;
-  }
-
-  .hero h1{
-    font-size:25px;
-  }
-
-  .panel{
-    padding:16px;
-  }
-
-  .services-grid{
-    grid-template-columns:1fr;
-  }
-
-  .service-filter{
-    grid-template-columns:1fr;
-  }
-
-  .actions{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .action{
-    padding:14px 8px;
-  }
-
-  .balance{
-    font-size:31px;
-  }
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>LEADER NOSMY BOOST</title>
+
+  <meta
+    name="description"
+    content="LEADER NOSMY BOOST - SMM Panel pour TikTok, Facebook, Instagram et YouTube."
+  >
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      background: #f4f6f9;
+      color: #111827;
+    }
+
+    header {
+      background: #111827;
+      color: white;
+      padding: 18px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .header-content {
+      max-width: 1100px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .logo {
+      font-size: 20px;
+      font-weight: 800;
+    }
+
+    .logo span {
+      color: #22c55e;
+    }
+
+    .btn {
+      border: none;
+      padding: 12px 18px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 700;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-primary {
+      background: #22c55e;
+      color: white;
+    }
+
+    .btn-dark {
+      background: #111827;
+      color: white;
+    }
+
+    .hero {
+      max-width: 1100px;
+      margin: 35px auto;
+      padding: 25px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 38px;
+      margin-bottom: 15px;
+    }
+
+    .hero p {
+      color: #6b7280;
+      font-size: 17px;
+      line-height: 1.6;
+      margin-bottom: 25px;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .section-title {
+      text-align: center;
+      margin: 35px 0 20px;
+      font-size: 28px;
+    }
+
+    .platform {
+      background: white;
+      border-radius: 16px;
+      padding: 22px;
+      margin-bottom: 25px;
+      box-shadow: 0 5px 20px rgba(0,0,0,.06);
+    }
+
+    .platform h2 {
+      margin-bottom: 18px;
+      font-size: 24px;
+    }
+
+    .services {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+    }
+
+    .service {
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 15px;
+      background: #fafafa;
+    }
+
+    .service-title {
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .price {
+      color: #16a34a;
+      font-weight: 800;
+      font-size: 17px;
+      margin-bottom: 12px;
+    }
+
+    .order-btn {
+      width: 100%;
+      border: none;
+      padding: 10px;
+      border-radius: 8px;
+      background: #111827;
+      color: white;
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    .order-btn:hover {
+      background: #22c55e;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 15px;
+      margin-top: 25px;
+    }
+
+    .feature {
+      background: white;
+      padding: 22px;
+      border-radius: 14px;
+      text-align: center;
+      box-shadow: 0 5px 20px rgba(0,0,0,.05);
+    }
+
+    .feature h3 {
+      margin-bottom: 8px;
+    }
+
+    .feature p {
+      color: #6b7280;
+    }
+
+    footer {
+      margin-top: 50px;
+      background: #111827;
+      color: white;
+      text-align: center;
+      padding: 30px 20px;
+    }
+
+    .whatsapp {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      background: #25d366;
+      color: white;
+      padding: 15px 18px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 800;
+      box-shadow: 0 5px 20px rgba(0,0,0,.2);
+      z-index: 2000;
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 {
+        font-size: 29px;
+      }
+
+      .header-content {
+        flex-direction: column;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
 <header>
-<div class="nav">
+  <div class="header-content">
+    <div class="logo">
+      LEADER NOSMY <span>BOOST</span>
+    </div>
 
-<a href="#" class="logo">
-👑 LEADER <span>NOSMY BOOST</span>
-</a>
-
-<div class="nav-right">
-
-<div id="miniBalance"
-class="balance-mini hidden">
-Solde : 0 FC
-</div>
-
-<button
-class="menu-btn"
-onclick="toggleMenu()">
-☰
-</button>
-
-</div>
-</div>
+    <a href="#services" class="btn btn-primary">
+      COMMANDER 🚀
+    </a>
+  </div>
 </header>
 
-<div class="container">
+<section class="hero">
 
-<section id="authSection" class="panel auth">
+  <h1>BIENVENUE CHEZ LEADER NOSMY BOOST 👑</h1>
 
-<h2 class="title">
-👤 MON COMPTE
-</h2>
+  <p>
+    Boostez votre présence sur les réseaux sociaux avec
+    <strong>LEADER NOSMY BOOST</strong>.
+    Likes, abonnés, vues, commentaires et services digitaux rapides.
+  </p>
 
-<div class="tabs">
-
-<button
-id="loginTab"
-class="active"
-onclick="showLogin()">
-Connexion
-</button>
-
-<button
-id="registerTab"
-onclick="showRegister()">
-Créer un compte
-</button>
-
-</div>
-
-<div id="loginForm">
-
-<div class="form-group">
-<label>📧 Email</label>
-<input
-id="loginEmail"
-type="email"
-autocomplete="email"
-placeholder="Votre email">
-</div>
-
-<div class="form-group">
-<label>🔐 Mot de passe</label>
-<input
-id="loginPassword"
-type="password"
-autocomplete="current-password"
-placeholder="Votre mot de passe">
-</div>
-
-<button
-class="primary full"
-onclick="loginUser()">
-🔐 SE CONNECTER
-</button>
-
-</div>
-
-<div id="registerForm" class="hidden">
-
-<div class="form-group">
-<label>👤 Nom</label>
-<input
-id="registerName"
-type="text"
-placeholder="Votre nom">
-</div>
-
-<div class="form-group">
-<label>📧 Email</label>
-<input
-id="registerEmail"
-type="email"
-autocomplete="email"
-placeholder="Votre email">
-</div>
-
-<div class="form-group">
-<label>🔐 Mot de passe</label>
-<input
-id="registerPassword"
-type="password"
-autocomplete="new-password"
-placeholder="Minimum 6 caractères">
-</div>
-
-<button
-class="success full"
-onclick="registerUser()">
-➕ CRÉER MON COMPTE
-</button>
-
-</div>
-
-<div id="authMessage" class="message"></div>
+  <a href="#services" class="btn btn-primary">
+    COMMANDER MAINTENANT 🚀
+  </a>
 
 </section>
 
-
-<section id="clientPanel" class="hidden">
-
-<div class="hero">
-
-<div class="crown">👑</div>
-
-<h1>
-LEADER <span>NOSMY BOOST</span>
-</h1>
-
-<p>
-Boostez vos réseaux sociaux rapidement.
-Likes, followers, vues, commentaires et partages.
-Choisissez votre service et commandez facilement. 🚀
-</p>
-
-</div>
-
-
-<div class="actions">
-
-<button class="action" onclick="showPanel('dashboard')">
-<div class="action-icon">🏠</div>
-<strong>Dashboard</strong>
-<p>Vue générale</p>
-</button>
-
-<button class="action" onclick="showPanel('deposit')">
-<div class="action-icon">💳</div>
-<strong>Ajouter des fonds</strong>
-<p>Minimum 2 500 FC</p>
-</button>
-
-<button class="action" onclick="showPanel('order')">
-<div class="action-icon">🚀</div>
-<strong>Commander</strong>
-<p>Choisir un service</p>
-</button>
-
-<button class="action" onclick="showPanel('orders')">
-<div class="action-icon">📋</div>
-<strong>Mes commandes</strong>
-<p>Historique</p>
-</button>
-
-</div>
-
-
-<div id="dashboardPanel" class="panel">
-
-<h2 class="title">
-🏠 DASHBOARD
-</h2>
-
-<div class="balance-box">
-
-<p>Votre solde disponible</p>
-
-<div id="balanceDisplay" class="balance">
-0 FC
-</div>
-
-<p id="welcomeUser"></p>
-
-</div>
-
-<div class="services-top">
-
-<h2>🚀 SERVICES DISPONIBLES</h2>
-
-<button class="primary" onclick="loadServices()">
-🔄 Actualiser
-</button>
-
-</div>
-
-<p class="services-info">
-Les prix affichés sont les prix clients LEADER NOSMY BOOST en CDF pour 1 000 unités.
-</p>
-
-<div class="service-filter">
-
-<input
-id="serviceSearch"
-type="search"
-placeholder="🔎 Rechercher un service..."
-oninput="renderServices()">
-
-<select
-id="networkFilter"
-onchange="renderServices()">
-
-<option value="">🌐 Tous les réseaux</option>
-<option value="facebook">Facebook</option>
-<option value="instagram">Instagram</option>
-<option value="tiktok">TikTok</option>
-<option value="youtube">YouTube</option>
-
-</select>
-
-</div>
-
-<div id="servicesGrid" class="services-grid"></div>
-
-</div>
-
-
-<div id="depositPanel" class="panel hidden">
-
-<h2 class="title">
-💳 AJOUTER DES FONDS
-</h2>
-
-<p style="text-align:center;color:#64748b;margin-bottom:18px">
-Dépôt minimum :
-<strong>2 500 FC</strong>
-</p>
-
-<div class="form-group">
-
-<label>💰 Montant</label>
-
-<input
-id="depositAmount"
-type="number"
-min="2500"
-step="1"
-placeholder="Minimum 2500 FC">
-
-</div>
-
-<div class="form-group">
-
-<label>💳 Moyen de paiement</label>
-
-<select id="depositMethod">
-
-<option value="">
-Choisir
-</option>
-
-<option value="Orange Money">
-🟠 Orange Money
-</option>
-
-<option value="Airtel Money">
-🔴 Airtel Money
-</option>
-
-<option value="Vodacom M-Pesa">
-🔵 Vodacom M-Pesa
-</option>
-
-</select>
-
-</div>
-
-<div class="payment-list">
-
-<div class="payment-card">
-<h3>🟠 Orange Money</h3>
-<strong>0843066709</strong>
-</div>
-
-<div class="payment-card">
-<h3>🔴 Airtel Money</h3>
-<strong>0980630622</strong>
-</div>
-
-<div class="payment-card">
-<h3>🔵 M-Pesa</h3>
-<strong>0822886387</strong>
-</div>
-
-</div>
-
-<button
-class="success full"
-onclick="requestDeposit()">
-💳 ENREGISTRER MA DEMANDE
-</button>
-
-<div id="depositMessage" class="message"></div>
-
-</div>
-
-
-<div id="orderPanel" class="panel hidden">
-
-<h2 class="title">
-🚀 PASSER UNE COMMANDE
-</h2>
-
-<div class="order-box">
-
-<div class="form-group">
-
-<label>📦 Service</label>
-
-<select
-id="orderService"
-onchange="selectServiceFromList()">
-
-<option value="">
--- Choisir un service --
-</option>
-
-</select>
-
-</div>
-
-<div id="selectedService" class="selected-service">
-
-<strong>
-Aucun service sélectionné
-</strong>
-
-<div id="orderPrice" class="order-price">
-0 FC
-</div>
-
-</div>
-
-<div class="order-note">
-
-💡 <strong>Commande libre :</strong>
-entrez la quantité souhaitée.
-Le minimum et maximum dépendent du service.
-
-</div>
-
-<div class="form-group">
-
-<label>
-🔗 Lien de la publication / compte
-</label>
-
-<input
-id="orderLink"
-type="url"
-placeholder="https://facebook.com/...">
-
-</div>
-
-<div class="form-group">
-
-<label>
-🔢 Quantité
-</label>
-
-<input
-id="orderQuantity"
-type="number"
-min="1"
-step="1"
-placeholder="Exemple : 1000"
-oninput="calculateOrderPrice()">
-
-</div>
-
-<div
-id="serviceLimits"
-style="font-size:13px;color:#64748b;margin-top:-8px;margin-bottom:15px;">
-</div>
-
-<div class="price-calculation">
-
-<div class="price-line">
-<span>Prix pour 1K</span>
-<strong id="unitPrice">0 FC</strong>
-</div>
-
-<div class="price-line">
-<span>Quantité</span>
-<strong id="calculatedQuantity">0</strong>
-</div>
-
-<div class="price-line total">
-<span>TOTAL</span>
-<strong id="calculatedPrice">0 FC</strong>
-</div>
-
-</div>
-
-<div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:13px;margin-bottom:15px;">
-
-💰 Solde disponible :
-<strong id="orderBalance">
-0 FC
-</strong>
-
-</div>
-
-<button
-class="primary full"
-onclick="createOrder()">
-🚀 COMMANDER MAINTENANT
-</button>
-
-<div id="orderMessage" class="message"></div>
-
-</div>
-
-</div>
-
-
-<div id="ordersPanel" class="panel hidden">
-
-<h2 class="title">
-📋 MES COMMANDES
-</h2>
-
-<button
-class="primary"
-onclick="loadOrders()">
-🔄 ACTUALISER
-</button>
-
-<div
-id="ordersList"
-style="margin-top:15px">
-</div>
-
-</div>
-
-
-<div class="panel">
-
-<button
-class="whatsapp full"
-onclick="openWhatsApp()">
-📲 COMMANDER SUR WHATSAPP
-</button>
-
-<br><br>
-
-<button
-class="danger full"
-onclick="logoutUser()">
-🚪 SE DÉCONNECTER
-</button>
-
-</div>
-
-</section>
-
-</div>
+<main class="container">
+
+  <h2 class="section-title" id="services">
+    NOS SERVICES 🚀
+  </h2>
+
+  <!-- FACEBOOK -->
+
+  <section class="platform">
+
+    <h2>📘 FACEBOOK</h2>
+
+    <div class="services">
+
+      <div class="service">
+        <div class="service-title">1K LIKES</div>
+        <div class="price">1 000 FC</div>
+        <button class="order-btn" onclick="order('Facebook Likes 1K', 1000)">
+          COMMANDER
+        </button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">2K LIKES</div>
+        <div class="price">2 000 FC</div>
+        <button class="order-btn" onclick="order('Facebook Likes 2K', 2000)">
+          COMMANDER
+        </button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">3K LIKES</div>
+        <div class="price">3 000 FC</div>
+        <button class="order-btn" onclick="order('Facebook Likes 3K', 3000)">
+          COMMANDER
+        </button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">4K LIKES</div>
+        <div class="price">4 000 FC</div>
+        <button class="order-btn" onclick="order('Facebook Likes 4K', 4000)">
+          COMMANDER
+        </button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">5K LIKES</div>
+        <div class="price">5 000 FC</div>
+        <button class="order-btn" onclick="order('Facebook Likes 5K', 5000)">
+          COMMANDER
+        </button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">10K LIKES</div>
+        <div class="price">10 000 FC</div>
+        <button class="order-btn" onclick="order('Facebook Likes 10K', 10000)">
+          COMMANDER
+        </button>
+      </div>
+
+
+      <div class="service">
+        <div class="service-title">1K COMMENTAIRES</div>
+        <div class="price">2 000 FC</div>
+        <button class="order-btn" onclick="order('Facebook Commentaires 1K', 2000)">
+          COMMANDER
+        </button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">2K COMMENTAIRES</div>
+        <div class="price">4 000 FC</div>
+        <button class="order-btn" onclick="order('Facebook Commentaires 2K', 4000)">
+          COMMANDER
+        </button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">3K COMMENTAIRES</div>
+        <div class="price">6 000 FC</div>
+        <button class="order-btn" onclick="order('Facebook Commentaires 3K', 6000)">
+          COMMANDER
+        </button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">4K COMMENTAIRES</div>
+        <div class="price">8 000 FC</div>
+        <button class="order-btn" onclick="order('Facebook Commentaires 4K', 8000)">
+          COMMANDER
+        </button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">5K COMMENTAIRES</div>
+        <div class="price">10 000 FC</div>
+        <button class="order-btn" onclick="order('Facebook Commentaires 5K', 10000)">
+          COMMANDER
+        </button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">10K COMMENTAIRES</div>
+        <div class="price">20 000 FC</div>
+        <button class="order-btn" onclick="order('Facebook Commentaires 10K', 20000)">
+          COMMANDER
+        </button>
+      </div>
+
+
+      <div class="service">
+        <div class="service-title">1K PARTAGES</div>
+        <div class="price">500 FC</div>
+        <button class="order-btn" onclick="order('Facebook Partages 1K', 500)">
+          COMMANDER
+        </button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">2K PARTAGES</div>
+        <div class="price">1 000 FC</div>
+        <button class="order-btn" onclick="order('Facebook Partages 2K', 1000)">
+          COMMANDER
+        </button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">3K PARTAGES</div>
+        <div class="price">1 500 FC</div>
+        <button class="order-btn" onclick="order('Facebook Partages 3K', 1500)">
+          COMMANDER
+        </button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">4K PARTAGES</div>
+        <div class="price">2 000 FC</div>
+        <button class="order-btn" onclick="order('Facebook Partages 4K', 2000)">
+          COMMANDER
+        </button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">5K PARTAGES</div>
+        <div class="price">2 500 FC</div>
+        <button class="order-btn" onclick="order('Facebook Partages 5K', 2500)">
+          COMMANDER
+        </button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">10K PARTAGES</div>
+        <div class="price">5 000 FC</div>
+        <button class="order-btn" onclick="order('Facebook Partages 10K', 5000)">
+          COMMANDER
+        </button>
+      </div>
+
+
+      <div class="service">
+        <div class="service-title">1K VUES</div>
+        <div class="price">1 500 FC</div>
+        <button class="order-btn" onclick="order('Facebook Vues 1K', 1500)">
+          COMMANDER
+        </button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">2K VUES</div>
+        <div class="price">3 000 FC</div>
+        <button class="order-btn" onclick="order('Facebook Vues 2K', 3000)">
+          COMMANDER
+        </button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">3K VUES</div>
+        <div class="price">4 500 FC</div>
+        <button class="order-btn" onclick="order('Facebook Vues 3K', 4500)">
+          COMMANDER
+        </button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">4K VUES</div>
+        <div class="price">6 000 FC</div>
+        <button class="order-btn" onclick="order('Facebook Vues 4K', 6000)">
+          COMMANDER
+        </button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">5K VUES</div>
+        <div class="price">7 500 FC</div>
+        <button class="order-btn" onclick="order('Facebook Vues 5K', 7500)">
+          COMMANDER
+        </button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">10K VUES</div>
+        <div class="price">15 000 FC</div>
+        <button class="order-btn" onclick="order('Facebook Vues 10K', 15000)">
+          COMMANDER
+        </button>
+      </div>
+
+
+      <div class="service">
+        <div class="service-title">1K FOLLOWERS</div>
+        <div class="price">6 000 FC</div>
+        <button class="order-btn" onclick="order('Facebook Followers 1K', 6000)">
+          COMMANDER
+        </button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">2K FOLLOWERS</div>
+        <div class="price">12 000 FC</div>
+        <button class="order-btn" onclick="order('Facebook Followers 2K', 12000)">
+          COMMANDER
+        </button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">3K FOLLOWERS</div>
+        <div class="price">18 000 FC</div>
+        <button class="order-btn" onclick="order('Facebook Followers 3K', 18000)">
+          COMMANDER
+        </button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">4K FOLLOWERS</div>
+        <div class="price">24 000 FC</div>
+        <button class="order-btn" onclick="order('Facebook Followers 4K', 24000)">
+          COMMANDER
+        </button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">5K FOLLOWERS</div>
+        <div class="price">30 000 FC</div>
+        <button class="order-btn" onclick="order('Facebook Followers 5K', 30000)">
+          COMMANDER
+        </button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">10K FOLLOWERS</div>
+        <div class="price">60 000 FC</div>
+        <button class="order-btn" onclick="order('Facebook Followers 10K', 60000)">
+          COMMANDER
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- TIKTOK -->
+
+  <section class="platform">
+
+    <h2>🎵 TIKTOK</h2>
+
+    <div class="services">
+
+      <div class="service">
+        <div class="service-title">1K FOLLOWERS</div>
+        <div class="price">8 000 FC</div>
+        <button class="order-btn" onclick="order('TikTok Followers 1K', 8000)">COMMANDER</button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">2K FOLLOWERS</div>
+        <div class="price">16 000 FC</div>
+        <button class="order-btn" onclick="order('TikTok Followers 2K', 16000)">COMMANDER</button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">3K FOLLOWERS</div>
+        <div class="price">24 000 FC</div>
+        <button class="order-btn" onclick="order('TikTok Followers 3K', 24000)">COMMANDER</button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">4K FOLLOWERS</div>
+        <div class="price">32 000 FC</div>
+        <button class="order-btn" onclick="order('TikTok Followers 4K', 32000)">COMMANDER</button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">5K FOLLOWERS</div>
+        <div class="price">40 000 FC</div>
+        <button class="order-btn" onclick="order('TikTok Followers 5K', 40000)">COMMANDER</button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">10K FOLLOWERS</div>
+        <div class="price">80 000 FC</div>
+        <button class="order-btn" onclick="order('TikTok Followers 10K', 80000)">COMMANDER</button>
+      </div>
+
+
+      <div class="service">
+        <div class="service-title">1K LIKES</div>
+        <div class="price">3 000 FC</div>
+        <button class="order-btn" onclick="order('TikTok Likes 1K', 3000)">COMMANDER</button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">2K LIKES</div>
+        <div class="price">6 000 FC</div>
+        <button class="order-btn" onclick="order('TikTok Likes 2K', 6000)">COMMANDER</button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">3K LIKES</div>
+        <div class="price">9 000 FC</div>
+        <button class="order-btn" onclick="order('TikTok Likes 3K', 9000)">COMMANDER</button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">4K LIKES</div>
+        <div class="price">12 000 FC</div>
+        <button class="order-btn" onclick="order('TikTok Likes 4K', 12000)">COMMANDER</button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">5K LIKES</div>
+        <div class="price">15 000 FC</div>
+        <button class="order-btn" onclick="order('TikTok Likes 5K', 15000)">COMMANDER</button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">10K LIKES</div>
+        <div class="price">30 000 FC</div>
+        <button class="order-btn" onclick="order('TikTok Likes 10K', 30000)">COMMANDER</button>
+      </div>
+
+
+      <div class="service">
+        <div class="service-title">1K VUES</div>
+        <div class="price">1 500 FC</div>
+        <button class="order-btn" onclick="order('TikTok Vues 1K', 1500)">COMMANDER</button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">2K VUES</div>
+        <div class="price">3 000 FC</div>
+        <button class="order-btn" onclick="order('TikTok Vues 2K', 3000)">COMMANDER</button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">3K VUES</div>
+        <div class="price">4 500 FC</div>
+        <button class="order-btn" onclick="order('TikTok Vues 3K', 4500)">COMMANDER</button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">4K VUES</div>
+        <div class="price">6 000 FC</div>
+        <button class="order-btn" onclick="order('TikTok Vues 4K', 6000)">COMMANDER</button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">5K VUES</div>
+        <div class="price">7 500 FC</div>
+        <button class="order-btn" onclick="order('TikTok Vues 5K', 7500)">COMMANDER</button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">10K VUES</div>
+        <div class="price">15 000 FC</div>
+        <button class="order-btn" onclick="order('TikTok Vues 10K', 15000)">COMMANDER</button>
+      </div>
+
+
+      <div class="service">
+        <div class="service-title">1K COMMENTAIRES</div>
+        <div class="price">2 500 FC</div>
+        <button class="order-btn" onclick="order('TikTok Commentaires 1K', 2500)">COMMANDER</button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">2K COMMENTAIRES</div>
+        <div class="price">5 000 FC</div>
+        <button class="order-btn" onclick="order('TikTok Commentaires 2K', 5000)">COMMANDER</button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">3K COMMENTAIRES</div>
+        <div class="price">7 500 FC</div>
+        <button class="order-btn" onclick="order('TikTok Commentaires 3K', 7500)">COMMANDER</button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">4K COMMENTAIRES</div>
+        <div class="price">10 000 FC</div>
+        <button class="order-btn" onclick="order('TikTok Commentaires 4K', 10000)">COMMANDER</button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">5K COMMENTAIRES</div>
+        <div class="price">12 500 FC</div>
+        <button class="order-btn" onclick="order('TikTok Commentaires 5K', 12500)">COMMANDER</button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">10K COMMENTAIRES</div>
+        <div class="price">25 000 FC</div>
+        <button class="order-btn" onclick="order('TikTok Commentaires 10K', 25000)">COMMANDER</button>
+      </div>
+
+
+      <div class="service">
+        <div class="service-title">1K FAVORIS</div>
+        <div class="price">1 500 FC</div>
+        <button class="order-btn" onclick="order('TikTok Favoris 1K', 1500)">COMMANDER</button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">2K FAVORIS</div>
+        <div class="price">3 000 FC</div>
+        <button class="order-btn" onclick="order('TikTok Favoris 2K', 3000)">COMMANDER</button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">3K FAVORIS</div>
+        <div class="price">4 500 FC</div>
+        <button class="order-btn" onclick="order('TikTok Favoris 3K', 4500)">COMMANDER</button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">4K FAVORIS</div>
+        <div class="price">6 000 FC</div>
+        <button class="order-btn" onclick="order('TikTok Favoris 4K', 6000)">COMMANDER</button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">5K FAVORIS</div>
+        <div class="price">7 500 FC</div>
+        <button class="order-btn" onclick="order('TikTok Favoris 5K', 7500)">COMMANDER</button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">10K FAVORIS</div>
+        <div class="price">15 000 FC</div>
+        <button class="order-btn" onclick="order('TikTok Favoris 10K', 15000)">COMMANDER</button>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- YOUTUBE -->
+
+  <section class="platform">
+
+    <h2>▶️ YOUTUBE</h2>
+
+    <div class="services">
+
+      <div class="service">
+        <div class="service-title">1K FOLLOWERS</div>
+        <div class="price">12 000 FC</div>
+        <button class="order-btn" onclick="order('YouTube Followers 1K', 12000)">COMMANDER</button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">2K FOLLOWERS</div>
+        <div class="price">24 000 FC</div>
+        <button class="order-btn" onclick="order('YouTube Followers 2K', 24000)">COMMANDER</button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">3K FOLLOWERS</div>
+        <div class="price">36 000 FC</div>
+        <button class="order-btn" onclick="order('YouTube Followers 3K', 36000)">COMMANDER</button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">4K FOLLOWERS</div>
+        <div class="price">48 000 FC</div>
+        <button class="order-btn" onclick="order('YouTube Followers 4K', 48000)">COMMANDER</button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">5K FOLLOWERS</div>
+        <div class="price">60 000 FC</div>
+        <button class="order-btn" onclick="order('YouTube Followers 5K', 60000)">COMMANDER</button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">10K FOLLOWERS</div>
+        <div class="price">120 000 FC</div>
+        <button class="order-btn" onclick="order('YouTube Followers 10K', 120000)">COMMANDER</button>
+      </div>
+
+
+      <div class="service">
+        <div class="service-title">1K LIKES</div>
+        <div class="price">7 000 FC</div>
+        <button class="order-btn" onclick="order('YouTube Likes 1K', 7000)">COMMANDER</button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">2K LIKES</div>
+        <div class="price">14 000 FC</div>
+        <button class="order-btn" onclick="order('YouTube Likes 2K', 14000)">COMMANDER</button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">3K LIKES</div>
+        <div class="price">21 000 FC</div>
+        <button class="order-btn" onclick="order('YouTube Likes 3K', 21000)">COMMANDER</button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">4K LIKES</div>
+        <div class="price">28 000 FC</div>
+        <button class="order-btn" onclick="order('YouTube Likes 4K', 28000)">COMMANDER</button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">5K LIKES</div>
+        <div class="price">35 000 FC</div>
+        <button class="order-btn" onclick="order('YouTube Likes 5K', 35000)">COMMANDER</button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">10K LIKES</div>
+        <div class="price">70 000 FC</div>
+        <button class="order-btn" onclick="order('YouTube Likes 10K', 70000)">COMMANDER</button>
+      </div>
+
+
+      <div class="service">
+        <div class="service-title">1K VUES</div>
+        <div class="price">5 000 FC</div>
+        <button class="order-btn" onclick="order('YouTube Vues 1K', 5000)">COMMANDER</button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">2K VUES</div>
+        <div class="price">10 000 FC</div>
+        <button class="order-btn" onclick="order('YouTube Vues 2K', 10000)">COMMANDER</button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">3K VUES</div>
+        <div class="price">15 000 FC</div>
+        <button class="order-btn" onclick="order('YouTube Vues 3K', 15000)">COMMANDER</button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">4K VUES</div>
+        <div class="price">20 000 FC</div>
+        <button class="order-btn" onclick="order('YouTube Vues 4K', 20000)">COMMANDER</button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">5K VUES</div>
+        <div class="price">25 000 FC</div>
+        <button class="order-btn" onclick="order('YouTube Vues 5K', 25000)">COMMANDER</button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">10K VUES</div>
+        <div class="price">50 000 FC</div>
+        <button class="order-btn" onclick="order('YouTube Vues 10K', 50000)">COMMANDER</button>
+      </div>
+
+
+      <div class="service">
+        <div class="service-title">1K COMMENTAIRES</div>
+        <div class="price">4 000 FC</div>
+        <button class="order-btn" onclick="order('YouTube Commentaires 1K', 4000)">COMMANDER</button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">2K COMMENTAIRES</div>
+        <div class="price">8 000 FC</div>
+        <button class="order-btn" onclick="order('YouTube Commentaires 2K', 8000)">COMMANDER</button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">3K COMMENTAIRES</div>
+        <div class="price">12 000 FC</div>
+        <button class="order-btn" onclick="order('YouTube Commentaires 3K', 12000)">COMMANDER</button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">4K COMMENTAIRES</div>
+        <div class="price">16 000 FC</div>
+        <button class="order-btn" onclick="order('YouTube Commentaires 4K', 16000)">COMMANDER</button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">5K COMMENTAIRES</div>
+        <div class="price">20 000 FC</div>
+        <button class="order-btn" onclick="order('YouTube Commentaires 5K', 20000)">COMMANDER</button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">10K COMMENTAIRES</div>
+        <div class="price">40 000 FC</div>
+        <button class="order-btn" onclick="order('YouTube Commentaires 10K', 40000)">COMMANDER</button>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- INSTAGRAM -->
+
+  <section class="platform">
+
+    <h2>📸 INSTAGRAM</h2>
+
+    <div class="services">
+
+      <div class="service">
+        <div class="service-title">1K FOLLOWERS</div>
+        <div class="price">10 000 FC</div>
+        <button class="order-btn" onclick="order('Instagram Followers 1K', 10000)">COMMANDER</button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">2K FOLLOWERS</div>
+        <div class="price">20 000 FC</div>
+        <button class="order-btn" onclick="order('Instagram Followers 2K', 20000)">COMMANDER</button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">3K FOLLOWERS</div>
+        <div class="price">30 000 FC</div>
+        <button class="order-btn" onclick="order('Instagram Followers 3K', 30000)">COMMANDER</button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">4K FOLLOWERS</div>
+        <div class="price">40 000 FC</div>
+        <button class="order-btn" onclick="order('Instagram Followers 4K', 40000)">COMMANDER</button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">5K FOLLOWERS</div>
+        <div class="price">50 000 FC</div>
+        <button class="order-btn" onclick="order('Instagram Followers 5K', 50000)">COMMANDER</button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">10K FOLLOWERS</div>
+        <div class="price">100 000 FC</div>
+        <button class="order-btn" onclick="order('Instagram Followers 10K', 100000)">COMMANDER</button>
+      </div>
+
+
+      <div class="service">
+        <div class="service-title">1K LIKES</div>
+        <div class="price">6 000 FC</div>
+        <button class="order-btn" onclick="order('Instagram Likes 1K', 6000)">COMMANDER</button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">2K LIKES</div>
+        <div class="price">12 000 FC</div>
+        <button class="order-btn" onclick="order('Instagram Likes 2K', 12000)">COMMANDER</button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">3K LIKES</div>
+        <div class="price">18 000 FC</div>
+        <button class="order-btn" onclick="order('Instagram Likes 3K', 18000)">COMMANDER</button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">4K LIKES</div>
+        <div class="price">24 000 FC</div>
+        <button class="order-btn" onclick="order('Instagram Likes 4K', 24000)">COMMANDER</button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">5K LIKES</div>
+        <div class="price">30 000 FC</div>
+        <button class="order-btn" onclick="order('Instagram Likes 5K', 30000)">COMMANDER</button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">10K LIKES</div>
+        <div class="price">60 000 FC</div>
+        <button class="order-btn" onclick="order('Instagram Likes 10K', 60000)">COMMANDER</button>
+      </div>
+
+
+      <div class="service">
+        <div class="service-title">1K VUES</div>
+        <div class="price">4 000 FC</div>
+        <button class="order-btn" onclick="order('Instagram Vues 1K', 4000)">COMMANDER</button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">2K VUES</div>
+        <div class="price">8 000 FC</div>
+        <button class="order-btn" onclick="order('Instagram Vues 2K', 8000)">COMMANDER</button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">3K VUES</div>
+        <div class="price">12 000 FC</div>
+        <button class="order-btn" onclick="order('Instagram Vues 3K', 12000)">COMMANDER</button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">4K VUES</div>
+        <div class="price">16 000 FC</div>
+        <button class="order-btn" onclick="order('Instagram Vues 4K', 16000)">COMMANDER</button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">5K VUES</div>
+        <div class="price">20 000 FC</div>
+        <button class="order-btn" onclick="order('Instagram Vues 5K', 20000)">COMMANDER</button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">10K VUES</div>
+        <div class="price">40 000 FC</div>
+        <button class="order-btn" onclick="order('Instagram Vues 10K', 40000)">COMMANDER</button>
+      </div>
+
+
+      <div class="service">
+        <div class="service-title">1K COMMENTAIRES</div>
+        <div class="price">5 000 FC</div>
+        <button class="order-btn" onclick="order('Instagram Commentaires 1K', 5000)">COMMANDER</button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">2K COMMENTAIRES</div>
+        <div class="price">10 000 FC</div>
+        <button class="order-btn" onclick="order('Instagram Commentaires 2K', 10000)">COMMANDER</button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">3K COMMENTAIRES</div>
+        <div class="price">15 000 FC</div>
+        <button class="order-btn" onclick="order('Instagram Commentaires 3K', 15000)">COMMANDER</button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">4K COMMENTAIRES</div>
+        <div class="price">20 000 FC</div>
+        <button class="order-btn" onclick="order('Instagram Commentaires 4K', 20000)">COMMANDER</button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">5K COMMENTAIRES</div>
+        <div class="price">25 000 FC</div>
+        <button class="order-btn" onclick="order('Instagram Commentaires 5K', 25000)">COMMANDER</button>
+      </div>
+
+      <div class="service">
+        <div class="service-title">10K COMMENTAIRES</div>
+        <div class="price">50 000 FC</div>
+        <button class="order-btn" onclick="order('Instagram Commentaires 10K', 50000)">COMMANDER</button>
+      </div>
+
+    </div>
+  </section>
+
+
+  <section class="features">
+
+    <div class="feature">
+      <h3>⚡ RAPIDE</h3>
+      <p>Traitement rapide des commandes.</p>
+    </div>
+
+    <div class="feature">
+      <h3>🔐 SÉCURISÉ</h3>
+      <p>Vos commandes sont protégées.</p>
+    </div>
+
+    <div class="feature">
+      <h3>📱 MULTI-RÉSEAUX</h3>
+      <p>TikTok, Facebook, Instagram et YouTube.</p>
+    </div>
+
+    <div class="feature">
+      <h3>💰 FC</h3>
+      <p>Prix affichés directement en francs congolais.</p>
+    </div>
+
+  </section>
+
+</main>
 
 
 <footer>
 
-<p>
-👑 <strong>LEADER NOSMY BOOST</strong>
-</p>
+  <h2>LEADER NOSMY BOOST 💪🏽🔥</h2>
 
-<p style="margin-top:7px">
-Boostez vos réseaux sociaux 🚀
-</p>
+  <p style="margin:12px 0;">
+    Boostez vos réseaux sociaux 🚀
+  </p>
 
-<p style="margin-top:7px">
-© 2026 — Tous droits réservés.
-</p>
+  <a
+    class="btn btn-primary"
+    href="https://wa.me/243843066709"
+    target="_blank"
+  >
+    WHATSAPP 📲
+  </a>
+
+  <p style="margin-top:20px;">
+    TikTok • Facebook • Instagram • YouTube
+  </p>
 
 </footer>
 
 
+<a
+  class="whatsapp"
+  href="https://wa.me/243843066709"
+  target="_blank"
+>
+  WhatsApp 📲
+</a>
+
+
 <script>
 
-const WHATSAPP_NUMBER =
-"243843066709";
-
-const MIN_DEPOSIT = 2500;
-
-
-/* =========================================
-   UTILISATEUR
-========================================= */
-
-let currentUser =
-JSON.parse(
-localStorage.getItem("leaderNosmyUser") || "null"
-);
-
-let services = [];
-
-let selectedService = null;
-
-
-/* =========================================
-   PRIX CLIENTS
-========================================= */
-
-const PRICE_TABLE = {
-
-facebook:{
-likes:1000,
-comments:2000,
-shares:500,
-views:1500,
-followers:6000
-},
-
-tiktok:{
-followers:8000,
-likes:3000,
-views:1500,
-comments:2500,
-favorites:1500
-},
-
-youtube:{
-followers:12000,
-likes:7000,
-views:5000,
-comments:4000
-},
-
-instagram:{
-followers:10000,
-likes:6000,
-views:4000,
-comments:5000
-}
-
-};
-
-
-/* =========================================
-   FORMAT
-========================================= */
-
-function formatMoney(value){
-
-const n =
-Number(value || 0);
-
-return n.toLocaleString(
-"fr-FR"
-) + " FC";
-
-}
-
-
-function escapeHTML(value){
-
-return String(value ?? "")
-.replaceAll("&","&amp;")
-.replaceAll("<","&lt;")
-.replaceAll(">","&gt;")
-.replaceAll('"',"&quot;")
-.replaceAll("'","&#039;");
-
-}
-
-
-function normalizeText(value){
-
-return String(value || "")
-.toLowerCase()
-.normalize("NFD")
-.replace(/[\u0300-\u036f]/g,"")
-.replace(/[_\-\/]+/g," ")
-.replace(/\s+/g," ")
-.trim();
-
-}
-
-
-/* =========================================
-   DETECTION RESEAU
-========================================= */
-
-function detectNetwork(service){
-
-const text =
-normalizeText(
-service.name ||
-service.service ||
-service.title ||
-""
-);
-
-if(text.includes("facebook"))
-return "facebook";
-
-if(text.includes("instagram"))
-return "instagram";
-
-if(text.includes("tiktok"))
-return "tiktok";
-
-if(text.includes("youtube"))
-return "youtube";
-
-return "other";
-
-}
-
-
-/* =========================================
-   DETECTION CATEGORIE
-========================================= */
-
-function detectCategory(service){
-
-const text =
-normalizeText(
-service.name ||
-service.service ||
-service.title ||
-""
-);
-
-if(
-text.includes("follower") ||
-text.includes("followers") ||
-text.includes("abonne") ||
-text.includes("subscriber")
-){
-return "followers";
-}
-
-if(
-text.includes("like") ||
-text.includes("likes")
-){
-return "likes";
-}
-
-if(
-text.includes("view") ||
-text.includes("views") ||
-text.includes("vue") ||
-text.includes("vues")
-){
-return "views";
-}
-
-if(
-text.includes("comment")
-){
-return "comments";
-}
-
-if(
-text.includes("share") ||
-text.includes("shares") ||
-text.includes("partage")
-){
-return "shares";
-}
-
-if(
-text.includes("favorite") ||
-text.includes("favorites") ||
-text.includes("save") ||
-text.includes("saves")
-){
-return "favorites";
-}
-
-return "other";
-
-}
-
-
-/* =========================================
-   PRIX CLIENT
-========================================= */
-
-function getClientPrice(service){
-
-const network =
-detectNetwork(service);
-
-const category =
-detectCategory(service);
-
-if(
-PRICE_TABLE[network] &&
-PRICE_TABLE[network][category]
-){
-return PRICE_TABLE[network][category];
-}
-
-
-/*
-Prix de secours :
-si le service fournisseur ne correspond
-pas exactement à la grille principale,
-on utilise son tarif fournisseur converti.
-*/
-
-const providerRate =
-Number(service.rate || 0);
-
-if(
-Number.isFinite(providerRate) &&
-providerRate > 0
-){
-
-return Math.ceil(
-providerRate * 2800
-);
-
-}
-
-return 0;
-
-}
-
-
-/* =========================================
-   ID SERVICE
-========================================= */
-
-function getServiceId(service){
-
-return String(
-service.service ??
-service.id ??
-service.service_id ??
-""
-);
-
-}
-
-
-/* =========================================
-   NOM SERVICE
-========================================= */
-
-function getServiceName(service){
-
-return String(
-service.name ||
-service.service ||
-service.title ||
-"Service"
-);
-
-}
-
-
-/* =========================================
-   LIMITES
-========================================= */
-
-function getServiceMin(service){
-
-return Number(
-service.min ??
-service.minimum ??
-1
-);
-
-}
-
-function getServiceMax(service){
-
-return Number(
-service.max ??
-service.maximum ??
-1000000
-);
-
-}
-
-
-/* =========================================
-   AUTH UI
-========================================= */
-
-function showLogin(){
-
-document
-.getElementById("loginForm")
-.classList.remove("hidden");
-
-document
-.getElementById("registerForm")
-.classList.add("hidden");
-
-document
-.getElementById("loginTab")
-.classList.add("active");
-
-document
-.getElementById("registerTab")
-.classList.remove("active");
-
-}
-
-
-function showRegister(){
-
-document
-.getElementById("loginForm")
-.classList.add("hidden");
-
-document
-.getElementById("registerForm")
-.classList.remove("hidden");
-
-document
-.getElementById("loginTab")
-.classList.remove("active");
-
-document
-.getElementById("registerTab")
-.classList.add("active");
-
-}
-
-
-/* =========================================
-   MESSAGE
-========================================= */
-
-function showMessage(
-elementId,
-message,
-success=false
-){
-
-const el =
-document.getElementById(elementId);
-
-if(!el)
-return;
-
-el.textContent =
-message;
-
-el.style.color =
-success
-? "#16a34a"
-: "#dc2626";
-
-}
-
-
-/* =========================================
-   INSCRIPTION
-========================================= */
-
-async function registerUser(){
-
-const name =
-document
-.getElementById("registerName")
-.value
-.trim();
-
-const email =
-document
-.getElementById("registerEmail")
-.value
-.trim();
-
-const password =
-document
-.getElementById("registerPassword")
-.value;
-
-if(!name || !email || !password){
-
-showMessage(
-"authMessage",
-"❌ Tous les champs sont obligatoires."
-);
-
-return;
-
-}
-
-if(password.length < 6){
-
-showMessage(
-"authMessage",
-"❌ Le mot de passe doit contenir au moins 6 caractères."
-);
-
-return;
-
-}
-
-try{
-
-const response =
-await fetch(
-"/api/register",
-{
-method:"POST",
-headers:{
-"Content-Type":
-"application/json"
-},
-body:JSON.stringify({
-name,
-email,
-password
-})
-}
-);
-
-const data =
-await response.json();
-
-if(!response.ok || !data.success){
-
-throw new Error(
-data.message ||
-"Erreur d'inscription."
-);
-
-}
-
-showMessage(
-"authMessage",
-"✅ Compte créé avec succès. Vous pouvez maintenant vous connecter.",
-true
-);
-
-document
-.getElementById("registerPassword")
-.value="";
-
-showLogin();
-
-}catch(error){
-
-showMessage(
-"authMessage",
-"❌ " + error.message
-);
-
-}
-
-}
-
-
-/* =========================================
-   CONNEXION
-========================================= */
-
-async function loginUser(){
-
-const email =
-document
-.getElementById("loginEmail")
-.value
-.trim();
-
-const password =
-document
-.getElementById("loginPassword")
-.value;
-
-if(!email || !password){
-
-showMessage(
-"authMessage",
-"❌ Entrez votre email et votre mot de passe."
-);
-
-return;
-
-}
-
-try{
-
-const response =
-await fetch(
-"/api/login",
-{
-method:"POST",
-headers:{
-"Content-Type":
-"application/json"
-},
-body:JSON.stringify({
-email,
-password
-})
-}
-);
-
-const data =
-await response.json();
-
-if(!response.ok || !data.success){
-
-throw new Error(
-data.message ||
-"Connexion impossible."
-);
-
-}
-
-currentUser =
-data.user;
-
-localStorage.setItem(
-"leaderNosmyUser",
-JSON.stringify(currentUser)
-);
-
-showClient();
-
-}catch(error){
-
-showMessage(
-"authMessage",
-"❌ " + error.message
-);
-
-}
-
-}
-
-
-/* =========================================
-   AFFICHER CLIENT
-========================================= */
-
-function showClient(){
-
-document
-.getElementById("authSection")
-.classList.add("hidden");
-
-document
-.getElementById("clientPanel")
-.classList.remove("hidden");
-
-document
-.getElementById("miniBalance")
-.classList.remove("hidden");
-
-document
-.getElementById("welcomeUser")
-.textContent =
-"Bienvenue " +
-(currentUser.name || "") +
-" 👑";
-
-updateBalanceUI();
-
-loadServices();
-
-showPanel("dashboard");
-
-}
-
-
-/* =========================================
-   SOLDE
-========================================= */
-
-function updateBalanceUI(){
-
-const balance =
-Number(
-currentUser?.balance || 0
-);
-
-document
-.getElementById("balanceDisplay")
-.textContent =
-formatMoney(balance);
-
-document
-.getElementById("miniBalance")
-.textContent =
-"Solde : " +
-formatMoney(balance);
-
-document
-.getElementById("orderBalance")
-.textContent =
-formatMoney(balance);
-
-}
-
-
-async function refreshUser(){
-
-if(!currentUser?.id)
-return;
-
-try{
-
-const response =
-await fetch(
-"/api/user/" +
-encodeURIComponent(
-currentUser.id
-)
-);
-
-const data =
-await response.json();
-
-if(
-response.ok &&
-data.success &&
-data.user
-){
-
-currentUser =
-data.user;
-
-localStorage.setItem(
-"leaderNosmyUser",
-JSON.stringify(currentUser)
-);
-
-updateBalanceUI();
-
-}
-
-}catch(error){
-
-console.error(error);
-
-}
-
-}
-
-
-/* =========================================
-   PANELS
-========================================= */
-
-function showPanel(panel){
-
-const panels = [
-"dashboardPanel",
-"depositPanel",
-"orderPanel",
-"ordersPanel"
-];
-
-panels.forEach(id => {
-
-document
-.getElementById(id)
-.classList.add("hidden");
-
-});
-
-const target =
-document.getElementById(
-panel + "Panel"
-);
-
-if(target){
-
-target.classList.remove("hidden");
-
-}
-
-if(panel === "order"){
-
-fillOrderServices();
-
-}
-
-if(panel === "orders"){
-
-loadOrders();
-
-}
-
-if(panel === "deposit"){
-
-document
-.getElementById("depositMessage")
-.textContent="";
-
-}
-
-window.scrollTo({
-top:0,
-behavior:"smooth"
-});
-
-}
-
-
-/* =========================================
-   MENU
-========================================= */
-
-function toggleMenu(){
-
-showPanel("dashboard");
-
-}
-
-
-/* =========================================
-   SERVICES
-========================================= */
-
-async function loadServices(){
-
-const grid =
-document.getElementById(
-"servicesGrid"
-);
-
-grid.innerHTML =
-'<div class="loading">⏳ Chargement des services...</div>';
-
-try{
-
-const response =
-await fetch(
-"/api/smm/services"
-);
-
-const data =
-await response.json();
-
-if(
-!response.ok ||
-!data.success
-){
-
-throw new Error(
-data.message ||
-"Impossible de charger les services."
-);
-
-}
-
-services =
-Array.isArray(data.services)
-? data.services
-: [];
-
-renderServices();
-
-fillOrderServices();
-
-}catch(error){
-
-console.error(error);
-
-grid.innerHTML =
-`<div class="empty">
-❌ ${escapeHTML(error.message)}
-<br><br>
-<button class="primary"
-onclick="loadServices()">
-Réessayer
-</button>
-</div>`;
-
-}
-
-}
-
-
-/* =========================================
-   AFFICHAGE SERVICES
-========================================= */
-
-function renderServices(){
-
-const grid =
-document.getElementById(
-"servicesGrid"
-);
-
-const search =
-normalizeText(
-document
-.getElementById("serviceSearch")
-?.value
-);
-
-const network =
-document
-.getElementById("networkFilter")
-?.value || "";
-
-const filtered =
-services.filter(service => {
-
-const name =
-normalizeText(
-getServiceName(service)
-);
-
-const detectedNetwork =
-detectNetwork(service);
-
-const matchesSearch =
-!search ||
-name.includes(search);
-
-const matchesNetwork =
-!network ||
-detectedNetwork === network;
-
-return (
-matchesSearch &&
-matchesNetwork
-);
-
-});
-
-if(!filtered.length){
-
-grid.innerHTML =
-'<div class="empty">Aucun service trouvé.</div>';
-
-return;
-
-}
-
-grid.innerHTML =
-filtered.map(service => {
-
-const name =
-getServiceName(service);
-
-const price =
-getClientPrice(service);
-
-const min =
-getServiceMin(service);
-
-const max =
-getServiceMax(service);
-
-const network =
-detectNetwork(service);
-
-const providerId =
-getServiceId(service);
-
-return `
-<div class="service-card">
-
-<div class="service-network">
-${escapeHTML(
-network.toUpperCase()
-)}
-</div>
-
-<div class="service-name">
-${escapeHTML(name)}
-</div>
-
-<div class="service-price">
-${formatMoney(price)}
-<span style="font-size:12px;color:#64748b">
-/ 1K
-</span>
-</div>
-
-<div class="service-details">
-Minimum : ${min.toLocaleString("fr-FR")}<br>
-Maximum : ${max.toLocaleString("fr-FR")}<br>
-ID : ${escapeHTML(providerId)}
-</div>
-
-<button
-class="primary"
-onclick="chooseService('${escapeHTML(providerId)}')">
-📦 COMMANDER
-</button>
-
-</div>
-`;
-
-}).join("");
-
-}
-
-
-/* =========================================
-   LISTE COMMANDE
-========================================= */
-
-function fillOrderServices(){
-
-const select =
-document.getElementById(
-"orderService"
-);
-
-if(!select)
-return;
-
-select.innerHTML =
-'<option value="">-- Choisir un service --</option>';
-
-services.forEach((service,index)=>{
-
-const option =
-document.createElement("option");
-
-option.value =
-String(index);
-
-option.textContent =
-`${getServiceName(service)} — ${formatMoney(getClientPrice(service))}/1K`;
-
-select.appendChild(option);
-
-});
-
-}
-
-
-/* =========================================
-   CHOISIR SERVICE
-========================================= */
-
-function chooseService(id){
-
-const index =
-services.findIndex(
-service =>
-getServiceId(service) === String(id)
-);
-
-if(index === -1)
-return;
-
-selectedService =
-services[index];
-
-showPanel("order");
-
-const select =
-document.getElementById(
-"orderService"
-);
-
-select.value =
-String(index);
-
-updateSelectedService();
-
-}
-
-
-/* =========================================
-   SELECT SERVICE
-========================================= */
-
-function selectServiceFromList(){
-
-const index =
-document.getElementById(
-"orderService"
-).value;
-
-if(index === ""){
-
-selectedService = null;
-
-document
-.getElementById("selectedService")
-.innerHTML =
-"<strong>Aucun service sélectionné</strong>";
-
-document
-.getElementById("orderPrice")
-.textContent =
-"0 FC";
-
-document
-.getElementById("unitPrice")
-.textContent =
-"0 FC";
-
-document
-.getElementById("serviceLimits")
-.textContent="";
-
-return;
-
-}
-
-selectedService =
-services[Number(index)];
-
-updateSelectedService();
-
-}
-
-
-/* =========================================
-   SERVICE SELECTIONNE
-========================================= */
-
-function updateSelectedService(){
-
-if(!selectedService)
-return;
-
-const name =
-getServiceName(
-selectedService
-);
-
-const price =
-getClientPrice(
-selectedService
-);
-
-const min =
-getServiceMin(
-selectedService
-);
-
-const max =
-getServiceMax(
-selectedService
-);
-
-document
-.getElementById("selectedService")
-.innerHTML =
-`
-<strong>
-${escapeHTML(name)}
-</strong>
-
-<div id="orderPrice"
-class="order-price">
-${formatMoney(price)} / 1K
-</div>
-`;
-
-document
-.getElementById("unitPrice")
-.textContent =
-formatMoney(price);
-
-document
-.getElementById("serviceLimits")
-textContent =
-`Quantité autorisée : ${min.toLocaleString("fr-FR")} à ${max.toLocaleString("fr-FR")}.`;
-
-calculateOrderPrice();
-
-}
-
-
-/* =========================================
-   CALCUL PRIX
-========================================= */
-
-function calculateOrderPrice(){
-
-const quantity =
-Number(
-document
-.getElementById("orderQuantity")
-.value || 0
-);
-
-const price =
-selectedService
-? getClientPrice(selectedService)
-: 0;
-
-const total =
-Math.ceil(
-(price * quantity) / 1000
-);
-
-document
-.getElementById("calculatedQuantity")
-.textContent =
-quantity.toLocaleString("fr-FR");
-
-document
-.getElementById("calculatedPrice")
-.textContent =
-formatMoney(total);
-
-document
-.getElementById("unitPrice")
-.textContent =
-formatMoney(price);
-
-}
-
-
-/* =========================================
-   CREER COMMANDE
-========================================= */
-
-async function createOrder(){
-
-if(!currentUser){
-
-showMessage(
-"orderMessage",
-"❌ Connectez-vous d'abord."
-);
-
-return;
-
-}
-
-if(!selectedService){
-
-showMessage(
-"orderMessage",
-"❌ Choisissez un service."
-);
-
-return;
-
-}
-
-const link =
-document
-.getElementById("orderLink")
-.value
-.trim();
-
-const quantity =
-Number(
-document
-.getElementById("orderQuantity")
-.value
-);
-
-if(!link){
-
-showMessage(
-"orderMessage",
-"❌ Entrez le lien."
-);
-
-return;
-
-}
-
-if(
-!Number.isInteger(quantity) ||
-quantity <= 0
-){
-
-showMessage(
-"orderMessage",
-"❌ Quantité invalide."
-);
-
-return;
-
-}
-
-const min =
-getServiceMin(
-selectedService
-);
-
-const max =
-getServiceMax(
-selectedService
-);
-
-if(
-quantity < min ||
-quantity > max
-){
-
-showMessage(
-"orderMessage",
-`❌ Quantité autorisée : ${min.toLocaleString("fr-FR")} à ${max.toLocaleString("fr-FR")}.`
-);
-
-return;
-
-}
-
-const clientPrice =
-getClientPrice(
-selectedService
-);
-
-const total =
-Math.ceil(
-(clientPrice * quantity) /
-1000
-);
-
-if(
-Number(currentUser.balance || 0) <
-total
-){
-
-showMessage(
-"orderMessage",
-`❌ Solde insuffisant. Il faut ${formatMoney(total)}.`
-);
-
-return;
-
-}
-
-const button =
-document.querySelector(
-"#orderPanel button.primary"
-);
-
-if(button){
-
-button.disabled = true;
-button.textContent =
-"⏳ ENVOI...";
-
-}
-
-try{
-
-const response =
-await fetch(
-"/api/order",
-{
-method:"POST",
-headers:{
-"Content-Type":
-"application/json"
-},
-body:JSON.stringify({
-
-userId:
-currentUser.id,
-
-serviceId:
-getServiceId(
-selectedService
-),
-
-service:
-getServiceName(
-selectedService
-),
-
-link,
-
-quantity
-
-})
-}
-);
-
-const data =
-await response.json();
-
-if(
-!response.ok ||
-!data.success
-){
-
-throw new Error(
-data.message ||
-"Commande impossible."
-);
-
-}
-
-if(
-typeof data.balance !==
-"undefined"
-){
-
-currentUser.balance =
-Number(data.balance);
-
-localStorage.setItem(
-"leaderNosmyUser",
-JSON.stringify(currentUser)
-);
-
-}
-
-updateBalanceUI();
-
-showMessage(
-"orderMessage",
-"✅ Commande envoyée avec succès !",
-true
-);
-
-document
-.getElementById("orderLink")
-.value="";
-
-document
-.getElementById("orderQuantity")
-.value="";
-
-calculateOrderPrice();
-
-}catch(error){
-
-showMessage(
-"orderMessage",
-"❌ " + error.message
-);
-
-}finally{
-
-if(button){
-
-button.disabled = false;
-button.textContent =
-"🚀 COMMANDER MAINTENANT";
-
-}
-
-}
-
-}
-
-
-/* =========================================
-   DEPOT
-========================================= */
-
-async function requestDeposit(){
-
-if(!currentUser){
-
-showMessage(
-"depositMessage",
-"❌ Connectez-vous d'abord."
-);
-
-return;
-
-}
-
-const amount =
-Number(
-document
-.getElementById("depositAmount")
-.value
-);
-
-const method =
-document
-.getElementById("depositMethod")
-.value;
-
-if(
-!Number.isFinite(amount) ||
-amount < MIN_DEPOSIT
-){
-
-showMessage(
-"depositMessage",
-`❌ Le dépôt minimum est de ${formatMoney(MIN_DEPOSIT)}.`
-);
-
-return;
-
-}
-
-if(!method){
-
-showMessage(
-"depositMessage",
-"❌ Choisissez un moyen de paiement."
-);
-
-return;
-
-}
-
-try{
-
-const response =
-await fetch(
-"/api/deposit",
-{
-method:"POST",
-headers:{
-"Content-Type":
-"application/json"
-},
-body:JSON.stringify({
-
-userId:
-currentUser.id,
-
-amount,
-
-method
-
-})
-}
-);
-
-const data =
-await response.json();
-
-if(
-!response.ok ||
-!data.success
-){
-
-throw new Error(
-data.message ||
-"Impossible d'enregistrer le dépôt."
-);
-
-}
-
-showMessage(
-"depositMessage",
-"✅ Demande enregistrée. Effectuez le paiement puis attendez la validation.",
-true
-);
-
-document
-.getElementById("depositAmount")
-.value="";
-
-document
-.getElementById("depositMethod")
-.value="";
-
-}catch(error){
-
-showMessage(
-"depositMessage",
-"❌ " + error.message
-);
-
-}
-
-}
-
-
-/* =========================================
-   COMMANDES
-========================================= */
-
-async function loadOrders(){
-
-if(!currentUser)
-return;
-
-const list =
-document.getElementById(
-"ordersList"
-);
-
-list.innerHTML =
-'<div class="loading">⏳ Chargement...</div>';
-
-try{
-
-const response =
-await fetch(
-"/api/orders/" +
-encodeURIComponent(
-currentUser.id
-)
-);
-
-const data =
-await response.json();
-
-if(
-!response.ok ||
-!data.success
-){
-
-throw new Error(
-data.message ||
-"Erreur."
-);
-
-}
-
-const orders =
-Array.isArray(data.orders)
-? data.orders
-: [];
-
-if(!orders.length){
-
-list.innerHTML =
-'<div class="empty">📋 Aucune commande pour le moment.</div>';
-
-return;
-
-}
-
-list.innerHTML =
-orders
-.slice()
-.reverse()
-.map(order => {
-
-const status =
-order.status ||
-"Pending";
-
-return `
-<div class="order-row">
-
-<strong>
-📦 ${escapeHTML(
-order.serviceName ||
-"Service"
-)}
-</strong>
-
-<br>
-
-<span>
-Quantité :
-${Number(
-order.quantity || 0
-).toLocaleString("fr-FR")}
-</span>
-
-<br>
-
-<span>
-Montant :
-<strong>
-${formatMoney(
-order.chargeFC ||
-order.price ||
-0
-)}
-</strong>
-</span>
-
-<br>
-
-<span>
-Commande fournisseur :
-${escapeHTML(
-order.providerOrderId ||
-order.smmOrderId ||
-"—"
-)}
-</span>
-
-<br>
-
-<span>
-Lien :
-${escapeHTML(
-order.link ||
-""
-)}
-</span>
-
-<br>
-
-<span class="status">
-${escapeHTML(status)}
-</span>
-
-</div>
-`;
-
-})
-.join("");
-
-}catch(error){
-
-list.innerHTML =
-`<div class="empty">
-❌ ${escapeHTML(error.message)}
-</div>`;
-
-}
-
-}
-
-
-/* =========================================
-   WHATSAPP
-========================================= */
-
-function openWhatsApp(){
-
-const text =
-"Bonjour LEADER NOSMY BOOST 👑%0A%0AJe voudrais passer une commande.";
-
-window.open(
-"https://wa.me/" +
-WHATSAPP_NUMBER +
-"?text=" +
-text,
-"_blank"
-);
-
-}
-
-
-/* =========================================
-   LOGOUT
-========================================= */
-
-function logoutUser(){
-
-localStorage.removeItem(
-"leaderNosmyUser"
-);
-
-currentUser = null;
-
-document
-.getElementById("clientPanel")
-.classList.add("hidden");
-
-document
-.getElementById("authSection")
-.classList.remove("hidden");
-
-document
-.getElementById("miniBalance")
-.classList.add("hidden");
-
-showLogin();
-
-}
-
-
-/* =========================================
-   DEMARRAGE
-========================================= */
-
-document.addEventListener(
-"DOMContentLoaded",
-async () => {
-
-if(currentUser){
-
-await refreshUser();
-
-showClient();
-
-}
-
-}
-);
+  function order(service, price) {
+
+    const message =
+      "Bonjour LEADER NOSMY BOOST 👑%0A%0A" +
+      "Je souhaite commander :%0A" +
+      "Service : " + service + "%0A" +
+      "Prix : " + price.toLocaleString("fr-FR") + " FC%0A%0A" +
+      "Merci.";
+
+    window.open(
+      "https://wa.me/243843066709?text=" + message,
+      "_blank"
+    );
+  }
 
 </script>
 
